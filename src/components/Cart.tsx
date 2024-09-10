@@ -44,9 +44,9 @@ const Cart: React.FC = () => {
         }}
       >
         <div className="mx-4">
-          <div className="flex max-w-screen-lg py-4 mx-auto">
+          <div className="flex max-w-screen-lg h-[110px] py-4 mx-auto">
             {steps.map((step, index) => (
-              <div className="w-full" key={step.id}>
+              <div className="w-full " key={step.id}>
                 <div className="flex items-center w-full">
                   <div
                     className={`w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full ${currentStep > step.id ? "bg-green-600" : "bg-gray-300"
@@ -172,10 +172,16 @@ const Cart: React.FC = () => {
 
         {currentStep === 3 && <PaymentPage />}
 
-        <div className="flex justify-center mt-4">
+        
+
+        <div className="flex justify-center mt-4 gap-4 p-4">
+        <button className="w-2/4 bg-white text-customBlue py-2 text-sm border-2  2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white">
+           Continue Shopping
+        </button>
+
           <button
             onClick={handleNext}
-            className="w-2/4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
           >
             {currentStep == 3 ? "Pay" : "Contiune"}
           </button>

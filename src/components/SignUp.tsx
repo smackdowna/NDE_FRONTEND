@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import { useTransition, animated } from 'react-spring';
 import { useMutation } from '@tanstack/react-query';
 
+
 // Define the interface for form data
 interface SignupFormData {
   first_name: string;
@@ -81,7 +82,7 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
     item ? (
       <animated.div
         style={style}
-        className='bg-white fixed right-0 top-0 w-[28vw] z-50 max-2xl:w-[30vw] max-xl:w-[40vw] max-md:w-[100vw] h-full '
+        className='bg-white fixed right-0 top-0 w-[28vw] z-50 max-2xl:w-[50vw] max-xl:w-[50vw] max-md:w-[100vw] h-full p-2'
       >
         <div className='flex justify-center h-full bg-white overflow-y-scroll hide-scrollbar'>
           <button
@@ -111,10 +112,10 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
                     { label: 'State', field: 'state', type: 'text' },
                     { label: 'GSTIN', field: 'gstin', type: 'text' }, // Added GSTIN field
                   ].map((item, index) => (
-                    <div key={index} className="flex flex-col">
+                    <div key={index} className="flex mr-4 flex-col">
                       <label
                         htmlFor={item.field}
-                        className="font-source-sans-pro text-start text-lg font-400 font-roboto text-[13px] text-[#313131]"
+                        className="pl-2 font-source-sans-pro text-start text-lg font-400 font-roboto text-[13px] text-[#313131]"
                       >
                         {item.label}
                       </label>
@@ -122,7 +123,7 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
                         type={item.type}
                         {...register(item.field as keyof SignupFormData, { required: true })}
                         placeholder={item.label}
-                        className="border-[1px] p-3 rounded-lg mt-2 text-[14px]"
+                        className=" border-[1px] p-3 rounded-lg mt-2 text-[14px]"
                       />
                       {errors[item.field as keyof SignupFormData] && (
                         <span className="text-red-500 text-[10px] mt-1">
@@ -134,7 +135,7 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
                   <div className="flex flex-col">
                     <label
                       htmlFor="country"
-                      className="font-source-sans-pro text-start font-400 text-lg font-roboto text-[#313131]"
+                      className="pl-2 font-source-sans-pro text-start font-400 text-lg font-roboto text-[#313131]"
                     >
                       Country
                     </label>
