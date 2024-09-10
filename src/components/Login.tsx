@@ -188,18 +188,20 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
                   )}
                 </div>
                 <span className="text-end pt-1 text-home-primary font-400">
-                  Forgot Password
+                  Forgot Password ?
                 </span>
+                <div className="flex flex-row w-full items-center justify-center">
                 <button
                   type="submit"
-                  className="bg-home-primary text-white mx-2 mt-4 mb-2 text-2xl font-800 w-[300px] py-2"
+                  className="bg-home-primary  text-white mx-2 mt-4 mb-2 text-2xl font-800 w-[300px] py-2"
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending ? "Logging in..." : "Login"}
                 </button>
+                </div>
                 <span>
                   New to NowDigitalEasy?{" "}
-                  <span className="text-home-primary">Sign up here</span>
+                  <span className="text-home-primary cursor-pointer border-b border-blue-500">Sign up here</span>
                 </span>
               </form>
             </div>

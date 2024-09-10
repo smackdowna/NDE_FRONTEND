@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        customBlue: "#0A41FC",
         home: {
           primary: "#0011FF",
           secondary: "#FFB700",
