@@ -64,7 +64,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     return (
         <div className='w-full max-w-[850px] mx-auto'>
             <div className='flex justify-between p-3 border-b-2 cursor-pointer' onClick={toggleAccordion}>
-                <span className='font-700 text-2xl max-md:text-sm max-lg:text-xl'>{question}</span>
+                <span className='font-700 text-2xl max-md:text-sm max-lg:text-xl max-2xl:text-[17px]'>{question}</span>
                 <Image src={isOpen ? ICONS.plusCricle : ICONS.plusCricle} alt='toggle icon' />
             </div>
             <div 
@@ -84,14 +84,14 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
-        <div className={`${bgColor} flex flex-col gap-4 px-4`}>
+        <div className={`${bgColor} flex flex-col gap-4 px-4 `}>
             <div className='flex justify-center pt-[120px] max-md:pt-10 max-lg:pt-10'>
-                <span className='text-center text-6xl max-lg:text-4xl max-md:text-3xl font-900 w-full max-w-[1300px] text-home-heading font-roboto'>
+                <span className='text-center text-6xl max-lg:text-4xl max-md:text-3xl font-900 w-full max-w-[1300px] text-home-heading font-roboto max-2xl:text-[43px]'>
                     Still not sure? <br /> Here are some answers for your queries
                 </span>
             </div>
             <div className='flex justify-center pt-4 md:pt-10'>
-                <span className='w-full max-w-[1000px] text-center text-xl md:text-2xl font-roboto-serif'>
+                <span className='w-full max-w-[1000px] text-center text-xl md:text-2xl font-roboto-serif max-2xl:text-[17px] text-customGray'>
                     If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&rsquo;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                 </span>
             </div>

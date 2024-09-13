@@ -40,11 +40,11 @@ const Power = () => {
         <div className='bg-[#EEFDF6]'>
             <div className='flex flex-col'>
                 <div className='flex justify-center text-center'>
-                    <span className='px-2 max-xl:text-3xl max-md:text-2xl tracking-tighter font-roboto text-6xl text-home-heading font-900 pt-28 pb-10'>
+                    <span className='px-2 max-xl:text-3xl max-md:text-2xl max-2xl:text-[43px]  font-roboto text-6xl text-home-heading font-900 pt-28 pb-10'>
                         Power your Field Service Team and Deliver Better Results
                     </span>
                 </div>
-                <span className='font-500 font-roboto-serif text-3xl max-lg:text-xl text-center'>
+                <span className='font-500 font-roboto-serif text-3xl max-lg:text-xl text-center max-2xl:text-[17px] 2xl:text-[22px] max-md:text-[17px] max-md:leading-tight'>
                     SpotNow is your key to seamless, agile, and data-driven workforce management.
                 </span>
                 <div className='flex justify-center flex-wrap gap-10 py-16'>
@@ -54,10 +54,10 @@ const Power = () => {
                                 <Image src={item.imgSrc} alt='brand' />
                             </div>
                             <div className='flex flex-col gap-4'>
-                                <span className='font-900 font-roboto text-home-heading text-3xl max-lg:text-xl text-center'>
+                                <span className='font-900 font-roboto text-home-heading text-3xl max-lg:text-xl max-2xl:text-2xl text-center'>
                                     {item.title}
                                 </span>
-                                <span className='font-roboto-serif font-500 text-2xl max-md:text-lg text-center'>
+                                <span className='font-roboto-serif font-500 text-2xl max-2xl:text-lg max-md:text-lg text-center text-customGray'>
                                     {item.description}
                                 </span>
                             </div>
