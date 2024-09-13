@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 interface Domain {
     name: string;
@@ -22,19 +24,6 @@ interface PlanModalProps {
     refetch: () => void;
     isFetching: boolean;
     index: number;
-}
-
-interface Product {
-    _id: string;
-    name: string;
-    description: string;
-    discount: number;
-    price: {
-        period: string;
-        defaultPrice: number;
-        offerPrice: number;
-        type: string;
-    }[];
 }
 
 const GsuitePlans = async () => {
@@ -59,36 +48,31 @@ const PlanModal: React.FC<PlanModalProps> = ({
     isFetching,
     index
 }) => {
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('Annual-Monthly');
-    const [price, setPrice] = useState < number > (0);
-    const [selectedDomains, setSelectedDomains] = useState < Domain[] > ([]);
+    const [price, setPrice] = useState<number>(0);
+    const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
     const [quantity, setQuantity] = useState(1);
+    console.log(selectedDomains)
 
-
-    const { data, isError, isLoading } = useQuery({ queryKey: ["Gsuite"], queryFn: GsuitePlans });
+    const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: GsuitePlans });
 
     useEffect(() => {
-        if (data && data.products && data.products.length > 0) {
-            const initialPrice = data.products[index].price.find((p: { period: string }) => p.period === selectedPeriod);
-            setPrice(initialPrice ? initialPrice.offerPrice : 0);
+        if (data && data.product && data.product.length > 0) {
+            const initialPrice = data.product[index].price.find((p: { period: string; }) => p.period === selectedPeriod);
+            setPrice(initialPrice ? initialPrice.amount : 0);
         }
-    }, [data, selectedPeriod, index]);
+    }, [data, selectedPeriod]);
 
-    useEffect(() => {
+    // Sync cart from local storage or API
+    useEffect(() => {   // different
         if (data) {
             const currentProduct = data.products[index]._id;
-
-            // Load existing cart from localStorage
             const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-            // Filter cart items for the current product
             const productCartItems = existingCart.filter((item: any) => item.productId === currentProduct);
-
-            // Update selected domains based on existing cart items
             const domainsInCart = domains.filter(domain =>
                 productCartItems.some((item: any) => item.domainName === domain.name)
             );
-
             setSelectedDomains(domainsInCart);
         }
     }, [data, index, domains]);
@@ -103,42 +87,82 @@ const PlanModal: React.FC<PlanModalProps> = ({
         }
     };
 
-    const toggleDomainSelection = (domain: Domain) => {
-        setSelectedDomains(prevSelected => {
-            const isSelected = prevSelected.some(d => d.name === domain.name);
-            let updatedSelectedDomains;
+
     
+    const addCartToAPI = async (cartData: any) => {
+        try {
+            const response = await axios.post(
+                'https://liveserver.nowdigitaleasy.com:5000/cart',
+                { data: cartData },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to add cart to API');
+        }
+    };
+
+
+    
+    const syncCartToAPI = () => {
+        const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (isAuthenticated && existingCart.length > 0) {
+            addCartToAPI(existingCart)
+                .then(() => {
+                    toast.success('Cart synced successfully');
+                })
+                .catch((error) => {
+                    toast.error('Failed to sync cart');
+                    console.error(error);
+                });
+        }
+    };
+
+    const toggleDomainSelection = (domain: Domain) => {
+        setSelectedDomains((prevSelected) => {
+            const isSelected = prevSelected.some((d) => d.name === domain.name);
+            let updatedSelectedDomains;
+
             if (isSelected) {
                 toast.success(`${domain.name} removed from cart`);
-                updatedSelectedDomains = prevSelected.filter(d => d.name !== domain.name);
+                updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
                 toast.success(`${domain.name} added to cart`);
                 updatedSelectedDomains = [...prevSelected, domain];
             }
-    
+
             if (data) {
                 const currentProduct = data.products[index]._id;
-    
                 const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
-                const filteredCart = existingCart.filter((item: any) => item.productId !== currentProduct);
-    
-                const newCartItems = updatedSelectedDomains.map(domain => ({
-                    product: "gsuite",
+
+                const newCartItems = updatedSelectedDomains.map((domain) => ({
+                    product: 'gsuite',
                     productId: currentProduct,
                     domainName: domain.name,
                     period: selectedPeriod,
-                    type: "new",
-                    quantity // Include the selected quantity here
+                    type: 'new',
+                    quantity,
                 }));
-    
-                const updatedCart = [...filteredCart, ...newCartItems];
-    
-                localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+                const updatedCart = existingCart.filter(
+                    (item: any) => !newCartItems.some((newItem) => newItem.domainName === item.domainName)
+                );
+
+                localStorage.setItem('cart', JSON.stringify([...updatedCart, ...newCartItems]));
+                if (isAuthenticated) {
+                    syncCartToAPI();
+                }
             }
-    
+
             return updatedSelectedDomains;
         });
     };
+    
+    
     
 
     const DomainItem = ({ domain }: { domain: Domain }) => (

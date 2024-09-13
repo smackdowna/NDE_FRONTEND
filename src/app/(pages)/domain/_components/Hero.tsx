@@ -12,6 +12,7 @@ import {
   handleGetAllCartItemsService,
 } from "@/services/cart";
 import { toast } from "sonner";
+import { RootState } from "@/store/store";
 
 interface Domain {
   name: string;
@@ -21,7 +22,7 @@ interface Domain {
     tld: string;
     year: number;
     registerPrice: number;
-    _id: string;  
+    _id: string;
   }[];
 }
 interface CartItem extends Domain {
@@ -32,8 +33,6 @@ interface CartItem extends Domain {
   year: number;
 }
 
-
-
 const words = [".education", ".travel", ".fun", ".online"];
 
 const fetchDomainAvailability = async (domain: string) => {
@@ -41,15 +40,15 @@ const fetchDomainAvailability = async (domain: string) => {
     "https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=IN",
     { domain }
   );
-  return response.data.response.map((item: any) => ({
-    name: item.domain,
+  return response?.data?.response?.map((item: any) => ({
+    name: item?.domain,
     status:
-      item.status === "available"
+      item?.status === "available"
         ? "Available"
-        : item.status === "unavailable"
+        : item?.status === "unavailable"
         ? "Unavailable"
         : "Unknown",
-    price: item.price && item.price.length > 0 ? item.price : undefined,
+    price: item?.price && item?.price?.length > 0 ? item?.price : undefined,
   }));
 };
 
@@ -57,16 +56,16 @@ const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
-  const { isAuthenticated } = useSelector((state: any) => state.auth);
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart");
-      console.log("Cart loaded from local storage:", savedCart);
       return savedCart ? JSON.parse(savedCart) : [];
     }
     return [];
   });
+
   const [searchQuery, setSearchQuery] = useState("");
   const queryClient = useQueryClient();
 
@@ -107,66 +106,99 @@ const Hero = () => {
   };
 
   const { mutate, isPending: isAddToCartPending } = useMutation({
-    mutationFn: (data: any) => handleAddAItemToCartService(data),
-    onError: (error: string) => {
-      toast.error(error);
+    mutationFn: (data: any) => {
+      console.log("Data to be sent to API:", data); // Log data being sent to API
+      return handleAddAItemToCartService(data);
+    },
+    onError: (error: any) => {
+      toast.error(error?.message || "An error occurred");
     },
     onSuccess: () => {
       toast.success("Domain added to cart");
-      queryClient.invalidateQueries({
-        queryKey: ["cart"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
 
   const handleCloseModal = () => setIsModalOpen(false);
-
-  const handleAddToCart = (domain: Domain) => {
-    if (isAuthenticated) {
-      const data = queryClient.getQueryData<any>(["cart"]);
-      const formattedData = domain.price?.map((price) => ({
-        product: "domain",
-        productId: price.productId,
-        domainName: domain.name,
-        type: "new", // Assuming the type is "new", adjust if necessary
-        year: price.year,
-      }));
-  
-      mutate(formattedData);
-    } else {
-      setCart((prevCart) => {
-        const newCart: CartItem[] = [
-          ...prevCart,
-          ...domain.price?.map((price) => ({
-            name: domain.name,
-            status: domain.status,
-            product: "domain",
-            productId: price.productId,
-            domainName: domain.name,
-            type: "new",
-            year: price.year,
-          })) || [],
-        ];
-  
-        // Save the updated cart to localStorage
-        localStorage.setItem("cart", JSON.stringify(newCart));
-        console.log("Cart updated with new items:", newCart);
-        return newCart;
-      });
-  
-      queryClient.setQueryData<Domain[]>(
-        ["domainAvailability", searchQuery],
-        (oldDomains = []) =>
-          oldDomains.map((d) =>
-            d.name === domain.name ? { ...d, status: "Added" } : d
-          )
+  const addCartToAPI = async (cartData: any) => {
+    try {
+      const response = await axios.post(
+        "https://liveserver.nowdigitaleasy.com:5000/cart",
+        { data: cartData },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to add cart to API");
     }
   };
-  
-  
-  
-  
+
+  // Different
+  const syncCartToAPI = () => {
+    const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (isAuthenticated && existingCart.length > 0) {
+      addCartToAPI(existingCart)
+        .then(() => {
+          toast.success("Cart synced successfully");
+        })
+        .catch((error) => {
+          toast.error("Failed to sync cart");
+          console.error(error);
+        });
+    }
+  };
+
+  const handleAddToCart = (domain: Domain) => {
+    setCart((prevCart) => {
+      const isSelected = prevCart.some(
+        (item) => item.domainName === domain.name
+      );
+      let updatedCart;
+
+      // If the domain is already in the cart, remove it
+      if (isSelected) {
+        toast.success(`${domain.name} removed from cart`);
+        updatedCart = prevCart.filter(
+          (item) => item.domainName !== domain.name
+        );
+      } else {
+        // If the domain is not in the cart, add it
+        toast.success(`${domain.name} added to cart`);
+        const newCartItems =
+          domain?.price?.map((price) => ({
+            name: domain?.name,
+            status: domain?.status,
+            product: "domain",
+            productId: price?.productId,
+            domainName: domain?.name,
+            type: "new",
+            year: price?.year,
+          })) || [];
+
+        updatedCart = [...prevCart, ...newCartItems];
+      }
+
+      // Save the updated cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      // If authenticated, sync the cart to the API
+      if (isAuthenticated) {
+        syncCartToAPI();
+      }
+
+      return updatedCart;
+    });
+
+    // Update the domain availability query if needed
+    // queryClient.setQueryData<Domain[]>(["domainAvailability", searchQuery], (oldDomains = []) =>
+    //   oldDomains?.map((d) => (d?.name === domain?.name ? { ...d, status: isSelected ? "Available" : "Added" } : d))
+    // );
+  };
+
   const handleRemoveFromCart = (domain: Domain) => {
     setCart((prevCart) => {
       // Use 'name' instead of 'domainName' since 'name' is a property of the 'Domain' type
@@ -175,16 +207,15 @@ const Hero = () => {
       console.log("Cart updated by removing item:", newCart);
       return newCart;
     });
-    
+
     queryClient.setQueryData<Domain[]>(
       ["domainAvailability", searchQuery],
       (oldDomains = []) =>
-        oldDomains.map((d) =>
-          d.name === domain.name ? { ...d, status: "Available" } : d
+        oldDomains?.map((d) =>
+          d?.name === domain?.name ? { ...d, status: "Available" } : d
         )
     );
   };
-  
 
   const getTextColor = (word: string) => {
     switch (word) {
@@ -202,7 +233,7 @@ const Hero = () => {
   };
 
   const isInCart = (domain: Domain) =>
-    cart.some((item) => item.name === domain.name);
+    cart?.some((item) => item?.name === domain?.name);
 
   const DomainItem = ({ domain }: { domain: Domain }) => (
     <div className="flex justify-between bg-white items-center content-center m-3">
@@ -253,26 +284,25 @@ const Hero = () => {
         </div>
         <button
           className={`text-white w-[120px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${
-            domain.status === "Available"
-              ? "bg-home-primary"
-              : domain.status === "Added"
+            isInCart(domain)
               ? "bg-red-500"
-              : domain.status === "Unavailable"
-              ? "bg-gray-400"
-              : "bg-gray-500"
+              : domain.status === "Available"
+              ? "bg-home-primary"
+              : "bg-gray-400"
           }`}
           onClick={() => {
             if (domain.status === "Available") {
               handleAddToCart(domain);
-            } else if (domain.status === "Added") {
+            } else if (isInCart(domain)) {
               handleRemoveFromCart(domain);
             }
           }}
-          disabled={domain.status !== "Available" && domain.status !== "Added"}
+          // Enable the button if the domain is in the cart, even if it's unavailable
+          disabled={domain.status !== "Available" && !isInCart(domain)}
         >
           {domain.status === "Available" && !isInCart(domain)
             ? "Add to cart"
-            : domain.status === "Added"
+            : isInCart(domain)
             ? "Remove"
             : "Unavailable"}
         </button>
