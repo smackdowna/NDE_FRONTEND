@@ -21,12 +21,12 @@ interface PlanFeatureProps {
 const PlanCard: React.FC<PlanCardProps> = ({ name, price, isStarter }) => (
     <th className={`text-center py-2 lg:py-4 relative ${isStarter ? 'bg-[#EBEBFD]' : ''}`}>
         <div className="flex flex-col gap-2 lg:gap-4">
-            <span className="font-900 text-xl lg:text-4xl text-home-heading">{name}</span>
+            <span className="font-900 text-xl lg:text-4xl text-home-heading xl:text-4xl 2xl:text-5xl">{name}</span>
             <span className="font-900">
                 <sup className="text-lg lg:text-xl max-md:hidden">₹</sup>
-                <span className="text-3xl lg:text-5xl">{price}</span>/month
+                <span className="text-3xl lg:text-5xl xl:text-4xl 2xl:text-5xl">{price}</span>/month
             </span>
-            <button className="bg-[#00B98B] p-2 lg:p-4 text-white text-md lg:text-2xl font-900 rounded-lg mx-auto max-md:mx-1">
+            <button className="bg-[#00B98B] p-2 lg:p-4 text-white text-md lg:text-2xl xl:w-[116px] xl:text-sm 2xl:text-lg xl:border 2xl:ronded-sm 2xl:w-[150px]  font-900 rounded-md mx-auto max-md:mx-1">
                 Add to cart
             </button>
         </div>
@@ -38,12 +38,12 @@ const PlanCard: React.FC<PlanCardProps> = ({ name, price, isStarter }) => (
 // PlanFeature Component
 const PlanFeature: React.FC<PlanFeatureProps> = ({ title, starter, advanced, premium }) => (
     <tr className="border-t-[1px] border-black border-opacity-65 font-roboto-serif">
-        <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-1 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-2 lg:py-4">
+        <td className="sticky left-0   text-home-heading tracking-tighter text-md px-1 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-2 lg:py-4 xl:text-lg 2xl:text-2xl">
             {title}
         </td>
-        <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl">{starter}</td>
-        <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">{advanced}</td>
-        <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">{premium}</td>
+        <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl xl:text-lg 2xl:text-2xl">{starter}</td>
+        <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl xl:text-lg 2xl:text-2xl">{advanced}</td>
+        <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl xl:text-lg 2xl:text-2xl">{premium}</td>
     </tr>
 );
 
@@ -143,7 +143,7 @@ const SpotNowTable: React.FC = () => {
                     <table className="w-full min-w-max">
                         <thead>
                             <tr className=' max-md:hidden'>
-                                <th className="relative bg-white z-50 shadow-r-xl text-home-heading text-3xl max-lg:text-2xl max-md:text-xl font-roboto font-900">
+                                <th className="relative bg-white shadow-r-xl text-home-heading text-3xl max-lg:text-2xl max-md:text-xl font-roboto font-900">
                                     <div className="flex flex-col gap-4 px-3">
                                         {/* Toggle Button Container */}
                                         <div
@@ -157,14 +157,14 @@ const SpotNowTable: React.FC = () => {
                                             ></div>
 
                                             {/* Monthly and Annually Text */}
-                                            <div className={` ${isMonthly ? ' text-gray-600' : ' text-black'} flex justify-center font-bold text-2xl gap-8 z-50`}>
+                                            <div className={` ${isMonthly ? ' text-gray-600' : ' text-black'} flex justify-center font-bold text-2xl xl:text-2xl 2xl:text-2xl gap-8  z-10`}>
                                                 <span>Monthly</span>
                                                 <span>Annually</span>
                                             </div>
                                         </div>
 
                                         {/* Additional Text */}
-                                        <span className='text-start'>Spot Now Features</span>
+                                        <span className='text-start xl:text-[28px] 2xl:text-[28px]'>Spot Now Features</span>
                                     </div>
                                 </th>
                                 <PlanCard name="Starter" price={isAnnually ? "670" : "67"} isStarter={true} />
@@ -172,7 +172,7 @@ const SpotNowTable: React.FC = () => {
                                 <PlanCard name="Premium" price={isAnnually ? "1490" : "149"} isStarter={false} />
                             </tr>
                         </thead>
-                        <tbody className=' max-md:hidden'>
+                        <tbody className=' max-md:hidden '>
                             <PlanFeature title="Number of Users" starter="" advanced="50" premium="100" />
                             <PlanFeature title="SSD Storage (GB)" starter="50GB" advanced="100GB" premium="200GB" />
                             <PlanFeature title="Bandwidth" starter="Unlimited" advanced="Unlimited" premium="Unlimited" />
@@ -187,81 +187,81 @@ const SpotNowTable: React.FC = () => {
                         </tbody>
                         <tbody>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0  xl:text-[17px] bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Number of Users
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Attendance - In & Out
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Multiple Checkin & Checkout
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Multiple Attendance Session
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Edit Meeting Notes
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Multiple Branch Locations
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Branch Location based Attendance Geo-restriction
                                 </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Hierarchy based Attendance Geo-restriction                                </td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Geo-restriction for Checkout</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Hierarchy based Geo-restriction Notification</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Live Tracking</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
-                            <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                            <tr> 
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Sort Tracking Page</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     GPS On & Off Notification</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
                             <tr>
-                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4">
+                                <td className="sticky left-0 bg-white w-[200px] text-home-heading tracking-tighter text-md px-10 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-6 lg:py-4 xl:text-lg 2xl:text-2xl font-roboto-serif">
                                     Play and Pause Route</td>
-                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6">100</td>
+                                <td className="text-home-heading text-center bg-[#EBEBFD] py-2 lg:py-4 text-lg lg:text-2xl px-6 xl:text-lg 2xl:text-2xl font-roboto-serif">100</td>
                             </tr>
 
                             <div className='flex justify-center content-center py-10 pl-24'>

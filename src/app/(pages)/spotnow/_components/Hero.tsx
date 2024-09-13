@@ -18,19 +18,20 @@ const Hero = () => {
                 <div className="flex flex-col lg:flex-row justify-between items-center ml-[82px] mr-[4vw] gap-10 max-2xl:gap-10 max-xl:mr-0 max-2xl:ml-6 max-2xl:mr-0">
                     <div className="flex flex-col gap-5 max-md:gap-4 items-center lg:items-start text-center lg:text-left">
                         {/* Heading */}
-                        <h1 className="text-[65px] leading-tight   tracking-tight  max-md:text-2xl  max-2xl:text-[48px] max-xl:text-[38px] font-roboto  text-home-heading font-800">
-                            Simplify, Streamline, Supercharge<br />Your Field Operations            </h1>
-                        <p className="text-3xl max-2xl:text-[22px] max-xl:text-lg font-roboto-serif  text-text-900/80 w-[740px] max-2xl:w-[600px] max-xl:w-[550px] max-lg:w-[400px] max-md:w-[320px] max-sm:w-[300px]">
+                        <h1 className="text-[65px] leading-tight  xl:text-[48px] tracking-tight  max-md:text-2xl 2xl:text-[74px] max-2xl:text-[48px] max-xl:text-[38px] font-roboto  text-home-heading font-800">
+                            Simplify, Streamline, Supercharge<br />Your Field Operations </h1>
+                        <p className="text-3xl max-2xl:text-[22px] xl:text-lg font-roboto-serif  2xl:text-[22px] text-text-900/80 w-[740px] max-2xl:w-[600px] max-xl:w-[550px] max-lg:w-[400px] max-md:w-[320px] max-sm:w-[300px] max-md:text-[17px] leading-[28.05px]">
                         Real-time insights, daily work management, live tracking, resource allocation, and much more - all with a cloud-based Field Employee Tracking Software.                        </p>
-                        <button className="bg-background-button px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-3xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
+                        <button className="bg-background-button px-6 border-2 border-green-400 md:px-8 lg:px-10 2xl:w-[209px] 2xl:h-[60px] 2xl:text-[44px]
+                        py-2 md:py-4 xl:w-[166px] xl:px-[24px] xl:py-[10px] text-white text-base md:text-lg lg:text-3xl font-700 rounded-[4px] shadow-[0px_2px_2px_0px_#00000040]">
                             <div className="flex gap-2 md:gap-3 items-center">
-                                <span className=" font-roboto-serif">Get Free Trail</span>
+                                <span className=" font-roboto-serif xl:text-lg">Get Free Trail</span>
                             </div>
                         </button>
                     </div>
                     {/* Video Placeholder */}
                     <div className="aspect-[1.6/1] w-[50vw] max-lg:w-full ">
-                        <Image src={IMAGES.spotIcon} alt="hero" />
+                        <Image src={IMAGES.spotIcon} alt="hero"  />
                     </div>
                 </div>
             </div>
