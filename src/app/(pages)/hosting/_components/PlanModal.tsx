@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 
 interface Domain {
@@ -49,67 +51,151 @@ const PlanModal: React.FC<PlanModalProps> = ({
     isFetching,
     index
 }) => {
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('monthly');
     const [price, setPrice] = useState < number > (0);
     const [selectedDomains, setSelectedDomains] = useState < Domain[] > ([]);
 
+    // console.log(selectedDomains)
+
     const { data, isError, isLoading } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
+
+    console.log(price);
 
     useEffect(() => {
         if (data && data.product && data.product.length > 0) {
-            const initialPrice = data.product[index].price.find((p: { period: string; }) => p.period === selectedPeriod);
-            setPrice(initialPrice ? initialPrice.amount : 0);
+            const initialPrice = data?.product[index]?.price?.find((p: { period: string }) => p.period === selectedPeriod);
+            console.log(initialPrice)
+            setPrice(initialPrice ? initialPrice?.amount : 0);
         }
-    }, [data, selectedPeriod]);
+    }, [data, selectedPeriod, index]);
+
+
+    useEffect(() => {
+        if (data) {
+            const currentProduct = data.product[index]._id;
+            const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const productCartItems = existingCart.filter((item: any) => item.productId === currentProduct);
+            const domainsInCart = domains.filter(domain =>
+                productCartItems.some((item: any) => item.domainName === domain.name)
+            );
+            setSelectedDomains(domainsInCart);
+        }
+    }, [data, index, domains]);
+
 
     const handleDurationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = e.target.value;
         setSelectedPeriod(selected);
 
         if (data && data.product && data.product[index]) {
-            const selectedPrice = data.product[index].price.find((p: { period: string; }) => p.period === selected);
-            setPrice(selectedPrice ? selectedPrice.registerPrice : 0);
+            const selectedPrice = data.product[index].price.find((p: { period: string }) => p.period === selected);
+            setPrice(selectedPrice ? selectedPrice.offerPrice : 0);
         }
     };
 
+    const addCartToAPI = async (cartData: any) => {
+        try {
+            const response = await axios.post(
+                'https://liveserver.nowdigitaleasy.com:5000/cart',
+                { data: cartData },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to add cart to API');
+        }
+    };
+
+    // Different
+    const syncCartToAPI = () => {
+        const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (isAuthenticated && existingCart.length > 0) {
+            addCartToAPI(existingCart)
+                .then(() => {
+                    toast.success('Cart synced successfully');
+                })
+                .catch((error) => {
+                    toast.error('Failed to sync cart');
+                    console.error(error);
+                });
+        }
+    };
+
+
+
+    
+
     const toggleDomainSelection = (domain: Domain) => {
-        setSelectedDomains(prevSelected => {
-            const isSelected = prevSelected.some(d => d.name === domain.name);
+        setSelectedDomains((prevSelected) => {
+            const isSelected = prevSelected.some((d) => d.name === domain.name);
+            let updatedSelectedDomains;
+
             if (isSelected) {
                 toast.success(`${domain.name} removed from cart`);
-                return prevSelected.filter(d => d.name !== domain.name);
+                updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
                 toast.success(`${domain.name} added to cart`);
-                return [...prevSelected, domain];
+                updatedSelectedDomains = [...prevSelected, domain];
             }
+
+            if (data) {
+                const currentProduct = data.product[index]._id;
+                const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+                const newCartItems = updatedSelectedDomains.map((domain) => ({
+                    product: 'hosting',
+                    productId: currentProduct,
+                    domainName: domain.name,
+                    period: selectedPeriod,
+                    type: 'new',
+                }));
+
+                const updatedCart = existingCart.filter(
+                    (item: any) => !newCartItems.some((newItem) => newItem.domainName === item.domainName)
+                );
+
+                localStorage.setItem('cart', JSON.stringify([...updatedCart, ...newCartItems]));
+                if (isAuthenticated) {
+                    syncCartToAPI();
+                }
+            }
+
+            return updatedSelectedDomains;
         });
     };
 
-    useEffect(() => {
-        if (data) {
-            const currentProduct = data.product[index]._id;
-            // Retrieve the current cart from localStorage
-            const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-            // Remove existing entries for the current product
-            const filteredCart = existingCart.filter((item: any) => item.productId !== currentProduct);
 
-            // Create new entries for selected domains
-            const newCartItems = selectedDomains.map(domain => ({
-                product: "hosting",
-                productId: currentProduct,
-                domainName: domain.name,
-                period: selectedPeriod,
-                type: "new"
-            }));
+    // useEffect(() => {
+    //     if (data) {
+    //         const currentProduct = data.product[index]._id;
+    //         // Retrieve the current cart from localStorage
+    //         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-            // Combine the filtered existing cart with new items
-            const updatedCart = [...filteredCart, ...newCartItems];
+    //         // Remove existing entries for the current product
+    //         const filteredCart = existingCart.filter((item: any) => item.productId !== currentProduct);
 
-            // Store the updated cart back into localStorage
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        }
-    }, [selectedDomains, selectedPeriod, data, index]);
+    //         // Create new entries for selected domains
+    //         const newCartItems = selectedDomains.map(domain => ({
+    //             product: "hosting",
+    //             productId: currentProduct,
+    //             domainName: domain.name,
+    //             period: selectedPeriod,
+    //             type: "new"
+    //         }));
+
+    //         // Combine the filtered existing cart with new items
+    //         const updatedCart = [...filteredCart, ...newCartItems];
+
+    //         // Store the updated cart back into localStorage
+    //         localStorage.setItem('cart', JSON.stringify(updatedCart));
+    //     }
+    // }, [selectedDomains, selectedPeriod, data, index]);
 
     const DomainItem = ({ domain }: { domain: Domain }) => (
         <div className="flex justify-between w-[70vw] max-xl:w-[80vw] bg-white items-center content-center m-3 max-md:m-1">
