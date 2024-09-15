@@ -2,10 +2,10 @@
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { useTransition, animated } from "react-spring";
 import { useAppDispatch } from "../store/store";
 import { loginSuccess, loginFailure } from "../store/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
 
 interface LoginProps {
   onClose: () => void;
@@ -207,6 +207,7 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
             </div>
           </div>
         </div>
+        <ToastContainer position="top-right"/>
       </animated.div>
     ) : null
   );

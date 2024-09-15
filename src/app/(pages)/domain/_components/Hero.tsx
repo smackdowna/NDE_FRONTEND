@@ -11,7 +11,7 @@ import {
   handleAddAItemToCartService,
   handleGetAllCartItemsService,
 } from "@/services/cart";
-import { toast } from "sonner";
+import { toast } from 'react-toastify';
 import { RootState } from "@/store/store";
 
 interface Domain {
@@ -140,8 +140,13 @@ const Hero = () => {
   // Different
   const syncCartToAPI = () => {
     const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cartData = existingCart.map((item: any) => {
+      const { price, ...rest } = item;
+      return rest;
+  });
+
     if (isAuthenticated && existingCart.length > 0) {
-      addCartToAPI(existingCart)
+      addCartToAPI(cartData)
         .then(() => {
           toast.success("Cart synced successfully");
         })
@@ -153,6 +158,7 @@ const Hero = () => {
   };
 
   const handleAddToCart = (domain: Domain) => {
+    console.log(domain)
     setCart((prevCart) => {
       const isSelected = prevCart.some(
         (item) => item.domainName === domain.name
@@ -177,6 +183,7 @@ const Hero = () => {
             domainName: domain?.name,
             type: "new",
             year: price?.year,
+            price: domain.price ? domain.price[0].registerPrice : 0,
           })) || [];
 
         updatedCart = [...prevCart, ...newCartItems];

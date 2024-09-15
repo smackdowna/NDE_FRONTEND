@@ -223,7 +223,12 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
                 )}
               </div>
 
+
+
+
               <div className="flex gap-4 max-sm:gap-2 items-center">
+                <div className="relative w-fit">
+                  {/* Cart Icon */}
                 <Image
                   src={ICONS.chart}
                   alt="Chart Icon"
@@ -232,11 +237,18 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
                     dispatch(setIsSidebarOpen(!isSidebarOpen));
                   }}
                 />
+                {/* Cart Item Length Label */}
+                <span className="absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-red-500 text-center text-[10px] text-white">
+                  {5}
+                </span>
+
+
                 {isSidebarOpen && (
                   <div className="z-50">
                     <Cart />
                   </div>
                 )}
+                </div>
                 <Image
                   src={ICONS.menu}
                   alt="menu"

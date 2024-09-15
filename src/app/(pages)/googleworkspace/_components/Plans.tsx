@@ -326,6 +326,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Starter" && (
         <div>
           <PlanModal
+          planPrice={67}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
@@ -344,6 +345,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Advanced" && (
         <div>
           <PlanModal
+          planPrice={99}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
@@ -362,6 +364,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
+          planPrice={149}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}

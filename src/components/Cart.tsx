@@ -1,17 +1,76 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import SummaryPage from "@/components/SummaryPage";
 import PaymentPage from "./Paymentpage";
 import RegistrationPage from "./RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsSidebarOpen } from "@/store/sidebarSlice";
+import Link  from 'next/link';
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from 'react-toastify';
+import { loginSuccess, loginFailure } from "../store/authSlice";
+
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
+
+
+// Function to login user
+const loginUser = async (data: { email: string; password: string }) => {
+  const response = await fetch(
+    "https://liveserver.nowdigitaleasy.com:5000/client/signin",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Login failed");
+  }
+  return response.json();
+};
+
+// Function to send the cart data to the API
+const addCartToAPI = async (cartData: any) => {
+  const response = await fetch(
+    "https://liveserver.nowdigitaleasy.com:5000/cart",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ data: cartData }),
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Failed to add cart to API");
+  }
+  return response.json();
+};
+
+
+
 
 const Cart: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
+
   const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const { isAuthenticated } = useSelector((state: any) => state.auth);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and registration
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (isAuthenticated && currentStep === 2) {
@@ -33,6 +92,61 @@ const Cart: React.FC = () => {
   const toggleLogin = () => {
     setIsLogin(!isLogin);
   };
+
+
+
+  // Check if the user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+ // Mutation to handle login
+ const mutation = useMutation({
+  mutationFn: loginUser,
+  onSuccess: async (data) => {
+    dispatch(loginSuccess({ token: data.token, user: data.data.fullName }));
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userData", data.data.fullName);
+    toast.success("Login successful");
+    setIsLoggedIn(true);
+
+    // Get cart from local storage and send it directly to the API
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      try {
+        const parsedCart = JSON.parse(cart);
+
+        // Send cart data to the API as is
+        await addCartToAPI(parsedCart);
+        toast.success("Cart successfully added to the server");
+      } catch (error) {
+        toast.error("Failed to sync cart with the server");
+      }
+    }
+
+    // onClose();
+    // window.location.reload();
+  },
+  onError: (error: Error) => {
+    dispatch(loginFailure(error.message));
+    toast.error(error.message || "Login failed");
+  },
+});
+
+// Handle form submission
+const onSubmit = (data: LoginFormInputs) => {
+  mutation.mutate(data);
+};
+
+  // Avoid rendering the modal until the login state is determined
+  if (isLoggedIn === null) {
+    return null;
+  }
 
   return (
     <div className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-50 overflow-scroll hide-scrollbar">
@@ -117,34 +231,51 @@ const Cart: React.FC = () => {
                 <p className="text-sm">Please sign in with your credentials below to continue</p>
               </div>
               <div className="mt-4 sm:w-full sm:max-w-sm">
-                <form className="space-y-5" action="#" method="POST">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" action="#" method="POST">
                   <div>
                     <label className="text-xl block">Email</label>
                     <input
+                    {...register("email", {
+                      required: "Email is required",
+                    })}
                       type="text"
                       placeholder="Email"
                       className="px-4 py-3 text-sm rounded-md bg-white border border-gray-400 w-full outline-blue-500"
                     />
+                    {errors.email && (
+                    <p className="text-red-500">{errors.email.message}</p>
+                  )}
                   </div>
                   <div>
                     <label className="text-sm block">Password</label>
                     <input
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
                       type="password"
                       placeholder="Password"
                       className="px-4 py-3 text-sm rounded-md bg-white border border-gray-400 w-full outline-blue-500"
                     />
+                    {errors.password && (
+                    <p className="text-red-500">{errors.password.message}</p>
+                  )}
                   </div>
                   <div>
                     <div className="text-sm flex items-center justify-end">
                       <a href="#" className="font-semibold text-blue-600 hover:text-indigo-500">Forgot password?</a>
                     </div>
                   </div>
-                  <div>
-                  </div>
+                  <button
+            // onClick={handleNext}
+            className="w-full bg-blue-600 text-white xl:text-sm py-2 2xl:text-lg rounded hover:bg-blue-700"
+          >
+            {mutation.isPending ? "Logging in..." : "Login"}
+          </button>
+                 
                 </form>
               </div>
             </div> : <RegistrationPage />}
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-center text-sm text-gray-500 mt-3">
               {isLogin ? (
                 <>
                   New to NowDigitalEasy?{" "}
@@ -175,9 +306,11 @@ const Cart: React.FC = () => {
         
 
         <div className="flex justify-center mt-4 gap-4 p-4">
-        <button className="w-2/4 bg-white text-customBlue py-2 text-sm border-2  2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white">
+        <Link 
+        onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
+        href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2  2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
            Continue Shopping
-        </button>
+        </Link>
 
           <button
             onClick={handleNext}
