@@ -52,6 +52,8 @@ const SummaryPage = () => {
     enabled: isAuthenticated,
   });
 
+  console.log(apiCartData);
+
 
   const removeProductFromCart = async (domainName: string) => {
     try {
@@ -90,6 +92,15 @@ const SummaryPage = () => {
         if (!isAuthenticated) {
           const savedCart = localStorage.getItem("cart");
           const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+          const totalPrice = cartItems.reduce((total, item) => {
+            return total + item?.price;
+          }, 0);
+          setSubtotal(totalPrice || 0);
+          // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
+          // const sgstAmt = apiCartData.gst.sgst.Amt || 0;
+          // setTax(cgstAmt + sgstAmt);
+          setTotal(totalPrice || 0);
+
           const formattedProducts: Product[] = cartItems.map((item) => ({
             name: item.product || "Unknown Product",
             link: item.domainName || "Unknown Product",
@@ -120,7 +131,7 @@ const SummaryPage = () => {
                 link: item.domainName || "Unknown Product",
                 quantity: item.quantity || 1,
                 img: productImage,
-                price: `₹ ${item.pleskPrice || item.gsuitePrice || 0}/-`,
+                price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
                 period: item.period || `${item.year} Year` || "Unknown Period",
               };

@@ -12,14 +12,58 @@ import Login from "./Login";
 import SignUpUser from "./SignUp";
 import { logout } from "@/store/authSlice";
 import { setIsSidebarOpen } from "@/store/sidebarSlice";
-import { toast } from "sonner";
 import HambugerDropdown from "./HambugerDropdown";
+import axios from "@/services/axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface NavbarProps {
   navbarBg: string;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
+  const { isAuthenticated } = useSelector((state: any) => state.auth);
+  const [cartItems, setCartItems] = useState<number>(0);
+
+  const fetchCartFromAPI = async () => {
+    const response = await axios.get(
+      "https://liveserver.nowdigitaleasy.com:5000/cart"
+    );
+    return response.data;
+  };
+
+  const { data: apiCartData, isLoading: apiLoading } = useQuery({
+    queryKey: ["cartData"],
+    queryFn: fetchCartFromAPI,
+    enabled: isAuthenticated,
+  });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // When the user is authenticated, set cart items from API response
+      if (apiCartData) {
+        setCartItems(apiCartData?.products?.length);
+      }
+    } else {
+      // If not authenticated, get cart from localStorage
+      const updateCartLength = () => {
+        const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        setCartItems(storedCart.length);
+      };
+
+      updateCartLength();
+
+      // Listen for localStorage changes
+      window.addEventListener("storage", updateCartLength);
+
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener("storage", updateCartLength);
+      };
+    }
+  }, [isAuthenticated, apiCartData]);
+
+
+
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [isHambugerDropdownOpen, setIsHambugerDropdownOpen] = useState(false);
   const [activeModal, setActiveModal] = useState < "login" | "signup" | null > (
@@ -30,7 +74,6 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
 
   const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((state: RootState) => state.sidebar);
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     setMounted(true); // Set to true after component mounts
@@ -239,7 +282,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
                 />
                 {/* Cart Item Length Label */}
                 <span className="absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-red-500 text-center text-[10px] text-white">
-                  {5}
+                  {cartItems}
                 </span>
 
 

@@ -98,7 +98,7 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
       }
 
       onClose(); // Optionally close the login modal
-      window.location.reload(); // Reload the page after cart is synced
+      // window.location.reload(); // Reload the page after cart is synced
     },
     onError: (error: Error) => {
       dispatch(loginFailure(error.message));
