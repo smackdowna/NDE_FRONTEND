@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { showToast } from '@/services/showToast';
 
 interface Domain {
     name: string;
@@ -116,12 +117,14 @@ const PlanModal: React.FC<PlanModalProps> = ({
         });
 
         if (isAuthenticated && existingCart.length > 0) {
+            const toastIdForSuccess = 1;
+            const toastIdForError = 2;
             addCartToAPI(cartData)
                 .then(() => {
-                    toast.success('Cart synced successfully');
+                    showToast('success', `Cart synced successfully`, toastIdForSuccess);
                 })
                 .catch((error) => {
-                    toast.error('Failed to sync cart');
+                    showToast('error', `Failed to sync cart`, toastIdForError);
                     console.error(error);
                 });
         }
@@ -131,19 +134,21 @@ const PlanModal: React.FC<PlanModalProps> = ({
         setSelectedDomains((prevSelected) => {
             const isSelected = prevSelected.some((d) => d.name === domain.name);
             let updatedSelectedDomains;
-
+    
+            const toastId = `toast-${domain.name}`;
+    
             if (isSelected) {
-                toast.success(`${domain.name} removed from cart`);
+                showToast('success', `${domain.name} removed from cart`, toastId);
                 updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
-                toast.success(`${domain.name} added to cart`);
+                showToast('success', `${domain.name} added to cart`, toastId);
                 updatedSelectedDomains = [...prevSelected, domain];
             }
-
+    
             if (data) {
                 const currentProduct = data.products[index]._id;
                 const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
-
+    
                 const newCartItems = updatedSelectedDomains.map((domain) => ({
                     product: 'gsuite',
                     productId: currentProduct,
@@ -153,20 +158,22 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     quantity,
                     price: domain.price ? domain.price[0].registerPrice : 0,
                 }));
-
+    
                 const updatedCart = existingCart.filter(
                     (item: any) => !newCartItems.some((newItem) => newItem.domainName === item.domainName)
                 );
-
+    
                 localStorage.setItem('cart', JSON.stringify([...updatedCart, ...newCartItems]));
                 if (isAuthenticated) {
                     syncCartToAPI();
                 }
             }
-
+    
             return updatedSelectedDomains;
         });
     };
+    
+      
     
     
     

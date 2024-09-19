@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { showToast } from '@/services/showToast';
 
 
 interface Domain {
@@ -119,12 +120,14 @@ const PlanModal: React.FC<PlanModalProps> = ({
             return rest;
         });
         if (isAuthenticated && existingCart.length > 0) {
+            const toastIdForSuccess = 1;
+            const toastIdForError = 2;
             addCartToAPI(cartData)
                 .then(() => {
-                    toast.success('Cart synced successfully');
+                    showToast('success', `Cart synced successfully`, toastIdForSuccess);
                 })
                 .catch((error) => {
-                    toast.error('Failed to sync cart');
+                    showToast('error', `Failed to sync cart`, toastIdForError);
                     console.error(error);
                 });
         }
@@ -139,11 +142,13 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const isSelected = prevSelected.some((d) => d.name === domain.name);
             let updatedSelectedDomains;
 
+            const toastId = `toast-${domain.name}`;
+
             if (isSelected) {
-                toast.success(`${domain.name} removed from cart`);
+                showToast('success', `${domain.name} removed from cart`, toastId);
                 updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
-                toast.success(`${domain.name} added to cart`);
+                showToast('success', `${domain.name} added to cart`, toastId);
                 updatedSelectedDomains = [...prevSelected, domain];
             }
 

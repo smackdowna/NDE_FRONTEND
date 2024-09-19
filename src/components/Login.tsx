@@ -88,17 +88,19 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
       if (cart) {
         try {
           const parsedCart = JSON.parse(cart);
+          console.log(Array.isArray(parsedCart))
 
           // Send cart data to the API as is
           await addCartToAPI(parsedCart);
           toast.success("Cart successfully added to the server");
+          // onClose();
+      // window.location.reload();
         } catch (error) {
           toast.error("Failed to sync cart with the server");
         }
       }
 
-      onClose(); // Optionally close the login modal
-      // window.location.reload(); // Reload the page after cart is synced
+      
     },
     onError: (error: Error) => {
       dispatch(loginFailure(error.message));

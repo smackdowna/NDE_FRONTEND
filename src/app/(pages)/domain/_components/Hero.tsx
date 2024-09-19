@@ -13,6 +13,7 @@ import {
 } from "@/services/cart";
 import { toast } from 'react-toastify';
 import { RootState } from "@/store/store";
+import { showToast } from "@/services/showToast";
 
 interface Domain {
   name: string;
@@ -25,13 +26,17 @@ interface Domain {
     _id: string;
   }[];
 }
-interface CartItem extends Domain {
+type CartItem = {
+  name: string;
+  status: string;
   product: string;
   productId: string;
   domainName: string;
   type: string;
   year: number;
-}
+  price: number;
+};
+
 
 const words = [".education", ".travel", ".fun", ".online"];
 
@@ -146,12 +151,14 @@ const Hero = () => {
   });
 
     if (isAuthenticated && existingCart.length > 0) {
+      const toastIdForSuccess = 1;
+            const toastIdForError = 2;
       addCartToAPI(cartData)
         .then(() => {
-          toast.success("Cart synced successfully");
+          showToast('success', `Cart synced successfully`, toastIdForSuccess);
         })
         .catch((error) => {
-          toast.error("Failed to sync cart");
+          showToast('error', `Failed to sync cart`, toastIdForError);
           console.error(error);
         });
     }
@@ -164,16 +171,17 @@ const Hero = () => {
         (item) => item.domainName === domain.name
       );
       let updatedCart;
+      const toastId = `toast-${domain.name}`;
 
       // If the domain is already in the cart, remove it
       if (isSelected) {
-        toast.success(`${domain.name} removed from cart`);
+        showToast('success', `${domain.name} removed from cart`, toastId);
         updatedCart = prevCart.filter(
           (item) => item.domainName !== domain.name
         );
       } else {
         // If the domain is not in the cart, add it
-        toast.success(`${domain.name} added to cart`);
+        showToast('success', `${domain.name} added to cart`, toastId);
         const newCartItems =
           domain?.price?.map((price) => ({
             name: domain?.name,

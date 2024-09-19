@@ -4,6 +4,7 @@ import SummaryPage from "@/components/SummaryPage";
 import PaymentPage from "./Paymentpage";
 import RegistrationPage from "./RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 import { setIsSidebarOpen } from "@/store/sidebarSlice";
 import Link  from 'next/link';
 import { useForm } from "react-hook-form";
@@ -65,7 +66,7 @@ const Cart: React.FC = () => {
   } = useForm<LoginFormInputs>();
 
   const dispatch = useDispatch();
-  const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
+  const { isSidebarOpen } = useSelector((state: RootState) => state.sidebar);
   const { isAuthenticated } = useSelector((state: any) => state.auth);
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -149,7 +150,16 @@ const onSubmit = (data: LoginFormInputs) => {
   }
 
   return (
-    <div className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-50 overflow-scroll hide-scrollbar">
+   <div 
+   onClick={() => {
+    dispatch(setIsSidebarOpen(!isSidebarOpen));
+  }}
+  className={`fixed z-[100] w-screen ${
+    isSidebarOpen ? "" : "invisible opacity-0"
+  } inset-0 grid place-items-center duration-100 `}
+   >
+     <div>
+     <div onClick={(e_) => e_.stopPropagation()} className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-50 overflow-scroll hide-scrollbar">
       {/* Header */}
       <div
         style={{
@@ -321,6 +331,8 @@ const onSubmit = (data: LoginFormInputs) => {
         </div>
       </div>
     </div>
+     </div>
+   </div>
   );
 };
 

@@ -113,6 +113,7 @@ const SummaryPage = () => {
             price: `₹ ${item.price || 0}/-`,
             domainName: item.domainName,
             period: item.period || "Unknown Period",
+            quantity: item.quantity || 1,
           }));
 
           setProducts(formattedProducts);
