@@ -3,7 +3,7 @@ import { IMAGES } from '@/assets';
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { toast } from 'sonner';
+import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 
@@ -114,8 +114,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
     // Different
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cartData = existingCart.map((item: any) => {
+            const { price, ...rest } = item;
+            return rest;
+        });
         if (isAuthenticated && existingCart.length > 0) {
-            addCartToAPI(existingCart)
+            addCartToAPI(cartData)
                 .then(() => {
                     toast.success('Cart synced successfully');
                 })
@@ -153,6 +157,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     domainName: domain.name,
                     period: selectedPeriod,
                     type: 'new',
+                    price: domain.price ? domain.price[0].registerPrice : 0,
                 }));
 
                 const updatedCart = existingCart.filter(

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { toast } from 'sonner';
+import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 
@@ -24,6 +24,7 @@ interface PlanModalProps {
     refetch: () => void;
     isFetching: boolean;
     index: number;
+    planPrice: number;
 }
 
 const GsuitePlans = async () => {
@@ -46,14 +47,14 @@ const PlanModal: React.FC<PlanModalProps> = ({
     domains,
     refetch,
     isFetching,
-    index
+    index,
+    planPrice
 }) => {
     const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('Annual-Monthly');
-    const [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(planPrice);
     const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
     const [quantity, setQuantity] = useState(1);
-    console.log(selectedDomains)
 
     const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: GsuitePlans });
 
@@ -106,12 +107,16 @@ const PlanModal: React.FC<PlanModalProps> = ({
         }
     };
 
-
     
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cartData = existingCart.map((item: any) => {
+            const { price, ...rest } = item;
+            return rest;
+        });
+
         if (isAuthenticated && existingCart.length > 0) {
-            addCartToAPI(existingCart)
+            addCartToAPI(cartData)
                 .then(() => {
                     toast.success('Cart synced successfully');
                 })
@@ -146,6 +151,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     period: selectedPeriod,
                     type: 'new',
                     quantity,
+                    price: domain.price ? domain.price[0].registerPrice : 0,
                 }));
 
                 const updatedCart = existingCart.filter(

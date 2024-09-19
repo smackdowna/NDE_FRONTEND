@@ -1,6 +1,7 @@
+'use client'
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
+import { toast } from 'react-toastify';
 import { useTransition, animated } from "react-spring";
 import { useMutation } from "@tanstack/react-query";
 import PhoneInput from "react-phone-input-2";
@@ -62,6 +63,7 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
     formState: { errors },
   } = useForm<SignupFormData>();
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [value, setValue] = React.useState();
 
   const { mutate } = useMutation({
@@ -76,8 +78,10 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
   });
 
   const onSubmit: SubmitHandler<SignupFormData> = (data) => {
-    const formData = { ...data, country: selectedCountry };
+    const formData = { ...data, phone_number: phoneNumber, country: selectedCountry };
     mutate(formData);
+
+    console.log(formData);
   };
 
   const transition = useTransition(isOpen, {
@@ -129,7 +133,7 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
                     { label: "City", field: "city", type: "text" },
                     { label: "Pin Code", field: "pincode", type: "text" },
                     { label: "State", field: "state", type: "text" },
-                    { label: "GSTIN", field: "gstin", type: "text" }, // Added GSTIN field
+                    { label: "GSTIN", field: "gstin", type: "text" },
                   ].map((item, index) => (
                     <div key={index} className="flex mr-4 flex-col">
                       <label htmlFor={item.field}>{}</label>
@@ -143,6 +147,8 @@ const SignUpUser: React.FC<SignUpUserProps> = ({ onClose, isOpen }) => {
                           <div className="mt-2 ">
                             <PhoneInput
                               country={"in"}
+                              value={phoneNumber}
+                              onChange={(phone) => setPhoneNumber(phone)}
                               inputStyle={{
                                 height: "45px",
                                 width: "100%",

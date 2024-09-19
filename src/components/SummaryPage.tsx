@@ -1,3 +1,4 @@
+'use client'
 import Image, { StaticImageData } from "next/image";
 import { CART } from "@/assets";
 import { useState, useEffect } from "react";
@@ -23,6 +24,7 @@ interface Product {
   price: string;
   domainName?: string;
   period?: string;
+  quantity:number
 }
 
 const SummaryPage = () => {
@@ -52,12 +54,53 @@ const SummaryPage = () => {
 
   console.log(apiCartData);
 
+
+  const removeProductFromCart = async (domainName: string) => {
+    try {
+      if (isAuthenticated) {
+        await axios.delete(
+          `https://liveserver.nowdigitaleasy.com:5000/cart/${domainName}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Assuming you're using a bearer token
+            },
+          }
+        );
+      } else {
+        // Remove from local storage if not logged in
+        const savedCart = localStorage.getItem("cart");
+        const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+        const updatedCart = cartItems.filter(
+          (item) => item.domainName !== domainName
+        );
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+      
+      // setting product
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.domainName !== domainName)
+      );
+    } catch (error) {
+      console.error("Error removing product from cart:", error);
+    }
+  };
+  
+
   useEffect(() => {
     const fetchCartItems = () => {
       try {
         if (!isAuthenticated) {
           const savedCart = localStorage.getItem("cart");
           const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+          const totalPrice = cartItems.reduce((total, item) => {
+            return total + item?.price;
+          }, 0);
+          setSubtotal(totalPrice || 0);
+          // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
+          // const sgstAmt = apiCartData.gst.sgst.Amt || 0;
+          // setTax(cgstAmt + sgstAmt);
+          setTotal(totalPrice || 0);
+
           const formattedProducts: Product[] = cartItems.map((item) => ({
             name: item.product || "Unknown Product",
             link: item.domainName || "Unknown Product",
@@ -86,8 +129,9 @@ const SummaryPage = () => {
               return {
                 name: item.product || "Unknown Product",
                 link: item.domainName || "Unknown Product",
+                quantity: item.quantity || 1,
                 img: productImage,
-                price: `₹ ${item.pleskPrice || item.gsuitePrice || 0}/-`,
+                price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
                 period: item.period || `${item.year} Year` || "Unknown Period",
               };
@@ -167,8 +211,9 @@ const SummaryPage = () => {
                   </td>
                   <td>
                     <input
+                    value={product?.quantity}
                       type="number"
-                      min="1"
+                      // min="1"
                       defaultValue="1"
                       className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center"
                     />
@@ -183,6 +228,8 @@ const SummaryPage = () => {
                   </td>
                   <td>
                     <svg
+                     onClick={() => removeProductFromCart(product.domainName || "")}
+                     className="cursor-pointer"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
