@@ -151,8 +151,8 @@ const Hero = () => {
   });
 
     if (isAuthenticated && existingCart.length > 0) {
-      const toastIdForSuccess = 1;
-            const toastIdForError = 2;
+      const toastIdForSuccess = `1`;
+      const toastIdForError = `2`;
       addCartToAPI(cartData)
         .then(() => {
           showToast('success', `Cart synced successfully`, toastIdForSuccess);

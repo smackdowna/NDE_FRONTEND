@@ -15,6 +15,7 @@ interface CartItem {
   name?: string;
   status?: string;
   price?: number;
+  quantity:number
 }
 
 interface Product {
@@ -93,7 +94,7 @@ const SummaryPage = () => {
           const savedCart = localStorage.getItem("cart");
           const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
           const totalPrice = cartItems.reduce((total, item) => {
-            return total + item?.price;
+            return total + (item?.price ?? 0);
           }, 0);
           setSubtotal(totalPrice || 0);
           // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
