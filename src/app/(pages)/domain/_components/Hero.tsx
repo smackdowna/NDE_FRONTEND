@@ -332,7 +332,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <span className="text-center text-2xl max-2xl:text-xl max-lg:text-lg font-600 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] pb-[20px] md:pb-[30px] lg:pb-[40px] leading-[20.4px] text-home-body justify-center font-roboto-serif z-10">
+      <span className="text-center text-2xl max-2xl:text-xl max-lg:text-lg font-600 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] leading-[20.4px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px]">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
       <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden z-10">
@@ -353,7 +353,7 @@ const Hero = () => {
         ))}
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-50">
+        <div className="fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-50 ">
           <div className="relative bg-gradient-domain-hero p-5 max-md:p-3 rounded-xl shadow-xl pb-10 max-lg:pb-4 ">
             <button
               className="absolute top-[-8px] right-[-10px] text-xl bg-white rounded-full"
@@ -361,6 +361,7 @@ const Hero = () => {
             >
               <Image src={ICONS.close} alt="close" />
             </button>
+  
             <div className="flex justify-center w-full pb-6 max-md:pb-0">
               <div className="flex m-3 rounded-xl">
                 <input
@@ -370,7 +371,7 @@ const Hero = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button
-                  className={`bg-home-primary text-white  text-xl font-roboto font-700 px-10 max-lg:px-2 max-md:text-sm p-2  rounded-r-xl ${
+                  className={`bg-home-primary text-white text-[22px] font-roboto font-700 px-10 max-lg:px-2 max-md:text-sm p-2  rounded-r-xl ${
                     isFetching ? "cursor-wait" : ""
                   }`}
                   onClick={handleSearchClick}
@@ -380,6 +381,10 @@ const Hero = () => {
                 </button>
               </div>
             </div>
+
+            {/* {Adding one span between serach input and result div} */}
+            <span className="z-50  block"><h5 className="font-900 pb-2.5 sm:pb-1 pl-5 text-[20px] sm:text-[22px]" style={{ color: "#000659" }}>Search Results</h5></span>
+
             <div className="p-2 h-[300px] overflow-y-scroll hide-scrollbar">
               <div>
                 {domains.map((domain, index) => (

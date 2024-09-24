@@ -64,7 +64,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     return (
         <div className='w-full max-w-[850px] mx-auto'>
             <div className='flex justify-between p-3 border-b-2 cursor-pointer' onClick={toggleAccordion}>
-                <span className='font-700 text-2xl max-md:text-sm max-lg:text-xl'>{question}</span>
+                <span className='font-900 text-2xl max-md:text-[17px] max-lg:text-xl'>{question}</span>
                 <Image src={isOpen ? ICONS.plusCricle : ICONS.plusCricle} alt='toggle icon' />
             </div>
             <div 
@@ -86,16 +86,19 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
         <div className={`${bgColor} flex flex-col gap-4 px-4`}>
             <div className='flex justify-center pt-[120px] max-md:pt-10 max-lg:pt-10'>
-                <span className='text-center text-6xl max-lg:text-4xl max-md:text-3xl font-900 w-full max-w-[1300px] text-home-heading font-roboto'>
-                    Still not sure? <br /> Here are some answers for your queries
+                <span className='text-center text-[43px] xl:text-[43px] 2xl:text-[64px] max-lg:text-4xl max-md:text-3xl font-900 w-full max-w-[1300px] text-home-heading font-roboto leading-tight tracking-tight'>
+                    <span className='block 2xl:inline xl:block -mt-1'>Still not sure?</span>
+                    <span className='block 2xl:inline xl:block w-full -mt-1'> Here are some answers for your queries</span>
                 </span>
             </div>
-            <div className='flex justify-center pt-4 md:pt-10'>
-                <span className='w-full max-w-[1000px] text-center text-xl md:text-2xl font-roboto-serif'>
-                    If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&rsquo;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
+
+
+            <div className='flex justify-center pt-2 md:pt-2 '>
+                <span className=' max-w-[1000px] text-center  text-[17px]  2xl:text-[22px]  font-roboto-serif max-lg:px-6'>
+                    If you have further inquiries about our Google Workspace, Google Workspace Pricing, don't hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                 </span>
             </div>
-            <div className='flex justify-center m-4 pb-10 md:pb-[100px]'>
+            <div className='flex justify-center md:mt-8  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
                 <div className='flex flex-col gap-2 w-full'>
                     {faqs.map((faq, index) => (
                         <FAQItem key={index} question={`${index + 1}. ${faq.question}`} answer={faq.answer} />
