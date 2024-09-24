@@ -156,7 +156,7 @@ const Hero = () => {
       addCartToAPI(cartData)
         .then(() => {
           showToast('success', `Cart synced successfully`, toastIdForSuccess);
-          queryClient.invalidateQueries(["domain"]);
+          queryClient.invalidateQueries({ queryKey: ['domain'] });
         })
         .catch((error) => {
           showToast('error', `Failed to sync cart`, toastIdForError);

@@ -340,7 +340,8 @@ const handleChangeStep = (id:number) => {
             onClick={handleNext}
             className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
           >
-            {currentStep == 3 ? "Pay" : "Checkout"}
+            {Number(currentStep) === 3 ? "Pay" : "Checkout"}
+
           </button>
         </div>
         :

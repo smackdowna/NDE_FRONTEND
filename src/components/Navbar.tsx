@@ -68,25 +68,26 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
       setCartItems(storedCart.length);
     };
-
+  
     if (!isAuthenticated) {
       updateCartLength();
       window.addEventListener("storage", updateCartLength);
-
-      // Manually trigger state updates when items are added/removed
+  
       const originalSetItem = localStorage.setItem;
-      localStorage.setItem = function (key, value) {
-        originalSetItem.apply(this, arguments);
+  
+      // Override setItem
+      localStorage.setItem = function (key: string, value: string) {
+        originalSetItem.call(this, key, value);
         if (key === "cart") updateCartLength();
       };
-
-      // Cleanup
+  
       return () => {
         window.removeEventListener("storage", updateCartLength);
         localStorage.setItem = originalSetItem;
       };
     }
   }, [isAuthenticated]);
+  
 
 
 

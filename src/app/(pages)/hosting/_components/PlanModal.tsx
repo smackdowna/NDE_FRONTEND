@@ -125,7 +125,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
             addCartToAPI(cartData)
                 .then(() => {
                     showToast('success', `Cart synced successfully`, toastIdForSuccess);
-                    queryClient.invalidateQueries(["plans"]);
+                    queryClient.invalidateQueries({ queryKey: ['plans'] });
+
                 })
                 .catch((error) => {
                     showToast('error', `Failed to sync cart`, toastIdForError);

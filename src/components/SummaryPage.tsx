@@ -25,7 +25,7 @@ interface CartItem {
 }
 
 interface Product {
-  cartId?:string;
+  cartId?:string | undefined;
   name: string;
   link: string;
   img: StaticImageData;
@@ -327,7 +327,13 @@ const SummaryPage = () => {
                   </td>
                   <td>
                     <svg
-                     onClick={() => removeProductFromCart(product.cartId, product.domainName)}
+                     onClick={() => {
+                      if (product?.cartId) {
+                        removeProductFromCart(product.cartId, product.domainName || "");
+                      } else {
+                        console.log("cartId is undefined");
+                      }
+                    }}
                      className="cursor-pointer"
                       width="24"
                       height="24"

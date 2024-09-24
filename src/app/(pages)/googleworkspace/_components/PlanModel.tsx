@@ -122,7 +122,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
             addCartToAPI(cartData)
                 .then(() => {
                     showToast('success', `Cart synced successfully`, toastIdForSuccess);
-                    queryClient.invalidateQueries(['Gsuite']); // Invalidate the Gsuite query
+                    queryClient.invalidateQueries({ queryKey: ['Gsuite'] });
                 })
                 .catch((error) => {
                     showToast('error', `Failed to sync cart`, toastIdForError);
