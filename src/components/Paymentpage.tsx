@@ -33,6 +33,7 @@ interface Product {
 
 const PaymentPage = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    console.log(products);
     const [loading, setLoading] = useState<boolean>(true);
     const [subtotal, setSubtotal] = useState<number>(0);
     const [tax, setTax] = useState<number>(0);
@@ -90,6 +91,7 @@ const PaymentPage = () => {
 
                     setProducts(formattedProducts);
                 } else if (apiCartData) {
+                    console.log(apiCartData)
                     const formattedProducts: Product[] = apiCartData.products.map((item: any) => {
                         let productImage = CART.www; // Default image for domains
                         if (item.product.toLowerCase() === 'hosting') {
@@ -102,7 +104,7 @@ const PaymentPage = () => {
                             name: item.product || 'Unknown Product',
                             link: item.domainName || 'Unknown Product',
                             img: productImage,
-                            price: `₹ ${item.pleskPrice || item.gsuitePrice || 0}/-`,
+                            price: `₹ ${item.pleskPrice || item.gsuitePrice || item.domainprice || 0}/-`,
                             domainName: item.domainName,
                             period: item.period || `${item.year} Year` || 'Unknown Period',
                         };
@@ -212,6 +214,14 @@ const PaymentPage = () => {
                     </tr>
                 </tbody>
             </table>
+
+            <div className="flex items-center justify-center">
+            <button
+            className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
+          >
+            Pay ₹ {total}
+          </button>
+          </div>
         </div>
     );
 };

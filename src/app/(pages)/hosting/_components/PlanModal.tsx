@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { IMAGES } from '@/assets';
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -52,6 +52,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     isFetching,
     index
 }) => {
+    const queryClient = useQueryClient();
     const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('monthly');
     const [price, setPrice] = useState < number > (0);
@@ -112,7 +113,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
         }
     };
 
-    // Different
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartData = existingCart.map((item: any) => {
@@ -125,6 +125,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
             addCartToAPI(cartData)
                 .then(() => {
                     showToast('success', `Cart synced successfully`, toastIdForSuccess);
+                    queryClient.invalidateQueries(["plans"]);
                 })
                 .catch((error) => {
                     showToast('error', `Failed to sync cart`, toastIdForError);
@@ -132,10 +133,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
                 });
         }
     };
-
-
-
-    
 
     const toggleDomainSelection = (domain: Domain) => {
         setSelectedDomains((prevSelected) => {
@@ -178,34 +175,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
             return updatedSelectedDomains;
         });
     };
-
-
-
-    // useEffect(() => {
-    //     if (data) {
-    //         const currentProduct = data.product[index]._id;
-    //         // Retrieve the current cart from localStorage
-    //         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-    //         // Remove existing entries for the current product
-    //         const filteredCart = existingCart.filter((item: any) => item.productId !== currentProduct);
-
-    //         // Create new entries for selected domains
-    //         const newCartItems = selectedDomains.map(domain => ({
-    //             product: "hosting",
-    //             productId: currentProduct,
-    //             domainName: domain.name,
-    //             period: selectedPeriod,
-    //             type: "new"
-    //         }));
-
-    //         // Combine the filtered existing cart with new items
-    //         const updatedCart = [...filteredCart, ...newCartItems];
-
-    //         // Store the updated cart back into localStorage
-    //         localStorage.setItem('cart', JSON.stringify(updatedCart));
-    //     }
-    // }, [selectedDomains, selectedPeriod, data, index]);
 
     const DomainItem = ({ domain }: { domain: Domain }) => (
         <div className="flex justify-between w-[70vw] max-xl:w-[80vw] bg-white items-center content-center m-3 max-md:m-1">

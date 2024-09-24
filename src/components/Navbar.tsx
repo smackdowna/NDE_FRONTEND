@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
     if (isAuthenticated) {
       // When the user is authenticated, set cart items from API response
       if (apiCartData) {
-        setCartItems(apiCartData?.products?.length);
+        setCartItems(apiCartData?.products?.length || 0);
       }
     } else {
       // If not authenticated, get cart from localStorage
@@ -61,6 +61,33 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
       };
     }
   }, [isAuthenticated, apiCartData]);
+
+  // This part listens for manual changes and updates the cart length
+  useEffect(() => {
+    const updateCartLength = () => {
+      const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartItems(storedCart.length);
+    };
+
+    if (!isAuthenticated) {
+      updateCartLength();
+      window.addEventListener("storage", updateCartLength);
+
+      // Manually trigger state updates when items are added/removed
+      const originalSetItem = localStorage.setItem;
+      localStorage.setItem = function (key, value) {
+        originalSetItem.apply(this, arguments);
+        if (key === "cart") updateCartLength();
+      };
+
+      // Cleanup
+      return () => {
+        window.removeEventListener("storage", updateCartLength);
+        localStorage.setItem = originalSetItem;
+      };
+    }
+  }, [isAuthenticated]);
+
 
 
 
