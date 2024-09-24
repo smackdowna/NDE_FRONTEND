@@ -20,16 +20,18 @@ interface CartItem {
   name?: string;
   status?: string;
   price?: number;
-  quantity:number
+  quantity:number;
+  year?: number;
 }
 
 interface Product {
+  cartId?:string;
   name: string;
   link: string;
   img: StaticImageData;
   price: string;
   domainName?: string;
-  period?: string;
+  period?: string | number;
   quantity:number
 }
 
@@ -78,7 +80,8 @@ const SummaryPage = () => {
         );
   
         // Invalidate the cart query to refetch the updated cart
-        queryClient.invalidateQueries(['cartData']);
+        queryClient.invalidateQueries({ queryKey: ['cartData'] });
+
   
         // Remove the same product from localStorage as well
         const savedCart = localStorage.getItem("cart");
@@ -118,9 +121,10 @@ const SummaryPage = () => {
         showToast('success', `${domainName} removed from cart`, toastId);
       }
     } catch (error) {
+      const toastId = `toast-${domainName}`;
       console.error("Error removing product from cart:", error);
       // Show an error toast if the removal fails
-      toast.error("Failed to remove product from the cart.");
+      showToast('error', `${domainName} removed from cart`, toastId);
     }
   };
   
@@ -402,7 +406,9 @@ const SummaryPage = () => {
               <div className="text-sm text-gray-800">
                 <ul className="bg-white text-center">
                   {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
-                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(isAuthenticated ? total : total+additionalTax || 0).toFixed(2)}</li>
+                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">
+  ₹{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
+</li>
                 </ul>
               </div>
             </div>
