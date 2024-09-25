@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -51,6 +51,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     index,
     planPrice
 }) => {
+    const queryClient = useQueryClient();
     const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('Annual-Monthly');
     const [price, setPrice] = useState<number>(planPrice);
@@ -108,7 +109,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
         }
     };
 
-    
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartData = existingCart.map((item: any) => {
@@ -122,6 +122,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
             addCartToAPI(cartData)
                 .then(() => {
                     showToast('success', `Cart synced successfully`, toastIdForSuccess);
+                    queryClient.invalidateQueries({ queryKey: ['Gsuite'] });
                 })
                 .catch((error) => {
                     showToast('error', `Failed to sync cart`, toastIdForError);

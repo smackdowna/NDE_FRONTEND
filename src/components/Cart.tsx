@@ -70,6 +70,7 @@ const Cart: React.FC = () => {
   const { isAuthenticated } = useSelector((state: any) => state.auth);
 
   const [currentStep, setCurrentStep] = useState(1);
+
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and registration
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
@@ -144,6 +145,16 @@ const onSubmit = (data: LoginFormInputs) => {
   mutation.mutate(data);
 };
 
+const handleChangeStep = (id:number) => {
+  if(id===1){
+    setCurrentStep(1)
+  } else if(id===2){
+    setCurrentStep(2)
+  }else if (id===3 && isAuthenticated){
+    setCurrentStep(3)
+  }
+}
+
   // Avoid rendering the modal until the login state is determined
   if (isLoggedIn === null) {
     return null;
@@ -173,7 +184,8 @@ const onSubmit = (data: LoginFormInputs) => {
               <div className="w-full " key={step.id}>
                 <div className="flex items-center w-full">
                   <div
-                    className={`w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full ${currentStep > step.id ? "bg-green-600" : "bg-gray-300"
+                  onClick={() => handleChangeStep(step.id)}
+                    className={`cursor-pointer w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full ${currentStep === step.id ? "bg-green-600" : "bg-gray-300"
                       }`}
                   >
                     {currentStep > step.id ? (
@@ -311,14 +323,16 @@ const onSubmit = (data: LoginFormInputs) => {
           </>
         )}
 
-        {currentStep === 3 && <PaymentPage />}
+        {currentStep === 3 && <PaymentPage/>}
 
         
 
-        <div className="flex justify-center mt-4 gap-4 p-4">
+        {
+          currentStep === 1 ?
+          <div className="flex justify-center mt-4 gap-4 p-4">
         <Link 
         onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
-        href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2  2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
+        href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2 2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
            Continue Shopping
         </Link>
 
@@ -326,9 +340,15 @@ const onSubmit = (data: LoginFormInputs) => {
             onClick={handleNext}
             className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
           >
-            {currentStep == 3 ? "Pay" : "Contiune"}
+            {Number(currentStep) === 3 ? "Pay" : "Checkout"}
+
           </button>
         </div>
+        :
+          ""
+        }
+
+
       </div>
     </div>
      </div>

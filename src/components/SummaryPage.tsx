@@ -7,6 +7,11 @@ import axios from "@/services/axios";
 import { useQuery } from "@tanstack/react-query";
 import trash from "../assets/cart/trash.png";
 
+import { useQueryClient } from '@tanstack/react-query';
+import { showToast } from './../services/showToast';
+
+
+
 interface CartItem {
   product: string;
   productId: string;
@@ -15,25 +20,31 @@ interface CartItem {
   name?: string;
   status?: string;
   price?: number;
-  quantity:number
+  quantity:number;
+  year?: number;
 }
 
 interface Product {
+  cartId?:string | undefined;
   name: string;
   link: string;
   img: StaticImageData;
   price: string;
   domainName?: string;
-  period?: string;
+  period?: string | number;
   quantity:number
 }
 
 const SummaryPage = () => {
+  const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [subtotal, setSubtotal] = useState<number | null>(null);
   const [tax, setTax] = useState<number | null>(null);
   const [total, setTotal] = useState<number | null>(null);
+
+  // if the user is not loggedin, then showqing 18% tax
+  const additionalTax = subtotal ? subtotal * 18 / 100 : 0;
 
   const isAuthenticated = useSelector(
     (state: any) => state.auth.isAuthenticated
@@ -53,38 +64,113 @@ const SummaryPage = () => {
     enabled: isAuthenticated,
   });
 
-  console.log(apiCartData);
 
 
-  const removeProductFromCart = async (domainName: string) => {
+  const removeProductFromCart = async (cartId: string, domainName: string) => {
     try {
       if (isAuthenticated) {
+        // Call the API to remove the product from the cart
         await axios.delete(
-          `https://liveserver.nowdigitaleasy.com:5000/cart/${domainName}`,
+          `https://liveserver.nowdigitaleasy.com:5000/cart/client/remove/${cartId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Assuming you're using a bearer token
+              Authorization: `Bearer ${token}`,
             },
           }
         );
+  
+        // Invalidate the cart query to refetch the updated cart
+        queryClient.invalidateQueries({ queryKey: ['cartData'] });
+
+  
+        // Remove the same product from localStorage as well
+        const savedCart = localStorage.getItem("cart");
+        if (savedCart) {
+          const cartItems: CartItem[] = JSON.parse(savedCart);
+          const updatedCart = cartItems.filter(
+            (item) => item.domainName !== domainName
+          );
+          localStorage.setItem("cart", JSON.stringify(updatedCart));
+        }
+  
+        // Update products in the local state
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.domainName !== domainName)
+        );
+
+        const toastId = `toast-${domainName}`;
+  
+        showToast('success', `${domainName} removed from cart`, toastId);
       } else {
-        // Remove from local storage if not logged in
+        // Remove from localStorage if the user is not logged in
         const savedCart = localStorage.getItem("cart");
         const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
         const updatedCart = cartItems.filter(
           (item) => item.domainName !== domainName
         );
         localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+        // Update the products in the local state
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.domainName !== domainName)
+        );
+
+        const toastId = `toast-${domainName}`;
+  
+        // Show a success toast for removal from local storage
+        showToast('success', `${domainName} removed from cart`, toastId);
       }
-      
-      // setting product
-      setProducts((prevProducts) =>
-        prevProducts.filter((product) => product.domainName !== domainName)
-      );
     } catch (error) {
+      const toastId = `toast-${domainName}`;
       console.error("Error removing product from cart:", error);
+      // Show an error toast if the removal fails
+      showToast('error', `${domainName} removed from cart`, toastId);
     }
   };
+  
+  
+
+
+  const updateLocalStorage = (domainName: string, newQuantity: number) => {
+    const savedCart = localStorage.getItem('cart');
+    const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+    const updatedCart = cartItems.map(item =>
+      item.domainName === domainName ? { ...item, quantity: newQuantity } : item
+    );
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const updateQuantity = async (domainName: string, newQuantity: number) => {
+    try {
+      if (isAuthenticated) {
+        await axios.put(
+          `https://liveserver.nowdigitaleasy.com:5000/cart/${domainName}`,
+          { quantity: newQuantity },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } else {
+        // Update quantity in local storage if not logged in
+        updateLocalStorage(domainName, newQuantity);
+      }
+
+      // Update quantity in state
+      setProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.domainName === domainName ? { ...product, quantity: newQuantity } : product
+        )
+      );
+    } catch (error) {
+      console.error('Error updating product quantity:', error);
+    }
+  };
+
+  const handleQuantityChange = (domainName: string, newQuantity: number) => {
+    if (newQuantity >= 1) {
+      updateQuantity(domainName, newQuantity);
+    }
+  };
+
+ 
   
 
   useEffect(() => {
@@ -100,7 +186,8 @@ const SummaryPage = () => {
           // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
           // const sgstAmt = apiCartData.gst.sgst.Amt || 0;
           // setTax(cgstAmt + sgstAmt);
-          setTotal(totalPrice || 0);
+
+          setTotal(totalPrice);
 
           const formattedProducts: Product[] = cartItems.map((item) => ({
             name: item.product || "Unknown Product",
@@ -113,7 +200,7 @@ const SummaryPage = () => {
                 : CART.google,
             price: `₹ ${item.price || 0}/-`,
             domainName: item.domainName,
-            period: item.period || "Unknown Period",
+            period: item.period || item.year || "Unknown Period",
             quantity: item.quantity || 1,
           }));
 
@@ -129,6 +216,7 @@ const SummaryPage = () => {
               }
 
               return {
+                cartId : item._id,
                 name: item.product || "Unknown Product",
                 link: item.domainName || "Unknown Product",
                 quantity: item.quantity || 1,
@@ -162,6 +250,8 @@ const SummaryPage = () => {
   if (loading || apiLoading) {
     return <div className="text-center">Loading...</div>;
   }
+
+  
 
   return (
     <div className="overflow-x-auto">
@@ -213,6 +303,7 @@ const SummaryPage = () => {
                   </td>
                   <td>
                     <input
+                    onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
                     value={product?.quantity}
                       type="number"
                       // min="1"
@@ -220,9 +311,15 @@ const SummaryPage = () => {
                       className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center"
                     />
                   </td>
-                  <td className="text-sm md:text-base lg:text-lg  text-gray-800">
-                    {product.period && <p className="xl:text-sm 2xl:text-lg">{product.period}</p>}
-                  </td>
+                   <td className="text-sm md:text-base lg:text-lg text-gray-800"> 
+                    {product.period && (
+                      <p className="xl:text-sm 2xl:text-lg">
+                        {product.period} 
+                        {/*{isAuthenticated ? "" : Number(product.period) > 1 ? "years" : "year"} */}
+                     </p>
+                      )}
+                      </td>
+
                   <td className="text-sm md:text-base lg:text-lg text-gray-800">
                     <div className=" items-center justify-around gap-1">
                       <p className="font-semibold xl:text-sm 2xl:text-lg">{product.price}</p>
@@ -230,7 +327,13 @@ const SummaryPage = () => {
                   </td>
                   <td>
                     <svg
-                     onClick={() => removeProductFromCart(product.domainName || "")}
+                     onClick={() => {
+                      if (product?.cartId) {
+                        removeProductFromCart(product.cartId, product.domainName || "");
+                      } else {
+                        console.log("cartId is undefined");
+                      }
+                    }}
                      className="cursor-pointer"
                       width="24"
                       height="24"
@@ -289,7 +392,7 @@ const SummaryPage = () => {
                     <li className="py-2 text-sm xl:text-sm 2xl:text-lg">
                       ₹{(subtotal || 0).toFixed(2)}
                     </li>
-                    <li className="py-2 text-sm xl:text-sm 2xl:text-lg">₹{(tax || 0).toFixed(2)}</li>
+                    <li className="py-2 text-sm xl:text-sm 2xl:text-lg">₹{(tax || additionalTax).toFixed(2)}</li>
                   </ul>
                 </div>
              
@@ -308,7 +411,10 @@ const SummaryPage = () => {
               </div>
               <div className="text-sm text-gray-800">
                 <ul className="bg-white text-center">
-                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li>
+                  {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
+                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">
+  ₹{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
+</li>
                 </ul>
               </div>
             </div>

@@ -156,6 +156,7 @@ const Hero = () => {
       addCartToAPI(cartData)
         .then(() => {
           showToast('success', `Cart synced successfully`, toastIdForSuccess);
+          queryClient.invalidateQueries({ queryKey: ['domain'] });
         })
         .catch((error) => {
           showToast('error', `Failed to sync cart`, toastIdForError);
@@ -164,7 +165,11 @@ const Hero = () => {
     }
   };
 
+  const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
+  console.log(selectedYears)
+
   const handleAddToCart = (domain: Domain) => {
+    const selectedYear = selectedYears[domain.name] || 1;
     console.log(domain)
     setCart((prevCart) => {
       const isSelected = prevCart.some(
@@ -190,8 +195,8 @@ const Hero = () => {
             productId: price?.productId,
             domainName: domain?.name,
             type: "new",
-            year: price?.year,
-            price: domain.price ? domain.price[0].registerPrice : 0,
+            year: selectedYear,
+            price: domain.price ? price.registerPrice * selectedYear : 0,
           })) || [];
 
         updatedCart = [...prevCart, ...newCartItems];
@@ -214,6 +219,11 @@ const Hero = () => {
     // );
   };
 
+  const handleYearChange = (domainName: string, newYear: number) => {
+    setSelectedYears((prev) => ({ ...prev, [domainName]: newYear }));
+  };
+
+
   const handleRemoveFromCart = (domain: Domain) => {
     setCart((prevCart) => {
       // Use 'name' instead of 'domainName' since 'name' is a property of the 'Domain' type
@@ -235,95 +245,106 @@ const Hero = () => {
   const getTextColor = (word: string) => {
     switch (word) {
       case ".education":
-        return "blue"; // or any color you want
+        return "blue";
       case ".travel":
-        return "green"; // or any color you want
+        return "green";
       case ".fun":
-        return "orange"; // or any color you want
+        return "orange";
       case ".online":
-        return "purple"; // or any color you want
+        return "purple";
       default:
-        return "black"; // fallback color
+        return "black";
     }
   };
 
   const isInCart = (domain: Domain) =>
     cart?.some((item) => item?.name === domain?.name);
 
-  const DomainItem = ({ domain }: { domain: Domain }) => (
-    <div className="flex justify-between bg-white items-center content-center m-3">
-      <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1">
-        <span className="font-900 text-lg max-lg:text-md max-md:text-xs">
-          {domain.name}
-        </span>
-        <div>
-          <span
-            className={`text-[14px] w-[30px] max-md:text-xs ${
-              domain.status === "Available"
-                ? "text-green-500"
-                : domain.status === "Added"
-                ? "text-yellow-600"
-                : domain.status === "Unavailable"
-                ? "text-red-500"
-                : "text-gray-500"
-            }`}
-          >
-            {domain.status}
+  const DomainItem = ({ domain }: { domain: Domain }) => {
+    const selectedYear = selectedYears[domain.name] || 1;
+    
+    // Getting into loop
+    console.log(domain)
+  
+    return (
+      <div className="flex justify-between bg-white items-center content-center m-3">
+        <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1">
+          <span className="font-900 text-lg max-lg:text-md max-md:text-xs">
+            {domain.name}
           </span>
-        </div>
-      </div>
-      <div className="flex content-center items-center gap-8">
-        <select
-          className="border rounded-md p-1 max-md:hidden"
-          disabled={domain.status !== "Available"}
-        >
-          {[1, 2, 3, 5].map((year) => (
-            <option key={year} value={year}>
-              {year} year{year > 1 ? "s" : ""}
-            </option>
-          ))}
-        </select>
-        <div className="w-[150px] max-md:w-[40px]">
-          <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
-            {domain.price && domain.price.length > 0
-              ? `₹${domain.price[0].registerPrice}`
-              : "N/A"}
-          </span>
-          <div className="">
-            <span className="text-[14px] text-center max-md:hidden max-lg:text-xs ">
-              {domain.price && domain.price.length > 0
-                ? `then ₹${domain.price[0].registerPrice + 200}/Year`
-                : ""}
+          <div>
+            <span
+              className={`text-[14px] w-[30px] max-md:text-xs ${
+                domain.status === "Available"
+                  ? "text-green-500"
+                  : domain.status === "Added"
+                  ? "text-yellow-600"
+                  : domain.status === "Unavailable"
+                  ? "text-red-500"
+                  : "text-gray-500"
+              }`}
+            >
+              {domain.status}
             </span>
           </div>
         </div>
-        <button
-          className={`text-white w-[120px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${
-            isInCart(domain)
-              ? "bg-red-500"
-              : domain.status === "Available"
-              ? "bg-home-primary"
-              : "bg-gray-400"
-          }`}
-          onClick={() => {
-            if (domain.status === "Available") {
-              handleAddToCart(domain);
-            } else if (isInCart(domain)) {
-              handleRemoveFromCart(domain);
-            }
-          }}
-          // Enable the button if the domain is in the cart, even if it's unavailable
-          disabled={domain.status !== "Available" && !isInCart(domain)}
-        >
-          {domain.status === "Available" && !isInCart(domain)
-            ? "Add to cart"
-            : isInCart(domain)
-            ? "Remove"
-            : "Unavailable"}
-        </button>
+        <div className="flex content-center items-center gap-8">
+          <select
+            className="border rounded-md p-1 max-md:hidden"
+            disabled={domain.status !== 'Available'}
+            value={selectedYears[domain.name] || 1} // Bind the value to the state
+            onChange={(e) => handleYearChange(domain.name, Number(e.target.value))} // Update state when the user selects a different year
+          >
+            {[1, 2, 3, 5].map((year) => (
+              <option key={year} value={year}>
+                {year} year{year > 1 ? 's' : ''}
+              </option>
+            ))}
+          </select>
+          <div className="w-[150px] max-md:w-[40px]">
+          <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
+        {/* Multiply price by the selected year */}
+        {domain.price && domain.price.length > 0
+          ? `₹${domain.price[0].registerPrice * selectedYear}`
+          : "N/A"}
+      </span>
+            <div className="">
+            <span className="text-[14px] text-center max-md:hidden max-lg:text-xs ">
+          {domain.price && domain.price.length > 0
+            ? `then ₹${(domain.price[0].registerPrice + 200) * selectedYear}/Year`
+            : ""}
+        </span>
+            </div>
+          </div>
+          <button
+            className={`text-white w-[120px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${
+              isInCart(domain)
+                ? "bg-red-500"
+                : domain.status === "Available"
+                ? "bg-home-primary"
+                : "bg-gray-400"
+            }`}
+            onClick={() => {
+              if (domain.status === "Available") {
+                handleAddToCart(domain);
+              } else if (isInCart(domain)) {
+                handleRemoveFromCart(domain);
+              }
+            }}
+            // Enable the button if the domain is in the cart, even if it's unavailable
+            disabled={domain.status !== "Available" && !isInCart(domain)}
+          >
+            {domain.status === "Available" && !isInCart(domain)
+              ? "Add to cart"
+              : isInCart(domain)
+              ? "Remove"
+              : "Unavailable"}
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+  
 
   return (
     <div className="pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col gap-4 max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
