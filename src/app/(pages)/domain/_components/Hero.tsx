@@ -363,16 +363,18 @@ const Hero = () => {
       <div className="flex flex-col items-center gap-2 z-10">
         <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[56px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center xl:w-[1300px]">
           <span className="w-auto">Expand Your Horizons With </span>
-          <TextTransition
-            direction="down"
-            springConfig={presets.gentle}
-            delay={0}
-            style={{
-              color: getTextColor(words[currentWordIndex % words.length]),
-            }}
-          >
-            {words[currentWordIndex % words.length]}
-          </TextTransition>
+          <div className="relative w-[150px] max-md:w-[90px] ">  
+            <TextTransition
+              direction="down"
+              springConfig={presets.gentle}
+              delay={0}
+              style={{
+                color: getTextColor(words[currentWordIndex % words.length]),
+              }}
+            >
+              {words[currentWordIndex % words.length]}
+            </TextTransition>
+          </div>
         </div>
 
         <span className="text-center text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
