@@ -37,7 +37,7 @@ const servicesData = [
 
 const Services = () => {
     return (
-        <div className='bg-background-Gsuite-banner py-24 bg-opacity-5 relative'>
+        <div className='bg-background-Gsuite-banner py-20 2xl:py-24 bg-opacity-5 relative'>
 
             <div className="absolute inset-0 z-0">
                 <Image
@@ -49,7 +49,7 @@ const Services = () => {
                 />
             </div>
             <div className='flex justify-center text-center'>
-                    <span className='text-7xl max-2xl:text-5xl max-xl:text-4xl max-lg:text-4xl max-md:text-3xl  font-900 font-roboto text-home-heading relative'>Services We Provide For You</span>
+                    <span className='2xl:text-[64px] md:text-[43px] sm:text-[28px] max-sm:text-[26px] max-sm:w-[292px]  font-900 font-roboto text-home-heading relative'>Services What We Provide For You</span>
                 </div>
             <div className='flex flex-wrap justify-center py-16 gap-10'>
                 {servicesData.map((service, index) => (

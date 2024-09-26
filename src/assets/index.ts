@@ -68,9 +68,19 @@ import MailNow from "@/assets/icons/Send Email Without Attachment - iconSvg.co.s
 import dropdown from "@/assets/icons/grommet-icons_down.svg"
 
 
+//imorting the images of hosting discover icons
+import Refund from "@/assets/images/Refund 1.png"
+import Performance from "@/assets/images/Perfomance 1.png"
+import CiberSecurity from "@/assets/images/Cyber-security 1.png"
+import UltimatedStorage from "@/assets/images/Unlimited-storage 1.png"
+import MaximunUptime from "@/assets/images/Uptime 1.png"
+import Operation from "@/assets/images/Operation 1.png"
+import CloudSync from "@/assets/images/Cloud-sync (1) 1.png"
+import Support from "@/assets/images/Support 1.png"
 
 
-
+//importing done image
+import Done from "@/assets/images/Done.png"
 
 
 
@@ -175,6 +185,16 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
 
 
   const ICONS = {
+    /*...............hosting page discover icons    start..........*/
+    Refund,
+    Performance,
+    CiberSecurity,
+    UltimatedStorage,
+    MaximunUptime,
+    Operation,
+    CloudSync,
+    Support,
+    /*...............hosting page discover icons    end...........*/
     dropdown,
     logo,
     chart,
@@ -250,6 +270,11 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
   };
 
   const IMAGES = {
+    //importing done image 
+
+    Done,
+
+    
     tracking2,
     tracking1,
     tracking,
