@@ -46,7 +46,7 @@ const Reason = () => {
               Safe and Secured
             </span>
             <p className="font-roboto-serif  lg:py-6 text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[22px] font-400 sm:w-[300px] xl:w-[320px] 2xl:w-[445px] max-md:text-start">
-            Worried you won't get help when you most need it? You shouldn't be. Our professional and hands-on support
+            Worried you won&#39;t get help when you most need it? You shouldn&#39;t be. Our professional and hands-on support
             </p>
           </div>
         </div>
@@ -64,7 +64,7 @@ const Reason = () => {
               24/7 Technical Support
             </span>
             <p className="font-roboto-serif lg:py-6 text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[22px] font-400 sm:w-[300px] xl:w-[320px] 2xl:w-[445px] max-md:text-start">
-            Don't just take our word for it. We're the web hosting provider of choice for thousands of happy customers.
+            Don&#39;t just take our word for it. We&#39;re the web hosting provider of choice for thousands of happy customers.
             </p>
           </div>
         </div>

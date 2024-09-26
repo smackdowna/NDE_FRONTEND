@@ -12,11 +12,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) =
     <div className='w-[27vw] max-lg:w-[350px] max-md:w-[300px] bg-white hover:shadow-2xl duration-300 rounded-[10px] group pt-4 p-4 flex flex-col items-center max-md:text-center'>
         <Image src={icon} alt={title} className='w-[100px] max-lg:w-[60px]' />
         <div className='flex flex-col gap-4 mt-3 max-lg:mt-1 items-center text-center'>
-            <span className='text-[38px] max-lg:text-3xl text-home-heading pt-8 leading-[28.13px] tracking-tighter font-900 h-[56px]'>
+            <span className='text-[38px] max-lg:text-3xl text-home-heading pt-8 leading-[28.13px] max-2xl:text-[24px] tracking-tighter font-900 h-[56px]'>
                 {title}
             </span>
         </div>
-        <div className='text-[#000334] max-lg:text-lg font-serif tracking-tighter mt-8 group text-[24px] max-md:text-lg font-400  text-center max-md:text-center'>
+        <div className='text-[#000334] max-lg:text-lg max-2xl:text-[17px] font-serif tracking-tighter mt-8 group text-[24px] max-md:text-lg font-400  text-center max-md:text-center'>
             <span>{description}</span>
         </div>
     </div>

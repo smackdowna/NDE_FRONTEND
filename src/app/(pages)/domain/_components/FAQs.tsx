@@ -95,7 +95,7 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
 
             <div className='flex justify-center pt-2 md:pt-2 '>
                 <span className=' max-w-[1000px] text-center  text-[17px]  2xl:text-[22px]  font-roboto-serif max-lg:px-6'>
-                    If you have further inquiries about our Google Workspace, Google Workspace Pricing, don't hesitate to reach out to us. Below are the frequently asked questions regarding our services.
+                    If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&#39;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                 </span>
             </div>
             <div className='flex justify-center md:mt-8  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>

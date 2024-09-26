@@ -60,7 +60,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const initialPrice = data.product[index].price.find((p: { period: string; }) => p.period === selectedPeriod);
             setPrice(initialPrice ? initialPrice.amount : 0);
         }
-    }, [data, selectedPeriod]);
+    }, [data, selectedPeriod,index]);
 
     const handleDurationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = e.target.value;

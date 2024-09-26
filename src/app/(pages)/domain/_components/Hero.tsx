@@ -294,8 +294,8 @@ const Hero = () => {
         className="absolute bottom-0 left-0 w-30 z-0"
         style={{ zIndex: "-1" }}
       />
-      <div className="flex flex-col items-center gap-2 z-10">
-        <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[56px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center xl:w-[1300px]">
+      <div className="flex flex-col items-center z-10 ">
+        <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center xl:w-[1300px]">
           <span className="w-auto">Expand Your Horizons With </span>
           <div className="relative w-[150px] max-md:w-[90px] ">  
             <TextTransition
@@ -311,25 +311,28 @@ const Hero = () => {
           </div>
         </div>
 
-        <span className="text-center text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
+        <span className="text-center mt-2 md:mt-[10px] 2xl:mt-[30px] text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
           Get started with the perfect domain.
         </span>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
-        <div className="flex m-3 rounded-xl">
+        <div className="flex mt-[41px] md:mt-[33px] 2xl:mt-10 rounded-xl">
+
           <input
-            className="w-[700px] max-2xl:w-[500px] max-xl:w-[400px] max-md:w-[200px] p-5 max-lg:p-3 max-md:p-2 border rounded-l-xl max-md:placeholder:text-[10px]"
+            className="w-[700px] max-2xl:w-[650px] 2xl:w-[1028px] max-xl:w-[400px] max-md:w-[200px] max-lg:w-[500px] py-4 px-5 max-lg:p-3 max-md:p-2 border rounded-l-lg max-md:placeholder:text-[10px]"
             placeholder="Find and purchase a domain name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+
           <button
-            className={`bg-home-primary text-white  text-xl font-roboto font-700 px-10 max-lg:px-2 max-md:text-sm p-2  rounded-r-xl ${
+            className={`bg-home-primary text-white flex items-center gap-2 text-xl font-roboto font-700 px-[18px] max-md:text-sm py-4 rounded-r-lg ${
               isFetching ? "cursor-wait" : ""
             }`}
             onClick={handleSearchClick}
             disabled={isFetching} // Disable button while loading
           >
+            <Image src={ICONS.searchBarIcon} width={17} height={18} alt="Search Icon"/>
             {isFetching ? "Searching..." : "Search "}
           </button>
         </div>

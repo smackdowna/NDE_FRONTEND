@@ -26,7 +26,7 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ handleNextStep, index }) => {
             const initialPrice = data.product[index].price.find((p: { period: string; }) => p.period === selectedPeriod);
             setPrice(initialPrice ? initialPrice.amount : 0);
         }
-    }, [data, selectedPeriod]);
+    }, [data, selectedPeriod, index]);
 
     const handleDurationChange = (e: { target: { value: any; }; }) => {
         const selected = e.target.value;
