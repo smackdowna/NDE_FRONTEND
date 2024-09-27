@@ -37,7 +37,7 @@ const Practices = () => {
                                 </div>
                             </div>
 
-                            <div className='flex gap-[2rem] 2xl:mt-[-4rem]'>
+                            <div className='flex gap-[2rem] '>
                                 {/* adding tick design*/}
                                 <div className='flex flex-col justify-center'>
                                     <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex items-center justify-center  '>
@@ -58,7 +58,7 @@ const Practices = () => {
                             </div>
 
 
-                            <div className='flex gap-[2rem] 2xl:mt-[-2rem]'>
+                            <div className='flex gap-[2rem] '>
                                 <div className='flex flex-col justify-center'>
                                     <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex items-center justify-center  '>
                                     <Image src={IMAGES.Done} alt="" width={22} height={24} className='w-[20px] h-[21px] object-cover font-bold' />
@@ -77,7 +77,7 @@ const Practices = () => {
                                 </div>
                             </div>
 
-                            <div className='flex gap-[2rem] 2xl:mt-[-2rem]'>
+                            <div className='flex gap-[2rem] '>
                                 <div className='flex flex-col justify-center'>
                                     <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex items-center justify-center  '>
                                     <Image src={IMAGES.Done} alt="" width={22} height={24} className='w-[20px] h-[21px] object-cover font-bold' />
