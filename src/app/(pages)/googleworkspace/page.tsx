@@ -6,10 +6,10 @@ import Hero from './_components/Hero';
 import Transforming from './_components/Transforming';
 import Services from './_components/Services';
 import Testimonials from '../(home)/_components/Testtimonial';
-import FAQs from '../domain/_components/FAQs';
 import Practices from './_components/Practices';
 import Plans from './_components/Plans';
 import Navbar from '@/components/Navbar';
+import FAQs from './_components/FAQ';
 
 const Page = () => {
   const [navbarBg, setNavbarBg] = useState('bg-transparent');

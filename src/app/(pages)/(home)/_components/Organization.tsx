@@ -70,12 +70,12 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
-  <div className='bg-[#FFFBF0] w-full  rounded-[10px] group pt-4 hover:scale-105  p-4 hover:border-[#0011FF] hover:border-[2px] duration-300'>
+  <div className='bg-[#FFFBF0] w-full max-2xl:text-rounded-[10px] max-2xl:w-[275px] max-2xl:h-[275px] group pt-4 hover:scale-105  p-4 hover:border-[#0011FF] hover:border-[2px] duration-300'>
     <Image src={imgSrc} alt={title} className="" />
-    <div className="flex gap-4 mt-3">
-      <span className="text-[22px] max-sm:text-[18px] text-home-heading leading-[28.13px] tracking-tighter font-900 w-[300px] h-[56px] ">{title}</span>
+    <div className="flex gap-4 mt-3  max-2xl:w-[251px]">
+      <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 w-[300px] h-[56px] max-lg:text-[24px]">{title}</span>
     </div>
-    <div className="text-[#000334] font-serif tracking-tighter hover:opacity-60 mt-3 group text-[17px]  font-400 w-[280px] max-2xl:w-[200px]">
+    <div className=" max-2xl:pt-4 text-[#000334] font-serif tracking-tighter max-2xl:text-[15px] hover:opacity-60 mt-3 group text-[17px] 2xl:text-[20px]  font-400 w-[280px] max-lg:text-[15px] max-2xl:w-[200px]">
       <span>{description}</span>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { ICONS, IMAGES } from '@/assets';
 import Image from 'next/image';
 import React from 'react';
+import Title from './Title';
 
 
 interface StepProps{
@@ -9,12 +10,12 @@ interface StepProps{
 }
 // Reusable Step component
 const Step:React.FC<StepProps> = ({ title, description }) => (
-  <div className='flex flex-col gap-4 w-[320px]'>
-    <div className='flex max-md:justify-center'>
-    <Image src={IMAGES.Checkcircle} alt='tick' />
+  <div className='flex items-center md:items-start flex-col gap-4 w-[320px] max-2xl:w-[300px]  '>
+    <div className='flex  '>
+    <Image src={IMAGES.Checkcircle} alt='tick'/>
     </div>
-    <span className='font-900 font-roboto text-home-heading text-3xl max-md:text-2xl max-2xl:text-[26px]'>{title}</span>
-    <span className='font-400 font-roboto-serif text-home-heading text-2xl  max-md:text-xl tracking-tight max-2xl:text-[17px] max-2xl:w-[285px]'>{description}</span>
+    <span className=' text-3xl max-md:text-[-36px] font-roboto font-900 max-2xl:text-[26px] '>{title}</span>
+    <span className=' font-400 font-roboto-serif text-2xl  max-md:text-lg tracking-tight max-2xl:text-[17px] max-2xl:w-[285px]'>{description}</span>
   </div>
 );
 
@@ -40,14 +41,14 @@ const GetStarted = () => {
   ];
 
   return (
-    <div className='py-20 max-md:py-10 bg-background-SpotNow-gettingStarted max-md:text-center'>
-      <div className='flex justify-center'>
-        <span className='text-6xl max-xl:text-4xl max-lg:text-2xl max-md:text-3xl font-900 text-home-heading font-roboto text-center  max-2xl:text-[43px]'>Get Started with SpotNow in Minutes</span>
-      </div>
-      <div className='flex justify-center pt-8'>
-        <span className='text-center font-400 font-roboto-serif text-3xl max-md:text-xl w-[40vw] max-xl:w-full max-2xl:text-[17px]'>Increased efficiency, better management, and much more in no time! Just follow these four steps.</span>
-      </div>
-      <div className='flex justify-center flex-wrap py-20 max-lg:py-10 gap-32 max-2xl:gap-5 max-md:gap-10 max-lg:mx-3'>
+    <div className='py-20 max-2xl:py-10   max-md:py-10 bg-background-SpotNow-gettingStarted max-md:text-center'>
+       <Title
+        title="Get Started with SpotNow in Minutes"
+        description="Increased efficiency, better management, and much more in no time! Just follow these four steps."
+        titleWidth=''
+        descriptionWidth='max-2xl:w-[742px] 2xl:w-[728px]'
+      />
+      <div className='flex justify-center flex-wrap py-20 max-lg:py-10 max-2xl:gap-2 gap-32 max-2xl:w-full max-md:gap-10 max-lg:mx-3'>
         {steps.map((step, index) => (
           <Step key={index} title={step.title} description={step.description} />
         ))}

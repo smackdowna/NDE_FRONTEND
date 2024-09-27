@@ -66,55 +66,36 @@ import newGoogle from "@/assets/icons/Vector (2).svg"
 import Meta from "@/assets/icons/icons8-meta 1.svg"
 import MailNow from "@/assets/icons/Send Email Without Attachment - iconSvg.co.svg"
 import dropdown from "@/assets/icons/grommet-icons_down.svg"
+import searchBarIcon from "@/assets/icons/search (1).svg"
+
+import time from "@/assets/icons/time.png"
+import attendance from "@/assets/icons/attendance.png"
+import liveTracking from "@/assets/icons/tracking.png"
+import taskManagement from "@/assets/icons/task.png"
+import userInterface from "@/assets/icons/user-experience.png"
+import reports from "@/assets/icons/bar-chart.png"
 
 
+//imorting the images of hosting discover icons
+import Refund from "@/assets/images/Refund 1.png"
+import Performance from "@/assets/images/Perfomance 1.png"
+import CiberSecurity from "@/assets/images/Cyber-security 1.png"
+import UltimatedStorage from "@/assets/images/Unlimited-storage 1.png"
+import MaximunUptime from "@/assets/images/Uptime 1.png"
+import Operation from "@/assets/images/Operation 1.png"
+import CloudSync from "@/assets/images/Cloud-sync (1) 1.png"
+import Support from "@/assets/images/Support 1.png"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//importing done image
+import Done from "@/assets/images/Done.png"
 
 
 
 //Image Import
 import footer from "@/assets/images/Group 69454.png"
+import gsuiteHeroAnimation from "@/assets/images/gsuiteHeroAnimation.gif"
+import gsuiteHeroImg from "@/assets/images/gsuiteHeroImg.png"
 import arrow from "@/assets/images/Vector.svg"
 import brand2 from "@/assets/images/image 5.svg"
 import brand1 from "@/assets/images/image 10.svg"
@@ -169,12 +150,25 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
 
 
 
-
-
-
-
-
   const ICONS = {
+    time,
+    attendance,
+    liveTracking,
+    taskManagement,
+    userInterface,
+    reports,
+
+
+    /*...............hosting page discover icons    start..........*/
+    Refund,
+    Performance,
+    CiberSecurity,
+    UltimatedStorage,
+    MaximunUptime,
+    Operation,
+    CloudSync,
+    Support,
+    /*...............hosting page discover icons    end...........*/
     dropdown,
     logo,
     chart,
@@ -244,12 +238,20 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
     market,
     newGoogle,
     Meta,
-    MailNow
+    MailNow,
+    searchBarIcon
 
     
   };
 
   const IMAGES = {
+    gsuiteHeroAnimation,
+    gsuiteHeroImg,
+    //importing done image 
+
+    Done,
+
+    
     tracking2,
     tracking1,
     tracking,

@@ -1,8 +1,7 @@
 "use client";
-import { ICONS } from '@/assets';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import Title from '../../spotnow/_components/Title';
+import { ICONS } from '@/assets';
 
 interface FAQ {
     question: string;
@@ -83,20 +82,24 @@ interface FAQsProps {
     bgColor?: string;
 }
 
-const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
+const FAQs: React.FC<FAQsProps> = () => {
     return (
-        <div className={`${bgColor} flex flex-col gap-4 px-4 `}>
-
-           <div className="pt-[79px]">
-           <Title
-                    title="Still not sure? Here are some answers for your queries"
-                    description="If you have further inquiries about our Google Workspace, Google Workspace Pricing, don't hesitate to reach out to us. Below are the frequently asked questions regarding our services."
-                    descriptionWidth='max-2xl:w-[936px]'
-                    titleWidth = 'max-2xl:w-[752px] max-lg:w-[752px] 2xl:mt-28'
-                />
+        <div className='bg-gradient-domain-hero flex flex-col gap-4 px-4'>
+            <div className="pt-[79px]">
+                <div className='flex justify-center'>
+                    <span className='text-6xl max-md:mx-4 max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px]'>
+                        Still not sure? <br />
+                        Here are some answers for your queries
+                    </span>
+                </div>
+                <div className='flex justify-center mt-6 mx-4'>
+                    <span className='text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full max-md:px-4 max-2xl:text-[17px] 2xl:text-[22px] max-2xl:leading-normal max-w-[330px] lg:max-w-[1010px] mx-auto'>
+                        If you have further inquiries about our Google Workspace, Google Workspace Pricing, do not hesitate to reach out to us. Below are the frequently asked questions regarding our services.
+                    </span>
+                </div>
             </div>
 
-            <div className='flex justify-center md:mt-8  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
+            <div className='flex justify-center md:mt-8 pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
                 <div className='flex flex-col gap-2 w-full'>
                     {faqs.map((faq, index) => (
                         <FAQItem key={index} question={`${index + 1}. ${faq.question}`} answer={faq.answer} />
