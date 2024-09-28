@@ -25,45 +25,45 @@ const Practices = () => {
       
     return (
         <div className='bg-background-Gsuite-banner'>
-            <div className='px-[17px] md:px-[52px] xl:px-[63px] 2xl:px-[100px] py-10'>
-                <h1 className='font-900 font-roboto text-white leading-snug max-2xl:text-4xl max-xl:text-3xl text-5xl max-lg:text-2xl max-md:text-2xl max-md:text-center'>
-                    Google Workspace is designed to support stringent privacy and security standards based on industry best practices.
+            <div className='px-4 md:px-[62px] xl:px-[63px] 2xl:pl-[100px] pl-0 py-[40px] md:py-20  '>
+                <h1 className='font-900 font-roboto text-white 2xl:text-[64px] 2xl:leading-[76px] xl:text-[43px] xl:leading-[51px] md:text-[38px] md:leading-[45px] text-[26px] leading-[31px] max-md:text-center'>
+                Google Workspace is designed to support stringent privacy and security standards based on industry best practices.
                 </h1>
 
                 
                 
-                <div className="flex flex-col lg:flex-row  items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px]">
+                <div className="flex flex-col lg:flex-row justify-between items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px]">
                 
-                <div>
+                <div className='max-lg:mb-[2rem]'>
                 {
                     content.map((content, index) =>
-                        <div key={index} className='flex gap-[30px] text-white'>
-                                {/* adding tick design*/}
-                                <div className='flex flex-col'>
-                                    <div className='w-10 h-10 xl:h-14 border-[3px] border-white rounded-full flex items-center justify-center  '>
-                                    <Image src={IMAGES.Done} alt="" width={22} height={24} className='w-[20px] h-[21px] object-cover font-bold' />
-                                    </div>
-                                    <div className='w-[3px] h-full bg-white ml-[19px] '>
-                                    
-                                    </div>
+                        <div key={index} className='flex gap-[30px] 2xl:h-[8.5rem] text-white xl:h-[7.5rem] md:h-[8rem] max-md:h-[10rem] '>
+                            {/* adding tick design*/}
+                            <div className='flex flex-col '>
+                                <div className='w-10 h-10 xl:h-14 border-[3px] border-white rounded-full flex items-center justify-center max-lg:h-[3.5rem] '>
+                                <Image src={IMAGES.Done} alt="" width={22} height={24} className='w-[20px] h-[21px] object-cover font-bold' />
                                 </div>
-                                <div className="mt-1">
-                                    <span className="font-900 font-roboto text-[17px] md:text-[26px] lg:text-[24px] 2xl:text-[38px]">
-                                        {content.title}
-                                    </span>
-                                    <p className="w-full md:w-[446px] 2xl:w-[666px] font-roboto-serif text-[15px] md:text-[17px] 2xl:text-[22px]">
-                                        {content.description}
-                                    </p>
+                                <div className='w-[3px] h-full bg-white ml-[19px] '>
+                                
                                 </div>
                             </div>
+                            <div className="2xl:mt-[-0.75rem]">
+                                <span className="font-900 font-roboto text-[17px] md:text-[26px] lg:text-[24px] 2xl:text-[38px]">
+                                    {content.title}
+                                </span>
+                                <p className="w-full md:w-[446px] 2xl:w-[666px] font-roboto-serif text-[15px] md:text-[17px] 2xl:text-[22px]">
+                                    {content.description}
+                                </p>
+                            </div>
+                        </div>
                     )
                 }
                 </div>
 
 
                 <div className='w-full lg:w-auto flex justify-center lg:justify-end'>
-<Image src={ICONS.GsuiteIcon} alt='' className='w-3/4 sm:w-1/2 lg:w-full' />
-</div>
+                    <Image src={ICONS.GsuiteIcon} alt='' className=' 2xl:w-[378px] max-2xl:w-[278px]' />
+                </div>
 
                 </div>
             </div>

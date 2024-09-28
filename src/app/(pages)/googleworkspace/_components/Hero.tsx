@@ -31,9 +31,9 @@ const Hero = () => {
             </button>
           </div>
           {/* Video Placeholder */}
-          <div className="size-[200px] md:size-[400px] lg:w-[70vw] flex itens-center">
-          <Image src={IMAGES.gsuiteHeroImg} alt="hero"/>
-          <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="w-32 md:w-[120px] h-32 md:h-[280px] lg:h-[316px]"/>
+          <div className="size-[200px] md:size-[400px] lg:w-[70vw] flex itens-center relative">
+            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className=" 2xl:w-[501.35px] 2xl:h-[428px] xl:w-[417px] xl:h-[366.13px] max-xl:w-[319px] max-xl:h-[280.03px] "/>
+            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="md:h-[316px] md:w-[146px] max-md:w-[96px] max-md:h-[208px] absolute 2xl:left-[29rem] 2xl:top-[2rem] xl:left-[23rem] xl:top-[1rem] md:left-[17rem] max-md:left-[9rem] max-md:top-[2rem] "/>
           </div>
         </div>
       </div>
