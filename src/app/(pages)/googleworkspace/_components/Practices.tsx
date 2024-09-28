@@ -26,7 +26,7 @@ const Practices = () => {
     return (
         <div className='bg-background-Gsuite-banner'>
             <div className='px-4 md:px-[62px] xl:px-[63px] 2xl:pl-[100px] pl-0 py-[40px] md:py-20  '>
-                <h1 className='font-900 font-roboto text-white 2xl:text-[64px] 2xl:leading-[76px] xl:text-[43px] xl:leading-[51px] md:text-[38px] md:leading-[45px] text-[26px] leading-[31px] max-md:text-center'>
+                <h1 className='tracking-tighter font-900 font-roboto text-white 2xl:text-[64px] 2xl:leading-[76px] xl:text-[43px] xl:leading-[51px] md:text-[38px] md:leading-[45px] text-[26px] leading-[31px] max-md:text-center'>
                 Google Workspace is designed to support stringent privacy and security standards based on industry best practices.
                 </h1>
 

@@ -57,7 +57,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const [selectedPeriod, setSelectedPeriod] = useState('monthly');
     const [price, setPrice] = useState < number > (0);
     const [selectedDomains, setSelectedDomains] = useState < Domain[] > ([]);
-    const [selectedYears, setSelectedYears] = useState(1);
+    const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
 
     // console.log(selectedDomains)
 

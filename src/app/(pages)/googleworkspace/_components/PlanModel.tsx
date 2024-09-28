@@ -59,7 +59,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const [quantity, setQuantity] = useState(1);
     const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: GsuitePlans });
 
-    const [selectedYears, setSelectedYears] = useState(1);
+    const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
 
     useEffect(() => {
         if (data && data.product && data.product.length > 0) {
