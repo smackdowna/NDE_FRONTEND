@@ -27,7 +27,7 @@ const GsuitePlans: React.FC<SelectPlanProps> = ({ handleNextStep, index }) => {
             const initialPrice = data.products[index].price.find((p: { period: string; }) => p.period === selectedPeriod);
             setPrice(initialPrice ? initialPrice.offerPrice : 0);
         }
-    }, [data, selectedPeriod]);
+    }, [data, selectedPeriod, index]);
 
     const handleDurationChange = (e: { target: { value: string; }; }) => {
         const selected = e.target.value;

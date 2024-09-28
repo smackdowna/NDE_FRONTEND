@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMAGES } from "@/assets";
+import { ICONS } from "@/assets";
 import Image from "next/image";
 import Title from './Title';
 
@@ -7,32 +7,32 @@ const data = [
     {
         title: "Activity Timeline",
         description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBrand,
+        imgSrc: ICONS.time
     },
     {
-        title: "Activity Timeline",
-        description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBran1,
+        title: "Daily Attendance",
+        description: "Effortlessly record and monitor daily attendance that eliminates confusions and proxies.",
+        imgSrc: ICONS.attendance,
     },
     {
-        title: "Activity Timeline",
-        description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBrand,
+        title: "Live Tracking",
+        description: "Instantly pinpoint the exact location of your field employees for precise monitoring and efficient task allocation.",
+        imgSrc: ICONS.liveTracking,
     },
     {
-        title: "Activity Timeline",
-        description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBrand,
+        title: "Task Management",
+        description: "Assign, prioritize, and monitor tasks in real-time, ensuring your team stays focused and productive.",
+        imgSrc: ICONS.taskManagement,
     },
     {
-        title: "Activity Timeline",
-        description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBran1,
+        title: "User-Friendly Interface",
+        description: "Intuitive and easy-to-navigate platform that requires no technical expertise for seamless integration into your workflow.",
+        imgSrc: ICONS.userInterface,
     },
     {
-        title: "Activity Timeline",
-        description: "Stay in the loop with a visual timeline of your team's daily activities, ensuring transparency and accountability.",
-        imgSrc: IMAGES.spotBran1,
+        title: "Reports & Analytics",
+        description: "Generate reports of your business with real-time insights of your KPIs to make better, data-driven decisions.",
+        imgSrc: ICONS.reports,
     },
 ];
 

@@ -27,6 +27,11 @@ const Testimonials: React.FC = () => {
                 <div className="flex flex-wrap justify-center gap-4 max-w-full max-md:hidden">
                     {TESTIMONIALS.map((testimonial, index) => (
                         <TestimonialCard key={index} {...testimonial} index={index} />
+
+                        
+                        // <div key={index} className="w-full md:w-1/2 p-4 flex justify-center">
+                        //     <TestimonialCard {...testimonial} index={index} />
+                        // </div>
                     ))}
                 </div>
                 <div className="flex justify-center ">

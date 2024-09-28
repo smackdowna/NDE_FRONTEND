@@ -10,13 +10,13 @@ type Props = (typeof TESTIMONIALS)[number] & {
 const TestimonialCard = (props: Props) => {
   const isLarge = props.index === 0 || props.index === 3;
   const width = {
-    card: isLarge ? " w-[54%] max-lg:w-[400px] max-xl:w-[630px] max-md:w-full max-2xl:w-[750px] " : " w-[40%] max-2xl:w-[500px] max-lg:w-[320px] max-xl:w-[350px] max-md:w-full",
+    card: isLarge ? "w-[54%] max-lg:w-[400px] max-xl:w-[630px] max-md:w-full 2xl:w-[800px] " : "w-[40%] 2xl:w-[800px] max-lg:w-[320px] max-xl:w-[350px] max-md:w-full ",
     quote: isLarge ? "w-[180px] max-lg:w-[120px]" : "w-[150px] max-lg:w-[120px]",
   };
   return (
     <div
       className={twMerge(
-        "relative w-full flex flex-col group max-lg:mx-0  max-md:p-3 max-md:mx-0   hover:bg-[#C9CDFF]  xl:px-12 md:p-8 overflow-hidden bg-[#ECEDFF]",
+        "relative w-full flex flex-col group max-lg:mx-0  max-md:p-3 max-md:mx-0   hover:bg-[#C9CDFF] xl:px-12 md:p-8 overflow-hidden bg-[#ECEDFF]",
         width.card
       )}
     >

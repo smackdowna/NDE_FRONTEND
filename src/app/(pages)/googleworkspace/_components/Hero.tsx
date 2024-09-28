@@ -31,14 +31,16 @@ const Hero = () => {
             </button>
           </div>
           {/* Video Placeholder */}
-          <div className="aspect-[1.6/1]  w-[45vw]  max-lg:w-[70vw] ">
-          <Image src={ICONS.GsuiteHero} alt="hero"/></div>
+          <div className="size-[200px] md:size-[400px] lg:w-[70vw] flex itens-center relative">
+            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className=" 2xl:w-[501.35px] 2xl:h-[428px] xl:w-[417px] xl:h-[366.13px] max-xl:w-[319px] max-xl:h-[280.03px] "/>
+            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="md:h-[316px] md:w-[146px] max-md:w-[96px] max-md:h-[208px] absolute 2xl:left-[29rem] 2xl:top-[2rem] xl:left-[23rem] xl:top-[1rem] md:left-[17rem] max-md:left-[9rem] max-md:top-[2rem] "/>
+          </div>
         </div>
       </div>
-      <span className="flex text-center text-3xl max-2xl:text-xl max-lg:text-lg font-600 pt-[80px] relative md:pt-[100px] lg:pt-[120px] pb-[20px] md:pb-[30px] lg:pb-[40px] leading-[20.4px] text-home-body justify-center font-roboto-serif">
+      <span className="flex text-center text-3xl max-2xl:text-xl max-lg:text-lg font-600 pt-[80px] relative md:pt-[100px] lg:pt-[120px] leading-[20.4px] text-home-body justify-center font-roboto-serif">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
-      <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-10 relative  overflow-hidden ">
+      <div className="flex justify-center mt-[14px] md:mt-4 items-center gap-4 md:gap-8 lg:gap-16 pb-10 relative  overflow-hidden ">
         <Image src={IMAGES.brand2} alt="" className="w-[60px] md:w-[80px] lg:w-[140px] h-[60px] md:h-[80px] lg:h-[140px]" />
         <Image src={IMAGES.brand3} alt="" className="w-[60px] md:w-[80px] lg:w-[140px] h-[60px] md:h-[80px] lg:h-[140px]" />
         <Image src={IMAGES.brand6} alt="" className="w-[60px] md:w-[80px] lg:w-[140px] h-[60px] md:h-[80px] lg:h-[140px]" />

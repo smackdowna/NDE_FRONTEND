@@ -59,12 +59,19 @@ const Perfectdomain: React.FC = () => {
 
   return (
     <div className='flex flex-col gap-4 bg-home-secondary-card py-[150px] max-md:py-10 max-lg:py-[40px]'>
-      <span className="text-center max-md:text-3xl max-lg:text-4xl text-6xl font-900 font-roboto tracking-tight text-home-heading z-10">
-        Build your brand with the perfect domain name
-      </span>
-      <span className="text-center text-2xl max-md:mx-8 max-lg:mx-24 sm:text-2xl font-500 font-roboto-serif tracking-tight z-10">
-        With more than 300 domain extensions, you&apos;ll find the one that fits just right.
-      </span>
+      <div className='flex flex-col gap-8 items-center justify-center'>
+          
+        {/* Build your brand with the perfect domain name span */}
+        <span className="text-center max-md:text-3xl max-lg:text-4xl text-6xl font-900 font-roboto tracking-tight text-home-heading z-10 w-4/5 ">
+          Build your brand with the perfect domain name
+        </span>
+        
+        {/* With more than 300 domain extensions span */}
+        <span className="text-center text-2xl max-md:mx-8 max-lg:mx-24 sm:text-2xl font-500 font-roboto-serif tracking-tight z-10 w-[80%] xl:w-1/3 2xl:w-full">
+          With more than 300 domain extensions, you&apos;ll find the one that fits just right.
+        </span>
+      </div>
+      
       <div className='flex justify-center pt-24 max-md:pt-2 mx-20 max-lg:pt-10 max-2xl:mx-10 max-md:mx-2'>
         <div className='grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8'>
           {domainDetails.map((domain, index) => (
@@ -82,6 +89,7 @@ const Perfectdomain: React.FC = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
