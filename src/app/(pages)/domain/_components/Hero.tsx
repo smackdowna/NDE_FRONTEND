@@ -361,7 +361,7 @@ const Hero = () => {
         style={{ zIndex: "-1" }}
       />
       <div className="flex flex-col items-center z-10 ">
-        <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center xl:w-[1300px]">
+        <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center xl:w-[1300px] mx-auto">
           <span className="w-auto">Expand Your Horizons With </span>
           <div className="relative w-[150px] max-md:w-[90px] ">  
             <TextTransition
