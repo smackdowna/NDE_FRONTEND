@@ -396,7 +396,7 @@ const Hero = () => {
               isFetching ? "cursor-wait" : ""
             }`}
             onClick={handleSearchClick}
-            disabled={isFetching} // Disable button while loading
+            disabled={isFetching}
           >
             <Image src={ICONS.searchBarIcon} width={17} height={18} alt="Search Icon"/>
             {isFetching ? "Searching..." : "Search "}
