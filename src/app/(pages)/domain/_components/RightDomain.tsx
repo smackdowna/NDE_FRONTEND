@@ -32,7 +32,7 @@ const RightDomain: React.FC = () => {
           <InfoSection title="Keep it short" description={description} />
         </div>
         <div className='flex gap-8'>
-          <div className='relative w-[350px] max-2xl:w-[280px] max-xl:w-[240px] max-xl:h-[580px] max-md:w-[130px] max-md:h-[400px] h-[700px] overflow-hidden '>
+          <div className='relative w-[130px] md:w-[213px] 3xl:w-[372px] max-xl:h-[580px] max-md:h-[400px] h-[700px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-16" />
               <Image src={ICONS.Mweb1} alt="rightdomain" className="w-full mb-16" />
@@ -46,7 +46,7 @@ const RightDomain: React.FC = () => {
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-16" />
             </div>
           </div>
-          <div className='relative w-[350px] max-2xl:w-[280px] h-[700px] max-xl:h-[580px] max-md:h-[400px] max-xl:w-[240px] max-md:w-[130px]  overflow-hidden '>
+          <div className='relative w-[130px] md:w-[213px] 3xl:w-[372px] max-xl:h-[580px] max-md:h-[400px] h-[700px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-8" />
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-8" />
@@ -60,7 +60,7 @@ const RightDomain: React.FC = () => {
       </div>
       <div className='flex flex-col lg:flex-row justify-center gap-32 max-2xl:gap-20 max-xl:gap-10 items-center px-5 max-md:px-0  lg:px-0 mx-2 lg:mx-32'>
       <div className='flex gap-8'>
-          <div className='relative w-[350px] max-2xl:w-[280px] max-xl:w-[240px] max-xl:h-[580px] max-md:w-[130px] max-md:h-[400px] h-[700px] overflow-hidden '>
+          <div className='relative w-[130px] md:w-[213px] 3xl:w-[372px] max-xl:h-[580px] max-md:h-[400px] h-[700px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-16" />
               <Image src={ICONS.Mweb1} alt="rightdomain" className="w-full mb-16" />
@@ -74,7 +74,7 @@ const RightDomain: React.FC = () => {
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-16" />
             </div>
           </div>
-          <div className='relative w-[350px] max-2xl:w-[280px] h-[700px] max-xl:h-[580px] max-md:h-[400px] max-xl:w-[240px] max-md:w-[130px]  overflow-hidden '>
+          <div className='relative w-[130px] md:w-[213px] 3xl:w-[372px] max-xl:h-[580px] max-md:h-[400px] h-[700px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-8" />
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-8" />

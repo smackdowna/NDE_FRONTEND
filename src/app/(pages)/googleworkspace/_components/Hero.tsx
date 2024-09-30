@@ -18,7 +18,7 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center ml-[82px] mr-[4vw] gap-10 max-2xl:gap-10 max-xl:mr-0 max-2xl:ml-6 max-2xl:mr-0">
           <div className="flex flex-col gap-10 max-md:gap-4 items-center lg:items-start text-center lg:text-left">
             {/* Heading */}
-            <h1 className="text-7xl  tracking-tight max-2xl:leading-[52.5px] max-2xl:text-[48px] max-xl:text-[38px] max-md:text-xl font-roboto  text-home-heading font-800">
+            <h1 className="text-[20px] sm:text-[26px] md:text-[43px] lg:text-[38px] xl:text-12 3xl:text-[70px] font-roboto  text-home-heading font-800 w-full max-w-[611px] 3xl:max-w-[936px] leading-[31px] md:leading-[51px] xl:leading-[57px] 3xl:leading-[93px]">
             Empower Your Team With  Google Workspace</h1>
             <p className="text-3xl max-2xl:text-[22px] max-xl:text-lg max-md:text-sm font-roboto-serif  text-text-900/80 w-[720px] max-2xl:w-[650px] max-xl:w-[550px] max-lg:w-[400px] max-md:w-[320px] max-sm:w-[300px]">
             We minimise your downtime with our reliable technical experts and IT infrastructure management
@@ -31,9 +31,9 @@ const Hero = () => {
             </button>
           </div>
           {/* Video Placeholder */}
-          <div className="size-[200px] md:size-[400px] lg:w-[70vw] flex itens-center relative">
-            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className=" 2xl:w-[501.35px] 2xl:h-[428px] xl:w-[417px] xl:h-[366.13px] max-xl:w-[319px] max-xl:h-[280.03px] "/>
-            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="md:h-[316px] md:w-[146px] max-md:w-[96px] max-md:h-[208px] absolute 2xl:left-[29rem] 2xl:top-[2rem] xl:left-[23rem] xl:top-[1rem] md:left-[17rem] max-md:left-[9rem] max-md:top-[2rem] "/>
+          <div className="flex items-center justify-start">
+            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className="size-[200px] md:size-[300px] lg:size-[250px] xl:w-[400px] 2xl:w-[501.35px] 2xl:h-[428px] xl:h-[366.13px] max-xl:h-[280.03px] "/>
+            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="w-[70px] sm:w-[96px] md:w-[146px] h-[208px] xl:h-[316px] 2xl:h-full"/>
           </div>
         </div>
       </div>

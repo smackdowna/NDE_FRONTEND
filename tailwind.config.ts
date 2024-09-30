@@ -76,6 +76,10 @@ const config: Config = {
         800: "800",
         900: "900",
       },
+
+      screens: {
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [],
