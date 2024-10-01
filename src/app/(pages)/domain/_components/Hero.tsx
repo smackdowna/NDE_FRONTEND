@@ -347,7 +347,7 @@ const Hero = () => {
   
 
   return (
-    <div className="pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col gap-4 max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
+    <div className="pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
       <Image
         src={IMAGES.domain}
         alt="domain"
@@ -360,10 +360,11 @@ const Hero = () => {
         className="absolute bottom-0 left-0 w-30 z-0"
         style={{ zIndex: "-1" }}
       />
-      <div className="flex flex-col items-center z-10 ">
-        <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center mx-auto w-fit border">
-          <span className="w-auto">Expand Your Horizons With </span>
-          <div className="relative w-[150px] max-md:w-[90px] ">  
+      <div className="flex flex-col justify-center items-center z-10 ">
+        <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center items-center w-fit mx-auto">
+          <span className="w-auto text-center">Expand Your Horizons With </span>
+          <div className="">  
+          {/* w-[150px] max-md:w-[90px]  */}
             <TextTransition
               direction="down"
               springConfig={presets.gentle}
@@ -372,34 +373,34 @@ const Hero = () => {
                 color: getTextColor(words[currentWordIndex % words.length]),
               }}
             >
-              {words[currentWordIndex % words.length]}
+              <span className="w-auto text-center">{words[currentWordIndex % words.length]}</span>
             </TextTransition>
           </div>
         </div>
 
-        <span className="text-center mt-2 md:mt-[10px] 2xl:mt-[30px] text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
+        <span className="text-center mt-2 md:mt-[10.13px] xl:mt-[6.13px] 2xl:mt-[30.13px] text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
           Get started with the perfect domain.
         </span>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
-        <div className="flex mt-[41px] md:mt-[33px] 2xl:mt-10 rounded-xl">
+        <div className="flex mt-[41px] md:mt-[33.87px] 3xl:mt-[40.87px] rounded-xl px-4 sm:px-0">
 
           <input
-            className="w-[700px] max-2xl:w-[650px] 2xl:w-[1028px] max-xl:w-[400px] max-md:w-[200px] max-lg:w-[500px] py-4 px-5 max-lg:p-3 max-md:p-2 border rounded-l-lg max-md:placeholder:text-[10px]"
+            className="w-full sm:w-[328px] md:w-[581px] xl:w-[736px] 3xl:w-[1028px] p-4 border rounded-l-lg max-md:placeholder:text-[12px]"
             placeholder="Find and purchase a domain name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
           <button
-            className={`bg-home-primary text-white flex items-center gap-2 text-xl font-roboto font-700 px-[18px] max-md:text-sm py-4 rounded-r-lg ${
+            className={`bg-home-primary text-white flex items-center gap-2 text-xl font-roboto font-700 px-[18px] max-md:text-sm p-4 rounded-r-lg ${
               isFetching ? "cursor-wait" : ""
             }`}
             onClick={handleSearchClick}
             disabled={isFetching}
           >
             <Image src={ICONS.searchBarIcon} width={17} height={18} alt="Search Icon"/>
-            {isFetching ? "Searching..." : "Search "}
+            <span className="hidden md:block">{isFetching ? "Searching..." : "Search "}</span>
           </button>
         </div>
       </div>

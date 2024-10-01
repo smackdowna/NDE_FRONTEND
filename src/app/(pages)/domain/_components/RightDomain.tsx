@@ -18,15 +18,15 @@ const RightDomain: React.FC = () => {
   const description = 'Include your brand name, location, and other identifying elements to create a unique and easily searchable domain.';
 
   return (
-    <div className='bg-domain-primary-card flex flex-col items-center py-10 lg:pt-[100px] gap-10'>
-      <span className='text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-900 tracking-tight font-roboto text-home-heading'>
+    <div className='bg-domain-primary-card flex flex-col items-center py-10 lg:pt-[100px] gap-0 md:gap-[30px] xl:gap-10'>
+      <span className='text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-900 tracking-tight font-roboto text-home-heading hidden md:block max-w-full md:max-w-[570px] lg:max-w-[640px] xl:max-w-[1049px] 3xl:max-w-[1696px] mx-auto'>
         Finding the Right Domain Name
       </span>
-      <span className='text-center text-lg md:text-xl lg:text-2xl font-roboto-serif font-500 tracking-tight'>
+      <span className='text-center text-lg md:text-xl lg:text-2xl font-roboto-serif font-500 tracking-tight hidden lg:block'>
         It&apos;s easier than you think!
       </span>
-      <div className='flex flex-col-reverse lg:flex-row justify-center gap-32 max-2xl:gap-20 max-xl:gap-10 items-center px-5 max-md:px-0  lg:px-0 mx-2 lg:mx-32'>
-        <div className='w-full lg:w-[50%] py-5 lg:py-32 flex flex-col gap-8  px-1 max-md:gap-4'>
+      <div className='flex flex-col-reverse md:flex-col lg:flex-row justify-center gap-32 max-2xl:gap-20 max-xl:gap-10 items-center px-5 max-md:px-0  lg:px-0 mx-2 lg:mx-32'>
+        <div className='w-full lg:w-[50%] py-5 lg:py-32 flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] px-1'>
           <InfoSection title="Use Relevant Keywords" description={description} />
           <InfoSection title="Explore alternatives" description={description} />
           <InfoSection title="Keep it short" description={description} />
@@ -85,7 +85,7 @@ const RightDomain: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='w-full lg:w-[50%] py-5 lg:py-32 flex flex-col gap-8  px-1 max-md:gap-4'>
+        <div className='w-full lg:w-[50%] py-5 lg:py-32 flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] px-1'>
         <InfoSection title="Use Relevant Keywords" description={description} />
           <InfoSection title="Explore alternatives" description={description} />
           <InfoSection title="Keep it short" description={description} />
