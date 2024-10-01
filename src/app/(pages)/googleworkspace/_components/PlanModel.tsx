@@ -57,8 +57,9 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const [price, setPrice] = useState<number>(planPrice);
     const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
     const [quantity, setQuantity] = useState(1);
-
     const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: GsuitePlans });
+
+    const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
 
     useEffect(() => {
         if (data && data.product && data.product.length > 0) {
@@ -79,6 +80,16 @@ const PlanModal: React.FC<PlanModalProps> = ({
             setSelectedDomains(domainsInCart);
         }
     }, [data, index, domains]);
+
+
+    const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>, domainName: string) => {
+        const selected = Number(e.target.value);
+        setSelectedYears((prevYears) => ({
+          ...prevYears,
+          [domainName]: selected,
+        }));
+      };
+        
 
     const handleDurationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = e.target.value;
@@ -132,6 +143,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     };
 
     const toggleDomainSelection = (domain: Domain) => {
+        const selectedYear = selectedYears[domain.name] || 1;
         setSelectedDomains((prevSelected) => {
             const isSelected = prevSelected.some((d) => d.name === domain.name);
             let updatedSelectedDomains;
@@ -157,7 +169,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     period: selectedPeriod,
                     type: 'new',
                     quantity,
-                    price: domain.price ? domain.price[0].registerPrice : 0,
+                    price: domain.price ? domain.price[0].registerPrice * selectedYear : 0,
                 }));
     
                 const updatedCart = existingCart.filter(
@@ -179,8 +191,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
     
     
 
-    const DomainItem = ({ domain }: { domain: Domain }) => (
-        <div className="flex justify-between bg-white items-center content-center m-3">
+    const DomainItem = ({ domain }: { domain: Domain }) => {
+        const year = selectedYears[domain.name] || 1;
+        return (
+            <div className="flex justify-between bg-white items-center content-center m-3">
             <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1">
                 <span className="font-900 text-lg max-lg:text-md max-md:text-xs">{domain.name}</span>
                 <div>
@@ -194,7 +208,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
                 </div>
             </div>
             <div className="flex content-center items-center gap-8">
-                <select className="border rounded-md p-1 max-md:hidden" disabled={domain.status !== 'Available'}>
+                <select 
+                value={year}
+                onChange={(e) => handleYearChange(e, domain.name)}
+                className="border rounded-md p-1 max-md:hidden" disabled={domain.status !== 'Available'}>
                     {[1, 2, 3, 5].map((year) => (
                         <option key={year} value={year}>
                             {year} year{year > 1 ? 's' : ''}
@@ -202,12 +219,14 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     ))}
                 </select>
                 <div className="w-[150px] max-md:w-[40px]">
-                    <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
-                        {domain.price && domain.price.length > 0 ? `₹${domain.price[0].registerPrice}` : 'N/A'}
-                    </span>
+                <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
+              {domain.price && domain.price.length > 0
+                ? `₹${(domain.price[0].registerPrice * year).toFixed(2)}`
+                : 'N/A'}
+            </span>
                     <div className="">
                         <span className="text-[14px] text-center max-md:hidden  max-lg:text-xs ">
-                            {domain.price && domain.price.length > 0 ? `then ₹${domain.price[0].registerPrice + 2}/Year` : ''}
+                            {domain.price && domain.price.length > 0 ? `then ₹${domain.price[0].registerPrice * year + 2}/Year` : ''}
                         </span>
                     </div>
                 </div>
@@ -234,7 +253,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
                 </button>
             </div>
         </div>
-    );
+        )
+    };
 
     if (!isOpen) return null;
 

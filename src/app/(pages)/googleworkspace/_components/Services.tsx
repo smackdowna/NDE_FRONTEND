@@ -9,35 +9,35 @@ const servicesData = [
         icon: ICONS.icon1,
     },
     {
-        title: 'Cloud Solutions',
-        description: 'Leverage the power of the cloud with our tailored Google Cloud solutions to meet your business needs.',
+        title: 'Email Migration',
+        description: 'With the aid of migration tools & services, all of your essential business files may be easily migrated to G suite.',
         icon: ICONS.icon1,
     },
     {
-        title: 'Security Services',
-        description: 'Ensure your data and operations are secure with our comprehensive security services.',
+        title: 'Step-Up & Configure',
+        description: 'You may not have enough time to set up. This is something that our G Suite reseller experts can do swiftly for you.',
         icon: ICONS.icon1,
     },
     {
-        title: 'Migration Assistance',
-        description: 'Seamlessly migrate your data and services to Google Workspace with our expert assistance.',
+        title: 'Free Consultation',
+        description: "We provide a support team for Google Workspace plans management to help maximise your team's productivity.",
         icon: ICONS.icon1,
     },
     {
-        title: 'Training and Development',
-        description: 'Empower your team with in-depth training and development on Google Workspace tools.',
+        title: 'Empowering Your Tech Team',
+        description: 'We at Now Digital Easy assist your technology team with Control Panel, Security Settings, and Group options & more.',
         icon: ICONS.icon1,
     },
     {
-        title: 'Custom Solutions',
-        description: 'Get custom solutions tailored to your specific business needs with our expert consulting.',
+        title: 'Pay Your Way',
+        description: 'Easy Google workspace pricing & payment options. Wire Transfer, NEFT, Cheque, RTGS, Debit Card, Credit Card, Paypal.',
         icon: ICONS.icon1,
     },
 ];
 
 const Services = () => {
     return (
-        <div className='bg-background-Gsuite-banner py-24 bg-opacity-5 relative'>
+        <div className='bg-background-Gsuite-banner py-20 2xl:py-24 bg-opacity-5 relative'>
 
             <div className="absolute inset-0 z-0">
                 <Image
@@ -49,18 +49,18 @@ const Services = () => {
                 />
             </div>
             <div className='flex justify-center text-center'>
-                    <span className='text-7xl max-2xl:text-5xl max-xl:text-4xl max-lg:text-4xl max-md:text-3xl  font-900 font-roboto text-home-heading relative'>Services We Provide For You</span>
+                    <span className='text-[26px] md:text-[43px] 2xl:text-[54px] max-sm:w-[292px]  font-900 font-roboto text-home-heading relative'>Services What We Provide For You</span>
                 </div>
-            <div className='flex flex-wrap justify-center py-16 gap-10'>
+            <div className='grid grid-cpls-1 md:grid-cols-2 xl:grid-cols-3 w-[95%] md:w-[95%] xl:w-[90%] mx-auto justify-center py-16 gap-10'>
                 {servicesData.map((service, index) => (
                     <div
                         key={index}
-                        className='group flex flex-col p-4 bg-white items-start gap-6 w-[27vw] max-lg:w-[45vw] max-md:w-[90vw] relative rounded-xl duration-700 transition-transform hover:bg-background-Gsuite'
+                        className='group flex flex-col w-full md:gap-3 2xl:gap-4  pt-6 pl-6 pr-[9px] bg-white items-start gap-6 relative rounded-xl duration-700 transition-transform hover:bg-background-Gsuite'
                     >
-                        <span className='text-home-primary text-4xl max-md:text-2xl font-900 font-roboto group-hover:text-white'>
+                        <span className='text-home-primary text-[24px] 2xl:text-[38px] font-900 font-roboto group-hover:text-white'>
                             {service.title}
                         </span>
-                        <span className='font-roboto-serif text-3xl pb-10 max-md:text-lg group-hover:text-white'>
+                        <span className='font-roboto-serif text-[15px] 2xl:text-[22px] pb-[64px] max-md:text-lg group-hover:text-white'>
                             {service.description}
                         </span>
                         <Image src={service.icon} alt='icon' className='absolute bottom-0 right-0 rounded-xl group-hover:opacity-50' />

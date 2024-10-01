@@ -58,14 +58,21 @@ const Perfectdomain: React.FC = () => {
   ];
 
   return (
-    <div className='flex flex-col gap-4 bg-home-secondary-card py-[150px] max-md:py-10 max-lg:py-[40px]'>
-      <span className="text-center max-md:text-3xl max-lg:text-4xl text-6xl font-900 font-roboto tracking-tight text-home-heading z-10">
-        Build your brand with the perfect domain name
-      </span>
-      <span className="text-center text-2xl max-md:mx-8 max-lg:mx-24 sm:text-2xl font-500 font-roboto-serif tracking-tight z-10">
-        With more than 300 domain extensions, you&apos;ll find the one that fits just right.
-      </span>
-      <div className='flex justify-center pt-24 max-md:pt-2 mx-20 max-lg:pt-10 max-2xl:mx-10 max-md:mx-2'>
+    <div className='flex flex-col gap-4 md:gap-[7.56px] xl:gap-[30px] 3xl:gap-[37px] bg-home-secondary-card py-[150px] max-md:py-10 max-lg:py-[40px]'>
+      <div className='flex flex-col items-center justify-center'>
+          
+        {/* Build your brand with the perfect domain name span */}
+        <span className="text-center font-900 font-roboto text-home-heading z-10 text-[38px] md:text-[43px] 2xl:text-[64px] leading-[45.6px] md:leading-[51.6px] 2xl:leading-[76.8px] px-2 sm:px-0 tracking-tight">
+          Build your brand with the perfect domain name
+        </span>
+        
+        {/* With more than 300 domain extensions span */}
+        <span className="text-center text-[17px] 2xl:text-[22px] leading-[28.5px] 2xl:leading-[36.3px] mt-3 md:mt-5 xl:mt-4 3xl:mt-[30px] font-500 font-roboto-serif tracking-tight max-w-full md:max-w-[617px] xl:max-w-[938px] mx-auto z-10 px-4 sm:px-0">
+          With more than 300 domain extensions, you&apos;ll find the one that fits just right.
+        </span>
+      </div>
+      
+      <div className='flex justify-center'>
         <div className='grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8'>
           {domainDetails.map((domain, index) => (
             <DomainCard
@@ -82,6 +89,7 @@ const Perfectdomain: React.FC = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -12,12 +12,12 @@ const cardData: CardData[] = [
   {
     imgSrc: ICONS.brand,
     title: "Boost productivity with employee tracking.",
-    description: "Streamline workflows and boost productivity with advanced CRM analytics."
+    description: "Track field employees in real-time to improve efficiency and productivity."
   },
   {
     imgSrc: IMAGES.cardbrand,
     title: "Bring your Business Online",
-    description: "Take your business online and reach customers worldwide."
+    description: "Establish a robust online presence and reach a global audience effortlessly."
   },
   {
     imgSrc: IMAGES.cardbrand1,
@@ -32,12 +32,12 @@ const cardData: CardData[] = [
   {
     imgSrc: IMAGES.cardbrand3,
     title: "Maximise leads and conversions",
-    description: "Optimize your efforts to generate high-quality leads and increase sales."
+    description: "Integrate and automate tasks to ensure smooth and efficient business operations."
   },
   {
     imgSrc: IMAGES.cardbrand4,
     title: "Maximise leads and conversions",
-    description: "Foster stronger relationships with personalised interactions across various channels."
+    description: "Optimize your efforts to generate high-quality leads and increase sales."
   },
   {
     imgSrc: IMAGES.cardbrand5,
@@ -70,12 +70,12 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
-  <div className='bg-[#FFFBF0] w-full  rounded-[10px] group pt-4 hover:scale-105  p-4 hover:border-[#0011FF] hover:border-[2px] duration-300'>
+  <div className='bg-[#FFFBF0] max-2xl:text-rounded-[10px] max-2xl:h-[275px] group pt-4 hover:scale-105 p-4 hover:border-[#0011FF] hover:border-[2px] duration-300'>
     <Image src={imgSrc} alt={title} className="" />
     <div className="flex gap-4 mt-3">
-      <span className="text-[22px] max-sm:text-[18px] text-home-heading leading-[28.13px] tracking-tighter font-900 w-[300px] h-[56px] ">{title}</span>
+      <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
     </div>
-    <div className="text-[#000334] font-serif tracking-tighter hover:opacity-60 mt-3 group text-[17px]  font-400 w-[280px] max-2xl:w-[200px]">
+    <div className=" text-[#000334] font-serif tracking-tighter max-2xl:text-[15px] hover:opacity-60 mt-2 group text-[17px] 2xl:text-[20px]  font-400 w-[280px] max-lg:text-[15px] max-2xl:w-[200px]">
       <span>{description}</span>
     </div>
   </div>
@@ -84,17 +84,17 @@ const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
 const Organization: React.FC = () => {
   return (
     <div className="bg-[#ECEDFF]">
-      <div className='p-10 max-md:p-6  max-sm:p-1 pb-10'>
+      <div className='p-[2rem] max-md:p-6  max-sm:p-1 pb-10'>
         <div className='flex justify-center mt-10'>
-          <span className="text-[43px] max-md:text-2xl text-center max-lg:text-[34px] leading-[51.6px] text-home-heading font-900">
+          <span className=" text-center 2xl:text-[64px] 2xl:leading-[76.8px] xl:text-[43px] xl:leading-[51.6px] md:text-[38px] md:leading-[45.6px] max-md:text-[26px] max-md:leading-[31.2px] text-home-heading font-900">
             Grow your organization faster than ever
           </span>
         </div>
         <div className='flex justify-center mt-4'>
-          <div className='bg-border-image-source w-[850px] max-lg:w-[670px] max-md:hidden h-2'></div>
+          <div className='bg-border-image-source w-[850px] max-lg:w-[750px] 2xl:w-[1300px] max-md:hidden h-2'></div>
         </div>
         <div className='flex justify-center mt-10 max-md:mt-4'>
-          <span className='text-center text-[20px] font-roboto-serif font-500 w-[550px]'>
+          <span className='text-center 2xl:text-[22px] 2xl:leading-[36.3px] max-2xl:text-[17px] max-2xl:leading-[28.05px]  font-roboto-serif font-400 '>
             Empower and take your business to the next level with our comprehensive approach.
           </span>
         </div>
@@ -107,7 +107,7 @@ const Organization: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mx-20 max-2xl:mx-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 px-5 md:px-4 xl:px-[64px] w-full">
           {cardData.map((card, index) => (
             <Card
               key={index}

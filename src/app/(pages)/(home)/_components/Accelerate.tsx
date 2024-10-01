@@ -30,7 +30,7 @@ const Accelerate = () => {
     const [activeButton, setActiveButton] = useState("Mails Now");
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const buttons = ["Mails Now", "Chat Now", "Nmail", "Spot Now", "Peoples Now"];
+    const buttons = ["Mails Now", "NDE Mail", "Vision Now", "Chat Now", "Spot Now"];
 
     const settings = {
         dots: false,
@@ -79,12 +79,12 @@ const Accelerate = () => {
         <div className="bg-gradient-acc max-lg:bg-gradient-acc1">
             <div className="py-10 max-lg:p-4">
                 <div className="flex justify-center mt-10">
-                    <span className="w-[70%] text-[55px] max-xl:text-4xl max-lg:text-2xl max-md:text-xl max-2xl:text-5xl max-sm:w-[90%] text-center leading-[72.6px] text-home-heading font-900 max-sm:text-lg">
+                    <span className=" w-full lg:w-[916px] 2xl:w-[1258px] mx-auto text-center  text-home-heading font-900 2xl:text-[64px] xl:text-[43px] sm:text-[38px] max-sm:text-[26px] 2xl:leading-[76.8px] xl:leading-[51.6px] md:leading-[45.6px] max-md:leading-[31.2px] ">
                         Accelerate Outcomes and Supercharge Experience with Ready to Go Solutions
                     </span>
                 </div>
                 <div className="flex justify-center mt-4 max-md:hidden">
-                    <div className="bg-border-image-source w-[65%] h-2"></div>
+                    <div className="bg-border-image-source w-[65%] max-lg:w-[700px] h-2"></div>
                 </div>
                 <div className="flex justify-center">
                     <div className="flex justify-center flex-wrap gap-8 max-lg:gap-4 mt-8">

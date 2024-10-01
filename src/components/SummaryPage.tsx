@@ -38,6 +38,8 @@ interface Product {
 const SummaryPage = () => {
   const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
+
+  console.log(products)
   const [loading, setLoading] = useState<boolean>(true);
   const [subtotal, setSubtotal] = useState<number | null>(null);
   const [tax, setTax] = useState<number | null>(null);
@@ -105,6 +107,7 @@ const SummaryPage = () => {
         // Remove from localStorage if the user is not logged in
         const savedCart = localStorage.getItem("cart");
         const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+        console.log(cartItems)
         const updatedCart = cartItems.filter(
           (item) => item.domainName !== domainName
         );
@@ -202,6 +205,7 @@ const SummaryPage = () => {
             domainName: item.domainName,
             period: item.period || item.year || "Unknown Period",
             quantity: item.quantity || 1,
+            cartId : item.productId,
           }));
 
           setProducts(formattedProducts);
@@ -331,7 +335,7 @@ const SummaryPage = () => {
                       if (product?.cartId) {
                         removeProductFromCart(product.cartId, product.domainName || "");
                       } else {
-                        console.log("cartId is undefined");
+                        console.log(product);
                       }
                     }}
                      className="cursor-pointer"
