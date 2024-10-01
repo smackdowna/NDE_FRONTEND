@@ -85,6 +85,7 @@ import MaximunUptime from "@/assets/images/Uptime 1.png"
 import Operation from "@/assets/images/Operation 1.png"
 import CloudSync from "@/assets/images/Cloud-sync (1) 1.png"
 import Support from "@/assets/images/Support 1.png"
+import switchDomainSm from "@/assets/images/switch-dimain-sm.png"
 
 
 //importing done image
@@ -288,6 +289,7 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
     domainCloud,
     rightdomain,
     swutchdomain,
+    switchDomainSm,
     cricleCheck,
     domainBanner,
     HostBanner,
