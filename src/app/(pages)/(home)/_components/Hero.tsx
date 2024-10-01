@@ -18,7 +18,7 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center ml-[82px] mr-[4vw] gap-10 max-2xl:gap-10 max-xl:mr-0 max-2xl:ml-6 max-2xl:mr-0 max-md:ml-0">
           <div className="flex flex-col gap-5 max-md:gap-4 items-center lg:items-start text-center lg:text-left">
             {/* Heading */}
-            <h1 className=" leading-[93.6px] tracking-tighter max-3xl:leading-[80px] max-sm:leading-[31.2px] font-roboto text-[#000659] font-900 max-sm:text-[26px] sm:text-[28px] md:text-[48px] xl:text-[60px] 3xl:text-[78px] ">
+            <h1 className=" leading-[93.6px] tracking-tighter max-3xl:leading-[80px] max-2xl:leading-[57.6px]  max-sm:leading-[31.2px] font-roboto text-[#000659] font-900 max-sm:text-[26px] sm:text-[28px] md:text-[48px] 2xl:text-[60px] 3xl:text-[78px] ">
               Hey Business Owners
               <br/>
              <span className="text-[#0011FF]">Go Digital</span> Effortlessly
