@@ -88,6 +88,13 @@ import Support from "@/assets/images/Support 1.png"
 import switchDomainSm from "@/assets/images/switch-dimain-sm.png"
 
 
+
+import footerBgSm from "@/assets/images/footerBg-small.svg";
+import footerBgMd from "@/assets/images/footerBg-md.svg";
+import footerBgXl from "@/assets/images/footerBg-xl.svg";
+import footerBg3xl from "@/assets/images/footerBg-3xl.svg";
+
+
 //importing done image
 import Done from "@/assets/images/Done.png"
 
@@ -246,6 +253,11 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
   };
 
   const IMAGES = {
+    footerBgSm,
+    footerBgMd,
+    footerBgXl,
+    footerBg3xl,
+
     gsuiteHeroAnimation,
     gsuiteHeroImg,
     //importing done image 

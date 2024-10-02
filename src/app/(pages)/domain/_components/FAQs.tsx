@@ -64,17 +64,19 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
     return (
         <div className='w-full max-w-[850px] mx-auto'>
-            <div className='flex justify-between p-3 border-b-2 cursor-pointer' onClick={toggleAccordion}>
-                <span className='font-900 text-2xl max-md:text-[17px] max-lg:text-xl'>{question}</span>
+            <div onClick={toggleAccordion} className="py-4 border-b-2 cursor-pointer">
+            <div className='flex justify-between' >
+                <span className='font-900 text-[17px] md:text-[24px] xl:text-[17px] 3xl:text-[26px]'>{question}</span>
                 <Image src={isOpen ? ICONS.plusCricle : ICONS.plusCricle} alt='toggle icon' />
             </div>
             <div 
                 ref={contentRef} 
                 style={{ maxHeight, overflow: 'hidden', transition: 'max-height 0.3s ease' }} 
-                className='text-base md:text-lg border-b-1'
+                className='border-b-1'
             >
-                <div className='p-3'>{answer}</div>
+                <div className='text-[#000334] text-[15px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-roboto-serif'>{answer}</div>
             </div>
+                </div>
         </div>
     );
 };
@@ -85,7 +87,7 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
-        <div className={`${bgColor} flex flex-col gap-4 px-4 py-[50px] px-[25px] md:py-20 px-7 xl:px-[252px] 3xl:px-[395px] `}>
+        <div className={`${bgColor} flex flex-col gap-4 py-[50px] px-[25px] md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px] `}>
 
 <div>
          <div className='flex justify-center '>
@@ -99,7 +101,7 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
       </div>
       <div className='flex justify-center mt-6 mx-4'>
         <span className={`text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full max-md:px-4  max-2xl:text-[17px] 2xl:text-[22px]  max-2xl:leading-normal max-w-[330px] md:max-w-[776px] 3xl:max-w-[1132px] mx-auto `}>
-        If you have further inquiries about our Google Workspace, Google Workspace Pricing, don't hesitate to reach out to us. Below are the frequently asked questions regarding our services.
+        If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
         </span>
       </div>
     </div>

@@ -68,6 +68,7 @@ const config: Config = {
         roboto: ["Roboto", "sans-serif"],
         'roboto-serif': ["Roboto Serif", "serif"],
         'roboto-slab': ["Roboto Slab", "serif"],
+        inter : ["Inter", "sans-serif"],
       },
       fontWeight: {
         100: "100",
