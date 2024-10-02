@@ -68,17 +68,32 @@ const Footer = () => {
     return (
         <div className="relative">
             <Image
-                className="absolute inset-0 w-full h-full object-cover z-0"
-                src={IMAGES.footer}
+                className="absolute inset-0 w-full h-full object-cover z-0 block md:hidden"
+                src={IMAGES.footerBgSm}
                 alt="footer"
             />
-            <div className="relative z-10 pt-[140px] max-lg:pt-[200px]">
-                <div className="flex flex-col lg:flex-row justify-between mx-32 max-2xl:mx-6 items-start lg:items-center gap-10 lg:gap-0">
+            <Image
+                className="absolute inset-0 w-full h-full object-cover z-0 hidden md:block xl:hidden"
+                src={IMAGES.footerBgMd}
+                alt="footer"
+            />
+            <Image
+                className="absolute inset-0 w-full h-full object-cover z-0 hidden xl:block"
+                src={IMAGES.footerBgXl}
+                alt="footer"
+            />
+            <Image
+                className="absolute inset-0 w-full h-full object-cover z-0 hidden 3xl:block"
+                src={IMAGES.footerBg3xl}
+                alt="footer"
+            />
+            <div className="relative z-10 pt-[145px] md:pt-[141px] xl:pt-[136.89px] 3xl:pt-[198.88px] px-[25px] md:px-10 xl:px-[64px] 3xl:px-[104px]">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-[26px] lg:gap-0">
                     <div className="flex flex-col lg:flex-row w-full gap-20 max-lg:gap-2">
                         {FOOTER_LINKS.map((footerLink, i) => (
-                            <div key={i} className="flex flex-col gap-2">
+                            <div key={i} className="flex flex-col gap-[17px] 3xl:gap-4">
                                 <div className="flex justify-between items-center lg:items-start lg:block">
-                                    <span className="text-[24px] max-2xl:text-[18px] font-bold text-home-heading">{footerLink.title}</span>
+                                    <span className="text-[17px] md:text-[15px] xl:text-[17px] 3xl:text-[26px] leading-normal md:leading-[18px] xl:leading-normal 3xl:leading-[31.2px] font-900 md:font-500 xl:font-900 text-home-heading">{footerLink.title}</span>
                                     <Image
                                         src={IMAGES.plus}
                                         alt='plus'
@@ -87,11 +102,11 @@ const Footer = () => {
                                     />
                                 </div>
                                 <ul
-                                    className={`transition-max-height duration-300 ease-in-out overflow-hidden ${expandedSection === i ? 'max-h-40' : 'max-h-0'
+                                    className={`flex flex-col gap-[2px] xl:gap-2 transition-max-height duration-300 ease-in-out overflow-hidden ${expandedSection === i ? 'max-h-40' : 'max-h-0'
                                         } lg:max-h-full`}
                                 >
                                     {footerLink.links.map((link) => (
-                                        <li key={link.label} className="text-[20px] max-2xl:text-[18px] max-xl:text-[15px] font-roboto-serif text-home-heading  pt-1">
+                                        <li key={link.label} className="text-[15px] 3xl:text-[20px] leading-[24.75px] 3xl:leading-[33px] font-roboto-serif text-home-heading hover:underline">
                                             <Link href={link.href}>{link.label}</Link>
                                         </li>
                                     ))}
@@ -99,12 +114,12 @@ const Footer = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col">
                         <div className="w-[270px]">
-                            <Image src={ICONS.footerlogo} alt='logo' />
-                            <p className=' text-home-heading font-roboto-serif text-[17px]'>Now Digital Easy have been the #1 provider of best business solutions from Karur, India, since 2015</p>
+                            <Image src={ICONS.footerlogo} alt='logo' className="hidden xl:block" />
+                            <p className=' text-home-heading font-roboto-serif text-xs xl:text-[15px] 3xl:text-[20px] mt-[6.77px] 3xl:mt-[16.77px]'>Now Digital Easy have been the #1 provider of best business solutions from Karur, India, since 2015</p>
                         </div>
-                        <div className="flex gap-8 py-2 items-center">
+                        <div className="flex gap-[17px] md:gap-4 xl:gap-6 mt-[31px] md:mt-[21px] xl:mt-[25.89px] 3xl:mt-[29.88px] items-center">
                             <Link href="https://cloud.google.com/find-a-partner/partner/now-digital-easy">
                                 <Image src={ICONS.partner} alt={""} />
                             </Link>
@@ -117,7 +132,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className=' mx-32 max-2xl:mx-16 mt-16 flex gap-4 items-center'>
+                <div className='flex items-center mt-[56.6px] md:mt-[36.6px] xl:mt-[79.6px] 3xl:mt-[101px] '>
                     {/* Flag image and currency dropdown */}
                     <div className='flex items-center gap-2'>
                         <Image src={CURRENCY_FLAGS[currency as keyof typeof CURRENCY_FLAGS]} alt={currency} width={30} height={15} />
@@ -138,24 +153,24 @@ const Footer = () => {
                         </select>
                     </div>
                 </div>
-                <hr className="bg-white h-[2px] mx-6 lg:mx-32 mt-2" />
-                <div className="px-4 pt-2 flex flex-col md:flex-row justify-between items-center mx-6 lg:mx-32 gap-6 max-md:gap-0 md:gap-0">
-                    <span className="text-[13px] text-center md:text-left text-[#151D8C] font-roboto-serif">
+                <hr className="bg-white h-[2px] mt-[12.1px] md:mt-[22.31px] xl:mt-5 3xl:mt-[20.12px]" />
+                <div className="flex flex-col lg:flex-row justify-between items-center gap-[14px] md:gap-[8.91px] lg:gap-0 mt-[12.1px] md:mt-[13px] xl:mt-[24.11px] 3xl:mt-5">
+                    <span className="text-[8px] xl:text-xs 3xl:text-[15px] leading-normal xl:leading-[24.75px] text-center md:text-left text-[#151D8C] font-inter">
                         @2022 Nowdigitaleasy, Inc. All Rights Reserved.
                     </span>
-                    <div className="flex max-md:flex-col items-center justify-center p-2 pb-4 gap-4">
-                        <div>
-                            <span className=" font-roboto-serif text-[12px] text-[#151D8C]">
+                    <div className="flex max-lg:flex-col items-center justify-center pb-4 gap-[10px] md:gap-[6px] lg:gap-3">
+                        <div className="flex items-center gap-[10px] lg:gap-[6px] 3xl:gap-[17px] text-[8px] xl:text-xs 3xl:text-[15px] leading-normal xl:leading-[24.75px] font-inter">
+                            <span className=" font-roboto-serif text-[#151D8C]">
                                 <Link href={"/privacy-policy"}>Privacy Policy</Link>
                             </span>
-                            <span className=" font-roboto-serif text-[12px] text-[#151D8C]">
+                            <span className=" font-roboto-serif text-[#151D8C]">
                                 <Link href={"/usage-terms"}>Terms and Conditions</Link>
                             </span>
                         </div>
-                        <div className='flex gap-2'>
-                            <Image src={ICONS.facebook} alt='fb' />
-                            <Image src={ICONS.insta} alt='insta' />
-                            <Image src={ICONS.linkdin} alt='linkedin' />
+                        <div className='flex gap-1 lg:gap-[14px]'>
+                            <Image src={ICONS.facebook} alt='fb' className="size-[15px] xl:size-6" />
+                            <Image src={ICONS.insta} alt='instagram' className="size-[15px] xl:size-6" />
+                            <Image src={ICONS.linkdin} alt='linkedin' className="size-[15px] xl:size-6" />
                         </div>
                     </div>
                 </div>
