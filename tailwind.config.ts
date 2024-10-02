@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        customWhite: '#FFF',
+        customTransparent: 'rgba(225, 225, 248, 0)',
+        'custom-start': 'rgba(225, 225, 248, 0.00)', 
+        'custom-end': '#FFF',
         customBlue: "#0A41FC",
         customGray: "#000334",
         home: {
@@ -40,6 +44,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
+        "start-gradient" : "linear-gradient(360deg, rgba(225, 225, 248, 0.00) 0%, #FFF 100%)",
         "background-SpotNow-gettingStarted": "linear-gradient(172.91deg, rgba(215, 214, 251, 0.6) 5.54%, rgba(208, 255, 229, 0.6)  94.47%)",
         "background-SpotNow": "linear-gradient(172.91deg, rgba(208, 255, 229, 0.6) 5.54%, rgba(215, 214, 251, 0.6) 94.47%)",
         "background-Gsuite-banner": "linear-gradient(270.23deg, #0066FF 0.38%, #009952  99.99%)",

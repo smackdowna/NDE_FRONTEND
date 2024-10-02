@@ -38,7 +38,7 @@ type CartItem = {
 };
 
 
-const words = [".education", ".travel", ".fun", ".online"];
+const words = ["education", "travel", "fun", "online"];
 
 const fetchDomainAvailability = async (domain: string) => {
   const response = await axios.post(
@@ -244,13 +244,13 @@ const Hero = () => {
 
   const getTextColor = (word: string) => {
     switch (word) {
-      case ".education":
+      case "education":
         return "blue";
-      case ".travel":
+      case "travel":
         return "green";
-      case ".fun":
+      case "fun":
         return "orange";
-      case ".online":
+      case "online":
         return "purple";
       default:
         return "black";
@@ -362,9 +362,9 @@ const Hero = () => {
       />
       <div className="flex flex-col justify-center items-center z-10 ">
         <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center items-center w-fit mx-auto">
-          <span className="w-auto text-center">Expand Your Horizons With </span>
-          <div className="">  
-          {/* w-[150px] max-md:w-[90px]  */}
+          <span className="w-auto text-center text-[#000659]">Expand your horizons with .</span>
+          <div className="w-[150px] max-md:w-[90px] ">  
+          
             <TextTransition
               direction="down"
               springConfig={presets.gentle}
@@ -378,7 +378,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <span className="text-center mt-2 md:mt-[10.13px] xl:mt-[6.13px] 2xl:mt-[30.13px] text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto">
+        <span className="text-center mt-2 md:mt-[10.13px] xl:mt-[6.13px] 2xl:mt-[30.13px] font-400 text-[#000659] 3xl:font-900 tracking-tight font-roboto text-xs md:text-[17px] 3xl:text-[26px] leading-[15.6px] md:leading-[28.5px] 3xl:leading-[31.2px]">
           Get started with the perfect domain.
         </span>
       </div>
@@ -393,7 +393,7 @@ const Hero = () => {
           />
 
           <button
-            className={`bg-home-primary text-white flex items-center gap-2 text-xl font-roboto font-700 px-[18px] max-md:text-sm p-4 rounded-r-lg ${
+            className={`bg-home-primary text-white flex items-center gap-2 text-[17px] font-roboto font-500 px-[18px] max-md:text-sm p-4 rounded-r-lg ${
               isFetching ? "cursor-wait" : ""
             }`}
             onClick={handleSearchClick}
@@ -404,7 +404,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <span className="text-center text-2xl max-2xl:text-xl max-lg:text-lg font-600 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] leading-[20.4px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px]">
+      <span className="text-center text-[17px] text-[24px] leading-[20.4px] leading-normal font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px]">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
       <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden z-10">
