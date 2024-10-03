@@ -84,6 +84,7 @@ const config: Config = {
       },
 
       screens: {
+        '1xl': '1300px',
         '3xl': '1700px',
       },
     },
