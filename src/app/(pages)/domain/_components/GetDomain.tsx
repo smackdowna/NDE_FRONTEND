@@ -9,12 +9,12 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-    <div className='w-[322px] md:w-[360px] 3xl:w-[537.813px] h-[245.019px] md:h-[280px] 3xl:h-[363.444px] bg-[#F7F7F7] md:bg-white border border-[#7f7b7b40] hover:shadow-2xl duration-300 rounded-[8px] group pt-4 p-4 flex flex-col items-center md:items-start'>
+    <div className='w-[322px] md:w-[360px] 1xl:w-[400px] 3xl:w-[537.813px] h-[245.019px] md:h-[280px] 3xl:h-[363.444px] bg-[#F7F7F7] md:bg-white border border-[#7f7b7b40] hover:shadow-2xl duration-300 rounded-[8px] group pt-4 p-4 flex flex-col items-center md:items-start'>
         <Image src={icon} alt={title} className='w-[50px] md:w-[60px] 3xl:w-20' />
-            <span className='text-[38px] max-lg:text-3xl text-home-heading leading-[28.13px] max-2xl:text-[24px] tracking-tighter font-900 mt-[26.37px] md:mt-4 xl:mt-6 3xl:mt-6'>
+            <span className='text-home-heading text-[17px] md:text-[24px] 1xl:text-[28px] 3xl:text-[38px] leading-[28.13px] tracking-tighter font-900 mt-[26.37px] md:mt-4 xl:mt-6 3xl:mt-6'>
                 {title}
             </span>
-        <div className='text-[#000334] text-[#000334] text-[15px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-serif  font-400 mt-[26.37px] md:mt-3 3xl:mt-7 text-center md:text-start'>
+        <div className='text-[#000334] text-[15px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-serif  font-400 mt-[26.37px] md:mt-3 1xl:mt-5 3xl:mt-7 text-center md:text-start'>
             <span>{description}</span>
         </div>
     </div>
@@ -47,13 +47,13 @@ const GetDomain: React.FC = () => (
                 />
                 <FeatureCard
                     icon={ICONS.HTTPS}
-                    title="HTTPS Security"
-                    description="Protect your website with advanced HTTPS security and encryption"
+                    title="Domain Theft Protection"
+                    description="Safeguard your domain from unauthorized transfers and ensure your ownership is secure."
                 />
                 <FeatureCard
                     icon={ICONS.Gear}
-                    title="Domain Control"
-                    description="Comprehensive tools to take full control of your domain settings"
+                    title="Easy-to-use Control Panel"
+                    description="Our user-friendly and intuitive control panel makes domain management easy and hassle-free."
                 />
             </div>
         </div>

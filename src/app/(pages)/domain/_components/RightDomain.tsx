@@ -9,7 +9,7 @@ interface InfoSectionProps {
 
 const InfoSection: React.FC<InfoSectionProps> = ({ title, description }) => (
   <div className='flex flex-col gap-[6px] md:gap-[14px] xl:gap-[10px] 3xl:gap-4 w-[740px] max-2xl:w-[550px] max-xl:w-[400px] max-md:w-[300px] '>
-    <span className='text-[24px] md:text-[26px] 3xl:text-[36px] font-900 font-roboto text-home-heading tracking-tighter'>{title}</span>
+    <span className='text-[24px] md:text-[26px] lg:text-[30px] 3xl:text-[38px] font-900 font-roboto text-home-heading tracking-tighter'>{title}</span>
     <p className='text-[15px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-roboto-serif max-w-[320px] md:max-w-[450px] 3xl:max-w-[648px]'>{description}</p>
   </div>
 );
