@@ -10,8 +10,8 @@ const SwitchDomain = () => {
     ]
     return (
         <div className='bg-home-secondary-card px-5 md:px-[123px] py-[50px] md:py-20 xl:px-[64px] 3xl:px-[100px] 3xl:py-[120px]'>
-            <div className='flex justify-center gap-[30px] xl:gap-[23px] 3xl:gap-[170px] max-xl:flex-col'>
-                <Image src={IMAGES.swutchdomain} alt='domain' className='max-xl:w-[400px] hidden xl:block' />
+            <div className='flex justify-center gap-[30px] xl:gap-[50px] 3xl:gap-[170px] max-xl:flex-col'>
+                <Image src={IMAGES.swutchdomain} alt='domain' className='max-w-[541px] hidden xl:block' />
                 <Image src={IMAGES.switchDomainSm} alt='domain' className='w-[280px] md:w-[541px] block xl:hidden mx-auto' />
                 <div className='w-[900px] max-2xl:w-[650px] 2xl:w-[951px] max-lg:w-full flex flex-col justify-center'>
                     <span className='text-[24px] md:text-[32px] xl:text-[43px] 3xl:text-[64px] leading-normal md:leading-[45.6px] xl:leading-[51.6px] 3xl:leading-[76.8px] tracking-tight font-900 text-home-heading'>Switch Domains, Effortlessly!</span>

@@ -87,26 +87,26 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
-        <div className={`${bgColor} flex flex-col gap-4 py-[50px] px-[25px] md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px] `}>
+        <div className={`${bgColor} flex flex-col py-[50px] px-[25px] md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px] `}>
 
 <div>
          <div className='flex justify-center '>
-          <span className={`text-6xl max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px] max-w-[310px] md:max-w-[777px] 3xl:max-w-[1112px] mx-auto hidden 3xl:block`}>
+          <span className={`text-6xl max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px] max-w-[310px] md:max-w-[777px] xl:max-w-[900px] 3xl:max-w-[1112px] mx-auto hidden 1xl:block`}>
           Still not sure? Here are some answers for your queries
         </span>
-          <span className={`text-6xl max-md:mx-4 max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px] max-w-[310px] md:max-w-[777px] 3xl:max-w-[1112px] mx-auto block 3xl:hidden`}>
+          <span className={`text-6xl max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px] max-w-[310px] md:max-w-[777px] 3xl:max-w-[1112px] mx-auto block 1xl:hidden`}>
           Still not sure? <br/>
           Here are some answers for your queries
         </span>
       </div>
-      <div className='flex justify-center mt-6 mx-4'>
-        <span className={`text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full max-md:px-4  max-2xl:text-[17px] 2xl:text-[22px]  max-2xl:leading-normal max-w-[330px] md:max-w-[776px] 3xl:max-w-[1132px] mx-auto `}>
+      <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
+        <span className={`text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full px-0 sm:px-4  max-2xl:text-[17px] 2xl:text-[22px]  max-2xl:leading-normal max-w-[330px] md:max-w-[776px] 3xl:max-w-[1132px] mx-auto `}>
         If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
         </span>
       </div>
     </div>
 
-            <div className='flex justify-center md:mt-8  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
+            <div className='flex justify-center mt-[30px] md:mt-10 xl:mt-[42px] 1xl:mt-[26px]  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
                 <div className='flex flex-col gap-2 w-full'>
                     {faqs.map((faq, index) => (
                         <FAQItem key={index} question={`${index + 1}. ${faq.question}`} answer={faq.answer} />

@@ -15,11 +15,11 @@ const features = [
 const Power = () => {
     return (
         <div className='bg-domain-primary-card px-[6px] md:px-[143px] py-[50px] md:py-20 xl:px-[37px]'>
-            <div className='flex justify-center gap-32 max-xl:gap-16 mx-10 items-center max-xl:flex-col '>
+            <div className='flex justify-center gap-[18px] md:gap-10 xl:gap-[50px] 3xl:gap-[70px] mx-10 items-center max-xl:flex-col '>
                 <div className=' w-[800px] max-xl:w-[500px] max-lg:w-[400px] max-md:w-[300px]'>
-                    <span className='text-center text-[24px] md:text-[43px] 3xl:text-[64px] leading-normal md:leading-[51.6px] 3xl:leading-[76.8px] font-900 font-roboto text-home-heading  max-w-[321px] md:max-w-[539px] xl:max-w-[454px] 3xl:max-w-[722px] mx-auto'>
+                    <div className='text-[24px] md:text-[43px] 3xl:text-[64px] leading-normal md:leading-[51.6px] 3xl:leading-[76.8px] font-900 font-roboto text-home-heading w-[321px] md:w-[539px] lg:w-[454px] 1xl:w-[454px] 3xl:w-[722px]'>
                         The Power of NDE, now on your website
-                    </span>
+                    </div>
                     <div className='flex flex-col gap-[18px] md:gap-[22px] xl:gap-[23.3px] 3xl:gap-[20.2px] mt-7 md:mt-10 xl:mt-[36.64px] 3xl:mt-[30.64px]'>
                         {features.map((feature, index) => (
                             <div className='flex gap-4' key={index}>
