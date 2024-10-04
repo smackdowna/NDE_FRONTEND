@@ -404,7 +404,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <span className="text-center text-[17px] text-[24px] leading-[20.4px] leading-normal font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px]">
+      <span className="text-center text-[17px] 2xl:text-[24px] leading-[20.4px] leading-normal font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px] max-w-[301px] md:max-w-full mx-auto">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
       <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden z-10">
