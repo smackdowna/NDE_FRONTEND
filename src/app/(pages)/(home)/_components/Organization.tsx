@@ -1,5 +1,6 @@
 import { ICONS, IMAGES } from "@/assets";
 import Image from "next/image";
+import './style.css'
 
 // Define the type for card data
 type CardData = {
@@ -57,7 +58,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ text }) => (
-  <button className="bg-white w-[150px] text-[15px] border-[2px] text-[#0011FF] font-700 border-[#0011FF] p-2 rounded-2xl">
+  <button className="bg-white w-fit whitespace-nowrap text-[15px] border-[2px] text-[#0011FF] font-700 border-[#0011FF] p-2 rounded-2xl">
     <span className="">{text}</span>
   </button>
 );
@@ -70,44 +71,48 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
-  <div className='bg-[#FFFBF0] max-2xl:text-rounded-[10px] max-2xl:h-[275px] group pt-4 hover:scale-105 p-4 hover:border-[#0011FF] hover:border-[2px] duration-300'>
-    <Image src={imgSrc} alt={title} className="" />
-    <div className="flex gap-4 mt-3">
-      <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
-    </div>
-    <div className=" text-[#000334] font-serif tracking-tighter max-2xl:text-[15px] hover:opacity-60 mt-2 group text-[17px] 2xl:text-[20px]  font-400 w-[280px] max-lg:text-[15px] max-2xl:w-[200px]">
-      <span>{description}</span>
+  <div className='org-card bg-[#FFFBF0] max-2xl:rounded-[10px] max-2xl:h-[275px] group pt-4 p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative cursor-pointer overflow-hidden lg:h-[220px]'>
+    <div className='absolute inset-0 rounded-0 border-2 border-transparent transition-colors duration-300 pointer-events-none group-hover:border-[#0011FF]'></div>
+    <div className='relative z-10'>
+      <Image src={imgSrc} alt={title} className="" />
+      <div className="flex gap-4 mt-3">
+        <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
+      </div>
+      <div className="tracking-tighter group-hover:opacity-60 mt-2 transition-opacity duration-300">
+        <span className="sub-para block whitespace-pre-wrap w-full">{description}</span>
+      </div>
     </div>
   </div>
 );
 
 const Organization: React.FC = () => {
   return (
-    <div className="bg-[#ECEDFF]">
-      <div className='p-[2rem] max-md:p-6  max-sm:p-1 pb-10'>
-        <div className='flex justify-center mt-10'>
-          <span className=" text-center 2xl:text-[64px] 2xl:leading-[76.8px] xl:text-[43px] xl:leading-[51.6px] md:text-[38px] md:leading-[45.6px] max-md:text-[26px] max-md:leading-[31.2px] text-home-heading font-900">
-            Grow your organization faster than ever
-          </span>
-        </div>
-        <div className='flex justify-center mt-4'>
-          <div className='bg-border-image-source w-[850px] max-lg:w-[750px] 2xl:w-[1300px] max-md:hidden h-2'></div>
+    <section className="organization bg-[#ECEDFF] flex flex-col lg:gap-[20px] items-center">
+        <div className="w-full">
+          <div className='flex justify-center w-[90%] mx-auto'>
+            <h2>
+              Grow your organization faster than ever
+            </h2>
+          </div>
+          <div className=' flex justify-center mt-2'>
+            <div className='bg-border-image-source w-[90%] h-[5px] mx-auto'></div>
+          </div>
         </div>
         <div className='flex justify-center mt-10 max-md:mt-4'>
-          <span className='text-center 2xl:text-[22px] 2xl:leading-[36.3px] max-2xl:text-[17px] max-2xl:leading-[28.05px]  font-roboto-serif font-400 '>
+          <p className="text-center">
             Empower and take your business to the next level with our comprehensive approach.
-          </span>
+          </p>
         </div>
-        <div className="flex justify-center max-lg:mx-1">
-          <div className="flex gap-4 mt-8 overflow-x-scroll hide-scrollbar">
+        <div className="flex w-[100%] justify-center max-lg:mx-1">
+          <div className="flex gap-4 mt-8 overflow-x-scroll hide-scrollbar items-center">
             {["Domain", "Hosting", "Website Builder", "Marketing Studio", "Google Ads", "Vision Now", "Mails Now", "Chat Now", "Nmail", "Spot Now", "Peoples Now"].map((text) => (
-              <div key={text}>
+              <div className="" key={text}>
                 <Button text={text} />
               </div>
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 px-5 md:px-4 xl:px-[64px] w-full">
+        <div className=" justify-between grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-4 md:gap-[16px] lg:gap-[20px] max-sm:gap-x-[40px] max-sm:gap-y-[30px] sm:gap-x-[16px] sm:gap-y-[30px] mt-10">
           {cardData.map((card, index) => (
             <Card
               key={index}
@@ -117,8 +122,7 @@ const Organization: React.FC = () => {
             />
           ))}
         </div>
-      </div>
-    </div>
+    </section>
   );
 };
 export default Organization;

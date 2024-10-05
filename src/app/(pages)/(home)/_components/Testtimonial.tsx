@@ -4,6 +4,7 @@ import { TESTIMONIALS } from "@/assets/data/testmonials";
 import TestimonialCard from "./TestimonialsCard";
 import Image from "next/image";
 import { IMAGES } from "@/assets";
+import './style.css'
 
 const Testimonials: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,9 +13,8 @@ const Testimonials: React.FC = () => {
         setCurrentIndex(index);
     };
     return (
-        <div className=" bg-[#FFFBF0]">
-            <div className=" gap-10 pb-36 max-md:pb-10 mx-24 max-2xl:mx-2">
-                <div className="pt-28 max-md:pt-10 flex justify-center">
+        <section className="testimonials bg-[#FFFBF0]">
+                <div className="flex justify-center">
                     <span className="text-dark-200 text-lg md:text-[28px] text-center xl:text-2xl font-900  text-home-body opacity-70">
                         People just love working with us!
                     </span>
@@ -24,7 +24,7 @@ const Testimonials: React.FC = () => {
                         Digitalized Business Happy Customers That’s Impact
                     </span>
                 </div>
-                <div className="flex flex-wrap justify-center gap-4 max-w-full max-md:hidden">
+                <div className="grid grid-cols-2 lg:gap-x-[30px] lg:gap-y-[30px] sm:gap-x-[24px] sm:gap-y-[20px] max-w-full max-sm:hidden">
                     {TESTIMONIALS.map((testimonial, index) => (
                         <TestimonialCard key={index} {...testimonial} index={index} />
 
@@ -34,10 +34,10 @@ const Testimonials: React.FC = () => {
                         // </div>
                     ))}
                 </div>
-                <div className="flex justify-center ">
-                    <div className="relative md:hidden mx-8 overflow-hidden">
+                <div className="flex justify-center w-100">
+                    <div className="relative block sm:hidden overflow-hidden">
                         <div
-                            className="flex transition-transform duration-500"
+                            className="flex items-center transition-transform duration-500"
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                         >
                             {TESTIMONIALS.map((testimonial, index) => (
@@ -48,7 +48,7 @@ const Testimonials: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center m-4 gap-2 md:hidden">
+                <div className="flex justify-center mt-2 gap-2 sm:hidden">
                     {TESTIMONIALS.map((_, index) => (
                         <Image
                             key={index}
@@ -61,8 +61,7 @@ const Testimonials: React.FC = () => {
                         />
                     ))}
                 </div>
-            </div>
-        </div>
+        </section>
 
     );
 };

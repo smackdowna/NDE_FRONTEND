@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState, useEffect } from "react";
+import './style.css'
 
 // Define a type for the Button props
 type ButtonProps = {
@@ -76,48 +77,46 @@ const Accelerate = () => {
     }, []);
 
     return (
-        <div className="bg-gradient-acc max-lg:bg-gradient-acc1">
-            <div className="py-10 max-lg:p-4">
-                <div className="flex justify-center mt-10">
-                    <span className=" w-full lg:w-[916px] 2xl:w-[1258px] mx-auto text-center  text-home-heading font-900 2xl:text-[64px] xl:text-[43px] sm:text-[38px] max-sm:text-[26px] 2xl:leading-[76.8px] xl:leading-[51.6px] md:leading-[45.6px] max-md:leading-[31.2px] ">
-                        Accelerate Outcomes and Supercharge Experience with Ready to Go Solutions
-                    </span>
-                </div>
-                <div className="flex justify-center mt-4 max-md:hidden">
-                    <div className="bg-border-image-source w-[65%] max-lg:w-[700px] h-2"></div>
-                </div>
-                <div className="flex justify-center">
-                    <div className="flex justify-center flex-wrap gap-8 max-lg:gap-4 mt-8">
-                        {buttons.map((text, index) => (
-                            <Button
-                                key={text}
-                                text={text}
-                                onClick={() => handleButtonClick(index, text)}
-                                isActive={activeButton === text}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="flex justify-center relative">
-                    <Slider {...settings} ref={sliderRef} className="w-full my-10">
-                        {cards.map((card, index) => (
-                            <div
-                                key={index}
-                                className={`px-4 transition-opacity duration-500 ${currentSlide === index ? "opacity-100" : "opacity-30"}`}
-                            >
-                                <Image src={card} alt="card" layout="responsive" objectFit="cover" />
-                            </div>
-                        ))}
-                    </Slider>
-                    <button className="absolute bg-[#0011FF] left-[30px] top-1/2 transform -translate-y-1/2" onClick={() => sliderRef.current?.slickPrev()}>
-                        <Image src={ICONS.arrowleft} alt="left" />
-                    </button>
-                    <button className="absolute bg-[#0011FF] right-[30px] top-1/2 transform -translate-y-1/2" onClick={() => sliderRef.current?.slickNext()}>
-                        <Image src={ICONS.arrowleft} alt="right" className="rotate-180" />
-                    </button>
+        <section className="accelerate bg-gradient-acc max-lg:bg-gradient-acc1">
+            <div className="flex justify-center mt-10 md:w-[90%] w-full mx-auto">
+                <h2>
+                    Accelerate Outcomes and Supercharge Experience with Ready to Go Solutions
+                </h2>
+            </div>
+            <div className="border-img sm:flex justify-center mt-4 hidden  md:w-[80%] mx-auto">
+                <div className="bg-border-image-source md:w-[100%] max-lg:w-[700px] h-[5px]"></div>
+            </div>
+            <div className="flex justify-center lg:mt-[40px] md:mt-[30px] text-white">
+                <div className="flex justify-center flex-wrap gap-8 max-lg:gap-4 mt-8">
+                    {buttons.map((text, index) => (
+                        <Button
+                            key={text}
+                            text={text}
+                            onClick={() => handleButtonClick(index, text)}
+                            isActive={activeButton === text}
+                        />
+                    ))}
                 </div>
             </div>
-        </div>
+            <div className="flex justify-center relative">
+                <Slider {...settings} ref={sliderRef} className="w-full my-10">
+                    {cards.map((card, index) => (
+                        <div
+                            key={index}
+                            className={`px-4 transition-opacity duration-500 ${currentSlide === index ? "opacity-100" : "opacity-30"}`}
+                        >
+                            <Image src={card} alt="card" layout="responsive" objectFit="cover" />
+                        </div>
+                    ))}
+                </Slider>
+                <button className="absolute bg-[#0011FF] left-[30px] top-1/2 transform -translate-y-1/2" onClick={() => sliderRef.current?.slickPrev()}>
+                    <Image src={ICONS.arrowleft} alt="left" />
+                </button>
+                <button className="absolute bg-[#0011FF] right-[30px] top-1/2 transform -translate-y-1/2" onClick={() => sliderRef.current?.slickNext()}>
+                    <Image src={ICONS.arrowleft} alt="right" className="rotate-180" />
+                </button>
+            </div>
+        </section>
     );
 };
 
