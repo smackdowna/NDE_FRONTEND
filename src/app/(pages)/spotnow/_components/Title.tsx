@@ -16,9 +16,9 @@ const Title: React.FC<TitleProps> = ({ title, description, descriptionWidth, tit
         </span>
       </div>
       <div className='flex justify-center mt-6 mx-4'>
-        <span className={`text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full max-md:px-4  max-2xl:text-[17px] 2xl:text-[22px]  max-2xl:leading-normal max-w-[330px] md:max-w-[776px] 3xl:max-w-[1132px] mx-auto ${descriptionWidth}`}>
+        <p className={`max-w-[330px] md:max-w-[776px] 3xl:max-w-[1132px] mx-auto ${descriptionWidth}`}>
              {description} 
-        </span>
+        </p>
       </div>
     </div>
   )
