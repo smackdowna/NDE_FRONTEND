@@ -7,6 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens : {
+      'sm': '360px',
+      'md': '834px',
+      'lg': '1280px',
+      'xl': '1920px',
+    },
     extend: {
       colors: {
         customWhite: '#FFF',
@@ -24,6 +30,7 @@ const config: Config = {
           "secondary-card": "#FFFBF0",
           "primary-card": "#ECEDFF",
         },
+        
         domain: {
           primary: "#0011FF",
           heading: "#000659",

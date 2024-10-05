@@ -66,7 +66,7 @@ const Footer = () => {
     };
 
     return (
-        <div className="relative">
+        <div className="footer relative">
             <Image
                 className="absolute inset-0 w-full h-full object-cover z-0 block md:hidden"
                 src={IMAGES.footerBgSm}
@@ -93,7 +93,7 @@ const Footer = () => {
                         {FOOTER_LINKS.map((footerLink, i) => (
                             <div key={i} className="flex flex-col gap-[17px] 3xl:gap-4">
                                 <div className="flex justify-between items-center lg:items-start lg:block">
-                                    <span className="text-[17px] md:text-[15px] xl:text-[17px] 3xl:text-[26px] leading-normal md:leading-[18px] xl:leading-normal 3xl:leading-[31.2px] font-900 md:font-500 xl:font-900 text-home-heading">{footerLink.title}</span>
+                                    <span className="footer-links text-[17px] md:text-[15px] xl:text-[17px] 3xl:text-[26px] leading-normal md:leading-[18px] xl:leading-normal 3xl:leading-[31.2px] font-900 md:font-500 xl:font-900 text-home-heading">{footerLink.title}</span>
                                     <Image
                                         src={IMAGES.plus}
                                         alt='plus'
@@ -116,8 +116,8 @@ const Footer = () => {
                     </div>
                     <div className="flex flex-col">
                         <div className="w-[270px]">
-                            <Image src={ICONS.footerlogo} alt='logo' className="hidden xl:block" />
-                            <p className=' text-home-heading font-roboto-serif text-xs xl:text-[15px] 3xl:text-[20px] mt-[6.77px] 3xl:mt-[16.77px]'>Now Digital Easy have been the #1 provider of best business solutions from Karur, India, since 2015</p>
+                            <Image src={ICONS.footerlogo} alt='logo' className="hidden sm:block" />
+                            <p className=' text-home-heading font-roboto-serif text-xs xl:text-[15px] 3xl:text-[20px] mt-[6.77px] 3xl:mt-[16.77px] text-left'>Now Digital Easy have been the #1 provider of best business solutions from Karur, India, since 2015</p>
                         </div>
                         <div className="flex gap-[17px] md:gap-4 xl:gap-6 mt-[31px] md:mt-[21px] xl:mt-[25.89px] 3xl:mt-[29.88px] items-center">
                             <Link href="https://cloud.google.com/find-a-partner/partner/now-digital-easy">

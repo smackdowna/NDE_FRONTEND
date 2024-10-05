@@ -1,0 +1,294 @@
+section {
+  padding: 100px 80px;
+}
+
+h1,
+h2,
+h4 {
+  font-family: Roboto;
+  color: #000;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 78px;
+  line-height: 93.6px;
+  text-align: left;
+}
+
+h2 {
+  font-size: 64px;
+  line-height: 76.8px;
+  text-align: center;
+}
+
+h3 {
+  font-family: Roboto;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 45.6px;
+  text-align: center;
+}
+
+p {
+  font-family: Roboto Serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36.3px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 26px;
+  line-height: 31.2px;
+  text-align: left;
+}
+
+.sub-para {
+  font-family: Roboto Serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 33px;
+  text-align: left;
+  color: #000334;
+}
+
+span.testimonial-author {
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 31.2px;
+  text-align: justified;
+}
+
+span.testimonial-company {
+  font-family: Roboto Serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: justified;
+}
+
+/* Media Queries */
+/* For 1920px and above */
+@media (min-width: 1920px) {
+  /* Styles for screens 1920px and larger */
+}
+
+@media (max-width: 1650px) and (min-width: 1420px) {
+  .hero h1 {
+    font-size: 64px;
+    line-height: 76.8px;
+  }
+}
+
+@media (max-width: 1560px) {
+  .organization .org-card {
+    height: 300px;
+  }
+}
+
+@media (max-width: 1420px) and (min-width: 1280px) {
+  .hero h1 {
+    font-size: 52px;
+    line-height: 62.4px;
+  }
+  .accelerate h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+@media (max-width: 1280px) {
+  /* Styles for screens between 1280px and 1920px */
+  section {
+    padding: 80px 64px;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 57.6px;
+  }
+
+  h2 {
+    font-size: 43px;
+    line-height: 51.6px;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+  p {
+    font-size: 17px;
+    line-height: 28.05px;
+  }
+  .sub-para {
+    font-size: 15px;
+    line-height: 24.75px;
+  }
+
+  .organization .org-card {
+    height: 250px;
+  }
+  span.testimonial-author {
+    font-size: 17px;
+    line-height: 19.92px;
+  }
+  h3 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .organization .org-card {
+    height: 300px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 50.4px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero h1 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+  .accelerate h2 {
+    font-size: 32px;
+    line-height: 38.4px;
+  }
+}
+
+@media (max-width: 962px) {
+  .organization .org-card {
+    height: 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .organization .org-card {
+    height: 350px;
+  }
+}
+
+/* Between 1280px and 768px */
+@media (max-width: 834px) {
+  section {
+    padding: 80px 16px;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 57.6px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+  .organization .org-card {
+    height: 220px;
+  }
+}
+
+@media (max-width: 560px) {
+  .organization .org-card {
+    height: 280px;
+  }
+}
+
+@media (max-width: 540px) {
+  .accelerate h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+@media (max-width: 460px) {
+  .organization .org-card {
+    height: 360px;
+  }
+}
+
+/* For 360px and below */
+@media (max-width: 359px) {
+  section {
+    padding: 40px 16px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+  .organization .org-card {
+    height: fit-content;
+  }
+}
+
+.hero-content {
+  padding-top: 160px;
+  padding-inline: 80px;
+}
+
+@media (max-width: 1280px) {
+  .hero-content {
+    padding-inline: 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    padding-top: 140px;
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-content {
+    padding-top: 120px;
+    padding-inline: 4px;
+  }
+
+  .Possibilities .grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
+
+  section {
+    padding: 40px 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .organization .grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .organization .org-card {
+    height: fit-content;
+  }
+  .border-img {
+    display: none !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .testimonials .grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .nextStep h3 {
+    font-weight: 400;
+    font-size: 24px !important;
+  }
+
+  .footer-links {
+    font-weight: 600 !important;
+  }
+}
