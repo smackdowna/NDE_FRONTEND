@@ -2,6 +2,7 @@ import { IMAGES } from '@/assets'
 import Image from 'next/image'
 import React from 'react'
 import Title from './Title'
+import './style.css'
 
 const Tracking = () => {
     return (
@@ -13,9 +14,9 @@ const Tracking = () => {
             titleWidth=''
             />
             <div className=' flex flex-col'>
-                 
+
                 <div className=' flex justify-center'>
-                <Image src={IMAGES.spotReactangle} alt='' className='w-[90vw] pt-10' />
+                <Image src={IMAGES.spotReactangle} alt='' className=' w-[90vw] pt-10' />
                 </div>
                </div>  
               <div>

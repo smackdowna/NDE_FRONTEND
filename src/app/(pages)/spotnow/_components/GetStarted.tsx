@@ -2,6 +2,7 @@ import { ICONS, IMAGES } from '@/assets';
 import Image from 'next/image';
 import React from 'react';
 import Title from './Title';
+import './style.css';
 
 
 interface StepProps{
@@ -14,8 +15,8 @@ const Step:React.FC<StepProps> = ({ title, description }) => (
     <div className='flex  '>
     <Image src={IMAGES.Checkcircle} alt='tick'/>
     </div>
-    <span className=' text-3xl max-md:text-[-36px] font-roboto font-900 max-2xl:text-[26px] '>{title}</span>
-    <span className=' font-400 font-roboto-serif text-2xl  max-md:text-lg tracking-tight max-2xl:text-[17px] max-2xl:w-[285px]'>{description}</span>
+    <h4 >{title}</h4>
+    <p>{description}</p>
   </div>
 );
 
@@ -46,9 +47,9 @@ const GetStarted = () => {
         title="Get Started with SpotNow in Minutes"
         description="Increased efficiency, better management, and much more in no time! Just follow these four steps."
         titleWidth=''
-        descriptionWidth='max-2xl:w-[742px] 2xl:w-[728px]'
+        descriptionWidth='lg:w-[70%] w-[90%]'
       />
-      <div className='flex justify-center flex-wrap py-20 max-lg:py-10 max-2xl:gap-2 gap-32 max-2xl:w-full max-md:gap-10 max-lg:mx-3'>
+      <div className='grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 px-16 py-16 powerGrid w-full place-items-center'>
         {steps.map((step, index) => (
           <Step key={index} title={step.title} description={step.description} />
         ))}
