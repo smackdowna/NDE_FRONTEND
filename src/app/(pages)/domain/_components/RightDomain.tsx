@@ -11,7 +11,7 @@ interface InfoSectionProps {
 const InfoSection: React.FC<InfoSectionProps> = ({ title, description, cardWidth }) => (
   <div className={`flex flex-col gap-[6px] md:gap-[14px] xl:gap-[10px] 3xl:gap-4 w-[740px] max-2xl:w-[550px] max-xl:w-[400px] max-md:w-[300px] ${cardWidth}`}>
     <span className='text-[24px] md:text-[26px] lg:text-[30px] 3xl:text-[38px] font-900 font-roboto text-home-heading tracking-tighter'>{title}</span>
-    <p className='text-[#000334] text-[15px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-roboto-serif max-w-[320px] md:max-w-[510px] 3xl:max-w-[648px]'>{description}</p>
+    <p className='text-[#000334] text-left'>{description}</p>
   </div>
 );
 
@@ -48,15 +48,16 @@ const RightDomain: React.FC = () => {
   ];
 
   return (
-    <div className='bg-domain-primary-card flex flex-col items-center py-[50px] md:py-[80px] 3xl:py-[120px] gap-0 md:gap-[30px] xl:gap-10'>
+    <section className='right-domain bg-domain-primary-card'>
       {/* Heading */}
-      <div className='text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-900 tracking-tight font-roboto text-home-heading hidden md:block max-w-full md:max-w-[400px] lg:max-w-[640px] xl:max-w-[1049px] 3xl:max-w-[1696px] mx-auto md:leading-[51.6px] 3xl:leading-[93.6px]'>
-        Finding the Right Domain Name
-      </div>
-      <span className='text-center text-lg md:text-xl lg:text-2xl font-roboto-serif font-500 tracking-tight hidden lg:block text-[#000334]'>
-        It&apos;s easier than you think!
-      </span>
-    
+     <div className="title d-flex flex-col gap-4 items-center w-[95%] mb-5">
+      <h2 className='text-center tracking-tight text-home-heading'>
+          Finding the Right Domain Name
+        </h2>
+        <p className='text-center text-[#000334]'>
+          It&apos;s easier than you think!
+        </p>
+     </div>
       <div className="flex flex-col gap-[97px] md:gap-20 xl:gap-[126.5px] 2xl:gap-[89.78px]">
         
       <div className='flex flex-col-reverse gap-10 md:gap-[30px] xl:gap-[102px] 3xl:gap-[197px] justify-between md:flex-col lg:flex-row items-center'>
@@ -147,7 +148,7 @@ const RightDomain: React.FC = () => {
 
       </div>
       
-    </div>
+    </section>
   );
 };
 

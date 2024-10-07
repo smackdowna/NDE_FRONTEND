@@ -1,6 +1,7 @@
 import { IMAGES } from '@/assets'
 import Image from 'next/image'
 import React from 'react'
+import './style.css'
 
 const SwitchDomain = () => {
     const switchDomainPoints = [
@@ -9,30 +10,28 @@ const SwitchDomain = () => {
         "Build your very own website"
     ]
     return (
-        <div className='bg-home-secondary-card px-5 md:px-[123px] py-[50px] md:py-20 xl:px-[64px] 3xl:px-[100px] 3xl:py-[120px]'>
-            <div className='flex justify-center gap-[30px] 2xl:gap-[50px] 3xl:gap-[170px] max-xl:flex-col'>
-                <Image src={IMAGES.swutchdomain} alt='domain' className='max-w-[510px] hidden xl:block' />
-                <Image src={IMAGES.switchDomainSm} alt='domain' className='w-[280px] md:w-[541px] block xl:hidden mx-auto' />
-                <div className='w-[900px] max-2xl:w-[650px] 2xl:w-[951px] max-lg:w-full flex flex-col justify-center'>
-                    <span className='text-[22px] md:text-[32px] xl:text-[43px] 3xl:text-[64px] leading-normal md:leading-[45.6px] xl:leading-[51.6px] 3xl:leading-[76.8px] tracking-tight font-900 text-home-heading'>Switch Domains, Effortlessly!</span>
-                    <p className='text-[#000334] w-[720px] max-2xl:w-full text-[18px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-roboto-serif mt-[17px] md:mt-[23px] xl:mt-[24.5px] 3xl:mt-[30.81px]'>
+        <section className='switch-domain bg-home-secondary-card '>
+                <Image src={IMAGES.swutchdomain} alt='domain' className='big-image' />
+                <Image src={IMAGES.switchDomainSm} alt='domain' className='small-image' />
+                <div className='switch-content'>
+                    <h2 className=' text-home-heading text-left'>Switch Domains, Effortlessly!</h2>
+                    <p className='text-[#000334] text-left'>
                         Already have a domain with another provider? Easily transfer it to NDE using our Smart Search Renewal without losing any of the time you&apos;ve already paid for. Plus, with our intuitive tools, you can build your very own website quickly and efficiently.
                         <br/>
                         Let NDE handle the technical details so you can focus on what matters most: growing your online presence.
                     </p>
-                    <div className='flex flex-col gap-[29px] max-3xl:gap-[21px] mt-[26px] md:mt-[21px] xl:mt-[20.5px] 3xl:mt-[44.81px]'>
+                    <div className='flex flex-col gap-[20px] max-3xl:gap-[16px] mt-[20px] md:mt-[16px] xl:mt-[14px] 3xl:mt-[44.81px]'>
                         {
                             switchDomainPoints.map((point, index) => 
-                                <div key={index} className='flex gap-[14px] md:gap-[17px]'>
+                                <div key={index} className='flex gap-[14px] md:gap-[17px] items-center'>
                             <Image src={IMAGES.cricleCheck} alt='criclecheck' className='size-6' />
-                            <span className='text-[#000334] text-[18px] md:text-[17px] 3xl:text-[22px] leading-[24.75px] md:leading-[28.5px] 3xl:leading-[36.3px] font-roboto-serif'>{point}</span>
+                            <p className='text-[#000334]'>{point}</p>
                         </div>
                             )
                         }
                     </div>
                 </div>
-            </div>
-        </div>
+        </section>
     )
 }
 

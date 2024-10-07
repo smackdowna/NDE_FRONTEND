@@ -173,3 +173,44 @@ h5 {
     width: 100%;
   }
 }
+
+section.switch-domain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section.switch-domain .small-image {
+  display: none;
+}
+
+section.switch-domain .switch-content {
+  flex-basis: 45%;
+}
+
+section.switch-domain .big-image {
+  width: 40%;
+}
+
+@media (max-width: 1024px) {
+  section.switch-domain {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  section.switch-domain .switch-content {
+    flex-basis: 100%;
+  }
+
+  section.switch-domain .big-image {
+    display: none;
+  }
+
+  section.switch-domain .small-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+  }
+}
