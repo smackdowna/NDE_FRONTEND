@@ -220,7 +220,7 @@ const SpotNowTable: React.FC = () => {
                             <PlanFeature title="Email forwarding accounts" starter="Unlimited" advanced="Unlimited" premium="Unlimited" />
                         </tbody>
                         
-                        <tbody className="border-2 border-blue-600">
+                        <tbody className="sm:hidden show-600 border-2 border-blue-600">
                             <tr>
                                 <td className="border bg-white text-center px-4 py-2">Number of Users</td>
                                 <td className="border bg-white text-center px-4 py-2">
