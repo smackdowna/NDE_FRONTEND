@@ -1,0 +1,136 @@
+section {
+  padding: 100px 80px;
+}
+
+h1,
+h2,
+h4 {
+  font-family: Roboto;
+  color: #000;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 78px;
+  line-height: 93.6px;
+  text-align: left;
+}
+
+h2 {
+  font-size: 64px;
+  line-height: 76.8px;
+  text-align: center;
+}
+
+h3 {
+  font-family: Roboto;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 45.6px;
+  text-align: center;
+}
+
+p {
+  font-family: Roboto Serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36.3px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 26px;
+  line-height: 31.2px;
+  text-align: left;
+}
+
+.sub-para {
+  font-family: Roboto Serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 33px;
+  text-align: left;
+  color: #000334;
+}
+
+@media (max-width: 1280px) {
+  /* Styles for screens between 1280px and 1920px */
+  section {
+    padding: 80px 64px;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 57.6px;
+  }
+
+  h2 {
+    font-size: 43px;
+    line-height: 51.6px;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+  p {
+    font-size: 17px;
+    line-height: 28.05px;
+  }
+  .sub-para {
+    font-size: 15px;
+    line-height: 24.75px;
+  }
+
+  h3 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 50.4px;
+  }
+}
+
+@media (max-width: 834px) {
+  section {
+    padding: 80px 16px;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 57.6px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+}
+
+@media (max-width: 359px) {
+  section {
+    padding: 40px 16px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+@media (max-width: 430px) {
+  section {
+    padding: 40px 16px;
+  }
+}
+
+.faqs-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (max-width: 1400px) {
+  h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+}
