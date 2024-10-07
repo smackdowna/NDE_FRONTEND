@@ -11,12 +11,12 @@ interface StepProps{
 }
 // Reusable Step component
 const Step:React.FC<StepProps> = ({ title, description }) => (
-  <div className='flex items-center md:items-start flex-col gap-4 w-[320px] max-2xl:w-[300px]  '>
+  <div className='steps-getStarted flex items-center md:items-start flex-col gap-4 '>
     <div className='flex  '>
     <Image src={IMAGES.Checkcircle} alt='tick'/>
     </div>
-    <h4 >{title}</h4>
-    <p>{description}</p>
+      <h4 >{title}</h4>
+      <p>{description}</p>
   </div>
 );
 

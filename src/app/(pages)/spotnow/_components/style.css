@@ -211,3 +211,262 @@ h4 {
     grid-template-columns: repeat(1, 1fr) !important;
   }
 }
+
+.steps-getStarted {
+  flex-basis: 24%;
+}
+
+@media (max-width: 916px) {
+  .steps-getStarted p {
+    text-align: center !important;
+  }
+}
+
+.steps-getStarted p {
+  text-align: left;
+}
+
+.flex-tool {
+  flex-basis: 30%;
+}
+
+.tool-flex {
+  flex-direction: row !important;
+}
+
+.flex-tool {
+  display: flex;
+  flex-direction: column !important;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1100px) {
+  .tool-flex {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .flex-tool {
+    flex-basis: 100%;
+    flex-direction: row !important;
+  }
+  .flex-tool:nth-child(1) {
+    flex-direction: row-reverse !important;
+  }
+  .flex-tool:nth-child(3) {
+    flex-direction: row-reverse !important;
+  }
+
+  .flex-tool img {
+    width: 50%;
+  }
+
+  .flex-tool .content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 680px) {
+  .flex-tool {
+    flex-direction: column !important;
+  }
+  .flex-tool:nth-child(n + 1) {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .flex-tool .content-container {
+    align-items: center;
+    gap: 4px;
+  }
+  .flex-tool .content-container p {
+    text-align: center !important;
+  }
+  .flex-tool img {
+    width: 100%;
+  }
+}
+
+h5 {
+  font-family: Roboto;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 45.6px;
+  text-align: left;
+}
+
+@media (max-width: 1500px) {
+  h5 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+@media (max-width: 834px) {
+  h5 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+h6 {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 19.92px;
+  text-align: center;
+}
+
+.plans h2 {
+  font-family: Roboto;
+  font-size: 43px;
+  font-weight: 900;
+  line-height: 51.6px;
+  display: inline;
+  text-align: center;
+}
+
+.plans table tr {
+  border-color: #0000004d !important;
+}
+
+.plans table {
+  border: 2px solid #d6daff;
+}
+
+@media (max-width: 1400px) {
+  .plans h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+  .plans h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .plans h2 {
+    font-size: 32px;
+    line-height: 38.4px;
+  }
+  .plans h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .plans h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+  .plans h4 {
+    font-size: 20px;
+    line-height: 23.5px;
+  }
+}
+
+@media (max-width: 834px) {
+  .plans h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .moving-plan {
+    width: 120px;
+    height: 50px;
+  }
+  .moving-plan {
+    transform: translateX(-10px) !important;
+  }
+  .moving-plan.isMonthly {
+    transform: translateX(-125px) !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .moving-plan {
+    width: 100px;
+    height: 46px;
+  }
+  .moving-plan {
+    transform: translateX(-25px) !important;
+  }
+  .moving-plan.isMonthly {
+    transform: translateX(-125px) !important;
+  }
+}
+
+/* Make the first row auto-fit its content */
+.first-row th,
+.first-row td {
+  white-space: nowrap; /* Prevent content from wrapping */
+  width: auto; /* Automatically adjust the width based on content */
+  max-width: 1%; /* Ensure it doesn't take excessive space */
+  text-overflow: ellipsis; /* If the content is too long, show an ellipsis (...) */
+  overflow: hidden; /* Hide any overflow */
+}
+
+/* Apply normal table layout for the rest of the rows */
+table {
+  width: 100%; /* Full-width table */
+  table-layout: auto; /* Ensure the table layout adjusts based on content */
+}
+
+tbody,
+thead tr:not(.first-row) th,
+tbody td {
+  white-space: nowrap; /* Prevent content from wrapping in rows */
+  width: auto; /* Auto size the columns */
+}
+
+/* Adjust column behavior for non-first rows */
+tbody td {
+  min-width: 200px; /* Adjust the minimum width for a better look */
+  max-width: 300px; /* Prevent any cell from growing too large */
+  overflow: hidden; /* Hide overflow to keep things tidy */
+  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+th button {
+  width: fit-content;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 600px) {
+  .hide-600 {
+    display: none !important;
+  }
+  .show-600 {
+    display: block !important;
+  }
+  .show-600-flex {
+    display: flex !important;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed; /* Fixed layout for better responsiveness */
+    border: 2px solid #0066ff;
+  }
+
+  tbody.show-600 {
+    display: table-row-group; /* Ensure the new tbody structure shows */
+  }
+}
+
+@media (max-width: 600px) {
+  tbody td {
+    padding: 8px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Adjust font size for smaller screens */
+    word-wrap: break-word !important; /* Break long words */
+    overflow-wrap: break-word !important; /* Ensure long words break */
+    white-space: normal; /* Allow normal wrapping */
+    text-overflow: ellipsis;
+    max-width: 150px; /* Set a maximum width if needed */
+    overflow: visible; /* Prevent ellipses from showing */
+  }
+}
