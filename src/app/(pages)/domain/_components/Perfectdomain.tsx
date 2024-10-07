@@ -2,6 +2,7 @@
 import { ICONS, IMAGES } from "@/assets";
 import Image from "next/image";
 import React, { useState } from "react";
+import './style.css'
 
 interface DomainCardProps {
   image: string;
@@ -55,7 +56,7 @@ const DomainCard: React.FC<DomainCardProps> = ({
             Instead of {originalPrice}
           </span>
         </div>
-        <div className="flex items-center gap-1 mt-[17.34px] hidden max-1xl:flex max-lg:hidden max-md:flex">
+        <div className="items-center gap-1 mt-[17.34px] get-offer-hidden">
           <span className="text-[#000] font-roboto font-700 text-xs leading-[13.2px]">
             Get Offer
           </span>
@@ -128,22 +129,22 @@ const Perfectdomain: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 md:gap-[7.56px] xl:gap-[30px] 3xl:gap-[37px] bg-home-secondary-card py-[50px] md:py-[79px] xl:py-[80px] 3xl:py-[120px]">
+    <section className="flex flex-col gap-4 md:gap-[7.56px] xl:gap-[30px] 3xl:gap-[37px] bg-home-secondary-card">
       <div className="flex flex-col items-center justify-center">
         {/* Build your brand with the perfect domain name span */}
-        <span className="text-center font-900 font-roboto text-home-heading z-10 text-[64px] max-md:text-[43px] max-2xl:text-[50px] max-3xl:text-[70px] leading-[45.6px] md:leading-[51.6px] 2xl:leading-[76.8px] px-2 sm:px-0 tracking-tight max-3xl:max-w-full max-1xl:max-w-[550px] max-lg:max-w-[677px] max-sm:max-w-[323px] max-w-full mx-auto">
+        <h2 className="text-center  text-home-heading z-10 tracking-tight mx-auto">
           Build your brand with the perfect domain name
-        </span>
+        </h2>
 
         {/* With more than 300 domain extensions span */}
-        <span className="text-[#000334] text-center text-[17px] 2xl:text-[27px] leading-[28.5px] 2xl:leading-[36.3px] mt-3 md:mt-5 xl:mt-4 3xl:mt-[30px] font-500 font-roboto-serif tracking-tight max-w-full max-sm:max-w-[286px] max-lg:max-w-[460px] max-1xl:max-w-[290px] max-3xl:max-w-[938px] mx-auto z-10 px-4 sm:px-0">
+        <p className="text-[#000334] text-center">
           With more than 300 domain extensions, you&apos;ll find the one that
           fits just right.
-        </span>
+        </p>
       </div>
 
       <div className="flex justify-center">
-        <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-4 md:gap-[35.63px] xl:gap-[17px] 2xl:gap-[39.91px] w-full px-[30px] md:px-[90px] lg:px-[75px] 3xl:px-[100px]">
+        <div className="perfectDomain-grid">
           {domainDetails.map((domain, index) => (
             <DomainCard
               key={index}
@@ -158,7 +159,7 @@ const Perfectdomain: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
