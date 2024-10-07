@@ -213,4 +213,19 @@ section.switch-domain .big-image {
     width: 100%;
     max-width: 400px;
   }
+
+  .hide-text-1024 {
+    display: none;
+  }
+
+  .first-flex,
+  .second-flex {
+    flex-direction: column !important;
+    width: 50% !important;
+    margin-inline: auto;
+  }
+
+  .second-flex {
+    flex-direction: column-reverse !important;
+  }
 }
