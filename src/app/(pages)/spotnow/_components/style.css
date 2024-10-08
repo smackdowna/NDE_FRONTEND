@@ -424,12 +424,6 @@ tbody td {
 }
 
 /* Adjust column behavior for non-first rows */
-tbody td {
-  min-width: 200px; /* Adjust the minimum width for a better look */
-  max-width: 300px; /* Prevent any cell from growing too large */
-  overflow: hidden; /* Hide overflow to keep things tidy */
-  text-overflow: ellipsis; /* Add ellipsis if text overflows */
-}
 
 th button {
   width: fit-content;
@@ -447,26 +441,69 @@ th button {
     display: flex !important;
   }
 
-  table {
-    width: 100%;
-    table-layout: fixed; /* Fixed layout for better responsiveness */
-    border: 2px solid #0066ff;
-  }
-
   tbody.show-600 {
     display: table-row-group; /* Ensure the new tbody structure shows */
   }
 }
 
+/* Apply these styles in addition to your Tailwind classes */
 @media (max-width: 600px) {
-  tbody td {
-    padding: 8px; /* Adjust padding for smaller screens */
-    font-size: 14px; /* Adjust font size for smaller screens */
-    word-wrap: break-word !important; /* Break long words */
-    overflow-wrap: break-word !important; /* Ensure long words break */
-    white-space: normal; /* Allow normal wrapping */
-    text-overflow: ellipsis;
-    max-width: 150px; /* Set a maximum width if needed */
-    overflow: visible; /* Prevent ellipses from showing */
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    min-width: fit-content !important;
+  }
+
+  .small-tbody {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100%;
+    display: table !important;
+  }
+
+  .small-tbody tr {
+    display: table-row !important;
+    width: 100% !important;
+  }
+
+  .small-tbody td {
+    display: table-cell !important;
+    width: auto !important;
+    text-align: left !important;
+  }
+
+  /* First column (with text) */
+  .small-tbody td:first-child {
+    width: 70% !important;
+    max-width: 70% !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Second column (with checkmarks) */
+  .small-tbody td:last-child {
+    width: 30% !important;
+    max-width: 30% !important;
+  }
+
+  /* Ensure images in the second column stay centered */
+  .small-tbody td:last-child img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* For very small screens, adjust the layout further */
+@media (max-width: 400px) {
+  .small-tbody td:first-child {
+    width: 60% !important;
+    max-width: 60% !important;
+    font-size: 14px !important;
+  }
+
+  .small-tbody td:last-child {
+    width: 40% !important;
+    max-width: 40% !important;
   }
 }

@@ -3,6 +3,7 @@ import { ICONS, IMAGES } from "@/assets";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import TextTransition, { presets } from "react-text-transition";
+import './style.css'
 
 
 interface Domain {
@@ -68,6 +69,17 @@ const Hero = () => {
         <span className="font-900 text-lg max-lg:text-md max-md:text-xs">{domain.name}</span>
         <div>
           <span className={`text-[14px] w-[30px] max-md:text-xs ${domain.status === 'Available' ? 'text-green-500' : domain.status === 'Added' ? 'text-yellow-600' : 'text-red-500'}`}>
+            <Image 
+              src={
+                domain.status === 'Available' 
+                ? ICONS.charmCircleTick 
+                : domain.status === 'Added' 
+                ? ICONS.cartIcon 
+                : ICONS.xCircle
+              } 
+              alt={domain.status} 
+              className="inline-block w-4 h-4 mr-2"
+            />  
             {domain.status}
           </span>
         </div>
@@ -105,7 +117,7 @@ const Hero = () => {
   );
 
   return (
-    <div className="pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col gap-4 max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
+    <div className="hero pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col gap-4 max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
       <Image
         src={IMAGES.domain}
         alt="domain"
@@ -119,8 +131,8 @@ const Hero = () => {
         style={{ zIndex: "-1" }}
       />
       <div className="flex flex-col items-center gap-2 z-10">
-      <div className="font-900 text-[16px] md:text-[33px] w-auto xl:text-[46px] 2xl:text-[56px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500  flex gap-[5px] justify-center  xl:w-[1300px]">
-            <span className=" w-auto">Expand your horizons with .</span>
+      <div className="text-primary-500  flex gap-[5px] justify-center  xl:w-[1300px]">
+            <h1 className=" w-auto">Expand your horizons with .</h1>
             <TextTransition
               direction="down"
               springConfig={presets.gentle}
@@ -131,16 +143,17 @@ const Hero = () => {
             </TextTransition>
           </div>
 
-        <span className="text-center text-[26px] text-home-heading max-lg:text-[18px] font-900 tracking-tight max-md:text-[12px] font-roboto ">
+        <h4 className="text-center text-[26px] text-home-heading tracking-tighter ">
           Get started with the perfect domain.
-        </span>
+        </h4>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
         <div className="flex m-3 rounded-xl">
-          <input
-            className="w-[700px] max-2xl:w-[500px] max-xl:w-[400px] max-md:w-[200px] p-5 max-lg:p-3 max-md:p-2 border rounded-l-xl max-md:placeholder:text-[10px]"
-            placeholder="Find and purchase a domain name"
-          />
+        <input
+          className="w-[700px] max-2xl:w-[500px] max-xl:w-[400px] max-md:w-[200px] p-5 max-lg:p-3 max-md:p-2 rounded-l-xl max-md:placeholder:text-[10px] "
+          placeholder="Find and purchase a domain name"
+        />
+
           <button
             className="bg-domain-primary text-xl max-md:text-sm text-white px-8 max-md:px-2 rounded-r-xl"
             onClick={handleSearchClick}

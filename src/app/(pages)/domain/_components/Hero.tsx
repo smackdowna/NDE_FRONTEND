@@ -14,6 +14,7 @@ import {
 import { toast } from 'react-toastify';
 import { RootState } from "@/store/store";
 import { showToast } from "@/services/showToast";
+import './style.css'
 
 interface Domain {
   name: string;
@@ -273,18 +274,19 @@ const Hero = () => {
             {domain.name}
           </span>
           <div>
-            <span
-              className={`text-[14px] w-[30px] max-md:text-xs ${
-                domain.status === "Available"
-                  ? "text-green-500"
-                  : domain.status === "Added"
-                  ? "text-yellow-600"
-                  : domain.status === "Unavailable"
-                  ? "text-red-500"
-                  : "text-gray-500"
-              }`}
-            >
-              {domain.status}
+            <span className={`flex items-center text-[14px] w-[30px] max-md:text-xs ${domain.status === 'Available' ? 'text-green-500' : domain.status === 'Added' ? 'text-yellow-600' : 'text-red-500'}`}>
+              <Image 
+                src={
+                  domain.status === 'Available' 
+                  ? ICONS.charmCircleTick 
+                  : domain.status === 'Added' 
+                  ? ICONS.cartIcon 
+                  : ICONS.xCircle
+                } 
+                alt={domain.status} 
+                className="inline-block w-4 h-4 mr-2"
+              />  
+              <span>{domain.status}</span>
             </span>
           </div>
         </div>
@@ -347,7 +349,7 @@ const Hero = () => {
   
 
   return (
-    <div className="pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
+    <div className="hero pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
       <Image
         src={IMAGES.domain}
         alt="domain"
@@ -362,8 +364,8 @@ const Hero = () => {
       />
       <div className="flex flex-col justify-center items-center z-10 ">
         <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center items-center w-fit mx-auto">
-          <span className="w-auto text-center text-[#000659]">Expand your horizons with .</span>
-          <div className="w-[150px] max-md:w-[90px] ">  
+          <h1 className="w-auto text-center text-[#000659]">Expand your horizons with .</h1>
+          <h1 className="w-[150px] max-md:w-[90px] ">  
           
             <TextTransition
               direction="down"
@@ -375,18 +377,18 @@ const Hero = () => {
             >
               <span className="w-auto text-center">{words[currentWordIndex % words.length]}</span>
             </TextTransition>
-          </div>
+          </h1>
         </div>
 
-        <span className="text-center mt-2 md:mt-[10.13px] xl:mt-[6.13px] 2xl:mt-[30.13px] font-400 text-[#000659] 3xl:font-900 tracking-tight font-roboto text-xs md:text-[17px] 3xl:text-[26px] leading-[15.6px] md:leading-[28.5px] 3xl:leading-[31.2px]">
+        <h4 className="text-center text-[#000659] tracking-tight font-roboto">
           Get started with the perfect domain.
-        </span>
+        </h4>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
         <div className="flex mt-[41px] md:mt-[33.87px] 3xl:mt-[40.87px] rounded-xl px-4 sm:px-0">
 
           <input
-            className="w-full sm:w-[328px] md:w-[581px] xl:w-[736px] 3xl:w-[1028px] p-4 border rounded-l-lg max-md:placeholder:text-[12px]"
+            className="w-full sm:w-[328px] md:w-[581px] xl:w-[736px] 3xl:w-[1028px] p-4 border rounded-l-lg max-md:placeholder:text-[12px] focus:outline-none focus:border-0"
             placeholder="Find and purchase a domain name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -404,7 +406,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <span className="text-center text-[17px] 2xl:text-[24px] leading-[20.4px] leading-normal font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px] max-w-[301px] md:max-w-full mx-auto">
+      <span className="text-center text-[17px] 2xl:text-[24px] leading-[20.4px] font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px] max-w-[301px] md:max-w-full mx-auto">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
       <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden z-10">
@@ -425,7 +427,7 @@ const Hero = () => {
         ))}
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-50 ">
+        <div className=" w-[95%] mx-auto fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-50 ">
           <div className="relative bg-gradient-domain-hero p-5 max-md:p-3 rounded-xl shadow-xl pb-10 max-lg:pb-4 ">
             <button
               className="absolute top-[-8px] right-[-10px] text-xl bg-white rounded-full"

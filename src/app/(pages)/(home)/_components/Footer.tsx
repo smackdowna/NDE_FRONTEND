@@ -78,12 +78,12 @@ const Footer = () => {
                 alt="footer"
             />
             <Image
-                className="absolute inset-0 w-full h-full object-cover z-0 hidden xl:block"
+                className="absolute inset-0 w-full h-full object-cover z-0 hidden lg:block"
                 src={IMAGES.footerBgXl}
                 alt="footer"
             />
             <Image
-                className="absolute inset-0 w-full h-full object-cover z-0 hidden 3xl:block"
+                className="absolute inset-0 w-full h-full object-cover z-0 hidden xl:block"
                 src={IMAGES.footerBg3xl}
                 alt="footer"
             />

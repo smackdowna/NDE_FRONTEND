@@ -143,6 +143,7 @@ import person from "@/assets/images/image 2838.svg"
 import database from "@/assets/cart/database.png"
 import google from "@/assets/cart/google.png"
 import www from "@/assets/cart/www.png"
+import minusCircle from "@/assets/icons/minus-circle.svg"
 import trash from "@/assets/cart/trash.png"
 import spotBanner from "@/assets/images/e27017482d8ab11f92bdd212f686d00b.png"
 import spotIcon from "@/assets/images/Group 70613.svg"
@@ -153,6 +154,9 @@ import Checkcircle from "@/assets/images/Check-Circle--Streamline-Rounded----Mat
 import tracking from "@/assets/images/Rectangle 46647.svg"
 import tracking1 from "@/assets/images/Rectangle 46647 (1).svg"
 import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
+import cartIcon from "@/assets/icons/b549306bf71528ac693f243a5470136b.png"
+import charmCircleTick from "@/assets/icons/charm_circle-tick.svg"
+import xCircle from "@/assets/icons/x-circle.svg"
 
 
 
@@ -247,7 +251,11 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
     newGoogle,
     Meta,
     MailNow,
-    searchBarIcon
+    searchBarIcon,
+    minusCircle,
+    cartIcon,
+    charmCircleTick,
+    xCircle
 
     
   };
