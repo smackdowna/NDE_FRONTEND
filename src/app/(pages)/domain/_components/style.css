@@ -268,3 +268,85 @@ section.switch-domain .big-image {
     place-items: center;
   }
 }
+
+.hero h1 {
+  font-size: 64px;
+  line-height: 76.8px;
+}
+
+@media (max-width: 1280px) {
+  .hero h1 {
+    font-size: 48px;
+    line-height: 80.6px;
+  }
+}
+
+@media (max-width: 920px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 80.4px;
+  }
+
+  .hero h4 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+@media (max-width: 840px) {
+  .hero h1 {
+    font-size: 38px;
+    line-height: 85.2px;
+  }
+
+  .hero h4 {
+    font-size: 20px;
+    line-height: 23.5px;
+    margin-top: -16px;
+  }
+}
+
+@media (max-width: 750px) {
+  .hero h1 {
+    font-size: 32px;
+    line-height: 85px;
+  }
+
+  .hero h4 {
+    font-size: 18px;
+    line-height: 21.1px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 28px;
+    line-height: 70px;
+  }
+
+  .hero h4 {
+    font-size: 16px;
+    line-height: 16.8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    font-size: 24px;
+    line-height: 73px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero h1 {
+    font-size: 20px;
+    line-height: 70px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 18px;
+    line-height: 70px;
+  }
+}

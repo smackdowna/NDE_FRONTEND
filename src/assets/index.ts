@@ -154,6 +154,9 @@ import Checkcircle from "@/assets/images/Check-Circle--Streamline-Rounded----Mat
 import tracking from "@/assets/images/Rectangle 46647.svg"
 import tracking1 from "@/assets/images/Rectangle 46647 (1).svg"
 import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
+import cartIcon from "@/assets/icons/b549306bf71528ac693f243a5470136b.png"
+import charmCircleTick from "@/assets/icons/charm_circle-tick.svg"
+import xCircle from "@/assets/icons/x-circle.svg"
 
 
 
@@ -249,7 +252,10 @@ import tracking2 from "@/assets/images/Rectangle 46647 (2).svg"
     Meta,
     MailNow,
     searchBarIcon,
-    minusCircle
+    minusCircle,
+    cartIcon,
+    charmCircleTick,
+    xCircle
 
     
   };

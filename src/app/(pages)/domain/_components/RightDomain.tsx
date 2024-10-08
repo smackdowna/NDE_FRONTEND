@@ -106,7 +106,7 @@ const RightDomain: React.FC = () => {
       </div>
 
       <div className='second-flex flex flex-col gap-10 md:gap-[30px] 2xl:gap-[102px] 3xl:gap-[197px] justify-between sm:flex-col md:flex-row items-center'>
-      <div className='flex gap-[27.7px] md:gap-[38px] 2xl:gap-[45px] 3xl:gap-[64.22px] w-[332px] md:w-[466px] 2xl:w-[600px] 3xl:w-[809.249px]'>
+      <div className='flex gap-[27.7px] md:gap-[38px] 2xl:gap-[45px] 3xl:gap-[64.22px] w-[100%]'>
           <div className='relative h-[549px] md:h-[549px] 3xl:h-[920.391px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-16" />
