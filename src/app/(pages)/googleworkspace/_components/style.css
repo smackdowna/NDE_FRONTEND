@@ -355,3 +355,151 @@ h5 {
     line-height: 26.4px;
   }
 }
+
+table .first-column {
+  width: 500px;
+}
+
+.button-medium {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20.4px;
+  text-align: center;
+  padding: 12px 20px;
+}
+
+table h2 {
+  font-size: 43px;
+  line-height: 45.6px;
+}
+
+table h2 sup {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 19.92px;
+  text-align: left;
+
+  vertical-align: top;
+}
+
+table h2 sub {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28.13px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+@media (max-width: 1600px) {
+  table h2 {
+    font-size: 38px;
+    line-height: 35.6px;
+  }
+}
+
+@media (max-width: 1440px) {
+  table h2 {
+    font-size: 38px;
+    line-height: 35.6px;
+  }
+
+  table .first-column {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1280px) {
+  table h2 {
+    font-size: 32px;
+    line-height: 35.6px;
+  }
+
+  table .first-column {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .planCards:nth-child(2),
+  .planCards:nth-child(3),
+  .planFeature:nth-child(3),
+  .planFeature:nth-child(4) {
+    display: none;
+  }
+
+  table .first-column {
+    width: 400px;
+  }
+
+  table button {
+    width: fit-content;
+    margin-inline: auto !important;
+    padding-inline: 10px 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  table .first-column {
+    width: 350px;
+  }
+}
+
+.show-600 {
+  display: none;
+}
+
+@media (max-width: 660px) {
+  table .hide-600 {
+    display: none !important;
+  }
+  table thead {
+    display: none;
+  }
+
+  table {
+    table-layout: fixed;
+  }
+
+  table tr td {
+    padding: 10px 0;
+  }
+
+  table tr td p {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .show-600 {
+    display: block !important;
+  }
+  .hide-600 {
+    display: none;
+  }
+
+  table {
+    min-width: unset !important;
+  }
+}
+
+tbody.show-600 {
+  width: 100%;
+  margin-inline: auto;
+}
+
+tbody.show-600 tr td:nth-child(1) {
+  width: 70% !important;
+}
+
+tbody.show-600 tr td:nth-child(2) {
+  width: 30% !important;
+}
+
+.toggle-box {
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.25) inset;
+
+  background-color: #77c7a8;
+}
