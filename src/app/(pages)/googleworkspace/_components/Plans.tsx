@@ -6,6 +6,8 @@ import PlanModal from "./PlanModel"; // Import the PlanModal component
 import SelectPlan from "@/components/SelectPlan";
 import { ICONS } from "@/assets";
 import Image from "next/image";
+import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path as necessary
+import './style.css'
 
 interface Domain {
   name: string;
@@ -113,6 +115,13 @@ const RightPlan: React.FC = () => {
       setIsModalOpen(true);
     });
   };
+  type Plan = 'Starter' | 'Standard' | 'Plus';
+
+  const [selectedPlan, setSelectedPlan] = useState<Plan>('Starter');
+  
+  const handlePlanToggle = (plan: Plan) => {
+    setSelectedPlan(plan);
+  };
 
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
@@ -121,25 +130,25 @@ const RightPlan: React.FC = () => {
     premiumIcon,
     iconSrc,
   }) => (
-    <tr className="border-t-[1px] border-black font-roboto-serif">
-      <td className="text-home-heading text-lg lg:text-2xl text-start pl-4 font-400 py-2 lg:py-4">
+    <tr className=" border-t-[1px] border-black font-roboto-serif">
+      <td className="planFeature text-home-heading text-lg lg:text-2xl text-start pl-4 font-400 py-2 lg:py-4">
         <div className="flex gap-10 max-md:gap-3 px-4 max-md:px-1">
           <Image src={iconSrc} alt={title} className="" />
-          <span className=" max-md:text-xs">{title}</span>{" "}
+          <p className="text-left">{title}</p>{" "}
           {/* Use the new image prop */}
         </div>
       </td>
-      <td className="text-home-heading text-center bg-[#D7F2FF] py-2 lg:py-4 text-lg lg:text-2xl">
+      <td className="planFeature text-home-heading text-center bg-[#c0daf8] py-2 lg:py-4 text-lg lg:text-2xl">
         <div className="flex justify-center">
           {starterIcon && <Image src={starterIcon} alt="Starter icon" />}
         </div>
       </td>
-      <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
+      <td className="planFeature text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
         <div className="flex justify-center">
           {advancedIcon && <Image src={advancedIcon} alt="Advanced icon" />}
         </div>
       </td>
-      <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
+      <td className="planFeature text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
         <div className="flex justify-center">
           {premiumIcon && <Image src={premiumIcon} alt="Premium icon" />}
         </div>
@@ -155,20 +164,19 @@ const RightPlan: React.FC = () => {
     showDropdown,
   }) => (
     <th
-      className={`text-center py-2 lg:py-4 relative ${
-        isStarter ? "bg-[#D7F2FF]" : ""
+      className={`planCards text-center py-8 lg:py-8 relative ${
+        isStarter ? "bg-[#c0daf8]" : ""
       }`}
     >
       <div className="flex flex-col gap-2 lg:gap-4">
-        <span className="font-900 text-xl lg:text-4xl text-home-heading">
+        <h2 className="font-900 text-home-heading">
           {name}
-        </span>
+        </h2>
         <span className="font-900">
-          <sup className="text-lg lg:text-xl max-md:hidden">₹</sup>
-          <span className="text-3xl lg:text-5xl">{price}</span>/month
+          <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
-          className="bg-home-primary p-2 lg:p-4 text-white text-md lg:text-2xl font-900 rounded-lg mx-auto max-md:mx-1"
+          className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
           onClick={onAddToCart}
         >
           Add to cart
@@ -178,19 +186,64 @@ const RightPlan: React.FC = () => {
   );
 
   return (
-    <div className="bg-[#B8D4FF] bg-opacity-50">
-      <div className="flex justify-center">
-        <span className="py-10 lg:py-20 text-3xl lg:text-6xl font-roboto font-900 text-home-heading text-center">
-          Choose a Right Plan for Your Website
-        </span>
+    <section className="plans bg-[#B8D4FF] bg-opacity-50">
+      <div className="flex justify-center flex-col gap-2 mb-[24px]">
+        <h2 className="hide-600 text-home-heading text-center">
+          Find the right plan for your business.
+        </h2>
+        <h2 className="show-600 text-home-heading text-center">
+          Choose Your Plan
+        </h2>
+        <p className="hide-600">Choose the Google Workspace edition that best fits your business.</p>
+        <p className="show-600">Businesses just love working with us!</p>
       </div>
+
+      <div className='flex justify-center show-600-flex flex-col items-center gap-6 mb-5'>
+        <div className="flex flex-col gap-4 px-3 shadow-neutral-700">
+            {/* Toggle Button Container */}
+            <div className="toggle-box flex relative w-[300px]  justify-center text-center py-6 px-16 cursor-pointer">
+              {/* The white div that moves on toggle */}
+              <div
+                className={`bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[-86px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[10px]'
+                    : 'translate-x-[95px] w-[70px]'
+                }`}
+              ></div>
+
+              {/* Plans Text */}
+              <div className="flex justify-center font-bold text-md px-2 gap-8 z-50">
+                <span
+                  onClick={() => handlePlanToggle('Starter')}
+                >
+                  Starter
+                </span>
+                <span
+                 
+                  onClick={() => handlePlanToggle('Standard')}
+                >
+                  Standard
+                </span>
+                <span
+                 
+                  onClick={() => handlePlanToggle('Plus')}
+                >
+                  Plus
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
+      
       <div className="px-0 lg:px-10 pb-10">
-        <div className="bg-white mx-0  overflow-x-auto">
-          <table className="w-full min-w-max">
+        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md ">
+          <table className="w-full min-w-max  ">
             <thead>
               <tr>
-                <th className=" left-0 w-[600px] max-xl:w-[400px] max-md:w-[200px] bg-white shadow-r-xl text-home-heading text-xl lg:text-5xl font-roboto font-900 tracking-tighter text-center py-4 lg:py-8">
-                  Plan Features
+                <th className="first-column left-0 bg-white shadow-r-xl text-home-heading text-xl lg:text-5xl font-roboto font-900 tracking-tighter text-left py-4 px-8 lg:py-8">
+                    <h2 className="text-left">Google Workspace Features</h2>
                 </th>
                 <PlanCard
                   name="Starter"
@@ -213,7 +266,8 @@ const RightPlan: React.FC = () => {
                 />
               </tr>
             </thead>
-            <tbody>
+
+            <tbody className="hide-600">
               <PlanFeature
                 title="Get secure and personalised email account for your business"
                 starterIcon={ICONS.Check}
@@ -320,9 +374,180 @@ const RightPlan: React.FC = () => {
                 iconSrc={ICONS.Google3}
               />
             </tbody>
+
+            <tbody className="w-full show-600">
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                 
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Sort Tracking Page</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <hr />
+                  <div className="flex items-center justify-center w-full py-5">
+                  <button
+                      className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+
+            </tbody>
+
           </table>
         </div>
       </div>
+      
       {activeDropdown === "Starter" && (
         <div>
           <PlanModal
@@ -380,7 +605,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
