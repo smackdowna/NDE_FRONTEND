@@ -1,6 +1,7 @@
 import { ICONS, IMAGES } from '@/assets'
 import Image from 'next/image'
 import React from 'react'
+import './style.css'
 
 const Practices = () => {
 
@@ -24,15 +25,14 @@ const Practices = () => {
       ];
       
     return (
-        <div className='bg-background-Gsuite-banner'>
-            <div className='px-4 md:px-[62px] xl:px-[63px] 2xl:pl-[100px] pl-0 py-[40px] md:py-20  '>
-                <h1 className='tracking-tighter font-900 font-roboto text-white 2xl:text-[64px] 2xl:leading-[76px] xl:text-[43px] xl:leading-[51px] md:text-[38px] md:leading-[45px] text-[26px] leading-[31px] max-md:text-center'>
+        <section className='practice bg-background-Gsuite-banner'>
+                <h2 className='text-white text-left'>
                 Google Workspace is designed to support stringent privacy and security standards based on industry best practices.
-                </h1>
+                </h2>
 
                 
                 
-                <div className="flex flex-col lg:flex-row justify-between items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px]">
+                <div className="flex flex-col flex-col-1024 sm:flex-row justify-between items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px]">
                 
                 <div className='max-lg:mb-[2rem]'>
                 {
@@ -48,10 +48,10 @@ const Practices = () => {
                                 </div>
                             </div>
                             <div className="2xl:mt-[-0.75rem]">
-                                <span className="font-900 font-roboto text-[17px] md:text-[26px] lg:text-[24px] 2xl:text-[38px]">
+                                <h3 className="text-left">
                                     {content.title}
-                                </span>
-                                <p className="w-full md:w-[446px] 2xl:w-[666px] font-roboto-serif text-[15px] md:text-[17px] 2xl:text-[22px]">
+                                </h3>
+                                <p className="w-full md:w-[446px] 2xl:w-[666px] font-roboto-serif text-[15px] md:text-[17px] 2xl:text-[22px] text-left">
                                     {content.description}
                                 </p>
                             </div>
@@ -61,13 +61,12 @@ const Practices = () => {
                 </div>
 
 
-                <div className='w-full lg:w-auto flex justify-center lg:justify-end'>
+                <div className='w-full right-img lg:w-auto flex justify-center lg:justify-end'>
                     <Image src={ICONS.GsuiteIcon} alt='' className=' 2xl:w-[378px] max-2xl:w-[278px]' />
                 </div>
 
                 </div>
-            </div>
-        </div>
+        </section>
     )
 }
 

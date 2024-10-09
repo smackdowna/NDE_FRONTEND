@@ -115,12 +115,13 @@ const RightPlan: React.FC = () => {
       setIsModalOpen(true);
     });
   };
+  type Plan = 'Starter' | 'Standard' | 'Plus';
 
-  const [selectedPlan, setSelectedPlan] = useState('Starter');
+  const [selectedPlan, setSelectedPlan] = useState<Plan>('Starter');
   
-  const handlePlanToggle = (plan) => {
+  const handlePlanToggle = (plan: Plan) => {
     setSelectedPlan(plan);
-  }
+  };
 
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
@@ -233,8 +234,8 @@ const RightPlan: React.FC = () => {
                 </span>
               </div>
             </div>
-          </div>
         </div>
+      </div>
       
       <div className="px-0 lg:px-10 pb-10">
         <div className="bg-white mx-0  overflow-x-auto">
@@ -372,7 +373,6 @@ const RightPlan: React.FC = () => {
                 iconSrc={ICONS.Google3}
               />
             </tbody>
-
             <tbody className="w-full show-600 border-2 border-blue-600">
                   <tr>
                       <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
@@ -541,10 +541,10 @@ const RightPlan: React.FC = () => {
                   </div>
 
             </tbody>
-
           </table>
         </div>
       </div>
+      
       {activeDropdown === "Starter" && (
         <div>
           <PlanModal
