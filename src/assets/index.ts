@@ -158,6 +158,7 @@ import cartIcon from "@/assets/icons/b549306bf71528ac693f243a5470136b.png"
 import charmCircleTick from "@/assets/icons/charm_circle-tick.svg"
 import xCircle from "@/assets/icons/x-circle.svg"
 import playVideo from "@/assets/icons/lets-icons_video-fill.svg"
+import framServices from "@/assets/icons/Frame 69876.svg"
 
 
 
@@ -257,7 +258,8 @@ import playVideo from "@/assets/icons/lets-icons_video-fill.svg"
     cartIcon,
     charmCircleTick,
     xCircle,
-    playVideo
+    playVideo,
+    framServices
 
     
   };

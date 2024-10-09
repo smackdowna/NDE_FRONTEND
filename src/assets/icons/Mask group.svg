@@ -1,0 +1,13 @@
+<svg width="120" height="121" viewBox="0 0 120 121" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_2396_13581" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="121">
+<rect id="Rectangle 46538" width="120" height="120.482" rx="8" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_2396_13581)">
+<g id="Group 69905">
+<ellipse id="Ellipse 252" opacity="0.1" cx="128" cy="112.048" rx="48" ry="57.8313" fill="#048B67"/>
+<ellipse id="Ellipse 251" opacity="0.1" cx="68" cy="138.554" rx="48" ry="57.8313" fill="#0165EE"/>
+</g>
+</g>
+</g>
+</svg>
