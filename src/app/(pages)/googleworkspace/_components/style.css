@@ -133,6 +133,16 @@ h4 {
     font-size: 38px;
     line-height: 45.6px;
   }
+
+  table .first-column {
+    width: 450px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  table .first-column {
+    width: 350px !important;
+  }
 }
 
 h5 {
@@ -178,7 +188,7 @@ h5 {
 
 @media (max-width: 1600px) {
   .hero {
-    padding-top: 120px;
+    padding-top: 160px;
   }
 
   .hero-content h1 {
@@ -226,6 +236,10 @@ h5 {
   .hero {
     padding-top: 140px;
     padding-inline: 20px;
+  }
+
+  .hero h1 {
+    text-align: center !important;
   }
 
   .hero-flex {
@@ -321,6 +335,10 @@ h5 {
   z-index: 1;
 }
 
+.show-600-flex {
+  display: none;
+}
+
 @media screen and (max-width: 1280px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -341,6 +359,11 @@ h5 {
   .services-grid {
     grid-template-columns: 1fr;
   }
+
+  .services-grid .group {
+    align-items: center !important;
+  }
+
   .services-grid p,
   .services-grid h3 {
     text-align: center !important;
@@ -354,10 +377,14 @@ h5 {
     font-size: 22px;
     line-height: 26.4px;
   }
+
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 table .first-column {
-  width: 500px;
+  width: 550px;
 }
 
 .button-medium {
@@ -398,6 +425,10 @@ table h2 sub {
     font-size: 38px;
     line-height: 35.6px;
   }
+
+  section.plans {
+    padding: 80px 20px;
+  }
 }
 
 @media (max-width: 1440px) {
@@ -407,7 +438,7 @@ table h2 sub {
   }
 
   table .first-column {
-    width: 400px;
+    width: 450px;
   }
 }
 
@@ -423,8 +454,8 @@ table h2 sub {
 }
 
 @media (max-width: 1024px) {
-  .planCards:nth-child(2),
   .planCards:nth-child(3),
+  .planCards:nth-child(4),
   .planFeature:nth-child(3),
   .planFeature:nth-child(4) {
     display: none;
@@ -451,7 +482,7 @@ table h2 sub {
   display: none;
 }
 
-@media (max-width: 660px) {
+@media (max-width: 600px) {
   table .hide-600 {
     display: none !important;
   }
@@ -538,4 +569,28 @@ section.service h3 {
   font-size: 24px;
   font-weight: 900;
   line-height: 28.13px;
+}
+
+@media (max-width: 1280px) {
+  .services-grid .group {
+    align-items: start;
+  }
+}
+
+.planCards h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .planCards h2 {
+    line-height: 36.12px;
+  }
+}
+
+@media (max-width: 300px) {
+  .hero-content .small-video {
+    width: 60px;
+  }
 }

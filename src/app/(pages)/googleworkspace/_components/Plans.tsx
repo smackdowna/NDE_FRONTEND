@@ -134,11 +134,11 @@ const RightPlan: React.FC = () => {
       <td className="planFeature text-home-heading text-lg lg:text-2xl text-start pl-4 font-400 py-2 lg:py-4">
         <div className="flex gap-10 max-md:gap-3 px-4 max-md:px-1">
           <Image src={iconSrc} alt={title} className="" />
-          <span className=" max-md:text-xs">{title}</span>{" "}
+          <p className="text-left">{title}</p>{" "}
           {/* Use the new image prop */}
         </div>
       </td>
-      <td className="planFeature text-home-heading text-center bg-[#D7F2FF] py-2 lg:py-4 text-lg lg:text-2xl">
+      <td className="planFeature text-home-heading text-center bg-[#c0daf8] py-2 lg:py-4 text-lg lg:text-2xl">
         <div className="flex justify-center">
           {starterIcon && <Image src={starterIcon} alt="Starter icon" />}
         </div>
@@ -164,8 +164,8 @@ const RightPlan: React.FC = () => {
     showDropdown,
   }) => (
     <th
-      className={`planCards text-center py-2 lg:py-4 relative ${
-        isStarter ? "bg-[#D7F2FF]" : ""
+      className={`planCards text-center py-8 lg:py-8 relative ${
+        isStarter ? "bg-[#c0daf8]" : ""
       }`}
     >
       <div className="flex flex-col gap-2 lg:gap-4">
@@ -186,7 +186,7 @@ const RightPlan: React.FC = () => {
   );
 
   return (
-    <section className="bg-[#B8D4FF] bg-opacity-50">
+    <section className="plans bg-[#B8D4FF] bg-opacity-50">
       <div className="flex justify-center flex-col gap-2 mb-[24px]">
         <h2 className="hide-600 text-home-heading text-center">
           Find the right plan for your business.
@@ -238,8 +238,8 @@ const RightPlan: React.FC = () => {
       </div>
       
       <div className="px-0 lg:px-10 pb-10">
-        <div className="bg-white mx-0  overflow-x-auto">
-          <table className="w-full min-w-max">
+        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md ">
+          <table className="w-full min-w-max  ">
             <thead>
               <tr>
                 <th className="first-column left-0 bg-white shadow-r-xl text-home-heading text-xl lg:text-5xl font-roboto font-900 tracking-tighter text-left py-4 px-8 lg:py-8">
@@ -266,6 +266,7 @@ const RightPlan: React.FC = () => {
                 />
               </tr>
             </thead>
+
             <tbody className="hide-600">
               <PlanFeature
                 title="Get secure and personalised email account for your business"
@@ -373,7 +374,8 @@ const RightPlan: React.FC = () => {
                 iconSrc={ICONS.Google3}
               />
             </tbody>
-            <tbody className="w-full show-600 border-2 border-blue-600">
+
+            <tbody className="w-full show-600">
                   <tr>
                       <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
                       <td className="border bg-white text-center px-4 py-2">
@@ -541,6 +543,7 @@ const RightPlan: React.FC = () => {
                   </div>
 
             </tbody>
+
           </table>
         </div>
       </div>

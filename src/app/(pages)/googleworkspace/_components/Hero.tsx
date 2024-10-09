@@ -6,7 +6,7 @@ import './style.css'
 
 const Hero = () => {
   return (
-    <div className="relative bg-background-Gsuite">
+    <div className="relative bg-background-Gsuite overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image 
           src={ICONS.blur} 
@@ -14,6 +14,7 @@ const Hero = () => {
           layout="fill" 
           objectFit="cover" 
           quality={100}
+          className="w-full h-full"
         />
       </div>
       <div className="hero relative z-10 ">

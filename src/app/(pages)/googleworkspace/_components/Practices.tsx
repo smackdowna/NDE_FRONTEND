@@ -24,9 +24,6 @@ const Practices = () => {
         }
       ];
 
-      if (window.matchMedia("(max-width: 1280px)").matches) {
-        console.log("Media query for max-width 1280px triggered.");
-      }
       
     return (
         <section className='practice bg-background-Gsuite-banner'>

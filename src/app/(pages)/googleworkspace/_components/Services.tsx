@@ -38,7 +38,7 @@ const servicesData = [
 
 const Services = () => {
     return (
-        <section className='service bg-background-Gsuite-banner'>
+        <section className='service bg-background-Gsuite-banner relative'>
 
             <div className="absolute inset-0 z-0">
                 <Image
