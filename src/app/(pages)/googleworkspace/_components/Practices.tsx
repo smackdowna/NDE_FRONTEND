@@ -23,6 +23,10 @@ const Practices = () => {
           description: "with secure endpoints (company-provided or BYOD) that don’t require patching and strong account takeover protections."
         }
       ];
+
+      if (window.matchMedia("(max-width: 1280px)").matches) {
+        console.log("Media query for max-width 1280px triggered.");
+      }
       
     return (
         <section className='practice bg-background-Gsuite-banner'>

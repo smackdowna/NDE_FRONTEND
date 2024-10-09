@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import { ICONS } from '@/assets';
+import './style.css'
 
 interface FAQ {
     question: string;
@@ -65,7 +66,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
         <div className='w-full max-w-[850px] mx-auto'>
             <div className='flex justify-between p-3 border-b-2 cursor-pointer' onClick={toggleAccordion}>
                 <span className='font-900 text-2xl max-md:text-[17px] max-lg:text-xl'>{question}</span>
-                <Image src={isOpen ? ICONS.plusCricle : ICONS.plusCricle} alt='toggle icon' />
+                <Image src={isOpen ? ICONS.minusCircle : ICONS.plusCricle} alt='toggle icon' />
             </div>
             <div 
                 ref={contentRef} 
@@ -84,22 +85,22 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = () => {
     return (
-        <div className='bg-gradient-domain-hero flex flex-col gap-4 px-4'>
+        <div className='bg-gradient-domain-hero faq-sectionfaq-section flex flex-col py-[50px] px-0 md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px]'>
             <div className="pt-[79px]">
                 <div className='flex justify-center'>
-                    <span className='text-6xl max-md:mx-4 max-xl:text-4xl max-md:text-[26px] font-900 text-home-heading font-roboto text-center max-lg:text-[43px] max-lg:leading-tight max-2xl:leading-tight 2xl:text-[64px] max-2xl:text-[43px]'>
+                    <h2 className='text-home-heading lg:w-[90%]'>
                         Still not sure? <br />
                         Here are some answers for your queries
-                    </span>
+                    </h2>
                 </div>
                 <div className='flex justify-center mt-6 mx-4'>
-                    <span className='text-[#000334] text-center w-full font-400 font-roboto-serif text-3xl max-md:text-lg max-xl:w-full max-md:px-4 max-2xl:text-[17px] 2xl:text-[22px] max-2xl:leading-normal max-w-[330px] lg:max-w-[1010px] mx-auto'>
+                    <p className='text-[#000334] w-[90%]'>
                         If you have further inquiries about our Google Workspace, Google Workspace Pricing, do not hesitate to reach out to us. Below are the frequently asked questions regarding our services.
-                    </span>
+                    </p>
                 </div>
             </div>
 
-            <div className='flex justify-center md:mt-8 pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll custom-scrollbar w-fit m-auto md:mb-16'>
+            <div className='faqs-container flex justify-center md:mt-8 pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll w-fit m-auto md:mb-16'>
                 <div className='flex flex-col gap-2 w-full'>
                     {faqs.map((faq, index) => (
                         <FAQItem key={index} question={`${index + 1}. ${faq.question}`} answer={faq.answer} />

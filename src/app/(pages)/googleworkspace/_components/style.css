@@ -321,9 +321,9 @@ h5 {
   z-index: 1;
 }
 
-@media (max-width: 1280px) {
+@media screen and (max-width: 1280px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .services-grid .group {
@@ -531,4 +531,11 @@ section.practice p {
   section.practice .right-img {
     width: 100%;
   }
+}
+
+section.service h3 {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28.13px;
 }
