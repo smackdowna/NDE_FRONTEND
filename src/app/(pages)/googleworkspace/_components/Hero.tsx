@@ -1,5 +1,7 @@
 import { ICONS, IMAGES } from "@/assets";
 import Image from "next/image";
+import './style.css'
+
 
 
 const Hero = () => {
@@ -14,26 +16,38 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className="relative z-10 pt-[180px] max-lg:pt-[100px] mx-4 md:mx-10">
-        <div className="flex flex-col lg:flex-row justify-between items-center ml-[82px] mr-[4vw] gap-10 max-2xl:gap-10 max-xl:mr-0 max-2xl:ml-6 max-2xl:mr-0">
-          <div className="flex flex-col gap-10 max-md:gap-4 items-center lg:items-start text-center lg:text-left">
+      <div className="hero relative z-10 ">
+        <div className="hero-flex flex justify-between items-center">
+          <div className="hero-content flex flex-col gap-10 ">
             {/* Heading */}
-            <h1 className="text-[20px] sm:text-[26px] md:text-[43px] lg:text-[38px] xl:text-12 3xl:text-[70px] font-roboto  text-home-heading font-800 w-full max-w-[611px] 3xl:max-w-[936px] leading-[31px] md:leading-[51px] xl:leading-[57px] 3xl:leading-[93px]">
+            <h1 >
             Empower Your Team With  Google Workspace</h1>
-            <p className="text-3xl max-2xl:text-[22px] max-xl:text-lg max-md:text-sm font-roboto-serif  text-text-900/80 w-[720px] max-2xl:w-[650px] max-xl:w-[550px] max-lg:w-[400px] max-md:w-[320px] max-sm:w-[300px]">
+            <p className="show-p text-left">
             We minimise your downtime with our reliable technical experts and IT infrastructure management
             </p>
-            <button className="bg-background-button px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-2xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
-              <div className="flex gap-2 md:gap-3 items-center">
-                <span>Get Started</span>
-                <Image src={IMAGES.arrow} alt="arrow" />
+            <ul>
+              <li><p>Custom Business Email</p></li>
+              <li><p>30 GB of Cloud Storage</p></li>
+              <li><p>High Standard Security</p></li>
+              <li><p>100 Meet Participant</p></li>
+            </ul>
+            <div className="">
+              <div className="show-1280 mb-2">
+                <p className="text-left">Starts at</p>
+                <h4 className="text-[#0011FF]">₹136/user/mo</h4>
               </div>
-            </button>
+              <button className="bg-background-button w-fit px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-2xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
+                <div className="flex gap-2 md:gap-3 items-center">
+                  <span>Get Started</span>
+                  <Image src={IMAGES.arrow} alt="arrow" />
+                </div>
+              </button>
+            </div>
           </div>
           {/* Video Placeholder */}
-          <div className="flex items-center justify-start">
-            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className="size-[200px] md:size-[300px] lg:size-[250px] xl:w-[400px] 2xl:w-[501.35px] 2xl:h-[428px] xl:h-[366.13px] max-xl:h-[280.03px] "/>
-            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="w-[70px] sm:w-[96px] md:w-[146px] h-[208px] xl:h-[316px] 2xl:h-full"/>
+          <div className="hero-video flex items-center justify-start">
+            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className="large-video"/>
+            <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="small-video"/>
           </div>
         </div>
       </div>
