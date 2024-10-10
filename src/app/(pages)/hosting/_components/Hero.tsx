@@ -1,10 +1,11 @@
 import { ICONS, IMAGES } from "@/assets";
 import Image from "next/image";
+import './style.css'
 
 
 const Hero = () => {
   return (
-    <div className="relative bg-gradient-hosting-hero">
+    <div className="hero relative bg-gradient-hosting-hero">
       <div className="absolute inset-0 z-0">
         <Image 
           src={IMAGES.HostBanner} 
@@ -14,14 +15,17 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className="relative z-10 pt-[120px] max-lg:pt-[100px] mx-4 md:mx-10">
-        <div className="flex flex-col lg:flex-row justify-between items-center ml-[82px] mr-[4vw] gap-10 max-2xl:gap-10 max-xl:mr-0 max-2xl:ml-6 max-2xl:mr-0">
-          <div className="flex flex-col gap-[33px] md:gap-8 lg:gap-5 2xl:gap-11 items-center lg:items-start text-center lg:text-left">
+      <div className="hero-padding relative z-10 pt-[120px] max-lg:pt-[100px] mx-4 md:mx-10">
+        <div className="flex hero-flex justify-between items-center">
+          <div className="flex hero-content flex-col gap-[33px] md:gap-8 lg:gap-5 2xl:gap-11 items-center lg:items-start text-center lg:text-left">
             {/* Heading */}
-            <h1 className="text-[70px] leading-tight tracking-tighter  max-md:text-2xl  max-2xl:text-[48px] max-xl:text-[38px] font-roboto  text-home-heading font-800">
-            Fast<span className=" text-home-primary font-mono">.</span> Secure<span className=" text-home-primary font-mono">.</span>Stable <br />Web Hosting
+            <h1 className="header1">
+            Fast<span></span> Secure<span></span> Stable <br />Web Hosting
             </h1>
-            <p className="text-3xl max-2xl:text-[22px] max-xl:text-lg font-roboto-serif  text-text-900/80 w-[740px] max-2xl:w-[600px] max-xl:w-[550px] max-lg:w-[400px] max-md:w-[320px] max-sm:w-[300px]">
+            <h1 className="header2">
+              EXPERIENCE POWERFUL WEB HOSTING
+            </h1>
+            <p className="text-left">
             We minimise your downtime with our reliable technical experts and IT infrastructure management
             </p>
             <button className="bg-background-button px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-2xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
@@ -32,7 +36,7 @@ const Hero = () => {
             </button>
           </div>
           {/* Video Placeholder */}
-          <div className="aspect-[1.6/1]  w-[40vw] max-lg:w-full ">
+          <div className="aspect-[1.6/1]  w-[40vw] max-lg:w-full hero-image ">
           <Image src={IMAGES.HostHero} alt="hero"/></div>
         </div>
       </div>

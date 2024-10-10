@@ -16,7 +16,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.Domain} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Domain</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Purchase & manage your own domain.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Purchase & manage your own domain.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -27,7 +27,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.Hosting} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Hosting</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -38,7 +38,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.workspace} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] rounded-lg p-2' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Google Workspace</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Acquire & efficiently manage your workspace.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Acquire & efficiently manage your workspace.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -49,7 +49,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.NDE} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] rounded-lg p-2' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>NDE Mail</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Connect & optimize your email communication.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Connect & optimize your email communication.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -65,7 +65,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.Domain} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Vision Now</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Purchase & manage your own domain.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Purchase & manage your own domain.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -76,7 +76,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.chatNow} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] p-2 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Chat Now</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -87,7 +87,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.SpotNow} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] p-2 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Spot Now</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Acquire & efficiently manage your workspace.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Acquire & efficiently manage your workspace.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -98,7 +98,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.PeopleNow} alt='Domain' className=' bg-gradient-light w-[40px] max-2xl:w-[50px] max-xl:w-[40px] h-[60px] max-2xl:h-[50px] max-xl:h-[40px] p-2 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Peoples Now</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Connect & optimize your email communication.</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Connect & optimize your email communication.</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -116,7 +116,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.market} alt='Domain' className=' bg-gradient-light w-[40px] h-[40px]  max-2xl:w-[50px] max-xl:w-[40px]  max-2xl:h-[50px] max-xl:h-[40px] p-1 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Marketing Planner</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -130,7 +130,7 @@ const ProductDropDown = () => {
                                                 <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Google Ads</span>
                                                 <span className=' bg-cyan-300 p-1 rounded-3xl font-600 px-3'>New</span>
                                             </div>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -141,7 +141,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.Meta} alt='Domain' className=' bg-gradient-light w-[40px] h-[40px] max-2xl:w-[50px] max-xl:w-[40px]  max-2xl:h-[50px] max-xl:h-[40px] p-1 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Social Media Ads</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -153,7 +153,7 @@ const ProductDropDown = () => {
                                         <Image src={ICONS.MailNow} alt='Domain' className=' bg-gradient-light w-[40px] h-[40px] max-2xl:w-[50px] max-xl:w-[40px]  max-2xl:h-[50px] max-xl:h-[40px] p-1 rounded-lg' />
                                         <div className=' flex flex-col font-roboto '>
                                             <span className=' font-800 text-lg max-2xl:text-lg max-xl:text-sm'>Mails Nows</span>
-                                            <span className='text-home-heading text-md max-2xl:text-[10px] max-xl:w-[150px]'>Obtain & oversee your hosting solution</span>
+                                            <span className='text-home-heading text-md max-2xl:text-[10px] w-fit'>Obtain & oversee your hosting solution</span>
                                         </div>
                                     </div>
                                 </Link>

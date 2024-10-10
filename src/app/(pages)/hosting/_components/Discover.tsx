@@ -2,6 +2,7 @@
 import { ICONS, IMAGES } from '@/assets';
 import Image, { StaticImageData } from 'next/image';
 import React, { useState } from 'react';
+import './style.css'
 
 interface DomainCardProps {
     image: StaticImageData;
@@ -16,12 +17,12 @@ const DomainCard: React.FC<DomainCardProps> = ({ image, title, description, inde
     <div
         onMouseEnter={() => setHoveredCard(index)}
         onMouseLeave={() => setHoveredCard(null)}
-        className={`relative hover:scale-105 w-[21vw]  max-xl:w-[300px] max-md:w-[280px] group shadow-md rounded-[10px] h-[264px] transition-all duration-1000 p-[1px] ${
+        className={`relative hover:scale-105 group shadow-md rounded-[10px] h-[264px] transition-all duration-1000 p-[1px]  ${
             hoveredCard === index ? 'bg-gradient-to-r from-sky-500 to-cyan-300' : 'bg-transparent'
         }`}
         style={{ background: hoveredCard === index ? 'linear-gradient(265.93deg, #00A7A7 0%, #0066FF 100%)' : 'transparent' }}
     >
-        <div className="relative bg-white py-5 px-4 rounded-[10px] h-[264px] flex flex-col gap-4">
+        <div className="relative bg-white py-5 px-4 rounded-[10px] h-[264px] flex flex-col gap-4 domain-card-sub-div">
             <Image
                 src={ICONS.icon1}
                 alt={title}
@@ -87,31 +88,31 @@ const Discover: React.FC = () => {
     ];
 
     return (
-        <div className="flex flex-col gap-4 bg-[#BFF8F84D] py-[150px] max-md:py-10 max-lg:py-[40px]">
-            <span className="text-center max-lg:text-[26px] lg:text-[43px] 2xl:text-[64px] font-900 font-roboto text-home-heading z-10 max-2xl:px-8">
-                <span className="text-[#016AFB]">Discover</span> all Our Web Hosting Features
-            </span>
-            <div className=' flex justify-center'>
-            <span className="text-center min-2xl:text-[22px] max-md:mx-8 max-lg:mx-24 max-md:text-lg sm:text-2xl w-[689px] font-medium font-roboto-serif tracking-tight z-10 ">
-                Explore the powerful features that make NDE Hosting the perfect choice for your 24/7 promotion.
-            </span>
+        <section className="flex flex-col gap-4 bg-[#BFF8F84D] ">
+            <div className="flex flex-col gap-1">
+                <h2 className="text-center  text-home-heading ">
+                    <span className="text-[#016AFB]">Discover</span> all Our Web Hosting Features
+                </h2>
+                <div className=' flex justify-center'>
+                <p className="text-center tracking-tight z-10 lg:w-[550px] ">
+                    Explore the powerful features that make NDE Hosting the perfect choice for your 24/7 promotion.
+                </p>
             </div>
-            <div className="flex justify-center pt-[3rem] max-md:pt-2 mx-28 max-lg:pt-10 max-2xl:mx-2 max-md:mx-2">
-                <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-8">
-                    {domainDetails.map((domain, index) => (
-                        <DomainCard
-                            key={index}
-                            index={index}
-                            image={domain.image}
-                            title={domain.title}
-                            description={domain.description}
-                            hoveredCard={hoveredCard}
-                            setHoveredCard={setHoveredCard}
-                        />
-                    ))}
-                </div>
             </div>
-        </div>
+            <div className="discover-grid mt-4">
+                {domainDetails.map((domain, index) => (
+                    <DomainCard
+                        key={index}
+                        index={index}
+                        image={domain.image}
+                        title={domain.title}
+                        description={domain.description}
+                        hoveredCard={hoveredCard}
+                        setHoveredCard={setHoveredCard}
+                    />
+                ))}
+            </div>
+        </section>
     );
 };
 

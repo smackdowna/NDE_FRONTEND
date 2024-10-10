@@ -198,23 +198,43 @@ const RightPlan: React.FC = () => {
         <p className="show-600">Businesses just love working with us!</p>
       </div>
 
-      <div className='flex justify-center show-600-flex flex-col items-center gap-6 mb-5'>
-        <div className="flex flex-col gap-4 px-3 shadow-neutral-700">
+      <div className='justify-center hidden show-600-flex flex-col items-center gap-6 mb-5'>
+        <div className="togglebox-contianer flex flex-col gap-4 px-3 shadow-neutral-700">
             {/* Toggle Button Container */}
-            <div className="toggle-box flex relative w-[300px]  justify-center text-center py-6 px-16 cursor-pointer">
+            <div className="toggle-box flex relative justify-between text-center py-6 px-16 cursor-pointer">
               {/* The white div that moves on toggle */}
               <div
-                className={`bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
+                className={`hide-500 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
                   selectedPlan === 'Starter'
-                    ? 'translate-x-[-86px]'
+                    ? 'translate-x-[-10px]'
                     : selectedPlan === 'Standard'
-                    ? 'translate-x-[10px]'
-                    : 'translate-x-[95px] w-[70px]'
+                    ? 'translate-x-[140px]'
+                    : 'translate-x-[280px] w-[70px]'
+                }`}
+              ></div>
+              <div
+                className={`show-500 hide-400 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[-10px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[90px]'
+                    : 'translate-x-[180px] w-[60px]'
+                }`}
+              ></div>
+              <div
+                className={`show-400 bg-white absolute rounded-xl top-3  h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[0px] w-[70px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[105px] w-[85px]'
+                    : 'translate-x-[220px] w-[60px]'
                 }`}
               ></div>
 
+
+
               {/* Plans Text */}
-              <div className="flex justify-center font-bold text-md px-2 gap-8 z-50">
+              <div className="flex justify-between font-bold text-md px-2 gap-8 z-50 w-full">
                 <span
                   onClick={() => handlePlanToggle('Starter')}
                 >
@@ -234,6 +254,20 @@ const RightPlan: React.FC = () => {
                 </span>
               </div>
             </div>
+        </div>
+        <div className=" justify-between items-center pricing-flex hidden show-600-flex">
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
         </div>
       </div>
       
