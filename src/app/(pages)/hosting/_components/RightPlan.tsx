@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Image from "next/image";
 import PlanModal from './PlanModal';
+import './style.css'
+import checkIcon from '../../../../assets/icons/check 1.svg'
 
 interface Domain {
   name: string;
@@ -112,6 +115,14 @@ const RightPlan: React.FC = () => {
     });
   };
 
+  type Plan = 'Starter' | 'Standard' | 'Plus';
+
+  const [selectedPlan, setSelectedPlan] = useState<Plan>('Starter');
+  
+  const handlePlanToggle = (plan: Plan) => {
+    setSelectedPlan(plan);
+  };
+
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
     starter,
@@ -119,7 +130,7 @@ const RightPlan: React.FC = () => {
     premium,
   }) => (
     <tr className="border-t-[1px] border-black border-opacity-65 font-roboto-serif">
-      <td className="sticky left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-2 lg:py-4">
+      <td className="left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-2 lg:py-4">
         {title}
       </td>
       <td className="text-home-heading text-center bg-[#D7F2FF] py-2 lg:py-4 text-lg lg:text-2xl">
@@ -142,42 +153,116 @@ const RightPlan: React.FC = () => {
     showDropdown,
   }) => (
     <th
-      className={`text-center py-2 lg:py-4 relative ${
+      className={`planCards text-center py-2 lg:py-4 relative ${
         isStarter ? "bg-[#D7F2FF]" : ""
       }`}
     >
       <div className="flex flex-col gap-2 lg:gap-4">
-        <span className="font-900 text-xl lg:text-4xl text-home-heading">
+        <h2 className="font-900 text-home-heading">
           {name}
-        </span>
+        </h2>
         <span className="font-900">
-          <sup className="text-lg lg:text-xl max-md:hidden">₹</sup>
-          <span className="text-3xl lg:text-5xl">{price}</span>/month
+          <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
-          className="bg-home-primary p-2 lg:p-4 text-white text-md lg:text-2xl font-900 rounded-lg mx-auto max-md:mx-1"
+          className="bg-[#000AFF] button-medium p-2 lg:p-4 text-white  rounded-lg mx-auto max-md:mx-1"
           onClick={onAddToCart}
         >
-          Add to cart
+          <p className="font-500">Add to cart</p>
         </button>
       </div>
     </th>
   );
 
   return (
-    <div className="bg-[#B8D4FF] bg-opacity-50">
+    <section className="plans bg-[#B8D4FF] bg-opacity-50">
       <div className="flex justify-center">
-        <span className="py-10 lg:py-20 text-3xl lg:text-6xl font-roboto font-900 text-home-heading text-center">
+        <h2 className="py-10 lg:py-20 text-home-heading text-center">
           Choose a Right Plan for Your Website
-        </span>
+        </h2>
       </div>
-      <div className="px-4  pb-10">
-        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto">
+
+      <div className='justify-center hidden show-600-flex flex-col items-center gap-6 mb-5'>
+        <div className="togglebox-contianer flex flex-col gap-4 px-3 shadow-neutral-700">
+            {/* Toggle Button Container */}
+            <div className="toggle-box flex relative justify-between text-center py-6 px-16 cursor-pointer">
+              {/* The white div that moves on toggle */}
+              <div
+                className={`hide-500 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[-10px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[140px]'
+                    : 'translate-x-[280px] w-[70px]'
+                }`}
+              ></div>
+              <div
+                className={`show-500 hide-400 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[-10px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[90px]'
+                    : 'translate-x-[180px] w-[60px]'
+                }`}
+              ></div>
+              <div
+                className={`show-400 bg-white absolute rounded-xl top-3  h-[50px] transition-all duration-500 ease-in-out ${
+                  selectedPlan === 'Starter'
+                    ? 'translate-x-[0px] w-[70px]'
+                    : selectedPlan === 'Standard'
+                    ? 'translate-x-[105px] w-[85px]'
+                    : 'translate-x-[220px] w-[60px]'
+                }`}
+              ></div>
+
+
+
+              {/* Plans Text */}
+              <div className="flex justify-between font-bold text-md px-2 gap-8 z-50 w-full">
+                <span
+                  onClick={() => handlePlanToggle('Starter')}
+                >
+                  Starter
+                </span>
+                <span
+                 
+                  onClick={() => handlePlanToggle('Standard')}
+                >
+                  Standard
+                </span>
+                <span
+                 
+                  onClick={() => handlePlanToggle('Plus')}
+                >
+                  Plus
+                </span>
+              </div>
+            </div>
+        </div>
+        <div className=" justify-between items-center pricing-flex hidden show-600-flex">
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h6><span>₹</span>132</h6>
+            <p className="sub">/User/Month</p>
+          </div>
+        </div>
+      </div>
+      
+
+      <div className="pb-10">
+        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table">
           <table className="w-full min-w-max">
             <thead>
               <tr>
-                <th className="sticky left-0 bg-white shadow-r-xl text-home-heading text-lg lg:text-5xl font-roboto font-900 tracking-tighter z-20 text-center py-4 lg:py-8">
-                  Plan Features
+                <th className="first-column left-0 bg-white shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
+                  <h2 className="text-left">Plan Features</h2>
                 </th>
                 <PlanCard
                   name="Starter"
@@ -200,7 +285,7 @@ const RightPlan: React.FC = () => {
                 />
               </tr>
             </thead>
-            <tbody>
+            <tbody className="hide-600">
               <PlanFeature
                 title="Host Websites"
                 starter="1"
@@ -274,6 +359,176 @@ const RightPlan: React.FC = () => {
                 premium="Unlimited"
               />
             </tbody>
+
+            <tbody className="w-full show-600">
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                 
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Sort Tracking Page</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className="border bg-white text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
+                      <td className="border bg-white text-center px-4 py-2">
+                      <Image
+                          src={checkIcon}
+                          alt='tick'
+                          className='mx-auto'
+                          width={32}
+                          height={32}
+                          />
+                      </td>
+                  </tr>
+                  <hr />
+                  <div className="flex items-center justify-center w-full py-5">
+                  <button
+                      className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+
+            </tbody>
+
           </table>
         </div>
       </div>
@@ -331,7 +586,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

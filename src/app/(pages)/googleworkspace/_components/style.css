@@ -501,6 +501,9 @@ table h2 sub {
   table tr td p {
     text-align: left !important;
   }
+  .show-600-flex {
+    display: flex !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -592,5 +595,91 @@ section.service h3 {
 @media (max-width: 300px) {
   .hero-content .small-video {
     width: 60px;
+  }
+}
+
+.togglebox-contianer {
+  width: 500px;
+}
+
+.pricing-flex {
+  width: 500px;
+}
+
+.show-500,
+.show-400 {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .togglebox-contianer {
+    width: 400px;
+  }
+  .hide-500 {
+    display: none;
+  }
+  .show-500 {
+    display: flex !important;
+  }
+
+  .pricing-flex {
+    width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .togglebox-contianer {
+    width: 320px !important;
+  }
+
+  .hide-400 {
+    display: none !important;
+  }
+
+  .show-400 {
+    display: flex !important;
+  }
+
+  .pricing-flex {
+    width: 100% !important;
+  }
+
+  .toggle-box {
+    padding-inline: 10px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .show-600 {
+    display: block !important;
+  }
+  .hide-600 {
+    display: none;
+  }
+
+  table {
+    min-width: unset !important;
+  }
+}
+
+h6 {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 19.92px;
+  text-align: left;
+}
+
+p.sub {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 10.4px;
+  text-align: center;
+}
+
+@media (max-width: 360px) {
+  .togglebox-contianer {
+    width: 300px;
   }
 }
