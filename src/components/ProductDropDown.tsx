@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ICONS, IMAGES } from '@/assets';
-import './ProductDropDown.css'
 
 const ProductDropDown = () => {
     return (
