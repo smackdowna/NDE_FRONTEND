@@ -210,3 +210,33 @@ section.reason {
     text-align: center !important;
   }
 }
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  justify-content: space-between;
+  width: 100%;
+  place-items: center;
+}
+
+@media (max-width: 1150px) {
+  .discover-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .discover-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .discover-grid .group {
+    height: unset !important;
+    height: fit-content !important;
+  }
+
+  .domain-card-sub-div {
+    height: fit-content !important;
+  }
+}
