@@ -71,7 +71,7 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
-  <div className='org-card bg-[#FFFBF0] max-2xl:rounded-[10px] max-2xl:h-[275px] group pt-4 p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative cursor-pointer overflow-hidden lg:h-[220px]'>
+  <div className='org-card bg-[#FFFBF0] max-2xl:rounded-[10px] max-2xl:h-[275px] group pt-4 p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative cursor-pointer overflow-hidden lg:h-[220px] rounded-md'>
     <div className='absolute inset-0 rounded-0 border-2 border-transparent transition-colors duration-300 pointer-events-none group-hover:border-[#0011FF]'></div>
     <div className='relative z-10'>
       <Image src={imgSrc} alt={title} className="" />
@@ -79,7 +79,7 @@ const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
         <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
       </div>
       <div className="tracking-tighter group-hover:opacity-60 mt-2 transition-opacity duration-300">
-        <span className="sub-para block whitespace-pre-wrap w-full">{description}</span>
+        <span className="sub-para  block whitespace-pre-wrap w-full">{description}</span>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@ const Organization: React.FC = () => {
     <section className="organization bg-[#ECEDFF] flex flex-col lg:gap-[20px] items-center">
         <div className="w-full">
           <div className='flex justify-center w-[90%] mx-auto'>
-            <h2>
+            <h2 className="text-home-heading">
               Grow your organization faster than ever
             </h2>
           </div>
@@ -98,13 +98,13 @@ const Organization: React.FC = () => {
             <div className='bg-border-image-source w-[90%] h-[5px] mx-auto'></div>
           </div>
         </div>
-        <div className='flex justify-center mt-10 max-md:mt-4'>
-          <p className="text-center">
+        <div className='flex justify-center max-md:mt-4'>
+          <p className="text-center text-home-body">
             Empower and take your business to the next level with our comprehensive approach.
           </p>
         </div>
         <div className="flex w-[100%] justify-center max-lg:mx-1">
-          <div className="flex gap-4 mt-8 overflow-x-scroll hide-scrollbar items-center">
+          <div className="flex gap-4 overflow-x-scroll hide-scrollbar items-center">
             {["Domain", "Hosting", "Website Builder", "Marketing Studio", "Google Ads", "Vision Now", "Mails Now", "Chat Now", "Nmail", "Spot Now", "Peoples Now"].map((text) => (
               <div className="" key={text}>
                 <Button text={text} />

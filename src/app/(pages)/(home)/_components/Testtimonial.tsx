@@ -20,9 +20,9 @@ const Testimonials: React.FC = () => {
                     </span>
                 </div>
                 <div className="pb-10 pt-8 flex justify-center text-[#000659]">
-                    <span className="text-dark-200 text-[42px] max-lg:text-4xl max-lg:w-[500px] max-md:text-2xl max-md:w-[300px]  font-900 text-center">
+                    <h2 className="text-center text-home-heading">
                         Digitalized Business Happy Customers That’s Impact
-                    </span>
+                    </h2>
                 </div>
                 <div className="grid grid-cols-2 lg:gap-x-[30px] lg:gap-y-[30px] sm:gap-x-[24px] sm:gap-y-[20px] max-w-full max-sm:hidden">
                     {TESTIMONIALS.map((testimonial, index) => (
