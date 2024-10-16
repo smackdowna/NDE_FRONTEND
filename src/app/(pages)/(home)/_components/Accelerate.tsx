@@ -79,14 +79,14 @@ const Accelerate = () => {
     return (
         <section className="accelerate bg-gradient-acc max-lg:bg-gradient-acc1">
             <div className="flex justify-center mt-10 md:w-[90%] w-full mx-auto">
-                <h2>
+                <h2 className="text-home-heading">
                     Accelerate Outcomes and Supercharge Experience with Ready to Go Solutions
                 </h2>
             </div>
             <div className="border-img sm:flex justify-center mt-4 hidden  md:w-[80%] mx-auto">
                 <div className="bg-border-image-source md:w-[100%] max-lg:w-[700px] h-[5px]"></div>
             </div>
-            <div className="flex justify-center lg:mt-[40px] md:mt-[30px] text-white">
+            <div className="flex justify-center text-white">
                 <div className="flex justify-center flex-wrap gap-8 max-lg:gap-4 mt-8">
                     {buttons.map((text, index) => (
                         <Button
