@@ -71,11 +71,7 @@ span.testimonial-company {
 
 /* Media Queries */
 /* For 1920px and above */
-@media (min-width: 1920px) {
-  /* Styles for screens 1920px and larger */
-}
-
-@media (max-width: 1650px) and (min-width: 1420px) {
+@media (max-width: 1920px) and (min-width: 1620px) {
   .hero h1 {
     font-size: 64px;
     line-height: 76.8px;
@@ -88,7 +84,7 @@ span.testimonial-company {
   }
 }
 
-@media (max-width: 1420px) and (min-width: 1280px) {
+@media (max-width: 1620px) and (min-width: 1280px) {
   .hero h1 {
     font-size: 52px;
     line-height: 62.4px;
@@ -96,6 +92,14 @@ span.testimonial-company {
   .accelerate h4 {
     font-size: 24px;
     line-height: 28.13px;
+  }
+
+  .hero-left {
+    gap: 24px;
+  }
+
+  .hero-text {
+    gap: 16px;
   }
 }
 
@@ -119,8 +123,17 @@ span.testimonial-company {
   }
   p {
     font-size: 17px;
-    line-height: 28.05px;
+    line-height: 1.65;
   }
+
+  .hero-left {
+    gap: 16px;
+  }
+
+  .hero-text {
+    gap: 16px;
+  }
+
   .sub-para {
     font-size: 15px;
     line-height: 24.75px;
@@ -229,7 +242,7 @@ span.testimonial-company {
 
 .hero-content {
   padding-top: 160px;
-  padding-inline: 80px;
+  padding-inline: 64px;
 }
 
 @media (max-width: 1280px) {
@@ -242,6 +255,34 @@ span.testimonial-company {
   .hero-content {
     padding-top: 140px;
     padding-inline: 20px;
+  }
+  .hero-flex {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-content {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-left {
+    align-items: center;
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  .hero-text {
+    min-width: 80%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-text p {
+    text-align: center;
   }
 }
 
