@@ -87,7 +87,7 @@ const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
 
 const Organization: React.FC = () => {
   return (
-    <section className="organization bg-[#ECEDFF] flex flex-col lg:gap-[20px] items-center">
+    <section className="organization bg-[#ECEDFF] flex flex-col gap-[20px] items-center">
         <div className="w-full">
           <div className='flex justify-center w-[90%] mx-auto'>
             <h2 className="text-home-heading">
@@ -98,12 +98,12 @@ const Organization: React.FC = () => {
             <div className='bg-border-image-source w-[90%] h-[5px] mx-auto'></div>
           </div>
         </div>
-        <div className='flex justify-center max-md:mt-4'>
+        <div className='flex justify-center max:mt-4'>
           <p className="text-center text-home-body">
             Empower and take your business to the next level with our comprehensive approach.
           </p>
         </div>
-        <div className="flex w-[100%] justify-center max-lg:mx-1">
+        <div className="flex w-[100%] justify-center max-lg:mx-1 max:mt-4">
           <div className="flex gap-4 overflow-x-scroll hide-scrollbar items-center">
             {["Domain", "Hosting", "Website Builder", "Marketing Studio", "Google Ads", "Vision Now", "Mails Now", "Chat Now", "Nmail", "Spot Now", "Peoples Now"].map((text) => (
               <div className="" key={text}>

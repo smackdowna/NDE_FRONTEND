@@ -80,7 +80,7 @@ const Possibilities: React.FC = () => {
                         </div>
                         </div>
                         <div className="mt-3">
-                        <span className="sub-para text-[#000334]" style={{lineHeight: 1.65, opacity:0.8}}>{content.description}</span>
+                        <span className="sub-para text-[#000334] line-clamp-2" style={{lineHeight: 1.65, opacity:0.8}}>{content.description}</span>
                         </div>
                     </div>
                     </div>
