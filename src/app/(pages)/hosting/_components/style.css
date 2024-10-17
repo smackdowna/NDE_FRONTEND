@@ -1,5 +1,5 @@
 section {
-  padding: 100px 80px;
+  padding: 80px;
 }
 
 h1,
@@ -44,6 +44,20 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
 .sub-para {
   font-family: Roboto Serif;
   font-size: 20px;
@@ -73,7 +87,7 @@ h4 {
   }
   p {
     font-size: 17px;
-    line-height: 28.05px;
+    line-height: 1.65;
   }
   .sub-para {
     font-size: 15px;
@@ -83,6 +97,17 @@ h4 {
   h3 {
     font-size: 26px;
     line-height: 31.2px;
+  }
+}
+
+.subPara-center {
+  text-align: center !important;
+}
+
+@media (max-width: 1220px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 50.4px;
   }
 }
 
@@ -114,6 +139,17 @@ h4 {
 @media (max-width: 430px) {
   section {
     padding: 40px 16px;
+  }
+}
+
+.faqs-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (max-width: 1400px) {
+  .hero h2 {
+    font-size: 38px;
+    line-height: 45.6px;
   }
 }
 
@@ -235,11 +271,6 @@ section.reason {
 }
 
 @media (max-width: 1400px) {
-  h2 {
-    font-size: 38px;
-    line-height: 45.6px;
-  }
-
   table .first-column {
     width: 450px !important;
   }
@@ -305,6 +336,11 @@ table h2 sub {
   table h2 {
     font-size: 32px;
     line-height: 35.6px;
+  }
+
+  table h2.plansHeader {
+    font-size: 43px;
+    line-height: 1.2;
   }
 
   table .first-column {
@@ -524,7 +560,6 @@ p.sub {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 80px;
 }
 
 .hero h1 span {
@@ -534,6 +569,10 @@ p.sub {
   border-radius: 50%;
   display: inline-block;
   margin-left: 2px;
+}
+
+.hero-padding {
+  padding-top: 200px;
 }
 
 @media (max-width: 1400px) {
@@ -551,10 +590,6 @@ p.sub {
 }
 
 @media (max-width: 1280px) {
-  .hero-flex {
-    padding: 0px 40px;
-  }
-
   .hero-content {
     flex-basis: 50%;
     align-items: start;
@@ -572,7 +607,6 @@ p.sub {
   }
 
   .hero-flex {
-    padding: 0px 20px;
     flex-direction: column;
     gap: 42px;
   }
@@ -604,7 +638,6 @@ p.sub {
   }
 
   .hero-flex {
-    padding: 0px 20px;
     flex-direction: column;
     gap: 42px;
   }
@@ -636,7 +669,6 @@ p.sub {
   }
 
   .hero-flex {
-    padding: 0px 20px;
     flex-direction: column;
     gap: 42px;
   }
@@ -663,20 +695,77 @@ p.sub {
   }
 }
 
-.header2 {
+.header1 {
   display: none;
 }
 
-.header1 {
+.header2 {
   display: block;
 }
 
 @media (max-width: 1280px) {
-  .header1 {
+  .header2 {
     display: none;
   }
 
-  .header2 {
+  .header1 {
     display: block;
+  }
+}
+
+@media (max-width: 1700px) {
+  .heroImage {
+    width: 40vw;
+  }
+}
+
+.subPara-center {
+  text-align: center !important;
+}
+
+@media (max-width: 1280px) {
+  .hero-content {
+    flex-basis: 70%;
+  }
+  .heroImage {
+    min-width: none !important;
+    width: 30vw !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .discover h2 {
+    font-size: 43px !important;
+    line-height: 1.2 !important;
+  }
+
+  .discover .mainpara {
+    font-size: 22px;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 1024px) {
+  table h2 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  table h2.plansHeader {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+}
+
+.show-660 {
+  display: none !important;
+}
+
+@media (max-width: 660px) {
+  .show-660 {
+    display: block !important;
+  }
+  .hide-660 {
+    display: none;
   }
 }

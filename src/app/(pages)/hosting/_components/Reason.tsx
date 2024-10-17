@@ -14,7 +14,7 @@ const Reason = () => {
           </h2>
         </div>
 
-        <div className="pt-16 max-xl:pt-8 2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start gap-[40px] max-lg:h-[10rem]
+        <div className="pt-16 max-xl:pt-8 2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start lg:gap-[40px] md:gap-[20px] gap-[10px] max-lg:h-[10rem]
         ">
           <div className='flex flex-col justify-center'>
             <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex items-center justify-center  '>
@@ -25,16 +25,16 @@ const Reason = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-left">
+            <h4 className="text-left text-white">
               15+ Years Web Hosting Company
-            </h3>
-            <p className='text-left'>
+            </h4>
+            <p className='text-left sm:max-w-[400px]'>
             Traditional WordPress, you get all the features, tools, and guidance you need to build and launch.
             </p>
           </div>
         </div>
 
-        <div className=" 2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start gap-[40px] max-sm:h-[6.5rem] max-sm:overflow-hidden">
+        <div className=" 2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start lg:gap-[40px] md:gap-[20px] gap-[10px] max-sm:h-[6.5rem] max-sm:overflow-hidden">
           
           <div className='flex flex-col justify-center'>
             <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex justify-center items-center'>
@@ -43,16 +43,16 @@ const Reason = () => {
             <div className='w-[3px] h-[8rem] 2xl:h-[10rem] xl:h-[6.5rem] bg-white ml-[19px] max-lg:h-[5.5rem]'></div>
           </div>
           <div>
-            <h3 className="text-left">
+            <h4 className="text-left text-white">
               Safe and Secured
-            </h3>
-            <p className="text-left">
+            </h4>
+            <p className="text-left sm:max-w-[400px]">
             Worried you won&#39;t get help when you most need it? You shouldn&#39;t be. Our professional and hands-on support
             </p>
           </div>
         </div>
 
-        <div className="xl:mt-[-4rem]  2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start gap-[40px] md:mb-[40px]">
+        <div className="xl:mt-[4rem]  2xl:h-[16.625rem] xl:h-[13rem]   text-white flex items-start lg:gap-[40px] md:gap-[20px] gap-[10px] md:mb-[40px]">
           <div className='flex flex-col justify-center'>
             <div className='w-[41px] h-[42px] border-[3px] border-white rounded-full flex items-center justify-center '>
             <Image src={IMAGES.Done} alt="" width={22} height={24} className='w-[20px] h-[21px] object-cover font-bold' />
@@ -60,10 +60,10 @@ const Reason = () => {
             <div className='w-[3px] h-[8rem] md:h-[5rem] 2xl:h-[10rem] xl:h-[6.5rem] bg-white ml-[19px] max-lg:h-[5.5rem]'></div>
           </div>
           <div>
-            <h3 className="text-left text-white">
+            <h4 className="text-left text-white">
               24/7 Technical Support
-            </h3>
-            <p className="text-left">
+            </h4>
+            <p className="text-left sm:max-w-[400px]">
             Don&#39;t just take our word for it. We&#39;re the web hosting provider of choice for thousands of happy customers.
             </p>
           </div>

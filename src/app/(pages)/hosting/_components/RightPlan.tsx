@@ -6,6 +6,7 @@ import Image from "next/image";
 import PlanModal from './PlanModal';
 import './style.css'
 import checkIcon from '../../../../assets/icons/check 1.svg'
+import './style.css'
 
 interface Domain {
   name: string;
@@ -129,8 +130,8 @@ const RightPlan: React.FC = () => {
     advanced,
     premium,
   }) => (
-    <tr className="border-t-[1px] border-black border-opacity-65 font-roboto-serif">
-      <td className="left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4 lg:pl-10 font-400 py-2 lg:py-4">
+    <tr className=" border-t-[1px] border-black border-opacity-65 font-roboto-serif">
+      <td className={`left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4  font-400 py-2 lg:py-4 ${title == 'email features:'? 'font-bold text-home-heading font-roboto' : ''}`}>
         {title}
       </td>
       <td className="text-home-heading text-center bg-[#D7F2FF] py-2 lg:py-4 text-lg lg:text-2xl">
@@ -158,14 +159,14 @@ const RightPlan: React.FC = () => {
       }`}
     >
       <div className="flex flex-col gap-2 lg:gap-4">
-        <h2 className="font-900 text-home-heading">
+        <h2 className={`font-900 text-home-heading`}>
           {name}
         </h2>
         <span className="font-900">
           <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
-          className="bg-[#000AFF] button-medium p-2 lg:p-4 text-white  rounded-lg mx-auto max-md:mx-1"
+          className="bg-[#000AFF] button-medium p-2 lg:p-2 text-white  rounded-lg mx-auto max-md:mx-1"
           onClick={onAddToCart}
         >
           <p className="font-500">Add to cart</p>
@@ -177,9 +178,15 @@ const RightPlan: React.FC = () => {
   return (
     <section className="plans bg-[#B8D4FF] bg-opacity-50">
       <div className="flex justify-center">
-        <h2 className="py-10 lg:py-20 text-home-heading text-center">
+        <h2 className="mb-8 text-home-heading text-center hide-600">
           Choose a Right Plan for Your Website
         </h2>
+       <div className="mb-8 items-center justify-center show-600 ">
+        <h4 className="mb-2 text-home-heading text-center">
+            Choose Your Plan
+          </h4>
+          <p className="text-center text-home-body">Businesses just love working with us!</p>
+       </div>
       </div>
 
       <div className='justify-center hidden show-600-flex flex-col items-center gap-6 mb-5'>
@@ -242,27 +249,27 @@ const RightPlan: React.FC = () => {
         <div className=" justify-between items-center pricing-flex hidden show-600-flex">
           <div className="flex flex-col gap-1">
             <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
+            {/* <p className="sub">/User/Month</p> */}
           </div>
           <div className="flex flex-col gap-1">
-            <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
+            <h6><span>₹</span>232</h6>
+            {/* <p className="sub">/User/Month</p> */}
           </div>
           <div className="flex flex-col gap-1">
-            <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
+            <h6><span>₹</span>350</h6>
+            {/* <p className="sub">/User/Month</p> */}
           </div>
         </div>
       </div>
       
 
       <div className="pb-10">
-        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table">
+        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table rounded-md">
           <table className="w-full min-w-max">
             <thead>
               <tr>
                 <th className="first-column left-0 bg-white shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
-                  <h2 className="text-left">Plan Features</h2>
+                  <h2 className="plansHeader text-left text-home-heading">Plan Features</h2>
                 </th>
                 <PlanCard
                   name="Starter"
@@ -321,6 +328,12 @@ const RightPlan: React.FC = () => {
                 starter="1"
                 advanced="50"
                 premium="100"
+              />
+              <PlanFeature
+                title="email features:"
+                starter=""
+                advanced=""
+                premium=""
               />
               <PlanFeature
                 title="eMail Accounts"
