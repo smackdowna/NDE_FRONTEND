@@ -19,10 +19,8 @@ const Hero = () => {
         <div className="flex hero-flex justify-between items-center">
           <div className="flex hero-content flex-col gap-[33px] md:gap-8 lg:gap-5 2xl:gap-11 items-center lg:items-start text-center lg:text-left">
             {/* Heading */}
-            <h1 className="header1">
-            Fast<span></span> Secure<span></span> Stable <br />Web Hosting
-            </h1>
-            <h1 className="header2">
+
+            <h1 className="text-home-heading">
               EXPERIENCE POWERFUL WEB HOSTING
             </h1>
             <p className="text-left">
@@ -36,11 +34,11 @@ const Hero = () => {
             </button>
           </div>
           {/* Video Placeholder */}
-          <div className="aspect-[1.6/1]  w-[40vw] max-lg:w-full hero-image ">
+          <div className="heroImage aspect-[1.6/1] max-lg:w-full md:flex sm:flex-col sm:items-center sm:justify-center sm:mt-[24px]  xl:max-w-[52vw] min-w-[45vw]">
           <Image src={IMAGES.HostHero} alt="hero"/></div>
         </div>
       </div>
-      <span className="flex text-center text-3xl max-2xl:text-xl max-lg:text-lg font-600 pt-[80px] md:pt-[100px] lg:pt-[120px] pb-[20px] md:pb-[30px] lg:pb-[40px] leading-[20.4px] text-home-body justify-center font-roboto-serif max-md:px-[2px] max-md:pt-[80px] max-md:pb-[10px]">
+      <span className="flex text-center text-3xl max-2xl:text-xl max-lg:text-lg lg:font-900 pt-[80px] md:pt-[100px] lg:pt-[120px] pb-[10px] md:pb-[10px] lg:pb-[40px] leading-[20.4px] text-home-body justify-center lg:font-roboto font-roboto-serif font-700 max-md:px-[2px] max-md:pt-[80px] ">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
       <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden min-xl:px-[6px]">

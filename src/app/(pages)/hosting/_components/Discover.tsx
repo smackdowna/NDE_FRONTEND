@@ -88,13 +88,16 @@ const Discover: React.FC = () => {
     ];
 
     return (
-        <section className="flex flex-col gap-4 bg-[#BFF8F84D] ">
+        <section className="discover flex flex-col gap-4 bg-[#BFF8F84D] ">
             <div className="flex flex-col gap-1">
-                <h2 className="text-center  text-home-heading ">
+                <h2 className="text-center  text-home-heading hidden sm:block ">
                     <span className="text-[#016AFB]">Discover</span> all Our Web Hosting Features
                 </h2>
+                <h4 className="text-center  text-home-heading sm:hidden block mb-2">
+                    <span className="text-[#016AFB]">Discover</span> all Our Web Hosting Features
+                </h4>
                 <div className=' flex justify-center'>
-                <p className="text-center tracking-tight z-10 lg:w-[550px] ">
+                <p className="mainpara text-center tracking-tight z-10 lg:w-[550px] ">
                     Explore the powerful features that make NDE Hosting the perfect choice for your 24/7 promotion.
                 </p>
             </div>
