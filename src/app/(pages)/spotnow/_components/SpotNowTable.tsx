@@ -75,14 +75,34 @@ const SpotNowTable: React.FC = () => {
     };
 
     return (
-        <div className='plans bg-[#F3F4FD] py-24 max-2xl:py-8'>
-            
+        <div className='plans bg-[#F3F4FD] py-14 max-2xl:py-8'>
+           
+           <div className="plansTitle w-full flex sm:hidden items-center justify-center">
             <Title
-             title='Choose Your Plan'
-             description='Businesses just love working with us!' 
-             titleWidth=''
-             descriptionWidth='max-2xl:w-[638px]  '
-            />
+                title='Choose Your Plan'
+                description='Businesses just love working with us!' 
+                titleWidth=''
+                descriptionWidth='max-2xl:w-[638px]  '
+                />
+           </div>
+           <div className="plansTitle w-full hidden sm:flex items-center justify-center">
+            <Title
+                title='Choose Your Plan'
+                description='Businesses just love working with us!' 
+                titleWidth='text-[43px] font-black lineHeight-[1.2]'
+                descriptionWidth='max-2xl:w-[638px]  '
+                />
+           </div>
+           <div className="plansTitle w-full hidden lg:flex items-center justify-center">
+            <Title
+                title='Find the right plan for your business.'
+                description='Choose the Spot Now’s edition that best fits your business.' 
+                titleWidth=''
+                descriptionWidth='max-2xl:w-[638px]  '
+                />
+           </div>
+
+
 
             <div className='sm:hidden show-600-flex flex justify-center py-6 '>
                 
@@ -170,8 +190,8 @@ const SpotNowTable: React.FC = () => {
 
 
 
-            <div className="px-0 max-md:px-4 pb-10 pt-14 max-md:pt-6 max-lg:mx-4">
-                <div className="bg-white mx-0 lg:mx-14 overflow-x-auto rounded-sm">
+            <div className="px-0 max-md:px-4 pb-10 pt-5 max-md:pt-6 max-lg:mx-4">
+                <div className="bg-white mx-0 lg:mx-14 overflow-x-auto rounded-sm tableBorder">
                     <table className="w-full min-w-max ">
                         <thead>
                             <tr className=' max-sm:hidden hide-600 first-row'>
@@ -220,7 +240,7 @@ const SpotNowTable: React.FC = () => {
                             <PlanFeature title="Email forwarding accounts" starter="Unlimited" advanced="Unlimited" premium="Unlimited" />
                         </tbody>
                         
-                        <tbody className="small-tbody sm:hidden show-600 border-2 border-blue-600">
+                        <tbody className="small-tbody sm:hidden show-600 ">
                             <tr>
                                 <td className="border bg-white text-center px-4 py-2">Number of Users</td>
                                 <td className="border bg-white text-center px-4 py-2">
@@ -392,8 +412,8 @@ const SpotNowTable: React.FC = () => {
                         </tbody>
                         
                     </table>
-                    <div className='show-600 flex w-full justify-center content-center  items-center'>
-                                <button className=' bg-home-primary text-white p-2 rounded-xl w-[110.38px] sm:hidden'>Add to Cart</button>
+                    <div className='hidden show-600-flex w-full justify-center content-center  items-center py-2'>
+                        <button className=' bg-home-primary text-white p-2 rounded-xl w-[110.38px]'>Add to Cart</button>
                     </div>
                 </div>
             </div>

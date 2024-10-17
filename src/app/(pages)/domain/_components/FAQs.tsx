@@ -97,7 +97,7 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
                     </h2>
                 </div>
                 <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
-                    <p className='w-[90%]'>
+                    <p className='lg:w-[60%] w-[80%]'>
                     If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                     </p>
                 </div>

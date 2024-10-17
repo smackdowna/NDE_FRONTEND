@@ -71,14 +71,14 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ title, description, imgSrc }) => (
-  <div className='org-card bg-[#FFFBF0] max-2xl:rounded-[10px] max-2xl:h-[275px] group pt-4 p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative cursor-pointer overflow-hidden lg:h-[220px] rounded-md'>
-    <div className='absolute inset-0 rounded-0 border-2 border-transparent transition-colors duration-300 pointer-events-none group-hover:border-[#0011FF]'></div>
-    <div className='relative z-10'>
+  <div className='org-card bg-[#FFFBF0] max-2xl:h-[275px] group pt-4 p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative cursor-pointer overflow-hidden lg:h-[220px] rounded-md'>
+    <div className='absolute inset-0 border-2 border-transparent transition-colors duration-300 pointer-events-none group-hover:border-[#0011FF] rounded-md'></div>
+    <div className='orgContent relative z-10'>
       <Image src={imgSrc} alt={title} className="" />
       <div className="flex gap-4 mt-3">
-        <span className="text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
+        <span className="orgHead text-[22px] max-sm:text-[18px] max-2xl:text-[24px] 2xl:text-[26px] text-home-heading leading-[28.13px] tracking-tighter font-900 max-lg:text-[24px]">{title}</span>
       </div>
-      <div className="tracking-tighter group-hover:opacity-60 mt-2 transition-opacity duration-300">
+      <div className="orgDesc tracking-tighter group-hover:opacity-60 mt-2 transition-opacity duration-300">
         <span className="sub-para  block whitespace-pre-wrap w-full">{description}</span>
       </div>
     </div>
@@ -89,12 +89,15 @@ const Organization: React.FC = () => {
   return (
     <section className="organization bg-[#ECEDFF] flex flex-col gap-[20px] items-center">
         <div className="w-full">
-          <div className='flex justify-center w-[90%] mx-auto'>
-            <h2 className="text-home-heading">
+          <div className='flex justify-center w-[100%] mx-auto'>
+            <h2 className="text-home-heading md:block hidden">
               Grow your organization faster than ever
             </h2>
+            <h3 className="text-home-heading block md:hidden text-[38px]" style={{lineHeight: 1.2}}>
+              Grow your organization faster than ever
+            </h3>
           </div>
-          <div className=' flex justify-center mt-2'>
+          <div className='justify-center mt-2 md:flex hidden'>
             <div className='bg-border-image-source w-[90%] h-[5px] mx-auto'></div>
           </div>
         </div>
@@ -112,7 +115,7 @@ const Organization: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className=" justify-between grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-4 md:gap-[16px] lg:gap-[20px] max-sm:gap-x-[40px] max-sm:gap-y-[30px] sm:gap-x-[16px] sm:gap-y-[30px] mt-10">
+        <div className=" justify-between grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-2 md:gap-[16px] lg:gap-[20px] max-sm:gap-x-[40px] max-sm:gap-y-[30px] sm:gap-x-[16px] sm:gap-y-[30px] mt-10">
           {cardData.map((card, index) => (
             <Card
               key={index}

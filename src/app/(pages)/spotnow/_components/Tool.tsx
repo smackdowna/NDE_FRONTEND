@@ -15,8 +15,9 @@ const Step: React.FC<StepProps> = ({ image, title, description }) => (
     <div className='flex-tool gap-4 '>
         <Image src={image} alt='tick' className='' />
         <div className="content-container">
-        <h5 className='text-home-heading '>{title}</h5>
-        <p className=' text-home-heading text-left'>{description}</p>
+        <h3 className='text-home-heading text-left lg:block hidden' style={{lineHeight: 1.2}}>{title}</h3>
+        <h5 className='text-home-heading text-left block lg:hidden '>{title}</h5>
+        <p className=' text-home-heading text-left text-[22px]' style={{lineHeight:1.65, opacity:0.8}}>{description}</p>
         </div>
     </div>
 );
@@ -31,13 +32,24 @@ const Tool = () => {
     return (
         <section className='bg-[#EEFDF6]'>
            
+           <div className="w-full hidden items-center justify-center lg:flex">
             <Title
-             title='Why You Choose NDE’s SpotNow tool?'
-             description='Experience seamless field workforce management with SpotNow, designed to optimize and elevate your operations.' 
-             titleWidth=''
-             descriptionWidth='max-2xl:w-[638px]  '
-            />
-            <div className='tool-flex flex justify-between mt-[24px]'>
+                title='Why You Choose NDE’s SpotNow tool?'
+                description='Experience seamless field workforce management with SpotNow, designed to optimize and elevate your operations.' 
+                titleWidth=''
+                descriptionWidth='max-w-[780px]'
+                />
+           </div>
+           <div className="w-full flex items-center justify-center lg:hidden">
+            <Title
+                title='Why You Choose SpotNow?'
+                description='Experience seamless field workforce management with SpotNow, designed to optimize and elevate your operations.' 
+                titleWidth=''
+                descriptionWidth='max-w-[780px]'
+                />
+           </div>
+    
+            <div className='tool-flex flex justify-between mt-[32px]'>
                 {steps.map((step, index) => (
                     <Step
                         key={index}

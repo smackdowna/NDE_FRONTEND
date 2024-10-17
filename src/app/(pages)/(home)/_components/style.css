@@ -50,6 +50,14 @@ h5 {
   font-size: 24px;
   line-height: 1.2;
 }
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
 .sub-para {
   font-family: Roboto Serif;
   font-size: 20px;
@@ -146,7 +154,7 @@ span.testimonial-company {
   }
 
   .organization .org-card {
-    height: 250px;
+    height: 200px;
   }
   span.testimonial-author {
     font-size: 17px;
@@ -160,7 +168,11 @@ span.testimonial-company {
 
 @media (max-width: 1140px) {
   .organization .org-card {
-    height: 300px;
+    height: 220px;
+  }
+
+  section.testimonials {
+    padding-inline: 24px;
   }
 }
 
@@ -180,17 +192,10 @@ span.testimonial-company {
     font-size: 32px;
     line-height: 38.4px;
   }
-}
 
-@media (max-width: 962px) {
-  .organization .org-card {
-    height: 320px;
-  }
-}
-
-@media (max-width: 900px) {
-  .organization .org-card {
-    height: 350px;
+  p.testimonial-desc {
+    font-size: 15px;
+    line-height: 1.65;
   }
 }
 
@@ -208,14 +213,42 @@ span.testimonial-company {
     font-size: 38px;
     line-height: 45.6px;
   }
+}
+
+@media (max-width: 762px) {
   .organization .org-card {
-    height: 220px;
+    height: 250px;
+  }
+
+  .testimonials .grid {
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .organization .org-card {
-    height: 280px;
+    height: fit-content;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .orgContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .orgContent span {
+    text-align: center;
+  }
+
+  .organization .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .authSlider button {
+    display: none;
   }
 }
 
@@ -223,12 +256,6 @@ span.testimonial-company {
   .accelerate h2 {
     font-size: 26px;
     line-height: 31.2px;
-  }
-}
-
-@media (max-width: 460px) {
-  .organization .org-card {
-    height: 360px;
   }
 }
 

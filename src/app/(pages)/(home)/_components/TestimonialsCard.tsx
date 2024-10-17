@@ -26,14 +26,17 @@ const TestimonialCard = (props: Props) => {
         />
       </div>
       <div className={twMerge("w-[68%] max-w-[calc(100%-100px)] xl:max-w-[calc(100%-150px)] max-md:text-[12px] mb-20 max-lg:mb-10")}>
-        <p className="text-left line-clamp-3 text-home-heading">
+        <p className="testimonial-desc text-left text-home-heading line-clamp-3">
           {props.quote}
         </p>
       </div>
       <div className="flex flex-col mt-auto">
-        <h5 className="testimonial-author text-home-heading" style={{lineHeight: 1.2}}>
+        <h5 className="testimonial-author text-home-heading hidden md:block" style={{lineHeight: 1.2}}>
           {props.author}
         </h5>
+        <h6 className="testimonial-author text-home-heading block md:hidden" style={{lineHeight: 1.2}}>
+          {props.author}
+        </h6>
         <span className="testimonial-company text-home-body">{props.position}</span>
       </div>
     </div>

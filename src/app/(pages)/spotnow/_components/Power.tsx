@@ -39,18 +39,18 @@ const data = [
 
 const Power = () => {
     return (
-        <div className='power bg-[#EEFDF6] sm:pt-[80px]'>
+        <div className='power bg-[#EEFDF6] sm:pt-[80px] pt-[40px]'>
             <div className='flex flex-col'>
                 <div className='max-2xl:pt-20'>
                  <Title
                     title="Power your Field Service Team and Deliver Better Results"
                     description=" SpotNow is your key to seamless, agile, and data-driven workforce management."
-                    descriptionWidth='w-[90%]'
+                    descriptionWidth='w-[90%] text-[22px] lineHeight-[1.65]'
                     titleWidth = 'max-2xl:w-[752px] max-lg:w-[752px] 2xl:mt-28'
                 />
                 </div>
                 
-                <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 px-16 py-16 powerGrid'>
+                <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 sm:px-16 px-6 sm:py-16 py-8 powerGrid'>
                     {data.map((item, index) => ( 
                         <div key={index} className='bg-white  py-10 px-4 shadow-xl rounded-xl'>
                             <div className='flex justify-center py-4'>
@@ -60,9 +60,9 @@ const Power = () => {
                                 <span className='font-900 font-roboto text-home-heading text-3xl max-lg:text-xl max-2xl:text-2xl text-center'>
                                     {item.title}
                                 </span>
-                                <span className='font-roboto-serif font-500 text-2xl max-2xl:text-lg max-md:text-lg text-center text-customGray'>
+                                <p className='sub-para' style={{opacity: 0.7, textAlign:'center'}}>
                                     {item.description}
-                                </span>
+                                </p>
                             </div>
                         </div>
                     ))}

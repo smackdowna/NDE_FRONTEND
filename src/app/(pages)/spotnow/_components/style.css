@@ -1,5 +1,5 @@
 section {
-  padding: 100px 80px;
+  padding: 80px;
 }
 
 h1,
@@ -44,6 +44,20 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
 .sub-para {
   font-family: Roboto Serif;
   font-size: 20px;
@@ -73,7 +87,7 @@ h4 {
   }
   p {
     font-size: 17px;
-    line-height: 28.05px;
+    line-height: 1.65;
   }
   .sub-para {
     font-size: 15px;
@@ -84,6 +98,10 @@ h4 {
     font-size: 26px;
     line-height: 31.2px;
   }
+}
+
+.subPara-center {
+  text-align: center !important;
 }
 
 @media (max-width: 1220px) {
@@ -167,9 +185,6 @@ h4 {
     font-size: 17px;
     line-height: 20.4px;
   }
-  .hero p {
-    width: 500px;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -212,11 +227,7 @@ h4 {
   }
 }
 
-.steps-getStarted {
-  flex-basis: 24%;
-}
-
-@media (max-width: 916px) {
+@media (max-width: 834px) {
   .steps-getStarted p {
     text-align: center !important;
   }
@@ -330,8 +341,17 @@ h6 {
   border-color: #0000004d !important;
 }
 
-.plans table {
-  border: 2px solid #d6daff;
+@media (min-width: 600px) {
+  .plans table {
+    border: 2px solid #d6daff;
+  }
+}
+
+@media (max-width: 600px) {
+  .plans .tableBorder {
+    border: 3px solid #0066ff;
+    border-radius: 14px;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -505,5 +525,127 @@ th button {
   .small-tbody td:last-child {
     width: 40% !important;
     max-width: 40% !important;
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 1620px) {
+  .hero-text h1 {
+    font-size: 64px;
+    line-height: 76.8px;
+  }
+}
+
+@media (max-width: 1620px) and (min-width: 1280px) {
+  .hero-text h1 {
+    font-size: 52px !important;
+    line-height: 62.4px !important;
+  }
+  .hero-left {
+    gap: 24px;
+  }
+
+  .hero-text {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hero h1 {
+    font-size: 42px;
+    line-height: 50.4px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero h1 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero h1 {
+    font-size: 48px !important;
+    line-height: 57.6px !important;
+  }
+
+  .hero-text {
+    gap: 16px;
+  }
+
+  .hero-left {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hero h1 {
+    font-size: 42px !important;
+    line-height: 50.4px !important;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero h1 {
+    font-size: 38px !important;
+    line-height: 45.6px !important;
+  }
+}
+
+@media (max-width: 1800px) {
+  .flex-tool h3 {
+    font-size: 26px;
+    line-height: 31.2px;
+  }
+}
+
+/* Hide scrollbar in WebKit browsers (Chrome, Safari) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+/* Hide scrollbar in Firefox */
+.hide-scrollbar {
+  scrollbar-width: none; /* Disables the scrollbar in Firefox */
+}
+
+/* Hide scrollbar in Edge and IE */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+}
+
+@media (max-width: 1280px) {
+  .faqSection h4 {
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+}
+
+.trackingBorder {
+  border: 10px solid;
+  border-image-source: linear-gradient(270deg, #0158fb 0%, #01b392 100%);
+}
+
+.steps-getStarted h4 {
+  text-align: left;
+}
+
+@media (max-width: 916px) {
+  .steps-getStarted h4 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 834px) {
+  .plansTitle h2 {
+    font-size: 43px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 700px) {
+  .plansTitle h2 {
+    font-size: 26px;
+    line-height: 1.2;
   }
 }
