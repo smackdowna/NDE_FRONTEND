@@ -16,12 +16,12 @@ const TakeStepNow = () => {
                 />
             </div>
             <div className="md:mt-[100px] sm:mt-[120px] mt-[80px]" >
-                <h2>Transform Your Vision into Reality</h2>
+                <h2 className="text-home-heading">Transform Your Vision into Reality</h2>
             </div>
             <div className="relative z-10">
-                <h3>Take the first step with us!</h3>
+                <h3 className="text-home-body">Take the first step with us!</h3>
             </div>
-            <div className="relative z-10 flex justify-center mt-10">
+            <div className="relative z-10 flex justify-center mt-4">
                 <button className="bg-gradient-button px-10 py-3 text-white text-[18px] font-700 rounded-xl">
                     <div className="flex gap-3 items-center">
                         <span>Take Step Now</span>

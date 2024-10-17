@@ -42,21 +42,21 @@ const Possibilities: React.FC = () => {
 
     return (
         <section className='Possibilities bg-[#FFFBF0]'>
-            <div className="flex gap-[20px] xl:gap-[40px] lg:gap-[30px] md:gap-[50px] sm:gap-[20px] flex-col items-center">
+            <div className="flex gap-[14px] flex-col items-center">
                 <div className="possibilities-header">
                 <div className="flex justify-center mt-10">
-                    <h2 >One platform. Infinite possibilities.</h2>
+                    <h2 className="text-[#000659]">One platform. Infinite possibilities.</h2>
                 </div>
-                <div className="flex justify-center mt-3 max-md:mx-4">
-                    <div className="bg-border-image-source w-[100%] h-[5px] sm:mt-[20px]"></div>
+                <div className="flex justify-center mt-1 max-md:mx-4">
+                    <div className="bg-border-image-source w-[100%] h-[5px] sm:mt-[12px]"></div>
                 </div>
                 </div>
-                <div className="flex justify-center w-[100%] lg:w-[600px] md:w-[500px] sm:w-[90%]">
-                    <p>
+                <div className="flex justify-center w-[100%] lg:w-[60%] sm:w-[80%]">
+                    <p className="text-home-body">
                         Discover our range of innovative solutions designed to streamline your operations, enhance productivity, and drive growth.
                     </p>
                 </div>
-                <div className="grid w-full gap-y-[15px] lg:gap-x-[30px] lg:gap-y-[40px] md:gap-y-[30px] md:gap-x-[20px] sm:gap-x-[20px] sm:gap-y-[20px] md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 max-lg:mx-4">
+                <div className="grid w-full gap-y-[15px] lg:gap-x-[30px] lg:gap-y-[40px] md:gap-y-[30px] md:gap-x-[20px] sm:gap-x-[20px] sm:gap-y-[20px] md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 max-lg:mx-4 mt-[24px]">
                 {cardContent.map((content, index) => (
                     <div
                     key={index}
@@ -68,9 +68,9 @@ const Possibilities: React.FC = () => {
                     >
                     <div className="w-full h-full bg-white rounded-[8px] p-6">
                         <div className="flex gap-4 items-center w-full">
-                        <h4 className="text-[24px] font-800 text-home-heading">
+                        <h5 className="text-[24px] font-black text-home-heading">
                             {content.title}
-                        </h4>
+                        </h5>
                         <div className="relative w-[24px] h-[24px] flex items-center justify-center">
                             <Image 
                                 src={hoveredCard === index ? IMAGES.arrowright : ICONS.cardarrow} 
@@ -80,7 +80,7 @@ const Possibilities: React.FC = () => {
                         </div>
                         </div>
                         <div className="mt-3">
-                        <span className="sub-para">{content.description}</span>
+                        <span className="sub-para text-[#000334] line-clamp-2" style={{lineHeight: 1.65, opacity:0.8}}>{content.description}</span>
                         </div>
                     </div>
                     </div>

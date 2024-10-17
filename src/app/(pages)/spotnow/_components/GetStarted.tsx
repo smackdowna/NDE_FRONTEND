@@ -15,8 +15,9 @@ const Step:React.FC<StepProps> = ({ title, description }) => (
     <div className='flex  '>
     <Image src={IMAGES.Checkcircle} alt='tick'/>
     </div>
-      <h4 >{title}</h4>
-      <p>{description}</p>
+      <h3 className='hidden lg:block text-left text-home-heading' style={{lineHeight:1.2}}>{title}</h3>
+      <h4 className='block lg:hidden text-home-heading'>{title}</h4>
+      <p className='text-home-body'>{description}</p>
   </div>
 );
 
@@ -27,16 +28,16 @@ const GetStarted = () => {
       description: 'Sign up and get started with your new SpotNow account. Enter your details, and you’re all set to begin.'
     },
     {
-        title: 'Create SpotNow Account',
-        description: 'Sign up and get started with your new SpotNow account. Enter your details, and you’re all set to begin.'
+        title: 'Add Field Team',
+        description: 'Effortlessly onboard your employees by adding them to the system. Ensure everyone is connected and ready to track.'
       },
       {
-        title: 'Create SpotNow Account',
-        description: 'Sign up and get started with your new SpotNow account. Enter your details, and you’re all set to begin.'
+        title: 'Dashboard Personalisation',
+        description: 'Customize your dashboard to reflect your specific tracking needs. Arrange tools and insights for maximum efficiency.'
       },
       {
-        title: 'Create SpotNow Account',
-        description: 'Sign up and get started with your new SpotNow account. Enter your details, and you’re all set to begin.'
+        title: 'Start Tracking',
+        description: 'Begin tracking daily activities and gaining valuable insights instantly. Watch your operations transform in real-time.'
       },
     // Add more steps here if needed
   ];
