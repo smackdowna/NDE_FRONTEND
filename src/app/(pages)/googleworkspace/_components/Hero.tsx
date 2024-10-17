@@ -6,7 +6,7 @@ import './style.css'
 
 const Hero = () => {
   return (
-    <div className="relative bg-background-Gsuite overflow-hidden">
+    <div className="relative GsuiteBanner overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image 
           src={ICONS.blur} 
@@ -19,35 +19,35 @@ const Hero = () => {
       </div>
       <div className="hero relative z-10 ">
         <div className="hero-flex flex justify-between items-center">
-          <div className="hero-content flex flex-col gap-10 ">
+          <div className="hero-content flex flex-col gap-3 ">
             {/* Heading */}
-            <h1 >
+            <h1 className="text-home-heading">
             Empower Your Team With  Google Workspace</h1>
             <p className="show-p text-left">
             We minimise your downtime with our reliable technical experts and IT infrastructure management
             </p>
             <ul>
-              <li><p>Custom Business Email</p></li>
-              <li><p>30 GB of Cloud Storage</p></li>
-              <li><p>High Standard Security</p></li>
-              <li><p>100 Meet Participant</p></li>
+              <li><p className="mb-2">Custom Business Email</p></li>
+              <li><p className="mb-2">30 GB of Cloud Storage</p></li>
+              <li><p className="mb-2">High Standard Security</p></li>
+              <li><p className="mb-2">100 Meet Participant</p></li>
             </ul>
-            <div className="">
-              <div className="show-1280 mb-2">
-                <p className="text-left">Starts at</p>
+            <div className="flex flex-col items-start justify-center gap-2">
+              <div className="show-1280 mb-2 show-700-flex">
+                <p className="text-left font-bold">Starts at</p>
                 <h4 className="text-[#0011FF]">₹136/user/mo</h4>
               </div>
-              <button className="bg-background-button w-fit px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-2xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
+            </div>
+            <button className="bg-background-button w-fit px-6 md:px-8 lg:px-10 py-2 md:py-4 text-white text-base md:text-lg lg:text-2xl font-700 rounded-[8px] shadow-[0px_2px_2px_0px_#00000040]">
                 <div className="flex gap-2 md:gap-3 items-center">
                   <span>Get Started</span>
                   <Image src={IMAGES.arrow} alt="arrow" />
                 </div>
-              </button>
-            </div>
+            </button>
           </div>
           {/* Video Placeholder */}
           <div className="hero-video flex items-center justify-start">
-            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className="large-video"/>
+            <Image src={IMAGES.gsuiteHeroImg} alt="hero" className="large-videos"/>
             <Image src={IMAGES.gsuiteHeroAnimation} alt="hero" className="small-video"/>
           </div>
         </div>

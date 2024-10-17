@@ -194,7 +194,7 @@ const RightPlan: React.FC = () => {
         <h2 className="show-600 text-home-heading text-center">
           Choose Your Plan
         </h2>
-        <p className="hide-600">Choose the Google Workspace edition that best fits your business.</p>
+        <p className="hide-600 text-[22px] lineHeight-[1.2]">Choose the Google Workspace edition that best fits your business.</p>
         <p className="show-600">Businesses just love working with us!</p>
       </div>
 
