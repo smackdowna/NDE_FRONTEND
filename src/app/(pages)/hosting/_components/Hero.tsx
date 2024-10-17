@@ -15,7 +15,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className="hero-padding relative z-10 pt-[120px] max-lg:pt-[100px] mx-4 md:mx-10">
+      <div className="hero-padding relative z-10 pt-[150px] max-lg:pt-[100px] mx-4 md:mx-10">
         <div className="flex hero-flex justify-between items-center">
           <div className="flex hero-content flex-col gap-[33px] md:gap-8 lg:gap-5 2xl:gap-11 items-center lg:items-start text-center lg:text-left">
             {/* Heading */}

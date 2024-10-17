@@ -1,5 +1,5 @@
 section {
-  padding: 100px 80px;
+  padding: 80px;
 }
 
 h1,
@@ -44,6 +44,20 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
 .sub-para {
   font-family: Roboto Serif;
   font-size: 20px;
@@ -73,7 +87,7 @@ h4 {
   }
   p {
     font-size: 17px;
-    line-height: 28.05px;
+    line-height: 1.65;
   }
   .sub-para {
     font-size: 15px;
@@ -84,6 +98,10 @@ h4 {
     font-size: 26px;
     line-height: 31.2px;
   }
+}
+
+.subPara-center {
+  text-align: center !important;
 }
 
 @media (max-width: 1220px) {
@@ -155,7 +173,7 @@ h5 {
 
 .hero {
   padding-top: 140px;
-  padding-inline: 40px;
+  padding-inline: 20px;
 }
 
 .hero-content {
@@ -164,7 +182,7 @@ h5 {
 }
 
 .hero-video {
-  flex-basis: 35%;
+  flex-basis: 40%;
   position: relative;
 }
 
@@ -235,7 +253,6 @@ h5 {
 @media (max-width: 1024px) {
   .hero {
     padding-top: 140px;
-    padding-inline: 20px;
   }
 
   .hero h1 {
@@ -254,7 +271,7 @@ h5 {
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 24px;
+    gap: 16px;
   }
 
   .hero-content li p {
@@ -340,8 +357,12 @@ h5 {
 }
 
 @media screen and (max-width: 1280px) {
+  section.service {
+    padding-inline: 40px;
+  }
+
   .services-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .services-grid .group {
@@ -352,6 +373,17 @@ h5 {
   h3 {
     font-size: 26px;
     line-height: 31.2px;
+  }
+
+  .services-grid h3 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -377,9 +409,15 @@ h5 {
     font-size: 22px;
     line-height: 26.4px;
   }
+}
 
-  .services-grid {
-    grid-template-columns: 1fr !important;
+@media (max-width: 500px) {
+  section.service {
+    padding-inline: 16px;
+  }
+
+  .services-grid .group {
+    width: 100% !important;
   }
 }
 
@@ -681,5 +719,114 @@ p.sub {
 @media (max-width: 360px) {
   .togglebox-contianer {
     width: 300px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .faqSection h4 {
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+}
+
+.hero-content {
+  flex-basis: 50%;
+}
+
+@media (max-width: 1920px) and (min-width: 1280px) {
+  section.service h3,
+  h3.cardTitle {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+}
+
+section.faq-section {
+  background: linear-gradient(237.45deg, #d5ffef 1.14%, #c1dcf8 98.66%);
+}
+
+@media (max-width: 1280px) {
+  .hero-content {
+    padding-inline: 16px !important;
+  }
+}
+
+.GsuiteBanner {
+  background: linear-gradient(270.23deg, #0066ff 0.38%, #009952 99.99%);
+}
+
+@media (max-width: 1280px) {
+  table .first-column h2 {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 600px) {
+  section.practice {
+    padding-inline: 16px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .show-700-flex {
+    display: flex !important;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero h1 {
+    font-size: 48px !important;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: 38px !important;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 32px !important;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 26px !important;
+    line-height: 1.2;
+  }
+}
+
+.show-480 {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  section.practice h2 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .show-480 {
+    display: block;
+  }
+  .hide-480 {
+    display: none;
+  }
+  h3.cardTitle {
+    font-size: 17px;
+    line-height: 1.2;
+    margin-bottom: 10px;
   }
 }

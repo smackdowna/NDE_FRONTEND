@@ -11,32 +11,32 @@ interface FAQ {
 
 const faqs: FAQ[] = [
     {
-        question: "What is a domain name?",
-        answer: "A domain name is a human-readable address for a website, such as example.com."
+        question: "What is Google Workspace?",
+        answer: "Google Workspace (formerly known as G Suite) is a cloud based-productivity suite that includes professional email, documents sharing and collaboration tools, video conferencing, cloud storage and more."
     },
     {
-        question: "How do I register a domain name?",
-        answer: "You can register a domain name through a domain registrar by searching for an available name and completing the registration process."
+        question: "Why choose Google Workspace with Now Digital Easy?",
+        answer: "As a Google Premium Partner, we have extensive experience in deploying and managing Workspace for businesses of all sizes. We provide personalized support to all clients, ensuring smooth transition and maximizing productivity."
     },
     {
-        question: "What is the cost of a domain name?",
-        answer: "The cost of a domain name varies depending on the domain extension and the registrar. Prices typically range from $10 to $50 per year."
+        question: "How does Gmail in Google Workspace differ from free Gmail?",
+        answer: "Paid Google Workspace provides you with several features and integrations not available in the free consumer version of the apps. It includes custom business email, unlimited group email IDs, 99.9% guaranteed uptime, storage, customized logo branding for your company, zero ads, 24/7 support, Google Workspace Sync for Microsoft Outlook."
     },
     {
-        question: "How do I transfer my domain to another provider?",
-        answer: "To transfer your domain, you need to unlock it, get an authorization code from your current registrar, and initiate the transfer process with the new registrar."
+        question: "Do you assist with Google workspace migrations?",
+        answer: "Yes, we provide seamless migration assistance from various legacy email systems to Google Workspace. We will handle the entire process, ensuring minimal downtime and disruption to your workflow."
     },
     {
-        question: "What is DNS and how does it work?",
-        answer: "DNS (Domain Name System) translates domain names into IP addresses, allowing browsers to load internet resources."
+        question: "Is G suitable for small businesses as well?",
+        answer: "Yes, Google Workspace is designed for businesses of all sizes, including small businesses. Workspace’s upgradable features and pricing plan make it the perfect choice for organizations with different needs."
     },
     {
-        question: "Can I get a refund after purchasing a domain name?",
-        answer: "Refund policies vary by registrar, but generally, domain name purchases are non-refundable."
+        question: "Can I use my existing domain with Google Workspace?",
+        answer: "Yes, you can use an existing domain with your Google Workspace purchase."
     },
     {
-        question: "How do I update my domain name settings?",
-        answer: "You can update your domain name settings through your domain registrar&rsquo;s control panel."
+        question: "Can I manage multiple domains with Google Workspace?",
+        answer: "If your organization needs a new domain or does business at multiple domains, you can add all your domains to your account at no extra cost. You add a domain as either a separate domain or domain alias, depending on how you plan to use it."
     }
 ];
 
@@ -63,9 +63,9 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     }, [isOpen]);
 
     return (
-        <div className='w-full max-w-[850px] mx-auto'>
+        <div className='faqSection w-full max-w-[850px] mx-auto'>
             <div className='flex justify-between p-3 border-b-2 cursor-pointer' onClick={toggleAccordion}>
-                <span className='font-900 text-2xl max-md:text-[17px] max-lg:text-xl'>{question}</span>
+                <h4 className='text-[#000659]'>{question}</h4>
                 <Image src={isOpen ? ICONS.minusCircle : ICONS.plusCricle} alt='toggle icon' />
             </div>
             <div 
@@ -73,7 +73,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
                 style={{ maxHeight, overflow: 'hidden', transition: 'max-height 0.3s ease' }} 
                 className='text-base md:text-lg border-b-1'
             >
-                <div className='p-3'>{answer}</div>
+                <p className='text-[#000334] text-left'>{answer}</p>
             </div>
         </div>
     );
@@ -85,18 +85,20 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = () => {
     return (
-        <div className='bg-gradient-domain-hero faq-sectionfaq-section flex flex-col py-[50px] px-0 md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px]'>
+        <section className='faq-section flex flex-col'>
             <div className="pt-[79px]">
-                <div className='flex justify-center'>
-                    <h2 className='text-home-heading lg:w-[90%]'>
-                        Still not sure? <br />
-                        Here are some answers for your queries
-                    </h2>
+                <div className='flex justify-center '>
+                        <h2 className="text-home-heading lg:w-[90%] md:w-[750px] hidden md:block">
+                        Still not sure? Here are some answers for your queries
+                        </h2>
+                        <h2 className="text-home-heading lg:w-[90%] md:w-[750px] block md:hidden">
+                        Still not sure?<br /> Here are some answers for your queries
+                        </h2>
                 </div>
-                <div className='flex justify-center mt-6 mx-4'>
-                    <p className='text-[#000334] w-[90%]'>
-                        If you have further inquiries about our Google Workspace, Google Workspace Pricing, do not hesitate to reach out to us. Below are the frequently asked questions regarding our services.
-                    </p>
+                <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
+                        <p className='subHeadingPara lg:w-[60%] md:w-[750px] sm:w-[600px] sm:opacity-100 opacity-70'>
+                        If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
+                        </p>
                 </div>
             </div>
 
@@ -107,7 +109,7 @@ const FAQs: React.FC<FAQsProps> = () => {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

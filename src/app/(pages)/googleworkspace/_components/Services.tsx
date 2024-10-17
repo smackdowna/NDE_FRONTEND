@@ -50,7 +50,7 @@ const Services = () => {
                 />
             </div>
             <div className='flex justify-center text-center'>
-                    <span className='text-[26px] md:text-[43px] 2xl:text-[54px] max-sm:w-[292px]  font-900 font-roboto text-home-heading relative'>Services What We Provide For You</span>
+                    <h2 className=' text-home-heading relative'>Services What We Provide For You</h2>
                 </div>
             <div className='grid services-grid mt-[32px]'>
                 {servicesData.map((service, index) => (
@@ -61,7 +61,7 @@ const Services = () => {
                     <h3 className='text-home-primary transition-all duration-500 ease-in-out group-hover:text-white'>
                         {service.title}
                     </h3>
-                    <p className='transition-all duration-500 ease-in-out group-hover:text-white '>
+                    <p className='transition-all duration-500 ease-in-out group-hover:text-white pb-6'>
                         {service.description}
                     </p>
                     <Image src={service.icon} alt='icon' className='absolute bottom-0 right-0 rounded-xl transition-opacity duration-500 ease-in-out group-hover:opacity-50' />
