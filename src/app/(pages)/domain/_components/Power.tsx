@@ -17,14 +17,21 @@ const Power = () => {
     return (
         <section className='power-domain bg-domain-primary-card'>
                 <div className='power-domain-content'>
-                    <h2 className='text-home-heading text-left'>
+                    <h2 className='text-home-heading text-left hide-1024'>
                         The Power of NDE, now on your website
                     </h2>
+                    <h2 className='text-home-heading text-left show-1024'>
+                        Get More with Your Domain
+                    </h2>
+                    <h5 className='text-home-heading text-left show-360'>
+                        The Power of NDE, now on your website
+                    </h5>
                     <div className='flex flex-col gap-[18px] md:gap-[22px] xl:gap-[23.3px] 3xl:gap-[20.2px] mt-7 md:mt-10 xl:mt-[36.64px] 3xl:mt-[30.64px]'>
                         {features.map((feature, index) => (
                             <div className='flex gap-4' key={index}>
                                 <Image src={ICONS.arrowCricle} alt='circlecheck' />
-                                <p className='text-[#000334] text-left'>{feature}</p>
+                                <p className='text-[#000334] text-left sm:block hidden'>{feature}</p>
+                                <span className='text-[#000334] text-left sub-para sm:hidden block'>{feature}</span>
                             </div>
                         ))}
                     </div>

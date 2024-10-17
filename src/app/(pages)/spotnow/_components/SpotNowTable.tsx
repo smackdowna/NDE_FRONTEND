@@ -76,16 +76,7 @@ const SpotNowTable: React.FC = () => {
 
     return (
         <div className='plans bg-[#F3F4FD] py-14 max-2xl:py-8'>
-           
-           <div className="plansTitle w-full flex sm:hidden items-center justify-center">
-            <Title
-                title='Choose Your Plan'
-                description='Businesses just love working with us!' 
-                titleWidth=''
-                descriptionWidth='max-2xl:w-[638px]  '
-                />
-           </div>
-           <div className="plansTitle w-full hidden sm:flex items-center justify-center">
+           <div className="plansTitle w-full flex md:hidden items-center justify-center">
             <Title
                 title='Choose Your Plan'
                 description='Businesses just love working with us!' 
@@ -93,7 +84,7 @@ const SpotNowTable: React.FC = () => {
                 descriptionWidth='max-2xl:w-[638px]  '
                 />
            </div>
-           <div className="plansTitle w-full hidden lg:flex items-center justify-center">
+           <div className="plansTitle w-full hidden md:flex items-center justify-center">
             <Title
                 title='Find the right plan for your business.'
                 description='Choose the Spot Now’s edition that best fits your business.' 

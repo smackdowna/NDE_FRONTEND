@@ -1,5 +1,5 @@
 section {
-  padding: 100px 80px;
+  padding: 80px;
 }
 
 h1,
@@ -44,6 +44,20 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
 .sub-para {
   font-family: Roboto Serif;
   font-size: 20px;
@@ -73,7 +87,7 @@ h4 {
   }
   p {
     font-size: 17px;
-    line-height: 28.05px;
+    line-height: 1.65;
   }
   .sub-para {
     font-size: 15px;
@@ -84,6 +98,10 @@ h4 {
     font-size: 26px;
     line-height: 31.2px;
   }
+}
+
+.subPara-center {
+  text-align: center !important;
 }
 
 @media (max-width: 1220px) {
@@ -185,11 +203,11 @@ section.switch-domain .small-image {
 }
 
 section.switch-domain .switch-content {
-  flex-basis: 45%;
+  flex-basis: 60%;
 }
 
 section.switch-domain .big-image {
-  width: 40%;
+  width: 35%;
 }
 
 @media (max-width: 1024px) {
@@ -348,5 +366,58 @@ section.switch-domain .big-image {
   .hero h1 {
     font-size: 18px;
     line-height: 70px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .faqSection h4 {
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 550px) {
+  .first-flex,
+  .second-flex {
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-inline: auto;
+  }
+
+  .right-domain h2 {
+    display: none !important;
+  }
+}
+
+.show-1024 {
+  display: none;
+}
+
+.hide-1024 {
+  display: block;
+}
+
+.show-360 {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .show-1024 {
+    display: block;
+  }
+
+  .hide-1024 {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .show-1024 {
+    display: none;
+  }
+
+  .show-360 {
+    display: block;
   }
 }

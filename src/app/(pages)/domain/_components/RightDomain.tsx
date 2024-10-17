@@ -1,6 +1,7 @@
 import { ICONS, IMAGES } from '@/assets';
 import Image from 'next/image';
 import React from 'react';
+import './style.css'
 
 interface InfoSectionProps {
   title: string;
@@ -9,8 +10,10 @@ interface InfoSectionProps {
 }
 
 const InfoSection: React.FC<InfoSectionProps> = ({ title, description, cardWidth }) => (
-  <div className={`flex flex-col gap-[6px] md:gap-[14px] xl:gap-[10px] 3xl:gap-4 w-[740px] max-2xl:w-[550px] max-xl:w-[400px] max-md:w-[300px] ${cardWidth}`}>
-    <span className='text-[24px] md:text-[26px] lg:text-[30px] 3xl:text-[38px] font-900 font-roboto text-home-heading tracking-tighter'>{title}</span>
+  <div className={`flex flex-col gap-[6px] md:gap-[14px] xl:gap-[10px] 3xl:gap-4 w-full ${cardWidth}`}>
+    <h3 className='text-home-heading md:block hidden text-left'>{title}</h3>
+    <h4 className='text-home-heading sm:block md:hidden hidden text-left'>{title}</h4>
+    <h5 className='text-home-heading sm:hidden block text-left'>{title}</h5>
     <p className='text-[#000334] text-left'>{description}</p>
   </div>
 );
@@ -48,9 +51,9 @@ const RightDomain: React.FC = () => {
   ];
 
   return (
-    <section className='right-domain bg-domain-primary-card'>
+    <section className='right-domain bg-domain-secondary-card'>
       {/* Heading */}
-     <div className="title d-flex flex-col gap-4 items-center md:w-[95%] w-full mb-5 mx-auto">
+     <div className="title d-flex flex-col gap-4 items-center md:w-[95%] w-full mb-8 mx-auto">
       <h2 className='text-center tracking-tight text-home-heading mx-auto'>
           Finding the Right Domain Name
         </h2>
@@ -58,13 +61,13 @@ const RightDomain: React.FC = () => {
           It&apos;s easier than you think!
         </p>
      </div>
-      <div className="flex flex-col gap-[97px] md:gap-20 xl:gap-[126.5px] 2xl:gap-[89.78px]">
+      <div className="flex flex-col gap-[97px] md:gap-20 xl:gap-[126.5px] 2xl:gap-[89.78px] items-center">
         
       <div className='first-flex flex flex-col-reverse gap-10 md:gap-[30px] xl:gap-[102px] 3xl:gap-[197px] justify-between sm:flex-col md:flex-row items-center'>
-        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] w-[320px] md:w-[490px] xl:w-[490px] 3xl:w-[698px]'>
+        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] '>
           {
             infoSectionContent1.map((section , index) => 
-              <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"  w-full md:w-[490px] xl:w-[550px] 3xl:w-[698px]"}/>
+              <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"w-full"}/>
             )
             }
           
@@ -136,10 +139,10 @@ const RightDomain: React.FC = () => {
             <div className="w-full bg-gradient-to-b from-customTransparent to-customWhite h-[32px] absolute bottom-0"></div>
           </div>
         </div>
-        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] w-[320px] md:w-[490px] xl:w-[490px] 3xl:w-[698px]'>
+        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] '>
         {
             infoSectionContent2.map((section , index) => 
-              <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"  w-full md:w-[490px] xl:w-[550px] 3xl:w-[698px]"} />
+              <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"  w-full "} />
             )
             }
         </div>

@@ -64,7 +64,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     }, [isOpen]);
 
     return (
-        <div className='w-full max-w-[850px] mx-auto'>
+        <div className='faqSection w-full max-w-[850px] mx-auto'>
             <div onClick={toggleAccordion} className="py-4 border-b-2 border-[#282C33] border-opacity-10 cursor-pointer px-[25px]">
             <div className='flex justify-between' >
                 <h4 className='text-[#000659]'>{question}</h4>
@@ -88,16 +88,19 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
-        <div className={`bg-faq-bg faq-section flex flex-col py-[50px] px-0 md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px] `}>
+        <section className={`bg-faq-bg faq-section flex flex-col sm:gap-[40px] md:gap-[10px] lg:gap-[12px] gap-[30px]`}>
 
             <div>
                 <div className='flex justify-center '>
-                    <h2 className="text-home-heading lg:w-[90%]">
+                    <h2 className="text-home-heading lg:w-[90%] md:w-[750px] hidden md:block">
                     Still not sure? Here are some answers for your queries
+                    </h2>
+                    <h2 className="text-home-heading lg:w-[90%] md:w-[750px] block md:hidden">
+                    Still not sure?<br /> Here are some answers for your queries
                     </h2>
                 </div>
                 <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
-                    <p className='lg:w-[60%] w-[80%]'>
+                    <p className='subHeadingPara lg:w-[60%] md:w-[750px] sm:w-[600px] sm:opacity-100 opacity-70'>
                     If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                     </p>
                 </div>
@@ -110,7 +113,7 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
