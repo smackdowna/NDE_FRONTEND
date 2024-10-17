@@ -88,7 +88,7 @@ interface FAQsProps {
 
 const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
     return (
-        <section className={`bg-faq-bg faq-section flex flex-col py-[50px] md:py-20 md:px-7 xl:px-[252px] 3xl:px-[395px] `}>
+        <section className={`bg-faq-bg faq-section flex flex-col sm:gap-[40px] md:gap-[10px] lg:gap-[12px] gap-[30px]`}>
 
             <div>
                 <div className='flex justify-center '>
@@ -100,7 +100,7 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
                     </h2>
                 </div>
                 <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
-                    <p className='lg:w-[60%] md:w-[750px] sm:w-[600px]'>
+                    <p className='subHeadingPara lg:w-[60%] md:w-[750px] sm:w-[600px] sm:opacity-100 opacity-70'>
                     If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                     </p>
                 </div>

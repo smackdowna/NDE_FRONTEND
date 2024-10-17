@@ -363,9 +363,9 @@ const Hero = () => {
         style={{ zIndex: "-1" }}
       />
       <div className="flex flex-col justify-center items-center z-10 ">
-        <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] justify-center items-center w-fit mx-auto">
+        <div className="font-900 text-[16px] md:text-[33px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[78px] leading-[30px] md:leading-[46px] xl:leading-[67px] text-primary-500 flex gap-[5px] w-fit justify-center items-center mx-auto ">
           <h1 className="w-auto text-center text-[#000659]">Expand your horizons with .</h1>
-          <h1 className="w-[150px] max-md:w-[90px] ">  
+          <h1 className="w-[100px] max-md:w-[120px]">  
           
             <TextTransition
               direction="down"
@@ -380,9 +380,12 @@ const Hero = () => {
           </h1>
         </div>
 
-        <h4 className="text-center text-[#000659] tracking-tight font-roboto">
+        <h4 className="text-center text-[#000659] tracking-tight font-roboto hidden sm:block">
           Get started with the perfect domain.
         </h4>
+        <p className="text-center text-[#000659] sm:hidden block">
+          Get started with the perfect domain.
+        </p>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
         <div className="flex mt-[41px] md:mt-[33.87px] 3xl:mt-[40.87px] rounded-xl px-4 sm:px-0">
@@ -406,10 +409,10 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <span className="text-center text-[17px] 2xl:text-[24px] leading-[20.4px] font-500 3xl:font-900 pt-[10px] max-lg:pt-10 max-md:pt-10 lg:pt-[120px] text-home-body justify-center font-roboto-serif z-10 pb-[20px] md:pb-[30px] lg:pb-[40px] px-[4px] max-w-[301px] md:max-w-full mx-auto">
+      <span className="text-center text-[17px] 2xl:text-[24px] leading-[20.4px] font-900 3xl:font-900 sm:pt-[100px] pt-[10px] max-lg:pt-10 md:pt-[150px] lg:pt-[120px] text-home-body justify-center font-roboto z-10 pb-[20px] md:pb-[10px] lg:pb-[40px] px-[4px] max-w-[301px] md:max-w-full mx-auto">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
-      <div className="flex justify-center items-center gap-4 md:gap-8 lg:gap-16 pb-6 overflow-hidden z-10">
+      <div className="flex justify-center items-center gap-7 sm:gap-8 md:gap-10 lg:gap-16 pb-6 overflow-hidden z-10">
         {[
           IMAGES.brand2,
           IMAGES.brand3,
@@ -423,7 +426,7 @@ const Hero = () => {
           IMAGES.brand7,
           ICONS.gol,
         ].map((src, index) => (
-          <Image key={index} src={src} alt="" className="w-[120px]" />
+          <Image key={index} src={src} alt="" className="w-[110px]" />
         ))}
       </div>
       {isModalOpen && (
