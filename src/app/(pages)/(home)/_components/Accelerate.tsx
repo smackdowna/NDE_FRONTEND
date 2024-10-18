@@ -18,7 +18,7 @@ const Button = ({ text, onClick, isActive }: ButtonProps) => (
     <button
         onClick={onClick}
         className={`text-[15px] border-[2px]
-        ${isActive ? "bg-transparent md:bg-[#0011FF] border-[#0011FF] md:text-white sm:text-[#0011FF]" : "text-black border-black"} 
+        ${isActive ? "bg-transparent md:bg-[#0011FF] border-[#0011FF] md:text-white sm:text-[#0011FF]" : "text-black border-[#0011FF]"} 
         font-700 hover:text-white hover:bg-[#0011FF]  p-2 rounded`}
     >
         <span>{text}</span>

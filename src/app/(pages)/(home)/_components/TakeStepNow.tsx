@@ -5,7 +5,7 @@ import './style.css'
 const TakeStepNow = () => {
     return (
         <div className='nextStep relative bg-background-take flex flex-col gap-4 pb-20 '>
-            <div className="absolute inset-0 z-0 opacity-80  ">
+            <div className="absolute inset-0 z-0 opacity-5  ">
                 <Image 
                     src={IMAGES.banner} 
                     alt="banner" 

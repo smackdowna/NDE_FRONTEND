@@ -176,18 +176,7 @@ span.testimonial-company {
   }
 }
 
-@media (max-width: 1220px) {
-  .hero h1 {
-    font-size: 42px;
-    line-height: 50.4px;
-  }
-}
-
 @media (max-width: 1120px) {
-  .hero h1 {
-    font-size: 38px;
-    line-height: 45.6px;
-  }
   .accelerate h2 {
     font-size: 32px;
     line-height: 38.4px;
@@ -212,6 +201,11 @@ span.testimonial-company {
   h2 {
     font-size: 38px;
     line-height: 45.6px;
+  }
+
+  .hero p {
+    max-width: 600px;
+    line-height: 28.05px;
   }
 }
 
@@ -364,5 +358,20 @@ span.testimonial-company {
 
   .footer-links {
     font-weight: 600 !important;
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 1280px) {
+  .testimonials h2 {
+    font-size: 43px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 360px) {
+  .nextStep h3 {
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
   }
 }
