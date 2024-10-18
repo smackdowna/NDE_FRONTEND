@@ -9,6 +9,7 @@ import trash from "../assets/cart/trash.png";
 
 import { useQueryClient } from '@tanstack/react-query';
 import { showToast } from './../services/showToast';
+import './Summary.css'
 
 
 
@@ -267,117 +268,118 @@ const SummaryPage = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-28">
-          <table className="min-w-full divide-y divide-gray-200 pb-10">
-            <thead className="bg-white text-left whitespace-nowrap">
-              <tr className=" ">
-                <th className="px-6 py-4 text-xs md:text-sm lg:text-base xl:text-sm font-bold 2xl:text-lg text-black">
-                  Product
-                </th>
-                <th className="text-xs md:text-sm lg:text-base font-bold xl:text-sm text-black 2xl:text-lg tracking-wider">
-                  Quantity
-                </th>
-                <th className="text-xs md:text-sm lg:text-base font-bold xl:text-sm text-black 2xl:text-lg tracking-wider">
-                  Duration
-                </th>
-                <th className=" text-xs md:text-sm lg:text-base font-bold xl:text-sm text-black 2xl:text-lg tracking-wider">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product, index) => (
-                <tr key={index} className="tracking-tighter">
-                  <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
-                    <Image
-                      src={product.img}
-                      alt={product.name}
-                      className="w-6 h-6 md:w-12 md:h-12   lg:w-12 lg:h-12"
-                    />
-                    <div className="ml-2">
-                      <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm ">
-                        {product.name}
-                      </h3>
-                      <a
-                        href={product.link}
-                        className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm "
-                      >
-                        {product.link}
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <input
+          <table className="min-w-full divide-y divide-gray-200 table-fixed">
+          <thead className="bg-white text-left whitespace-nowrap">
+            <tr>
+              <th className="w-[35%] px-6 py-4 text-black">
+                <h5>Product</h5>
+              </th>
+              <th className="w-[20%] text-xs md:text-sm text-black">
+                <h5>Quantity</h5>
+              </th>
+              <th className="w-[20%] text-xs md:text-sm text-black">
+                <h5>Duration</h5>
+              </th>
+              <th className="w-[25%] text-xs md:text-sm text-black">
+                <h5>Price</h5>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {products.map((product, index) => (
+              <tr key={index} className="tracking-tighter">
+                <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
+                  <Image
+                    src={product.img}
+                    alt={product.name}
+                    width={48}
+                    height={48}
+                    className="w-6 h-6 md:w-12 md:h-12 lg:w-12 lg:h-12"
+                  />
+                  <div className="ml-2">
+                    <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm text-left">
+                      {product.name}
+                    </h3>
+                    <a
+                      href={product.link}
+                      className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm"
+                    >
+                      {product.link}
+                    </a>
+                  </div>
+                </td>
+                <td className=" py-4">
+                  <input
                     onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
                     value={product?.quantity}
-                      type="number"
-                      // min="1"
-                      defaultValue="1"
-                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center"
-                    />
-                  </td>
-                   <td className="text-sm md:text-base lg:text-lg text-gray-800"> 
-                    {product.period && (
-                      <p className="xl:text-sm 2xl:text-lg">
-                        {product.period} 
-                        {/*{isAuthenticated ? "" : Number(product.period) > 1 ? "years" : "year"} */}
-                     </p>
-                      )}
-                      </td>
-
-                  <td className="text-sm md:text-base lg:text-lg text-gray-800">
-                    <div className=" items-center justify-around gap-1">
-                      <p className="font-semibold xl:text-sm 2xl:text-lg">{product.price}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <svg
-                     onClick={() => {
+                    type="number"
+                    min="1"
+                    className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
+                  />
+                </td>
+                <td className=" py-4  text-gray-800">
+                  <select 
+                    className="w-full px-2 py-1 border rounded-sm "
+                    value={product.period}
+                    onChange={(e) => {/* Handle period change */}}
+                  >
+                    <option value="Annually">Annually</option>
+                    <option value="Monthly">Monthly</option>
+                  </select>
+                </td>
+                <td className=" py-4  text-gray-800">
+                  {product.price}
+                </td>
+                <td className=" py-4">
+                  <svg
+                    onClick={() => {
                       if (product?.cartId) {
                         removeProductFromCart(product.cartId, product.domainName || "");
                       } else {
                         console.log(product);
                       }
                     }}
-                     className="cursor-pointer"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3 6H5H21"
-                        stroke="black"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M10 11V17"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M14 11V17"
-                        stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    className="cursor-pointer"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="black"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M10 11V17"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M14 11V17"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
           
           <div className="flex flex-col divide-y divide-gray-200">
             <div className="flex items-center px-4 py-4 text-sm text-blue-800"></div>

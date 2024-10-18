@@ -159,6 +159,7 @@ import charmCircleTick from "@/assets/icons/charm_circle-tick.svg"
 import xCircle from "@/assets/icons/x-circle.svg"
 import playVideo from "@/assets/icons/lets-icons_video-fill.svg"
 import framServices from "@/assets/icons/Frame 69876.svg"
+import angleUp from "@/assets/icons/angleup.svg"
 
 
 
@@ -259,7 +260,8 @@ import framServices from "@/assets/icons/Frame 69876.svg"
     charmCircleTick,
     xCircle,
     playVideo,
-    framServices
+    framServices,
+    angleUp
 
     
   };
