@@ -26,7 +26,7 @@ const DomainCard: React.FC<DomainCardProps> = ({
   <div
     onMouseEnter={() => setHoveredCard(index)}
     onMouseLeave={() => setHoveredCard(null)}
-    className={`relative hover:scale-105 max-w-[400px] w-[95%] group shadow-[0px_2px_2px_0px_#00000040]  rounded-[10px] p-[2px] transition-all duration-300 ${
+    className={`domainCard relative hover:scale-105 max-w-[380px] w-[100%] group shadow-[0px_2px_2px_0px_#00000040]  rounded-[10px] p-[2px] transition-all duration-300 ${
       hoveredCard === index
         ? "bg-gradient-to-r from-blue-500 to-yellow-500"
         : "bg-transparent"

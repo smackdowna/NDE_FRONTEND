@@ -264,6 +264,10 @@ section.switch-domain .big-image {
   .get-offer-hidden {
     display: flex;
   }
+
+  .perfectDomain-grid {
+    gap: 12px;
+  }
 }
 
 @media (max-width: 920px) {
@@ -273,6 +277,12 @@ section.switch-domain .big-image {
 
   .perfectDomain-grid {
     grid-template-columns: repeat(2, 1fr);
+    width: 85%;
+    gap: 24px;
+  }
+
+  .perfectDomain-grid .domainCard {
+    width: 100%;
   }
 }
 
@@ -374,6 +384,14 @@ section.switch-domain .big-image {
     font-size: 17px;
     font-weight: 900;
     line-height: 1.2;
+  }
+}
+
+@media (max-width: 834px) {
+  .first-flex,
+  .second-flex {
+    width: 100% !important;
+    margin-inline: auto;
   }
 }
 
