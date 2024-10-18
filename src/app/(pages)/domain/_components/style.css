@@ -468,3 +468,15 @@ section.switch-domain .big-image {
     width: 100%;
   }
 }
+
+@media (max-width: 500px) {
+  .inpContainer input {
+    width: 280px;
+  }
+}
+
+@media (max-width: 380px) {
+  .inpContainer input {
+    width: 100%;
+  }
+}
