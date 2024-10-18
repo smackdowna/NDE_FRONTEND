@@ -129,7 +129,7 @@ const Perfectdomain: React.FC = () => {
   ];
 
   return (
-    <section className="flex flex-col gap-4 md:gap-[7.56px] xl:gap-[30px] 3xl:gap-[37px] bg-home-primary-card">
+    <section className="perfectDomain flex flex-col gap-4 md:gap-[7.56px] xl:gap-[30px] 3xl:gap-[37px] bg-home-primary-card">
       <div className="flex flex-col items-center justify-center">
         {/* Build your brand with the perfect domain name span */}
         <h2 className="text-center  text-home-heading z-10 tracking-tight mx-auto sm:block hidden lg:max-w-[90%] md:max-w-[500px]">

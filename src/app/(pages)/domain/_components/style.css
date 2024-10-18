@@ -385,6 +385,10 @@ section.switch-domain .big-image {
     margin-inline: auto;
   }
 
+  .second-flex {
+    flex-direction: column-reverse !important;
+  }
+
   .right-domain h2 {
     display: none !important;
   }
@@ -419,5 +423,21 @@ section.switch-domain .big-image {
 
   .show-360 {
     display: block;
+  }
+}
+
+@media (max-width: 1857px) {
+  .firstCard,
+  .secondCard {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .firstCard,
+  .secondCard,
+  .infoSection {
+    flex-basis: 100%;
+    width: 100%;
   }
 }
