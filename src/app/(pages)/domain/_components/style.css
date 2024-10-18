@@ -387,11 +387,20 @@ section.switch-domain .big-image {
   }
 }
 
-@media (max-width: 834px) {
+@media (max-width: 1024px) {
   .first-flex,
-  .second-flex {
+  .second-flex,
+  .infoSection {
     width: 100% !important;
-    margin-inline: auto;
+    padding-left: 0px !important;
+  }
+
+  .right-domain h2 {
+    text-align: left !important;
+  }
+
+  .title {
+    width: 100%;
   }
 }
 
