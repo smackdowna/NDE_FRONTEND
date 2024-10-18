@@ -366,3 +366,10 @@ span.testimonial-company {
     font-weight: 600 !important;
   }
 }
+
+@media (max-width: 1920px) and (min-width: 1280px) {
+  .testimonials h2 {
+    font-size: 43px;
+    line-height: 1.2;
+  }
+}
