@@ -5,6 +5,8 @@ import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { useSelector } from 'react-redux';
 import axios from '@/services/axios';
 import { useQuery } from '@tanstack/react-query';
+import './PaymentPage.css'
+import { ICONS } from '@/assets';
 
 interface CartItem {
     product: string;
@@ -134,94 +136,87 @@ const PaymentPage = () => {
     }
 
     return (
-        <div>
+        <div className="payment w-full">
             <div className='divide-y divide-gray-200'>
                 <Accordion className='divide-y divide-gray-200'>
-                    <AccordionItem key="1" title={`Order Summary (${products.length})`} className='divide-y divide-gray-200'>
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <tbody className="bg-white divide-y divide-gray-200 whitespace-nowrap">
-                                {products.length > 0 ? (
-                                    products.map((product, index) => (
-                                        <tr key={index}>
-                                            <td className="flex items-center px-4 py-4 text-sm text-gray-800">
-                                                <Image src={product.img} alt={product.name} className="w-12 h-12" />
-                                                <div>
-                                                    <h3 className="font-semibold">{product.name}</h3>
-                                                    <a href={product.link} className="text-blue-500 text-sm">{product.link}</a>
-                                                </div>
-                                            </td>
-                                            <td className="text-sm text-gray-800 max-md:hidden">
-                                                {product.domainName ? (
+                    <AccordionItem 
+                        key="1" 
+                        aria-label="Order Summary"
+                        title={
+                            <h3 className="flex justify-between items-center text-lg font-medium">
+                                <span>Order Summary ({products.length})</span>
+                            </h3>
+                        }
+                        className='divide-y divide-gray-200'
+                    >
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {products.length > 0 ? (
+                                        products.map((product, index) => (
+                                            <tr key={index} className="flex flex-col sm:table-row">
+                                                <td className="flex items-center px-2 py-3 sm:px-4 sm:py-4 text-sm text-gray-800">
+                                                    <Image src={product.img} alt={product.name} className="w-8 h-8 sm:w-12 sm:h-12 mr-3" />
                                                     <div>
-                                                        {product.period && <p>{product.period}</p>}
+                                                        <h3 className="font-semibold text-sm sm:text-base text-left">{product.name}</h3>
+                                                        <a href={product.link} className="text-blue-500 text-xs sm:text-sm break-all">{product.link}</a>
                                                     </div>
-                                                ) : "N/A"}
-                                            </td>
-                                            <td className="px-4 py-4 text-sm text-gray-800">
-                                                <div className='flex'>
-                                                    <p className="font-semibold p-4">{product.price}</p>
-                                                    <button className="text-red-500">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-trash" viewBox="0 0 16 16">
-                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                                </td>
+                                                {/* <td className="text-xs sm:text-sm text-gray-800 px-2 py-1 sm:px-4 sm:py-4">
+                                                    {product.domainName ? (
+                                                        <div>
+                                                            {product.period && <p>{product.period}</p>}
+                                                        </div>
+                                                    ) : "N/A"}
+                                                </td> */}
+                                                <td className="px-2 py-2 sm:px-4 sm:py-4 text-sm text-gray-800">
+                                                    <div className='flex  items-center justify-end'>
+                                                        <span className="font-semibold font-roboto">{product.price}</span>
+                                                        {/* <button className="text-red-500 ml-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
+                                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                                            </svg>
+                                                        </button> */}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={3} className="text-center text-gray-500 py-4">No items in cart.</td>
                                         </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan={3} className="text-center text-gray-500 py-4">No items in cart.</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
                     </AccordionItem>
                 </Accordion>
             </div>
-            <table className="min-w-full divide-y divide-gray-200 pb-16">
-                <tbody className="bg-white divide-y divide-gray-200 whitespace-nowrap">
-                    <tr>
-                        <td className="text-sm text-gray-800 px-2">
-                            <ul className='bg-white text-left'>
-                                <li className=''></li>
-                                <li className='py-1'>Subtotal</li>
-                                <li className='py-1'>Tax</li>
-                            </ul>
-                        </td>
-                        <td className="flex items-center px-4 py-4 text-sm text-blue-800"></td>
-                        <td className="px-4 py-4 text-sm text-gray-800">
-                            <div className=''>
-                                <p className='py-1'>₹ {subtotal}</p>
-                                <p className='py-1'>₹ {tax}</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-sm text-gray-800 px-2">
-                            <ul className='bg-white text-left'>
-                                <li className=''></li>
-                                <li className='text-md'>Total</li>
-                            </ul>
-                        </td>
-                        <td className="flex items-center px-4 py-4 text-sm text-blue-800"></td>
-                        <td className="px-4 py-4 text-sm text-gray-800">
-                            <div className=''>
-                                <p className='py-1'>₹ {total}</p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            
+            <div className="w-full items-center justify-between mt-3">
+                <div className='w-full flex items-start justify-between'>
+                    <span className='text-[#0A41FC] font-bold'>Have a Coupon Code?</span>
+                    <div className="flex flex-col items-end gap-2">
+                        <span>Subtotal : ₹ {total}</span>
+                        <span>Tax : ₹ {tax}</span>
+                    </div>
+                </div>
+                <hr />
+                <div className="w-full flex items-center justify-end">
+                    <div className="flex items-center justify-between gap-2">
+                        <span className="text-lg font-medium">Total</span>
+                        <span className="text-lg font-bold">₹ {total + tax}</span>
+                    </div>
+                </div>
+                <hr />
+            </div>
 
-            <div className="flex items-center justify-center">
-            <button
-            className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
-          >
-            Pay ₹ {total}
-          </button>
-          </div>
+            <div className="flex items-center justify-center mt-6">
+                <button className="w-full sm:w-2/4 bg-blue-600 text-white text-sm sm:text-base py-3 rounded hover:bg-blue-700 transition-colors">
+                    Pay ₹{total + tax}
+                </button>
+            </div>
         </div>
     );
 };

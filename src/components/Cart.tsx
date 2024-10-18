@@ -185,7 +185,7 @@ const handleChangeStep = (id:number) => {
                 <div className="flex items-center w-full">
                   <div
                   onClick={() => handleChangeStep(step.id)}
-                    className={`cursor-pointer w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full ${currentStep === step.id ? "bg-green-600" : "bg-gray-300"
+                    className={`cursor-pointer w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full z-[1]  ${currentStep === step.id ? "bg-blue-600" : "bg-gray-300"
                       }`}
                   >
                     {currentStep > step.id ? (
@@ -207,13 +207,13 @@ const handleChangeStep = (id:number) => {
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`w-full h-1 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"
+                      className={`w-full h-1 z-[0] ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"
                         }`}
                     ></div>
                   )}
                 </div>
                 <h6
-                  className={`text-base font-bold mb-2 ${currentStep > step.id ? "text-green-500" : "text-gray-500"
+                  className={`text-base font-medium font-roboto-serif mb-2 ${currentStep > step.id ? "text-green-500" : "text-gray-500"
                     }`}
                 >
                   {step.name}
@@ -247,10 +247,10 @@ const handleChangeStep = (id:number) => {
           <>
             {isLogin ? <div className="flex flex-col justify-center items-center  px-4 ">
               <div className="sm:w-full sm:max-w-sm">
-                <h2 className="mt-2 text-left text-base md:text-base lg:text-lg font-bold leading-9 tracking-tight text-gray-900">
+                <h2 className="mt-2 font-black text-base md:text-base lg:text-lg leading-9 tracking-tight text-gray-900 text-center">
                   Existing User?
                 </h2>
-                <p className="text-sm">Please sign in with your credentials below to continue</p>
+                <p className="text-[20px] lineHeight-[1.2]">Please sign in with your credentials below to continue</p>
               </div>
               <div className="mt-4 sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" action="#" method="POST">
@@ -284,7 +284,7 @@ const handleChangeStep = (id:number) => {
                   </div>
                   <div>
                     <div className="text-sm flex items-center justify-end">
-                      <a href="#" className="font-semibold text-blue-600 hover:text-indigo-500">Forgot password?</a>
+                      <a href="#" className="font-semibold font-roboto-serif text-blue-600 hover:text-indigo-500 text-[17px] lineHeight-[1.2]">Forgot password?</a>
                     </div>
                   </div>
                   <button

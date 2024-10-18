@@ -1,0 +1,70 @@
+th h5 {
+  font-size: 24px;
+}
+
+@media (max-width: 1800px) {
+  th h5 {
+    font-size: 20px;
+  }
+}
+
+td {
+  font-size: 20px !important;
+  padding-inline: 8px;
+}
+
+td input {
+  min-width: 80% !important;
+  border: 0.5px solid #0000004d;
+}
+
+/* content inside select should be small */
+
+@media (max-width: 1800px) {
+  td {
+    font-size: 16px !important;
+  }
+}
+
+/* content inside input field number should be bold */
+input[type="number"] {
+  font-weight: bold;
+}
+
+/* replace the arrows of the input field with a custom icon */
+/* input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* Media Queries */
+@media (max-width: 1500px) {
+  th h5 {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  th h5 {
+    font-size: 16px;
+  }
+
+  td {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  th h5 {
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 12px !important;
+  }
+}

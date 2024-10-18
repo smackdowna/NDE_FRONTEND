@@ -1,0 +1,20 @@
+h2 button svg {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transform: rotate(-90deg);
+}
+
+h2 button {
+  justify-content: space-between;
+}
+
+.payment section {
+  padding: 0px !important;
+}
+
+.payment hr {
+  margin: 10px !important;
+  height: 1px;
+  width: 100%;
+}
