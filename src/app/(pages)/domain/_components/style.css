@@ -264,6 +264,10 @@ section.switch-domain .big-image {
   .get-offer-hidden {
     display: flex;
   }
+
+  .perfectDomain-grid {
+    gap: 12px;
+  }
 }
 
 @media (max-width: 920px) {
@@ -273,6 +277,12 @@ section.switch-domain .big-image {
 
   .perfectDomain-grid {
     grid-template-columns: repeat(2, 1fr);
+    width: 85%;
+    gap: 24px;
+  }
+
+  .perfectDomain-grid .domainCard {
+    width: 100%;
   }
 }
 
@@ -377,12 +387,33 @@ section.switch-domain .big-image {
   }
 }
 
+@media (max-width: 1024px) {
+  .first-flex,
+  .second-flex,
+  .infoSection {
+    width: 100% !important;
+    padding-left: 0px !important;
+  }
+
+  .right-domain h2 {
+    text-align: left !important;
+  }
+
+  .title {
+    width: 100%;
+  }
+}
+
 @media (max-width: 550px) {
   .first-flex,
   .second-flex {
     flex-direction: column !important;
     width: 100% !important;
     margin-inline: auto;
+  }
+
+  .second-flex {
+    flex-direction: column-reverse !important;
   }
 
   .right-domain h2 {
@@ -419,5 +450,33 @@ section.switch-domain .big-image {
 
   .show-360 {
     display: block;
+  }
+}
+
+@media (max-width: 1857px) {
+  .firstCard,
+  .secondCard {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .firstCard,
+  .secondCard,
+  .infoSection {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .inpContainer input {
+    width: 280px;
+  }
+}
+
+@media (max-width: 380px) {
+  .inpContainer input {
+    width: 100%;
   }
 }

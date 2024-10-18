@@ -63,8 +63,8 @@ const RightDomain: React.FC = () => {
      </div>
       <div className="flex flex-col gap-[97px] md:gap-20 xl:gap-[126.5px] 2xl:gap-[89.78px] items-center">
         
-      <div className='first-flex flex flex-col-reverse gap-10 md:gap-[30px] xl:gap-[102px] 3xl:gap-[197px] justify-between sm:flex-col md:flex-row items-center'>
-        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] '>
+      <div className='first-flex flex flex-col-reverse gap-8 justify-between sm:flex-col md:flex-row items-center'>
+        <div className='infoSection flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] w-[45%]'>
           {
             infoSectionContent1.map((section , index) => 
               <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"w-full"}/>
@@ -74,8 +74,8 @@ const RightDomain: React.FC = () => {
         </div>
 
             {/* First card */}
-        <div className='flex w-[100%]'>
-          <div className='relative h-[549px] md:h-[549px] 3xl:h-[920.391px] overflow-hidden'>
+        <div className='firstCard flex'>
+          <div className='relative h-[549px] md:h-[549px] 3xl:h-[820.391px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-16" />
               <Image src={ICONS.Mweb1} alt="rightdomain" className="w-full mb-16" />
@@ -92,7 +92,7 @@ const RightDomain: React.FC = () => {
             <div className="w-full bg-start-gradient h-[19px] absolute top-0"></div>
             <div className="w-full bg-gradient-to-b from-customTransparent to-customWhite h-[32px] absolute bottom-0"></div>
           </div>
-          <div className='relative h-[549px] md:h-[549px] 3xl:h-[920.391px] overflow-hidden'>
+          <div className='relative h-[549px] md:h-[549px] 3xl:h-[820.391px] overflow-hidden'>
           
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-8" />
@@ -108,9 +108,9 @@ const RightDomain: React.FC = () => {
         </div>
       </div>
 
-      <div className='second-flex flex flex-col gap-10 md:gap-[30px] 2xl:gap-[102px] 3xl:gap-[197px] justify-between sm:flex-col md:flex-row items-center'>
-      <div className='flex gap-[27.7px] md:gap-[38px] 2xl:gap-[45px] 3xl:gap-[64.22px] w-[100%]'>
-          <div className='relative h-[549px] md:h-[549px] 3xl:h-[920.391px] overflow-hidden'>
+      <div className='second-flex flex flex-col gap-8 justify-between sm:flex-col md:flex-row items-center'>
+      <div className='secondCard flex gap-[27.7px] md:gap-[38px] 2xl:gap-[45px] 3xl:gap-[64.22px]'>
+          <div className='relative h-[549px] md:h-[549px] 3xl:h-[820.391px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-16" />
               <Image src={ICONS.Mweb1} alt="rightdomain" className="w-full mb-16" />
@@ -126,7 +126,7 @@ const RightDomain: React.FC = () => {
             <div className="w-full bg-start-gradient h-[19px] absolute top-0"></div>
             <div className="w-full bg-gradient-to-b from-customTransparent to-customWhite h-[32px] absolute bottom-0"></div>
           </div>
-          <div className='relative h-[549px] md:h-[549px] 3xl:h-[920.391px] overflow-hidden'>
+          <div className='relative h-[549px] md:h-[549px] 3xl:h-[820.391px] overflow-hidden'>
             <div className='vertical-marquee'>
               <Image src={ICONS.Mweb4} alt="rightdomain" className="w-full mb-8" />
               <Image src={ICONS.Mweb} alt="rightdomain" className="w-full mb-8" />
@@ -139,7 +139,7 @@ const RightDomain: React.FC = () => {
             <div className="w-full bg-gradient-to-b from-customTransparent to-customWhite h-[32px] absolute bottom-0"></div>
           </div>
         </div>
-        <div className='flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] '>
+        <div className='infoSection flex flex-col gap-5 md:gap-[10px] xl:gap-[21px] 3xl:gap-[31.47px] w-[45%] '>
         {
             infoSectionContent2.map((section , index) => 
               <InfoSection key={index} title={section?.title} description={section?.description} cardWidth={"  w-full "} />

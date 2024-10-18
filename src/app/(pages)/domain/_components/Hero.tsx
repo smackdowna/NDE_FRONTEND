@@ -388,7 +388,7 @@ const Hero = () => {
         </p>
       </div>
       <div className="flex justify-center w-full pb-10 max-lg:pb-4 max-md:pb-2 z-10">
-        <div className="flex mt-[41px] md:mt-[33.87px] 3xl:mt-[40.87px] rounded-xl px-4 sm:px-0">
+        <div className="inpContainer flex mt-[41px] md:mt-[33.87px] 3xl:mt-[40.87px] rounded-xl px-4 sm:px-0">
 
           <input
             className="w-full sm:w-[328px] md:w-[581px] xl:w-[736px] 3xl:w-[1028px] p-4 border rounded-l-lg max-md:placeholder:text-[12px] focus:outline-none focus:border-0"
