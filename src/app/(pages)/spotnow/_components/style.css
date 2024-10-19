@@ -708,7 +708,7 @@ th button {
   }
 
   .hero-padding {
-    padding-top: 40px !important;
+    padding-top: 60px !important;
   }
 }
 
@@ -763,5 +763,51 @@ th button {
   .heroImage {
     max-width: 90vw !important;
     width: 90vw !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .power h2 {
+    font-size: 56px;
+    line-height: 67.2px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .power h2 {
+    font-size: 48px;
+    line-height: 57.6px;
+    width: 700px;
+  }
+}
+
+@media (max-width: 920px) {
+  .power h2 {
+    font-size: 43px;
+    line-height: 51.6px;
+    width: 600px;
+  }
+}
+
+@media (max-width: 720px) {
+  .power h2 {
+    width: 95%;
+  }
+}
+
+@media (max-width: 600px) {
+  .power h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+    width: 98%;
+  }
+}
+
+@media (max-width: 360px) {
+  .power h2 {
+    font-size: 26px;
+    line-height: 31.2px;
+    width: 98%;
   }
 }
