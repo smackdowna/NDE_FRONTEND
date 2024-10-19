@@ -221,7 +221,7 @@ h6 {
 
 @media (max-width: 834px) {
   .powerGrid {
-    grid-template-columns: repeat(1, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
@@ -809,5 +809,50 @@ th button {
     font-size: 26px;
     line-height: 31.2px;
     width: 98%;
+  }
+}
+
+@media (max-width: 1110px) {
+  .powerGrid {
+    padding-inline: 40px;
+  }
+
+  .powerGrid span {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 28.13px;
+    color: #000659;
+    text-align: center;
+  }
+
+  .powerGrid p {
+    font-family: Roboto Serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24.75px;
+    text-align: center;
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 720px) {
+  .powerGrid {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .powerGrid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    padding-inline: 100px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .powerGrid {
+    width: 100%;
+    padding-inline: 24px;
   }
 }
