@@ -460,15 +460,6 @@ section.switch-domain .big-image {
   }
 }
 
-@media (max-width: 1024px) {
-  .firstCard,
-  .secondCard,
-  .infoSection {
-    flex-basis: 100%;
-    width: 100%;
-  }
-}
-
 @media (max-width: 500px) {
   .inpContainer input {
     width: 280px;
@@ -513,5 +504,23 @@ section.switch-domain .big-image {
   .featureCard h5,
   .featureCard p {
     text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  section.right-domain {
+    padding-inline: 100px;
+  }
+}
+
+@media (max-width: 720px) {
+  section.right-domain {
+    padding-inline: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  section.right-domain {
+    padding-inline: 16px;
   }
 }
