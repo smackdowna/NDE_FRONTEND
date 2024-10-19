@@ -909,3 +909,53 @@ p.sub {
 .swipe-table::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
+
+.plans .toogleBackground {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background: linear-gradient(180deg, #0164f9 0%, #01a9a9 100%);
+  opacity: 0.6;
+  box-shadow: 1px 1px 4px 1px #00000040 inset;
+  border-radius: 1rem;
+}
+
+.toogleBoxContent {
+  opacity: 1 !important;
+  z-index: 1;
+}
+
+h6.planPrice {
+  font-size: 17px;
+  line-height: 19.92px;
+  font-weight: 900;
+  color: black;
+}
+
+@media (max-width: 600px) {
+  section.plans {
+    padding: 40px 16px;
+  }
+}
+span.discoverGradient {
+  background: linear-gradient(90.08deg, #016afb 0.53%, #01a6ab 38.43%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 490px) {
+  .discover h2 {
+    font-size: 28px !important;
+    line-height: 33.6px !important;
+  }
+
+  .discover .mainpara {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
+
+
+
