@@ -480,3 +480,38 @@ section.switch-domain .big-image {
     width: 100%;
   }
 }
+
+@media (max-width: 1600px) {
+  section.getDomain {
+    padding-inline: 40px;
+  }
+
+  .featureCard {
+    width: 380px;
+  }
+
+  .featureCard h3 {
+    font-size: 24px;
+    line-height: 28.13px;
+  }
+}
+
+@media (max-width: 1410px) {
+  .featureCard {
+    width: 320px;
+  }
+}
+
+@media (max-width: 920px) {
+  .featureCard {
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .featureCard h3,
+  .featureCard h5,
+  .featureCard p {
+    text-align: center;
+  }
+}
