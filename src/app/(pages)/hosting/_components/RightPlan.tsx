@@ -1,5 +1,5 @@
 // pages/RightPlan.tsx or components/RightPlan.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback} from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -68,6 +68,50 @@ const RightPlan: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showInputForm, setShowInputForm] = useState<boolean>(true); // Ensure this state is defined
 
+
+  const tableRef = useRef<HTMLDivElement | null>(null);
+  const [startX, setStartX] = useState<number>(0);
+  const [scrollLeft, setScrollLeft] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    if (!tableRef.current) return;
+    setStartX(e.touches[0].pageX - tableRef.current.offsetLeft);
+    setScrollLeft(tableRef.current.scrollLeft);
+    setIsDragging(true);
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || !tableRef.current) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - tableRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableRef.current.scrollLeft = scrollLeft - walk;
+  }, [isDragging, startX, scrollLeft]);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  useEffect(() => {
+    const table = tableRef.current;
+    if (!table) return;
+
+    const touchStartHandler = (e: TouchEvent) => handleTouchStart(e as unknown as React.TouchEvent<HTMLDivElement>);
+    const touchMoveHandler = (e: TouchEvent) => handleTouchMove(e as unknown as React.TouchEvent<HTMLDivElement>);
+    const touchEndHandler = () => handleTouchEnd();
+
+    table.addEventListener('touchstart', touchStartHandler, { passive: false });
+    table.addEventListener('touchmove', touchMoveHandler, { passive: false });
+    table.addEventListener('touchend', touchEndHandler);
+
+    return () => {
+      table.removeEventListener('touchstart', touchStartHandler);
+      table.removeEventListener('touchmove', touchMoveHandler);
+      table.removeEventListener('touchend', touchEndHandler);
+    };
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+ 
   // Update price based on selected period
   useEffect(() => {
     if (data && data.product && data.product.length > 0) {
@@ -166,7 +210,7 @@ const RightPlan: React.FC = () => {
           <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
-          className="bg-[#000AFF] button-medium p-2 lg:p-2 text-white  rounded-lg mx-auto max-md:mx-1"
+          className="addToCart bg-[#000AFF] "
           onClick={onAddToCart}
         >
           <p className="font-500">Add to cart</p>
@@ -174,6 +218,9 @@ const RightPlan: React.FC = () => {
       </div>
     </th>
   );
+
+
+  
 
   return (
     <section className="plans bg-[#B8D4FF] bg-opacity-50">
@@ -264,7 +311,10 @@ const RightPlan: React.FC = () => {
       
 
       <div className="pb-10">
-        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table rounded-md">
+        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table rounded-md swipe-table"
+              ref={tableRef}
+              style={{ overscrollBehaviorX: 'contain', touchAction: 'pan-y', }}
+              >
           <table className="w-full min-w-max">
             <thead>
               <tr>
@@ -545,6 +595,7 @@ const RightPlan: React.FC = () => {
           </table>
         </div>
       </div>
+
       {activeDropdown === "Starter" && (
         <div>
           <PlanModal
