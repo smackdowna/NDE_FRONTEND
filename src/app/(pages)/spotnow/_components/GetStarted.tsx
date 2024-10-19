@@ -43,14 +43,14 @@ const GetStarted = () => {
   ];
 
   return (
-    <div className='py-20 max-2xl:py-10   max-md:py-10 bg-background-SpotNow-gettingStarted max-md:text-center'>
+    <div className='getStartedSection py-20 max-2xl:py-10   max-md:py-10 bg-background-SpotNow-gettingStarted max-md:text-center'>
        <Title
         title="Get Started with SpotNow in Minutes"
         description="Increased efficiency, better management, and much more in no time! Just follow these four steps."
         titleWidth=''
         descriptionWidth='lg:w-[70%] w-[90%]'
       />
-      <div className='grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 px-16 py-16 powerGrid w-full place-items-center'>
+      <div className='grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 px-16 md:py-16 py-8 powerGrid w-full place-items-center'>
         {steps.map((step, index) => (
           <Step key={index} title={step.title} description={step.description} />
         ))}
