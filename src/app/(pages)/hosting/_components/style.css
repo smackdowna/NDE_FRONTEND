@@ -938,3 +938,21 @@ h6.planPrice {
     padding: 40px 16px;
   }
 }
+span.discoverGradient {
+  background: linear-gradient(90.08deg, #016afb 0.53%, #01a6ab 38.43%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 490px) {
+  .discover h2 {
+    font-size: 28px !important;
+    line-height: 33.6px !important;
+  }
+
+  .discover .mainpara {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
