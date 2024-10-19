@@ -349,7 +349,7 @@ const Hero = () => {
   
 
   return (
-    <div className="hero pt-[250px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
+    <div className="hero pt-[180px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
       <Image
         src={IMAGES.domain}
         alt="domain"
