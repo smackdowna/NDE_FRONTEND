@@ -524,3 +524,18 @@ section.switch-domain .big-image {
     padding-inline: 16px;
   }
 }
+@media (max-width: 490px) {
+  .faq-section h2 {
+    font-size: 26px !important;
+    line-height: 31.2px !important;
+  }
+
+  .faq-section {
+    gap: 24px;
+  }
+
+  section.faq-section {
+    padding: 40px 16px;
+  }
+
+}
