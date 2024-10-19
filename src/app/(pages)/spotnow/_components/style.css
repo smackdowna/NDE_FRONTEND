@@ -856,3 +856,15 @@ th button {
     padding-inline: 24px;
   }
 }
+
+@media (max-width: 470px) {
+  .toolSection h2,
+  .getStartedSection h2,
+  .power h2,
+  .faq-section h2 {
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 31.2px;
+  }
+}

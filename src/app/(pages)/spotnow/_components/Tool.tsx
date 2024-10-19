@@ -30,7 +30,7 @@ const Tool = () => {
     ];
 
     return (
-        <section className='bg-[#EEFDF6]'>
+        <section className='toolSection bg-[#EEFDF6]'>
            
            <div className="w-full hidden items-center justify-center lg:flex">
             <Title
