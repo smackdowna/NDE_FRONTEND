@@ -494,8 +494,18 @@ section.switch-domain .big-image {
 }
 
 @media (max-width: 920px) {
-  .featureCard {
+  /* .featureCard {
     width: 90%;
+  } */
+}
+
+@media (max-width:834px) {
+  .getDomainFlex{
+    gap:10px;
+  }
+
+  section.getDomain {
+    padding-inline: 16px;
   }
 }
 
@@ -505,6 +515,16 @@ section.switch-domain .big-image {
   .featureCard p {
     text-align: center;
   }
+
+  .getDomainFlex{
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .featureCard {
+    width: 95%;
+  }
+
 }
 
 @media (max-width: 1024px) {
