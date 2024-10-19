@@ -10,12 +10,12 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-    <div className=' bg-[#F7F7F7] md:bg-white border border-[#7f7b7b40] hover:shadow-2xl duration-300 rounded-[8px] group pt-4 p-4 flex flex-col items-center md:items-start xl:w-[600px] lg:w-[420px] md:w-[300px]'>
+    <div className='featureCard bg-[#F7F7F7] md:bg-white border border-[#7f7b7b40] hover:shadow-2xl duration-300 rounded-[8px] group pt-4 p-4 pb-8 flex flex-col items-center md:items-start xl:w-[500px] lg:px-2 lg:w-[420px] md:w-[300px]'>
         <Image src={icon} alt={title} className='w-[50px] md:w-[60px] 3xl:w-20' />
             <h5 className='text-home-heading mt-2 sm:text-left text-center hidden sm:block md:hidden'>
                 {title}
             </h5>
-            <h3 className='text-home-heading mt-2 sm:text-left text-center md:block hidden'>
+            <h3 className='text-home-heading mt-2 sm:text-left md:block hidden text-center'>
                 {title}
             </h3>
             <p className='text-home-heading font-black font-roboto mt-2 sm:text-left text-center sm:hidden block'>
@@ -29,7 +29,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) =
 );
 
 const GetDomain: React.FC = () => (
-    <section className='relative flex flex-col items-center justify-center py-[50px] md:py-20 xl:py-[103.61px] 3xl:py-[186.49px]'>
+    <section className='getDomain relative flex flex-col items-center justify-center py-[50px] md:py-20 xl:py-[103.61px] 3xl:py-[186.49px]'>
         {/* Background image */}
         <div
             className='absolute inset-0 bg-cover bg-center opacity-40'
