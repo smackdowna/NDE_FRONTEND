@@ -5,7 +5,7 @@ import './style.css'
 
 const Transforming = () => {
     return (
-        <section className='bg-[#F1FFF6D9]'>
+        <section className='transforming bg-[#F1FFF6D9]'>
             <div className='flex justify-center mb-2'>
                 <div className='flex flex-col gap-6  text-center w-[70vw]  max-lg:w-[96vw] '>
                     <h2 className='text-home-heading'>Google Workspace: Transforming Collaboration and Productivity</h2>

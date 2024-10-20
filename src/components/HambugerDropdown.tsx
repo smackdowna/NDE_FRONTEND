@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTransition, animated } from 'react-spring';
 import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import { ICONS, IMAGES } from '@/assets';
+import './HamburgerDropdown.css';
 
 // Props type for HamburgerDropdown
 interface HamburgerDropdownProps {
@@ -20,11 +21,11 @@ interface DropdownLinkProps {
 // DropdownLink component
 const DropdownLink: React.FC<DropdownLinkProps> = ({ href, icon, label }) => (
     <Link href={href}>
-        <div className="flex gap-3 items-center transition-transform duration-300">
+        <div className="dropdownLink flex gap-3 items-center transition-transform duration-300">
             <Image
                 src={icon}
                 alt={label}
-                className="bg-gradient-light w-[40px] h-[40px] max-2xl:w-[50px] max-xl:w-[40px] max-2xl:h-[50px] max-xl:h-[40px] rounded-lg p-2"
+                className="hamburgerIcon bg-gradient-light w-[40px] h-[40px] max-2xl:w-[50px] max-xl:w-[40px] max-2xl:h-[50px] max-xl:h-[40px] rounded-lg p-2"
             />
             <div className="flex flex-col font-roboto">
                 <span className="font-400 opacity-70 text-lg max-2xl:text-lg max-xl:text-sm">{label}</span>
@@ -67,14 +68,28 @@ const HamburgerDropdown: React.FC<HamburgerDropdownProps> = ({ isOpen, onClose }
         config: { duration: 300 },
     });
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
+
+    
     return dropdownTransition((style, item) =>
         item ? (
             <animated.div
                 style={style}
-                className="fixed right-0 top-0 z-50 flex items-center justify-end bg-opacity-50"
+                className="hamburger fixed right-0 top-0 z-50 flex items-center justify-end bg-opacity-50 h-full w-full"
             >
-                <div className="relative bg-white w-[50vw] max-md:w-[100vw] p-10 overflow-y-auto h-[100vh] shadow-lg">
-                    {/* Close Button */}
+                <div className="relative bg-white w-[50vw] max-md:w-[100vw] p-10 overflow-y-auto h-full shadow-lg">
+                {/* Close Button */}
                     <button onClick={onClose} className="absolute top-4 right-4 text-2xl font-bold text-gray-800">
                         &times;
                     </button>
@@ -96,7 +111,7 @@ const HamburgerDropdown: React.FC<HamburgerDropdownProps> = ({ isOpen, onClose }
                             <animated.div style={style} className="flex flex-col gap-8">
                                 <div>
                                     <h2 className="font-bold font-roboto text-3xl max-2xl:text-2xl max-xl:text-xl">Build</h2>
-                                    <div className="py-2 flex flex-col gap-4">
+                                    <div className="py-2 flex flex-col gap-2">
                                         <DropdownLink href="/domain" icon={ICONS.Domain} label="Domain" />
                                         <DropdownLink href="/hosting" icon={ICONS.Hosting} label="Hosting" />
                                         <DropdownLink href="/googleworkspace" icon={ICONS.workspace} label="Google Workspace" />
@@ -105,7 +120,7 @@ const HamburgerDropdown: React.FC<HamburgerDropdownProps> = ({ isOpen, onClose }
                                 </div>
                                 <div>
                                     <h2 className="font-bold font-roboto text-3xl max-2xl:text-2xl max-xl:text-xl">Manage</h2>
-                                    <div className="py-4 flex flex-col gap-4">
+                                    <div className="py-4 flex flex-col gap-2">
                                         <DropdownLink href="/domain" icon={ICONS.Domain} label="Vision Now" />
                                         <DropdownLink href="/domain" icon={ICONS.chatNow} label="Chat Now" />
                                         <DropdownLink href="/spotnow" icon={ICONS.SpotNow} label="Spot Now" />
@@ -114,7 +129,7 @@ const HamburgerDropdown: React.FC<HamburgerDropdownProps> = ({ isOpen, onClose }
                                 </div>
                                 <div>
                                     <h2 className="font-bold font-roboto text-3xl max-2xl:text-2xl max-xl:text-xl">Grow</h2>
-                                    <div className="py-4 flex flex-col gap-4">
+                                    <div className="py-4 flex flex-col gap-2">
                                         <DropdownLink href="/domain" icon={ICONS.market} label="Marketing Planner" />
                                         <DropdownLink href="/domain" icon={ICONS.newGoogle} label="Google Ads" />
                                         <DropdownLink href="/domain" icon={ICONS.Meta} label="Social Media Ads" />

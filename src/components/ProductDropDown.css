@@ -1,0 +1,87 @@
+@media (max-width: 1920px) and (min-width: 1721px) {
+  .dropdownSubMenu {
+    font-family: Roboto;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 28.05px;
+    text-align: left;
+  }
+
+  span.dropdownMainMenu {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 23.44px;
+    text-align: left;
+  }
+
+  .productDropdown .grid {
+    gap: 32px !important;
+  }
+
+  .productDropdown .mainMenu {
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 31.2px;
+    text-align: left;
+  }
+
+  .productDropdownBg {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1720px) {
+  .mainMenu {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: -1px;
+    text-align: left;
+  }
+
+  span.dropdownMainMenu {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: left;
+  }
+
+  .dropdownSubMenu {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 1480px) {
+  .productDropdownBg {
+    width: 300px;
+  }
+
+  .productDropdown .grid {
+    gap: 24px !important;
+  }
+
+  span.DemoLive {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+  }
+}
+
+.productDropdownBg {
+  background: linear-gradient(
+    270.37deg,
+    #d2d5fd 0.32%,
+    #d8daf8 22.3%,
+    #efe8e7 49.57%,
+    #fef3e2 99.68%
+  );
+}

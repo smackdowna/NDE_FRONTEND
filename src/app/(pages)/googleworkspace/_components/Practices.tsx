@@ -33,9 +33,9 @@ const Practices = () => {
 
                 
                 
-                <div className="flex flex-col flex-col-1024 sm:flex-row justify-between items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px]">
+                <div className="practiceFlex flex flex-col flex-col-1024 sm:flex-row items-center mt-[30px] md:mt-[41px] lg:mt-[46px] 2xl:mt-[29px] lg:gap-[80px]">
                 
-                <div className='max-lg:mb-[2rem] lg:w-[60%]'>
+                <div className='leftContent max-lg:mb-[2rem] lg:w-[60%]'>
                 {
                     content.map((content, index) =>
                         <div key={index} className='flex lg:gap-[30px] md:gap-[20px] gap-[10px] 2xl:h-[8.5rem] text-white xl:h-[7.5rem] md:h-[8rem] max-md:h-[10rem] '>
