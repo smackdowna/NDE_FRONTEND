@@ -160,6 +160,7 @@ import xCircle from "@/assets/icons/x-circle.svg"
 import playVideo from "@/assets/icons/lets-icons_video-fill.svg"
 import framServices from "@/assets/icons/Frame 69876.svg"
 import angleUp from "@/assets/icons/angleup.svg"
+import arrowRightBlue from "@/assets/icons/arrow-right-blue.svg"
 
 
 
@@ -261,7 +262,8 @@ import angleUp from "@/assets/icons/angleup.svg"
     xCircle,
     playVideo,
     framServices,
-    angleUp
+    angleUp,
+    arrowRightBlue
 
     
   };
