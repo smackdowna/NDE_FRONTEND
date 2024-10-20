@@ -152,7 +152,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
       >
         <nav className="relative items-center justify-between h-[30px] xl:h-[55px]">
           <div className="flex items-center h-full w-full">
-            <div className="bg-white bg-opacity-50 w-[112px] max-2xl:w-[53px] max-md:w-[38px] h-full rounded-br-2xl"></div>
+            <div className="bg-white bg-opacity-50 lg:w-[99px] md:w-[57px] sm:w-[24.28px] w-[24.28px] h-full rounded-br-2xl"></div>
             <Link href="/" className="px-3 max-md:px-0 h-full">
               <Image
                 src={ICONS.logo}
@@ -232,7 +232,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
     >
       <nav className="relative items-center justify-between h-[60px] xl:h-[55px]">
         <div className="flex items-center h-full w-full">
-          <div className="bg-white bg-opacity-50 w-[112px] max-2xl:w-[53px] max-md:w-[38px] h-full rounded-br-2xl"></div>
+          <div className="bg-white bg-opacity-50 lg:w-[99px] md:w-[57px] sm:w-[24.28px] w-[24.28px] h-full rounded-br-2xl"></div>
           <Link href="/" className="px-3 h-full">
             <Image
               src={ICONS.logo}
@@ -241,7 +241,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
             />
           </Link>
           <div className="bg-white bg-opacity-50 flex-grow justify-between px-10 max-md:px-4 h-full rounded-b-lg flex items-center">
-            <div className="hidden lg:flex items-center gap-[52px] max-xl:gap-4 max-xl:ml-20 ml-36 text-[15px] text-[#000334] font-roboto font-bold">
+            <div className="hidden lg:flex items-center lg:gap-[30px] ml-14 text-[15px] text-[#000334] font-roboto font-bold">
               <div className="relative">
                 <div
                   className="flex items-center gap-2 cursor-pointer"
