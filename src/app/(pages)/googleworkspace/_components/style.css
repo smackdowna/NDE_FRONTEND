@@ -1052,8 +1052,58 @@ section.faq-section {
 }
 
 @media (max-width: 470px) {
-  .faq-section h2 {
-    font-size: 26px;
-    line-height: 31.2px;
+  .faq-section h2,
+  .plans h2,
+  .practice h2,
+  .service h2,
+  .transforming h2,
+  .testimonials h2 {
+    font-size: 26px !important;
+    line-height: 31.2px !important;
+  }
+
+  .service h2 {
+    width: 292px;
+  }
+}
+
+@media (max-width: 1280px) {
+  span.heroBottom {
+    font-family: Roboto Serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 20.4px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 470px) {
+  span.heroBottom {
+    font-family: Roboto Serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 20.4px;
+    text-align: center;
+    width: 300px;
+    margin-inline: auto;
+  }
+
+  .logoFlex {
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .practiceFlex {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .practiceFlex .leftContent {
+    width: 100% !important;
+  }
+
+  .practiceFlex .right-img {
+    width: 100% !important;
   }
 }

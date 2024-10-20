@@ -52,21 +52,21 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <span className="flex text-center text-3xl max-2xl:text-xl max-lg:text-lg font-600 pt-[80px] relative md:pt-[100px] lg:pt-[120px] leading-[20.4px] text-home-body justify-center font-roboto-serif lg:font-roboto lg:font-black lg:text-[24px]">
+      <span className="heroBottom flex text-center text-3xl max-2xl:text-xl max-lg:text-lg font-600 pt-[80px] relative md:pt-[100px] lg:pt-[120px] leading-[20.4px] text-home-body justify-center font-roboto-serif lg:font-roboto lg:font-black lg:text-[24px]">
         12,000+ global businesses trust us to transform & grow digitally
       </span>
-      <div className="flex justify-center mt-[14px] md:mt-4 items-center gap-4 md:gap-8 lg:gap-16 pb-0 relative  overflow-hidden ">
-        <Image src={IMAGES.brand2} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand3} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand6} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand4} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand5} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand1} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand7} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={ICONS.gol}     alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand1} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={IMAGES.brand7} alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
-        <Image src={ICONS.gol}     alt="" className="w-[60px] md:w-[80px] lg:w-[120px] h-[60px] md:h-[80px] lg:h-[120px]" />
+      <div className="logoFlex flex justify-center mt-[14px] md:mt-4 items-center gap-4 md:gap-14 lg:gap-16 pb-0 relative  overflow-hidden ">
+        <Image src={IMAGES.brand2} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand3} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand6} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand4} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand5} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand1} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand7} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={ICONS.gol}     alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand1} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={IMAGES.brand7} alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
+        <Image src={ICONS.gol}     alt="" className="w-[60px] md:w-[70px] lg:w-[120px] h-[60px] md:h-[70px] lg:h-[120px]" />
       </div>
     </div>
   );
