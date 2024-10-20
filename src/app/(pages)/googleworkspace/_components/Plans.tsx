@@ -257,7 +257,7 @@ const RightPlan: React.FC = () => {
       </div>
 
       <div className="px-0 lg:px-10 pb-10">
-        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md borderTable ">
+        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md borderTable swipe-table">
           <table className="w-full min-w-max  ">
             <thead>
               <tr>
