@@ -171,9 +171,9 @@ h5 {
   text-align: left;
 }
 
-.hero {
-  padding-top: 140px;
-  padding-inline: 20px;
+.googleWorkspace .hero {
+  padding-top: 200px;
+  padding-inline: 64px;
 }
 
 .hero-content {
@@ -182,18 +182,18 @@ h5 {
 }
 
 .hero-video {
-  flex-basis: 40%;
+  flex-basis: 30%;
   position: relative;
 }
 
 .hero-video .large-video {
-  width: 85%;
+  width: 100%;
 }
 
 .hero-video .small-video {
   position: absolute;
   width: 120px;
-  right: 0px;
+  right: -70px;
 }
 
 .hero-content ul {
@@ -219,11 +219,7 @@ h5 {
   }
 }
 
-@media (max-width: 1280px) {
-  .hero-content {
-    gap: 20px;
-  }
-
+@media (max-width: 1920px) {
   .hero-content p.show-p {
     display: none;
   }
@@ -245,6 +241,17 @@ h5 {
     text-align: left !important;
   }
 
+  .hero .show-1920-flex {
+    display: flex;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero-content {
+    gap: 20px;
+  }
+
   .hero-content .show-1280 {
     display: block;
   }
@@ -264,6 +271,20 @@ h5 {
     align-items: center;
     justify-content: center;
     gap: 32px;
+  }
+
+  .show-1920-flex {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero .btnContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
   }
 
   .hero-content {
@@ -293,6 +314,23 @@ h5 {
   .hero-content .show-1280 p,
   .hero-content .show-1280 h4 {
     text-align: center !important;
+  }
+
+  .hero-video {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-video .large-video {
+    width: 300px;
+  }
+
+  .hero-video .small-video {
+    width: 80px;
+    right: 0;
+    top: 10px;
   }
 }
 
@@ -731,7 +769,7 @@ p.sub {
 }
 
 .hero-content {
-  flex-basis: 50%;
+  flex-basis: 60%;
 }
 
 @media (max-width: 1920px) and (min-width: 1280px) {
@@ -746,6 +784,10 @@ section.faq-section {
   background: linear-gradient(237.45deg, #d5ffef 1.14%, #c1dcf8 98.66%);
 }
 
+.googleWorkspace .hero-content {
+  padding-inline: 0px !important;
+}
+
 @media (max-width: 1280px) {
   .hero-content {
     padding-inline: 16px !important;
@@ -754,6 +796,7 @@ section.faq-section {
 
 .GsuiteBanner {
   background: linear-gradient(270.23deg, #0066ff 0.38%, #009952 99.99%);
+  opacity: 50%;
 }
 
 @media (max-width: 1280px) {
@@ -828,5 +871,189 @@ section.faq-section {
     font-size: 17px;
     line-height: 1.2;
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 1920px) {
+  .googleWorkspace h1 {
+    font-size: 78px !important;
+    line-height: 93.6px !important;
+  }
+}
+
+@media (max-width: 1720px) {
+  .googleWorkspace .hero h1 {
+    font-size: 68px !important;
+    line-height: 82px !important;
+  }
+}
+
+@media (max-width: 1520px) {
+  .googleWorkspace .hero h1 {
+    font-size: 58px !important;
+    line-height: 70px !important;
+  }
+
+  .googleWorkspace .hero-video {
+    flex-basis: 35%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .googleWorkspace .hero {
+    padding-top: 140px;
+    padding-inline: 42px;
+  }
+}
+
+@media (max-width: 1340px) {
+  .googleWorkspace .hero h1 {
+    font-size: 48px !important;
+    line-height: 57.6px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .googleWorkspace .hero h1 {
+    font-size: 48px !important;
+    line-height: 57.6px !important;
+  }
+
+  button.bg-background-button {
+    background: linear-gradient(
+      269.44deg,
+      #0012ff 0.97%,
+      #00b5ff 100%
+    ) !important;
+    border-radius: 0px !important;
+    padding: 14px 32px !important;
+    font-family: "Roboto-Serif", sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    line-height: 20.4px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  button.bg-background-button {
+    background: linear-gradient(265.93deg, #0064ef 0%, #029651 100%) !important;
+    border-radius: 4px !important;
+  }
+  .btnContainer {
+    gap: 4px !important;
+  }
+
+  .googleWorkspace .hero-content h1 {
+    width: 600px;
+  }
+
+  .googleWorkspace ul {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 834px) {
+  .googleWorkspace .hero h1 {
+    font-size: 43px !important;
+    line-height: 51.6px !important;
+    width: 600px;
+  }
+}
+
+@media (max-width: 620px) {
+  .googleWorkspace .hero h1 {
+    font-size: 38px !important;
+    line-height: 45.6px !important;
+    width: 100%;
+  }
+
+  .googleWorkspace .hero-content ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .googleWorkspace .hero h1 {
+    font-size: 32px !important;
+    line-height: 38.4px !important;
+  }
+}
+
+@media (max-width: 470px) {
+  .googleWorkspace .hero h1 {
+    font-size: 26px !important;
+    line-height: 31.2px !important;
+  }
+}
+
+@media (max-width: 1500px) {
+  .practiceFlex {
+    gap: 200px;
+  }
+}
+
+@media (max-width: 1380px) {
+  .practiceFlex .leftContent {
+    width: 50%;
+  }
+
+  .practiceFlex .right-img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .practiceFlex {
+    justify-content: space-between;
+  }
+
+  .practiceFlex .leftContent {
+    width: 50% !important;
+  }
+
+  .practiceFlex .right-img {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  section.faq-section {
+    padding: 24px 64px;
+  }
+}
+
+@media (max-width: 1600px) {
+  section.faq-section {
+    padding: 24px 24px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .faq-section h2 {
+    font-size: 56px;
+    line-height: 67.2px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .faq-section h2 {
+    font-size: 43px;
+    line-height: 51.6px;
+  }
+}
+
+@media (max-width: 920px) {
+  .faq-section h2 {
+    font-size: 38px;
+    line-height: 45.6px;
+  }
+}
+
+@media (max-width: 470px) {
+  .faq-section h2 {
+    font-size: 26px;
+    line-height: 31.2px;
   }
 }
