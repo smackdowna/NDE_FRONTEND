@@ -1292,3 +1292,54 @@ h6.planPrice {
     text-align: center !important;
   }
 }
+
+@media (max-width: 1280px) {
+  .planModalSecond {
+    padding-inline: 20px !important;
+  }
+
+  .planModalSecond span {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+
+  .planModalSecond input.availInpt {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 834px) {
+  .planModalSecond input.availInpt {
+    width: 60vw;
+  }
+
+  .planModalSecond span {
+    font-size: 20px;
+    line-height: 24px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .planModalSecond input.availInpt {
+    width: 55vw;
+  }
+
+  .planModalSecond span {
+    font-size: 17px;
+    line-height: 20.4px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  .planModalSecond input.availInpt {
+    width: 50vw;
+  }
+
+  .planModalSecond span {
+    font-size: 15px;
+    line-height: 18px;
+    padding-right: 10px;
+  }
+}

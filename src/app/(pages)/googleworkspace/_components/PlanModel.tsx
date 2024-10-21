@@ -322,7 +322,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                         </div>
                     )}
                     {currentStep === 1 && (
-                        <div className='flex flex-col items-start px-10 max-md:px-0'>
+                        <div className='planModalSecond flex flex-col items-start px-10 max-md:px-0'>
                             <div className='flex items-center  max-md:justify-center max-md:items-start gap-16 max-md:gap-0  mx-3 max-md:mx-0 '>
                                 <div className='flex items-center gap-4 max-md:gap-1'>
                                     <input
@@ -352,7 +352,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                     <div>
                                         <div className="flex m-3 rounded-xl">
                                             <input
-                                                className="w-[60vw] max-md:w-[50vw] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
+                                                className="availInpt lg:w-[60vw] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
                                                 placeholder="Find and purchase a domain name"
                                                 value={searchQuery}
                                                 onChange={(e) => setSearchQuery(e.target.value)}
