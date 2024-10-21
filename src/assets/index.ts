@@ -161,7 +161,7 @@ import playVideo from "@/assets/icons/lets-icons_video-fill.svg"
 import framServices from "@/assets/icons/Frame 69876.svg"
 import angleUp from "@/assets/icons/angleup.svg"
 import arrowRightBlue from "@/assets/icons/arrow-right-blue.svg"
-
+import checkCart from "@/assets/icons/check-cart.svg"
 
 
 
@@ -263,7 +263,8 @@ import arrowRightBlue from "@/assets/icons/arrow-right-blue.svg"
     playVideo,
     framServices,
     angleUp,
-    arrowRightBlue
+    arrowRightBlue,
+    checkCart
 
     
   };

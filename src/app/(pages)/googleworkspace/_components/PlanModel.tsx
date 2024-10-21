@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { showToast } from '@/services/showToast';
+import './style.css'
 
 interface Domain {
     name: string;
@@ -264,8 +265,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const currentProduct = data?.products[index];
 
     return (
-        <div className="fixed inset-0 z-50 flex items-end justify-center">
-            <div className="relative w-[80vw] max-xl:w-[92vw] rounded-lg border border-black shadow-lg mb-8 bg-background-Gsuite-banner">
+        <div className="planModal fixed inset-0 z-50 flex items-end justify-center">
+            <div className="relative w-[80vw] mf:w-[90vw] max-xl:w-[92vw] rounded-lg border border-black shadow-lg mb-8 bg-background-Gsuite-banner">
                 <div className="p-4 max-lg:p-1 relative">
                     {currentStep === 0 && currentProduct && (
                         <div>
@@ -274,9 +275,9 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                     <span className='font-roboto font-900 text-4xl max-xl:text-2xl text-home-heading'>Plan Name</span>
                                     <span className='text-3xl max-xl:text-xl font-400 font-roboto-serif'>{currentProduct.name}</span>
                                 </div>
-                                <div className='flex max-md:flex-col items-center justify-center max-md:pt-4 max-md:gap-4 gap-10'>
+                                <div className='flex max-md:flex-col items-start justify-center max-md:pt-4 max-md:gap-4 gap-10'>
                                     <div className='flex flex-col gap-2'>
-                                        <span className='font-roboto font-900 text-4xl max-md:text-xl text-home-heading'>Quantity</span>
+                                        <h4 className=' text-home-heading'>Quantity</h4>
                                         <input
                                             type="number"
                                             name="quantity"
@@ -289,8 +290,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         />
 
                                     </div>
-                                    <div className='flex flex-col gap-3'>
-                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Duration</span>
+                                    <div className='flex flex-col gap-3 items-start'>
+                                        <h4 className=' text-home-heading'>Duration</h4>
                                         <select
                                             name="duration"
                                             id="duration"
@@ -305,9 +306,9 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                             ))}
                                         </select>
                                     </div>
-                                    <div className='flex flex-col gap-1'>
-                                        <span className='font-roboto font-900 text-4xl max-md:text-xl text-home-heading'>Total</span>
-                                        <span className='text-4xl font-400 max-md:text-xl font-roboto-serif'>₹{price}/-</span>
+                                    <div className='flex flex-col gap-1 items-start justify-between'>
+                                        <h4 className=' text-home-heading'>Total</h4>
+                                        <span className='price font-roboto-serif'>₹{price}/-</span>
                                     </div>
 
                                     <button
