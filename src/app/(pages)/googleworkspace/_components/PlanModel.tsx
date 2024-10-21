@@ -265,11 +265,11 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const currentProduct = data?.products[index];
 
     return (
-        <div className="planModal fixed inset-0 z-50 flex items-end justify-center">
+        <div className="fixed inset-0 z-50 flex items-end justify-center">
             <div className="relative  w-[80vw] md:w-[90vw] max-xl:w-[92vw] rounded-lg border border-black shadow-lg mb-8 bg-background-Gsuite-banner">
                 <div className="p-4 max-lg:p-1 relative">
                     {currentStep === 0 && currentProduct && (
-                        <div>
+                        <div className='planModal'>
                             <div className="wrapperFlex flex justify-between items-center max-md:text-center py-10 md:mx-4 sm:mx-2">
                                 <div className='flex flex-col gap-2 max-md:text-center'>
                                     <h4 className=' text-home-heading planName'>Plan Name</h4>
