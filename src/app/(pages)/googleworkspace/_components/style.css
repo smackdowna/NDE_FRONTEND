@@ -1137,3 +1137,20 @@ h6.planPrice {
 .swipe-table::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
+
+/* PlanModal */
+@media (max-width: 1400px) {
+  .planModal h4 {
+    font-size: 24px !important;
+    line-height: 28.13px !important;
+    font-weight: 900 !important;
+  }
+
+  .planModal span.price {
+    font-size: 32px !important;
+    line-height: 37.6px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+}
