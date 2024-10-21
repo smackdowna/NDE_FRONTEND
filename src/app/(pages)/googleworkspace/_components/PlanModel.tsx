@@ -298,7 +298,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
                                     </div>
                                     <div className='flex flex-col gap-3'>
-                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Durationd</span
+                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Durationd</span>
                                         <select
                                             name="duration"
                                             id="duration"
