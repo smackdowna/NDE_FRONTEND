@@ -22,6 +22,7 @@ interface CartItem {
   status?: string;
   price?: number;
   quantity:number;
+  duration:number;
   year?: number;
 }
 
@@ -33,7 +34,8 @@ interface Product {
   price: string;
   domainName?: string;
   period?: string | number;
-  quantity:number
+  quantity:number;
+  duration:number;
 }
 
 const SummaryPage = () => {
@@ -191,7 +193,7 @@ const SummaryPage = () => {
 
 
   // Function to update duration
-  const updateLocalStorageDuration = (domainName: string, newDuration: string) => {
+  const updateLocalStorageDuration = (domainName: string, newDuration: number) => {
     const savedCart = localStorage.getItem('cart');
     const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
     const updatedCart = cartItems.map(item =>
@@ -210,7 +212,7 @@ const SummaryPage = () => {
                 : item.product.toLowerCase() === "domain"
                 ? CART.www
                 : CART.google,
-            price: `₹ ${(item.price * item.duration) || item.price}/-`,
+            price: `₹ ${(item.price && item.price * item.duration) || item.price}/-`,
             domainName: item.domainName,
             period: item.period || item.year || "Unknown Period",
             quantity: item.quantity || 1,
@@ -220,13 +222,13 @@ const SummaryPage = () => {
     );
   };
   
-  const updateDuration = async (domainName: string, newDuration: string) => {
+  const updateDuration = async (domainName: string, newDuration: number) => {
     try {
-        updateLocalStorageDuration(domainName, newDuration);
+        updateLocalStorageDuration(domainName, Number(newDuration));
       // Update duration in state
       setProducts(prevProducts =>
         prevProducts.map(product =>
-          product.domainName === domainName ? { ...product, period: newDuration } : product
+          product.domainName === domainName ? { ...product, period: Number(newDuration) } : product
         )
       );
     } catch (error) {
@@ -234,10 +236,11 @@ const SummaryPage = () => {
     }
   };
   
-  const handleDurationChange = (domainName: string, newDuration: string) => {
-    setSelectedYears((prev) => ({ ...prev, [domainName]: newDuration }));
-    updateDuration(domainName, newDuration);
+  const handleDurationChange = (domainName: string, newDuration: number) => {
+    setSelectedYears((prev) => ({ ...prev, [domainName]: Number(newDuration) }));
+    updateDuration(domainName, Number(newDuration));
   };
+  
 
  
   
@@ -267,7 +270,7 @@ const SummaryPage = () => {
                 : item.product.toLowerCase() === "domain"
                 ? CART.www
                 : CART.google,
-            price: `₹ ${(item.price * item.duration) || 0}/-`,
+            price: `₹ ${(item.price && item.price * item.duration) || 0}/-`,
             domainName: item.domainName,
             period: item.period || item.year || "Unknown Period",
             quantity: item.quantity || 1,
@@ -388,7 +391,7 @@ const SummaryPage = () => {
                   <select 
                     className="w-full px-2 py-1 border rounded-sm "
                     value={product.duration}
-                  onChange={(e) => handleDurationChange(product.domainName, Number(e.target.value))}
+                  onChange={(e) => handleDurationChange((product.domainName as string), Number(e.target.value))}
                   >
                     {[1, 2, 3, 5].map((year) => (
               <option key={year} value={year}>
