@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
@@ -105,6 +106,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
     
     const addCartToAPI = async (cartData: any) => {
+        console.log(cartData)
         try {
             const response = await axios.post(
                 'https://liveserver.nowdigitaleasy.com:5000/cart',
@@ -128,6 +130,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
             return rest;
         });
 
+       
+
         if (isAuthenticated && existingCart.length > 0) {
             const toastIdForSuccess = `1`;
             const toastIdForError = `2`;
@@ -144,6 +148,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     };
 
     const toggleDomainSelection = (domain: Domain) => {
+        console.log(domain)
         const selectedYear = selectedYears[domain.name] || 1;
         setSelectedDomains((prevSelected) => {
             const isSelected = prevSelected.some((d) => d.name === domain.name);
@@ -170,6 +175,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     period: selectedPeriod,
                     type: 'new',
                     quantity,
+                    duration : 1,
                     price: domain.price ? domain.price[0].registerPrice * selectedYear : 0,
                 }));
     
@@ -263,6 +269,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     if (isError) return <div>Error loading plans</div>;
 
     const currentProduct = data?.products[index];
+    console.log(currentProduct)
 
     return (
         <div className="planModal fixed inset-0 z-50 flex items-end justify-center">
@@ -290,8 +297,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         />
 
                                     </div>
-                                    <div className='flex flex-col gap-3 items-start'>
-                                        <h4 className=' text-home-heading'>Duration</h4>
+                                    <div className='flex flex-col gap-3'>
+                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Durationd</span>
                                         <select
                                             name="duration"
                                             id="duration"
