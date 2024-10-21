@@ -170,7 +170,7 @@ const handleChangeStep = (id:number) => {
   } inset-0 grid place-items-center duration-100 `}
    >
      <div>
-     <div onClick={(e_) => e_.stopPropagation()} className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-50 overflow-scroll hide-scrollbar">
+     <div onClick={(e_) => e_.stopPropagation()} className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-30 overflow-scroll hide-scrollbar">
       {/* Header */}
       <div
         style={{

@@ -148,7 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
   if (!mounted) {
     return (
       <div
-        className={`z-50 fixed w-full top-0 left-0 right-0 transition-colors duration-500 ${navbarBg}`}
+        className={`z-40 fixed w-full top-0 left-0 right-0 transition-colors duration-500 ${navbarBg}`}
       >
         <nav className="relative items-center justify-between h-[30px] xl:h-[55px]">
           <div className="flex items-center h-full w-full">
@@ -205,7 +205,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
                     }}
                   />
                   {isSidebarOpen && (
-                    <div className="z-50">
+                    <div className="z-40">
                       <Cart />
                     </div>
                   )}
@@ -228,7 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
 
   return (
     <div
-      className={`z-50 fixed w-full top-0 left-0 right-0 transition-colors duration-500 ${navbarBg}`}
+      className={`z-40 fixed w-full top-0 left-0 right-0 transition-colors duration-500 ${navbarBg}`}
     >
       <nav className="relative items-center justify-between h-[60px] xl:h-[55px]">
         <div className="flex items-center h-full w-full">
@@ -315,7 +315,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
 
 
                 {isSidebarOpen && (
-                  <div className="z-50">
+                  <div className="z-40">
                     <Cart />
                   </div>
                 )}
@@ -345,7 +345,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {
         />
       )}
       {isHambugerDropdownOpen && (
-        <div className=" z-50 ">
+        <div className=" z-40 ">
           <HambugerDropdown onClose={handleHamburgerClick} isOpen={isHambugerDropdownOpen}/>
         </div>
       )}

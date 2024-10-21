@@ -39,7 +39,6 @@ interface Product {
 const SummaryPage = () => {
   const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
-
   console.log(products)
   const [loading, setLoading] = useState<boolean>(true);
   const [subtotal, setSubtotal] = useState<number | null>(null);
@@ -135,6 +134,8 @@ const SummaryPage = () => {
   
 
 
+
+  // Function to update quantity 
   const updateLocalStorage = (domainName: string, newQuantity: number) => {
     const savedCart = localStorage.getItem('cart');
     const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
@@ -174,6 +175,70 @@ const SummaryPage = () => {
     }
   };
 
+  
+  
+  
+  // -------------------------------------------------------------------------------
+  const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
+
+  const handleYearChange = (domainName: string, newYear: number) => {
+    setSelectedYears((prev) => ({ ...prev, [domainName]: newYear }));
+  };
+
+
+
+// ----------------------------------------------------------------------------------
+
+
+  // Function to update duration
+  const updateLocalStorageDuration = (domainName: string, newDuration: string) => {
+    const savedCart = localStorage.getItem('cart');
+    const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+    const updatedCart = cartItems.map(item =>
+      item.domainName === domainName ? { ...item, duration: newDuration } : item
+    );
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  
+    // Trigger a re-render by updating the products state with the latest data
+    setProducts(
+      updatedCart.map(item => ({
+        name: item.product || "Unknown Product",
+            link: item.domainName || "Unknown Product",
+            img:
+              item.product.toLowerCase() === "hosting"
+                ? CART.database
+                : item.product.toLowerCase() === "domain"
+                ? CART.www
+                : CART.google,
+            price: `₹ ${(item.price * item.duration) || item.price}/-`,
+            domainName: item.domainName,
+            period: item.period || item.year || "Unknown Period",
+            quantity: item.quantity || 1,
+            duration : item.duration || 1,
+            cartId : item.productId,
+      }))
+    );
+  };
+  
+  const updateDuration = async (domainName: string, newDuration: string) => {
+    try {
+        updateLocalStorageDuration(domainName, newDuration);
+      // Update duration in state
+      setProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.domainName === domainName ? { ...product, period: newDuration } : product
+        )
+      );
+    } catch (error) {
+      console.error('Error updating product duration:', error);
+    }
+  };
+  
+  const handleDurationChange = (domainName: string, newDuration: string) => {
+    setSelectedYears((prev) => ({ ...prev, [domainName]: newDuration }));
+    updateDuration(domainName, newDuration);
+  };
+
  
   
 
@@ -202,10 +267,11 @@ const SummaryPage = () => {
                 : item.product.toLowerCase() === "domain"
                 ? CART.www
                 : CART.google,
-            price: `₹ ${item.price || 0}/-`,
+            price: `₹ ${(item.price * item.duration) || 0}/-`,
             domainName: item.domainName,
             period: item.period || item.year || "Unknown Period",
             quantity: item.quantity || 1,
+            duration : item.duration || 1,
             cartId : item.productId,
           }));
 
@@ -228,6 +294,7 @@ const SummaryPage = () => {
                 img: productImage,
                 price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
+                duration : item.duration || 1,
                 period: item.period || `${item.year} Year` || "Unknown Period",
               };
             }
@@ -320,11 +387,14 @@ const SummaryPage = () => {
                 <td className=" py-4  text-gray-800">
                   <select 
                     className="w-full px-2 py-1 border rounded-sm "
-                    value={product.period}
-                    onChange={(e) => {/* Handle period change */}}
+                    value={product.duration}
+                  onChange={(e) => handleDurationChange(product.domainName, Number(e.target.value))}
                   >
-                    <option value="Annually">Annually</option>
-                    <option value="Monthly">Monthly</option>
+                    {[1, 2, 3, 5].map((year) => (
+              <option key={year} value={year}>
+                {year} year{year > 1 ? 's' : ''}
+              </option>
+            ))}
                   </select>
                 </td>
                 <td className=" py-4  text-gray-800">
