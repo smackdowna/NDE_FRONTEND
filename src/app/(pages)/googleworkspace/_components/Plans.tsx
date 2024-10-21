@@ -8,6 +8,7 @@ import { ICONS } from "@/assets";
 import Image from "next/image";
 import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path as necessary
 import './style.css'
+import { motion } from 'framer-motion';
 
 interface Domain {
   name: string;
@@ -32,6 +33,19 @@ interface PlanCardProps {
   onAddToCart: () => void;
   showDropdown: boolean;
 }
+
+type Plan = 'Starter' | 'Standard' | 'Plus';
+interface PlanInfo {
+  name: Plan;
+  price: number;
+}
+
+const plans: PlanInfo[] = [
+  { name: 'Starter', price: 132 },
+  { name: 'Standard', price: 232 },
+  { name: 'Plus', price: 350 },
+];
+
 
 const fetchDomainAvailability = async (domain: string) => {
   const response = await axios.post(
@@ -69,6 +83,14 @@ const RightPlan: React.FC = () => {
   const [price, setPrice] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [showInputForm, setShowInputForm] = useState<boolean>(true); // Ensure this state is defined
+
+  const handlePlanToggle = (plan: Plan) => {
+    setSelectedPlan(plan);
+  };
+
+  const getSelectedIndex = () => plans.findIndex(plan => plan.name === selectedPlan);
+
+
 
   // Update price based on selected period
   useEffect(() => {
@@ -115,13 +137,9 @@ const RightPlan: React.FC = () => {
       setIsModalOpen(true);
     });
   };
-  type Plan = 'Starter' | 'Standard' | 'Plus';
 
   const [selectedPlan, setSelectedPlan] = useState<Plan>('Starter');
   
-  const handlePlanToggle = (plan: Plan) => {
-    setSelectedPlan(plan);
-  };
 
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
@@ -198,81 +216,48 @@ const RightPlan: React.FC = () => {
         <p className="show-600">Businesses just love working with us!</p>
       </div>
 
-      <div className='justify-center hidden show-600-flex flex-col items-center gap-6 mb-5'>
-        <div className="togglebox-contianer flex flex-col gap-4 px-3 shadow-neutral-700">
-            {/* Toggle Button Container */}
-            <div className="toggle-box flex relative justify-between text-center py-6 px-16 cursor-pointer">
-              {/* The white div that moves on toggle */}
-              <div
-                className={`hide-500 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
-                  selectedPlan === 'Starter'
-                    ? 'translate-x-[-10px]'
-                    : selectedPlan === 'Standard'
-                    ? 'translate-x-[140px]'
-                    : 'translate-x-[280px] w-[70px]'
+      <div className="flex flex-col items-center gap-6 p-4 max-w-md mx-auto show-600">
+        <div className="relative toogleBox w-full bg-gray-100 rounded-2xl shadow-md">
+        <div className="toogleBackground"></div>
+          <div className="toogleBoxContent w-full relative flex justify-between items-center">
+          <div className="toogleBackground"></div>
+            <div className="relative w-full flex justify-between items-center p-[4px]">
+            <motion.div
+              className="absolute bg-white rounded-xl h-11 transition-all duration-300 ease-in-out"
+              initial={false}
+              animate={{
+                x: `calc(${getSelectedIndex() * 100}% + ${getSelectedIndex() * 0.5}rem)`,
+                width: 'calc(33.33% - 0.5rem)',
+              }}
+            />
+            {plans.map((plan) => (
+              <button
+                key={plan.name}
+                onClick={() => handlePlanToggle(plan.name)}
+                className={`flex-1 py-3 text-[15px] font-bold font-roboto z-10 transition-colors duration-300 ${
+                  selectedPlan === plan.name ? 'text-[#000]' : 'text-[#000]'
                 }`}
-              ></div>
-              <div
-                className={`show-500 hide-400 bg-white absolute rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${
-                  selectedPlan === 'Starter'
-                    ? 'translate-x-[-10px]'
-                    : selectedPlan === 'Standard'
-                    ? 'translate-x-[90px]'
-                    : 'translate-x-[180px] w-[60px]'
-                }`}
-              ></div>
-              <div
-                className={`show-400 bg-white absolute rounded-xl top-3  h-[50px] transition-all duration-500 ease-in-out ${
-                  selectedPlan === 'Starter'
-                    ? 'translate-x-[0px] w-[70px]'
-                    : selectedPlan === 'Standard'
-                    ? 'translate-x-[105px] w-[85px]'
-                    : 'translate-x-[220px] w-[60px]'
-                }`}
-              ></div>
-
-
-
-              {/* Plans Text */}
-              <div className="flex justify-between font-bold text-md px-2 gap-8 z-50 w-full">
-                <span
-                  onClick={() => handlePlanToggle('Starter')}
-                >
-                  Starter
-                </span>
-                <span
-                 
-                  onClick={() => handlePlanToggle('Standard')}
-                >
-                  Standard
-                </span>
-                <span
-                 
-                  onClick={() => handlePlanToggle('Plus')}
-                >
-                  Plus
-                </span>
-              </div>
+              >
+                {plan.name}
+              </button>
+            ))}
+          </div>
             </div>
         </div>
-        <div className=" justify-between items-center pricing-flex hidden show-600-flex">
-          <div className="flex flex-col gap-1">
-            <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
+      <div className="flex justify-between w-full px-2 mt-5">
+        {plans.map((plan) => (
+          <div key={plan.name} className="text-center">
+            <h6 className={`planPrice text-xl font-black ${selectedPlan === plan.name ? 'text-blue-600' : 'text-gray-500'}`}>
+              <span className="text-sm">₹</span>
+              {plan.price}
+            </h6>
           </div>
-          <div className="flex flex-col gap-1">
-            <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <h6><span>₹</span>132</h6>
-            <p className="sub">/User/Month</p>
-          </div>
-        </div>
+        ))}
       </div>
-      
+      </div>
+
       <div className="px-0 lg:px-10 pb-10">
-        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md ">
+        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md borderTable swipe-table">
           <table className="w-full min-w-max  ">
             <thead>
               <tr>

@@ -50,7 +50,7 @@ const GetDomain: React.FC = () => (
             <p className='text-center mx-auto text-[#000334] w-[90%] hidden md:block'>
                 Enjoy essential features at no extra cost with every domain you buy!
             </p>
-            <div className='flex justify-center flex-wrap gap-[22.2px] md:gap-[23px] xl:gap-9 3xl:gap-10 mt-[20px]'>
+            <div className='getDomainFlex flex justify-center flex-wrap gap-[22.2px] md:gap-[23px] xl:gap-9 3xl:gap-10 mt-[20px]'>
                 <FeatureCard
                     icon={ICONS.DNS}
                     title="DNS Management"

@@ -14,9 +14,9 @@ const Hero = () => {
                     quality={100}
                 />
             </div>
-            <div className="relative z-10 pt-[120px] max-lg:pt-[100px] xl:px-[100px] md:px-[64px] sm:pt-[100px] sm:px-[16px]">
+            <div className="hero-padding relative z-10 pt-[120px] max-lg:pt-[100px] xl:px-[100px] md:px-[36px] sm:pt-[80px] sm:px-[16px]">
                 <div className="hero-flex flex flex-col md:flex-row justify-between items-center lg:gap-4">
-                    <div className="flex flex-col gap-[40px] lg:items-start text-center lg:text-left items-center md:items-start sm:items-center xl:min-w-[40vw] hero-left">
+                    <div className="hero-content flex flex-col gap-[40px] lg:items-start text-center lg:text-left items-center md:items-start sm:items-center xl:min-w-[40vw] hero-left">
                         {/* Heading */}
                         <div className="flex flex-col sm:w-full w-full gap-[30px] hero-text">
                             <h1 className="md:text-left hidden sm:block sm:text-center text-home-heading">
@@ -32,7 +32,7 @@ const Hero = () => {
                         </button>
                     </div>
                     {/* Video Placeholder */}
-                    <div className="aspect-[1.6/1] max-lg:w-full md:flex sm:flex-col sm:items-center sm:justify-center sm:mt-[24px]  xl:max-w-[52vw] min-w-[45vw]">
+                    <div className="heroImage aspect-[1.6/1] max-lg:w-full md:flex sm:flex-col sm:items-center sm:justify-center sm:mt-[24px]  xl:max-w-[52vw] min-w-[45vw]">
                         <Image src={IMAGES.spotIcon} alt="hero"  />
                     </div>
                 </div>
