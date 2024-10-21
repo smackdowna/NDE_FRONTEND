@@ -50,7 +50,7 @@ const Power = () => {
                 />
                 </div>
                 
-                <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 sm:px-16 px-6 sm:py-16 py-8 powerGrid'>
+                <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-10 gap-4 md:px-8 px-4 md:py-8 py-4 powerGrid'>
                     {data.map((item, index) => ( 
                         <div key={index} className='bg-white  py-10 px-4 shadow-xl rounded-xl'>
                             <div className='flex justify-center py-4'>

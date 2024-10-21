@@ -86,17 +86,17 @@ interface FAQsProps {
 const FAQs: React.FC<FAQsProps> = () => {
     return (
         <section className='faq-section flex flex-col'>
-            <div className="pt-[79px]">
+            <div className="pt-[24px]">
                 <div className='flex justify-center '>
-                        <h2 className="text-home-heading lg:w-[90%] md:w-[750px] hidden md:block">
-                        Still not sure? Here are some answers for your queries
+                        <h2 className="text-home-heading lg:w-[100%]  hidden md:block">
+                        Still not sure?<br /> Here are some answers for your queries
                         </h2>
-                        <h2 className="text-home-heading lg:w-[90%] md:w-[750px] block md:hidden">
+                        <h2 className="text-home-heading lg:w-[100%]  block md:hidden">
                         Still not sure?<br /> Here are some answers for your queries
                         </h2>
                 </div>
                 <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
-                        <p className='subHeadingPara lg:w-[60%] md:w-[750px] sm:w-[600px] sm:opacity-100 opacity-70'>
+                        <p className='subHeadingPara lg:w-[60%]  sm:w-[600px] sm:opacity-100 opacity-70'>
                         If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                         </p>
                 </div>

@@ -99,14 +99,14 @@ const FAQs: React.FC<FAQsProps> = ({ bgColor  }) => {
                     Still not sure?<br /> Here are some answers for your queries
                     </h2>
                 </div>
-                <div className='flex justify-center mt-[30px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
+                <div className='flex justify-center mt-[10px] md:mt-[15px] xl:mt-3 1xl:mt-6'>
                     <p className='subHeadingPara lg:w-[60%] md:w-[750px] sm:w-[600px] sm:opacity-100 opacity-70'>
                     If you have further inquiries about our Google Workspace, Google Workspace Pricing, don&apos;t hesitate to reach out to us. Below are the frequently asked questions regarding our services.
                     </p>
                 </div>
             </div>
 
-            <div className='faqs-container flex justify-center mt-[30px] md:mt-10 xl:mt-[42px] 1xl:mt-[26px]  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll w-fit m-auto md:mb-16 hide-scrollbar '>
+            <div className='faqs-container flex justify-center mt-[15px] md:mt-10 xl:mt-[42px] 1xl:mt-[26px]  pb-10 md:pb-[40px] md:h-[400px] max-sm:h-[460px] sm:h-[400px] overflow-y-scroll w-fit m-auto md:mb-16 hide-scrollbar '>
                 <div className=' flex flex-col gap-2 w-full'>
                     {faqs.map((faq, index) => (
                         <FAQItem key={index} question={`${index + 1}. ${faq.question}`} answer={faq.answer} />

@@ -375,3 +375,39 @@ span.testimonial-company {
     font-weight: 400 !important;
   }
 }
+
+/* Footer Stylings */
+.footer .footer-links {
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 31.2px;
+  text-align: left;
+}
+
+p.footerDesc {
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 1600px) {
+  .footer .footer-links {
+    font-size: 17px;
+    font-weight: 900;
+  }
+
+  p.footerDesc {
+    font-family: Roboto Serif !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    line-height: 24.75px !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 920px) {
+  .footer .footer-links {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+}

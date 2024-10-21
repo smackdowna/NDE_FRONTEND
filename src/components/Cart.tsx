@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
 import { loginSuccess, loginFailure } from "../store/authSlice";
+import { ICONS } from "@/assets";
+import Image from "next/image";
 
 interface LoginFormInputs {
   email: string;
@@ -171,6 +173,7 @@ const handleChangeStep = (id:number) => {
    >
      <div>
      <div onClick={(e_) => e_.stopPropagation()} className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-30 overflow-scroll hide-scrollbar">
+
       {/* Header */}
       <div
         style={{
@@ -181,39 +184,31 @@ const handleChangeStep = (id:number) => {
         <div className="mx-4">
           <div className="flex max-w-screen-lg h-[110px] py-4 mx-auto">
             {steps.map((step, index) => (
-              <div className="w-full " key={step.id}>
+              <div className="w-full flex flex-col justify-center " key={step.id}>
                 <div className="flex items-center w-full">
                   <div
                   onClick={() => handleChangeStep(step.id)}
-                    className={`cursor-pointer w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full z-[1]  ${currentStep === step.id ? "bg-blue-600" : "bg-gray-300"
-                      }`}
+                    className={`cursor-pointer w-8 h-8 shrink-0 border-[1px] mx-[-1px] p-1.5 flex items-center justify-center rounded-full z-[1]  ${currentStep === step.id ? "bg-blue-600 border-[#0011FF]" : "bg-transparent border-[#262424] p-0"
+                    } ${currentStep > step.id ? "border-[#1A8408]" : ""}`}
                   >
                     {currentStep > step.id ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-full fill-white"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                          data-original="#000000"
-                        />
-                      </svg>
+                      <Image src={ICONS.checkCart} alt="cartCheck" className="w-full h-full" />
                     ) : (
-                      <span className="text-base text-white font-bold">
+                      <span className={`text-base font-bold ${currentStep === step.id ? 'text-white' : 'text-[#262424]'} `}>
+                        
                         {step.id}
                       </span>
                     )}
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`w-full h-1 z-[0] ${currentStep > step.id ? "bg-blue-600" : "bg-gray-300"
+                      className={`w-full lg:w-[280px] h-[2px] z-[0] ${currentStep > step.id ? "bg-[#fff]" : "bg-[#fff]"
                         }`}
                     ></div>
                   )}
                 </div>
                 <h6
-                  className={`text-base font-medium font-roboto-serif mb-2 ${currentStep > step.id ? "text-green-500" : "text-gray-500"
+                  className={`text-base font-medium font-roboto-serif ${currentStep > step.id ? "text-[#1A8408]" : "text-gray-500"
                     }`}
                 >
                   {step.name}

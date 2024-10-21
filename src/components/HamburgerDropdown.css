@@ -1,0 +1,11 @@
+.hamburger h2 {
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .hamburgerIcon {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 3px !important;
+  }
+}

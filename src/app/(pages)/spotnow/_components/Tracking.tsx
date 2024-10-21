@@ -28,7 +28,7 @@ const Tracking = () => {
             <div className=' flex flex-col'>
 
                 <div className=' flex justify-center'>
-                <Image src={IMAGES.spotReactangle} alt='' className=' w-[90vw] pt-10' />
+                <Image src={IMAGES.spotReactangle} alt='' className=' w-[90vw] md:pt-10 pt-6' />
                 </div>
                </div>  
               <div>
