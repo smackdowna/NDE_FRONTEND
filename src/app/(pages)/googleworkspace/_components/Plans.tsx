@@ -9,6 +9,7 @@ import Image from "next/image";
 import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path as necessary
 import './style.css'
 import { motion } from 'framer-motion';
+import SwipeableTable from "@/components/SwipeableTable";
 
 interface Domain {
   name: string;
@@ -257,7 +258,8 @@ const RightPlan: React.FC = () => {
       </div>
 
       <div className="px-0 lg:px-10 pb-10">
-        <div className="bg-white mx-0 overflow-x-auto border-[3px] border-blue-600 rounded-md borderTable swipe-table">
+        <SwipeableTable>
+        <div className="bg-white mx-0 border-[3px] border-blue-600 rounded-md borderTable swipe-table">
           <table className="w-full min-w-max  ">
             <thead>
               <tr>
@@ -396,8 +398,8 @@ const RightPlan: React.FC = () => {
 
             <tbody className="w-full show-600">
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -408,8 +410,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -420,8 +422,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -432,8 +434,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -444,8 +446,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -456,8 +458,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -468,8 +470,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -480,8 +482,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -493,8 +495,8 @@ const RightPlan: React.FC = () => {
                   </tr>
                  
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
+                      <td className=" text-center px-4 py-2">
                         <Image
                           src={checkIcon}
                           alt='tick'
@@ -505,8 +507,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
+                      <td className=" text-center px-4 py-2">
                         <Image
                           src={checkIcon}
                           alt='tick'
@@ -517,8 +519,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Sort Tracking Page</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Sort Tracking Page</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -529,8 +531,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -541,8 +543,8 @@ const RightPlan: React.FC = () => {
                       </td>
                   </tr>
                   <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                      <td className=" text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
+                      <td className=" text-center px-4 py-2">
                       <Image
                           src={checkIcon}
                           alt='tick'
@@ -565,6 +567,7 @@ const RightPlan: React.FC = () => {
 
           </table>
         </div>
+        </SwipeableTable>
       </div>
       
       {activeDropdown === "Starter" && (

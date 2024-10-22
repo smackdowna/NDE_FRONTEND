@@ -1343,3 +1343,23 @@ h6.planPrice {
     padding-right: 10px;
   }
 }
+
+
+@media (max-width: 400px) {
+  .googleWorkspace .hero{
+    padding-inline: 16px;
+  }
+}
+
+
+.plans table th{
+  min-width: 200px;
+}
+
+.plans tr{
+  border-bottom: 1px solid #0000004d;
+}
+
+.plans tr td{
+  border-right: 1px solid #0000004d;
+}
