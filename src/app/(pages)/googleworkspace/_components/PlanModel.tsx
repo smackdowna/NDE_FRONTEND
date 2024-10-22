@@ -358,17 +358,17 @@ const PlanModal: React.FC<PlanModalProps> = ({
                             </div>
                             <div className="flex w-full pb-6 max-md:pb-0">
                                 {showInputForm ? (
-                                    <div>
-                                        <div className="flex m-3 rounded-xl">
+                                    <div className='w-full'>
+                                        <div className="flex m-3 rounded-xl w-full">
                                             <input
-                                                className="availInpt lg:w-[60vw] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
+                                                className="availInpt lg:w-[80%] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
                                                 placeholder="Find and purchase a domain name"
                                                 value={searchQuery}
                                                 onChange={(e) => setSearchQuery(e.target.value)}
                                                 autoFocus
                                             />
                                             <button
-                                                className={`bg-home-primary text-white text-xl max-md:text-[10px] max-md:px-1 max-md:p-0 font-roboto font-700 px-6 p-2 rounded-r-xl ${isFetching ? "cursor-wait" : ""
+                                                className={`bg-home-primary w-[20%] text-white text-xl max-md:text-[10px] max-md:px-1 max-md:p-0 font-roboto font-700 px-6 p-2 rounded-r-xl ${isFetching ? "cursor-wait" : ""
                                                     }`}
                                                 onClick={async () => {
                                                     await refetch();

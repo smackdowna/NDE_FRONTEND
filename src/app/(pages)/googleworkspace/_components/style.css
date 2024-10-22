@@ -1303,15 +1303,10 @@ h6.planPrice {
     line-height: 28.8px;
   }
 
-  .planModalSecond input.availInpt {
-    width: 50vw;
-  }
 }
 
 @media (max-width: 834px) {
-  .planModalSecond input.availInpt {
-    width: 60vw;
-  }
+
 
   .planModalSecond span {
     font-size: 20px;
@@ -1321,9 +1316,7 @@ h6.planPrice {
 }
 
 @media (max-width: 620px) {
-  .planModalSecond input.availInpt {
-    width: 55vw;
-  }
+
 
   .planModalSecond span {
     font-size: 17px;
@@ -1333,9 +1326,6 @@ h6.planPrice {
 }
 
 @media (max-width: 540px) {
-  .planModalSecond input.availInpt {
-    width: 50vw;
-  }
 
   .planModalSecond span {
     font-size: 15px;
