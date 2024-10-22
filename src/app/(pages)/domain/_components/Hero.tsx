@@ -167,7 +167,6 @@ const Hero = () => {
   };
 
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
-  console.log(selectedYears)
 
   const handleAddToCart = (domain: Domain) => {
     const selectedYear = selectedYears[domain.name] || 1;
@@ -349,7 +348,7 @@ const Hero = () => {
   
 
   return (
-    <div className="hero pt-[180px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
+    <div  className="hero pt-[180px] max-md:pt-28 max-lg:pt-36 w-full flex flex-col max-lg:gap-2 max-md:gap-2 bg-gradient-domain-hero relative z-20">
       <Image
         src={IMAGES.domain}
         alt="domain"
@@ -430,14 +429,14 @@ const Hero = () => {
         ))}
       </div>
       {isModalOpen && (
-        <div className=" w-[95%] mx-auto fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-50 ">
-          <div className="relative bg-gradient-domain-hero p-5 max-md:p-3 rounded-xl shadow-xl pb-10 max-lg:pb-4 ">
-            <button
-              className="absolute top-[-8px] right-[-10px] text-xl bg-white rounded-full"
+        <div onClick={() => setIsModalOpen(false)} className=" w-[95%] mx-auto fixed inset-0 flex items-center justify-center max-md:justify-normal pt-24 max-md:pt-16 max-md:block z-[20000] ">
+          <div onClick={(e_) => e_.stopPropagation()} className="relative bg-gradient-domain-hero p-5 max-md:p-3 rounded-xl shadow-xl pb-10 max-lg:pb-4 ">
+            {/* <button
+              className="absolute  z-20 top-[-8px] right-[-10px] text-xl bg-white rounded-full border flex items-center justify-center"
               onClick={handleCloseModal}
-            >
-              <Image src={ICONS.close} alt="close" />
-            </button>
+            > */}
+              <Image onClick={() => setIsModalOpen(false)} src={ICONS.close} alt="close" className="cursor-pointer absolute z-[1000] top-0 right-[-10px]" />
+            {/* </button> */}
   
             <div className="flex justify-center w-full pb-6 max-md:pb-0">
               <div className="flex m-3 rounded-xl">
