@@ -1293,63 +1293,168 @@ h6.planPrice {
   }
 }
 
-@media (max-width: 1280px) {
-  .planModalSecond {
-    padding-inline: 20px !important;
-  }
-
-  .planModalSecond span {
-    font-size: 24px;
-    line-height: 28.8px;
-  }
-
-}
-
-@media (max-width: 834px) {
-
-
-  .planModalSecond span {
-    font-size: 20px;
-    line-height: 24px;
-    padding-right: 10px;
-  }
-}
-
-@media (max-width: 620px) {
-
-
-  .planModalSecond span {
-    font-size: 17px;
-    line-height: 20.4px;
-    padding-right: 10px;
-  }
-}
-
-@media (max-width: 540px) {
-
-  .planModalSecond span {
-    font-size: 15px;
-    line-height: 18px;
-    padding-right: 10px;
-  }
-}
-
-
 @media (max-width: 400px) {
-  .googleWorkspace .hero{
+  .googleWorkspace .hero {
     padding-inline: 16px;
   }
 }
 
-
-.plans table th{
+.plans table th {
   min-width: 200px;
 }
 
-.plans tr{
+.plans tr {
   border-bottom: 1px solid #0000004d;
 }
 
-.plans tr td{
-  border-right: 1px solid #0000004d;
+.workspace-table tr td {
+  border-right: 0px !important;
+}
+
+@media (max-width: 834px) {
+  .domainPlansFlex {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .hide-700 {
+    display: none;
+  }
+}
+
+.show-470 {
+  display: none;
+}
+
+@media (max-width: 470px) {
+  .show-470 {
+    display: block;
+  }
+
+  .hide-470 {
+    display: none;
+  }
+
+  .domainModalButton {
+    background: transparent !important;
+    width: 30px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px !important;
+  }
+
+  button.availableCart {
+    border: 2px solid #000aff !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  button.unavailableCart {
+    border: 2px solid #5c5b5b !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  button.removeCart {
+    border: 2px solid #ff5c00 !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+}
+
+.domainPriceContainer {
+  width: 150px;
+}
+
+@media (max-width: 600px) {
+  .domainPriceContainer {
+    width: 120px;
+  }
+}
+
+@media (max-width: 470px) {
+  .domainPriceContainer {
+    width: fit-content;
+  }
+  .domainPriceContainer span.mainPrice {
+    font-size: 14px !important;
+  }
+
+  .domainPriceContainer span {
+    font-size: 10px !important;
+  }
+
+  .domainPriceContainer {
+    width: fit-content !important;
+  }
+
+  span.inputsPlanModalSecond {
+    font-size: 16px !important;
+    line-height: 19.2px !important;
+  }
+
+  button.buttonCheck {
+    font-size: 12px !important;
+    line-height: 14.4px !important;
+  }
+
+  .planModalSecond input[type="text"] {
+    height: 30px !important;
+    width: 60%;
+  }
+
+  .planModalSecond button.buttonCheck {
+    width: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  .domainPriceContainer span.bottomPrice {
+    display: none !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .planModalSecond {
+    width: 100%;
+    padding-inline: 0px !important;
+  }
+}
+
+span.inputsPlanModalSecond {
+  font-size: 24px;
+  line-height: 28.8px;
+  padding-right: 30px;
+}
+
+@media (max-width: 1280px) {
+  span.inputsPlanModalSecond {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 920px) {
+  span.inputsPlanModalSecond {
+    font-size: 17px;
+    line-height: 20.4px;
+  }
+}
+
+@media (max-width: 720px) {
+  span.inputsPlanModalSecond {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 9720px) {
+  .domainPriceContainer {
+    width: 130px;
+  }
 }

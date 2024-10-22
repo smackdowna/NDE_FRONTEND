@@ -322,7 +322,7 @@ const Hero = () => {
               isInCart(domain)
                 ? "bg-red-500 removeCart"
                 : domain.status === "Available"
-                ? "bg-home-primary availabeCart"
+                ? "bg-home-primary availableCart"
                 : "bg-gray-400 unavailableCart"
             }`}
             onClick={() => {

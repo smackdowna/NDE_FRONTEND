@@ -491,7 +491,7 @@ const SummaryPage = () => {
                   </li>
                 </ul>
               </div>
-              <div className="text-sm text-gray-800 md:flex items-start justify-start w-full">
+              <div className="text-sm text-gray-800 md:flex items-start justify-start">
                 <ul className="bg-white text-center">
                   {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
                   <li className="py-2 text-lg xl:text-sm 2xl:text-lg font-700 ">

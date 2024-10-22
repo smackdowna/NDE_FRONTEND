@@ -205,7 +205,7 @@ const RightPlan: React.FC = () => {
   );
 
   return (
-    <section className="plans bg-[#B8D4FF] bg-opacity-50">
+    <section className="plans bg-[#B8D4FF] bg-opacity-50 workspace-table">
       <div className="flex justify-center flex-col gap-2 mb-[24px]">
         <h2 className="hide-600 text-home-heading text-center">
           Find the right plan for your business.
