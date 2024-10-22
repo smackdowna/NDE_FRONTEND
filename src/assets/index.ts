@@ -162,8 +162,9 @@ import framServices from "@/assets/icons/Frame 69876.svg"
 import angleUp from "@/assets/icons/angleup.svg"
 import arrowRightBlue from "@/assets/icons/arrow-right-blue.svg"
 import checkCart from "@/assets/icons/check-cart.svg"
-
-
+import cartBlue from "@/assets/icons/cartBlue.svg"
+import cartGrey from "@/assets/icons/cartGrey.svg"
+import trashRed from "@/assets/icons/trash-2.svg"
 
 
   const ICONS = {
@@ -264,7 +265,10 @@ import checkCart from "@/assets/icons/check-cart.svg"
     framServices,
     angleUp,
     arrowRightBlue,
-    checkCart
+    checkCart,
+    cartBlue,
+    cartGrey,
+    trashRed
 
     
   };
