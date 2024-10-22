@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect, ReactNode, MouseEvent, TouchEvent } from 'react';
+import React, { useRef, useState, MouseEvent, TouchEvent } from 'react';
 
 interface SwipeableTableProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
@@ -9,21 +9,6 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
-
-  useEffect(() => {
-    const element = tableRef.current;
-    if (!element) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        element.scrollLeft += e.deltaY;
-      }
-    };
-
-    element.addEventListener('wheel', handleWheel, { passive: false });
-    return () => element.removeEventListener('wheel', handleWheel);
-  }, []);
 
   const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
     if (!tableRef.current) return;
@@ -57,25 +42,24 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
 
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!isDragging || !tableRef.current) return;
-    const x = e.touches[0].pageX - tableRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tableRef.current.scrollLeft = scrollLeft - walk;
+    // Only prevent default if the touch movement is more horizontal than vertical
+    const touch = e.touches[0];
+    const deltaX = Math.abs(touch.pageX - startX);
+    const deltaY = Math.abs(touch.pageY - (e.touches[0].target as HTMLElement).getBoundingClientRect().top);
+    
+    if (deltaX > deltaY) {
+      e.preventDefault();
+      const x = touch.pageX - tableRef.current.offsetLeft;
+      const walk = (x - startX) * 2;
+      tableRef.current.scrollLeft = scrollLeft - walk;
+    }
   };
 
   return (
-    <div 
-      className="relative overflow-x-auto max-w-full"
-      style={{
-        cursor: isDragging ? 'grabbing' : 'grab',
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-        MozUserSelect: 'none',
-        msUserSelect: 'none',
-      }}
-    >
+    <div className="relative w-full overflow-hidden">
       <div
         ref={tableRef}
-        className="overflow-x-auto scrollbar-hide"
+        className="overflow-x-auto overflow-y-visible hide-scrollbar"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
@@ -84,14 +68,15 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleMouseUp}
         style={{
+          cursor: isDragging ? 'grabbing' : 'grab',
           overscrollBehaviorX: 'contain',
           WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
+          touchAction: 'pan-y pinch-zoom',
         }}
       >
         {children}
       </div>
+      {/* Scroll indicator shadow */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-0 transition-opacity duration-300"
         style={{ 
