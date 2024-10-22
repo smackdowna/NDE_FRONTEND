@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { loginSuccess, loginFailure } from "../store/authSlice";
 import { ICONS } from "@/assets";
 import Image from "next/image";
+import './Cart.css'
 
 interface LoginFormInputs {
   email: string;
@@ -171,8 +172,8 @@ const handleChangeStep = (id:number) => {
     isSidebarOpen ? "" : "invisible opacity-0"
   } inset-0 grid place-items-center duration-100 `}
    >
-     <div>
-     <div onClick={(e_) => e_.stopPropagation()} className="w-full md:w-full lg:w-[40vw] ml-auto bg-white shadow-lg fixed inset-0 z-30 overflow-scroll hide-scrollbar">
+     <div className="max-w-full">
+     <div onClick={(e_) => e_.stopPropagation()} className="mainCart ml-auto bg-white shadow-lg fixed inset-0 z-30 overflow-scroll hide-scrollbar">
 
       {/* Header */}
       <div
@@ -202,7 +203,7 @@ const handleChangeStep = (id:number) => {
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`w-full lg:w-[280px] h-[2px] z-[0] ${currentStep > step.id ? "bg-[#fff]" : "bg-[#fff]"
+                      className={`w-full lineCart h-[2px] z-[0] ${currentStep > step.id ? "bg-[#fff]" : "bg-[#fff]"
                         }`}
                     ></div>
                   )}
@@ -235,7 +236,7 @@ const handleChangeStep = (id:number) => {
       </div>
 
       {/* Main Content */}
-      <div className="p-4">
+      <div className=" md:p-4 relative sm:p-2 p-1">
         {currentStep === 1 && <SummaryPage />}
 
         {currentStep === 2 && !isAuthenticated && (
@@ -324,12 +325,12 @@ const handleChangeStep = (id:number) => {
 
         {
           currentStep === 1 ?
-          <div className="flex justify-center mt-4 gap-4 p-4">
-        <Link 
-        onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
-        href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2 2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
-           Continue Shopping
-        </Link>
+          <div className="flex justify-center gap-4 p-4">
+            <Link 
+            onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
+            href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2 2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
+              Continue Shopping
+            </Link>
 
           <button
             onClick={handleNext}
