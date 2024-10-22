@@ -56,10 +56,10 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden ">
       <div
         ref={tableRef}
-        className="overflow-x-auto overflow-y-visible hide-scrollbar"
+        className="overflow-x-auto overflow-y-visible hide-scrollbar bg-white"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
@@ -72,6 +72,7 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
           overscrollBehaviorX: 'contain',
           WebkitOverflowScrolling: 'touch',
           touchAction: 'pan-y pinch-zoom',
+          borderRadius: '7px'
         }}
       >
         {children}

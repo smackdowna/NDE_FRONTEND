@@ -13,9 +13,21 @@ td {
   padding-inline: 8px;
 }
 
-td input {
+td input,
+td select {
   min-width: 80% !important;
   border: 0.5px solid #0000004d;
+}
+
+td input::-webkit-outer-spin-button,
+td ::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+td input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 /* content inside select should be small */
@@ -27,7 +39,8 @@ td input {
 }
 
 /* content inside input field number should be bold */
-input[type="number"] {
+input[type="number"],
+select {
   font-weight: bold;
 }
 
@@ -66,5 +79,80 @@ input[type="number"]::-webkit-outer-spin-button {
 
   td {
     font-size: 12px !important;
+  }
+}
+
+.summaryTable h5 {
+  font-size: 20px;
+}
+@media (max-height: 800px) {
+  .summaryTable h5 {
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 700px) {
+  .heightContainer {
+    height: 38vh;
+  }
+
+  .summaryBottom {
+    height: fit-content !important;
+  }
+}
+
+@media (max-height: 680px) {
+  .heightContainer {
+    height: 36vh;
+  }
+
+  .summaryBottom {
+    height: fit-content !important;
+  }
+}
+
+@media (max-height: 638px) {
+  .summaryTable th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .summaryTable table {
+    min-width: 100% !important;
+  }
+
+  .summaryTable table thead {
+    display: table-header-group !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .summaryTable input,
+  .summaryTable select {
+    min-width: 70% !important;
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .summaryTable input,
+  .summaryTable select {
+    min-width: 60% !important;
+    width: 60% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .summaryTable td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .summaryTable input,
+  .summaryTable select {
+    min-width: 70% !important;
+    width: 70% !important;
   }
 }

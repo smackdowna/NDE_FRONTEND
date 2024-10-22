@@ -4,7 +4,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Title from './Title'
 import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path as necessary
-
+import SwipeableTable from '@/components/SwipeableTable';
+import { motion } from 'framer-motion';
 
 
 // Define interfaces for props
@@ -21,6 +22,20 @@ interface PlanFeatureProps {
     advanced: string;
     premium: string;
 }
+
+type Plan = 'Starter' | 'Standard' | 'Plus';
+interface PlanInfo {
+  name: Plan;
+  price: number;
+}
+
+const plans: PlanInfo[] = [
+  { name: 'Starter', price: 132 },
+  { name: 'Standard', price: 232 },
+  { name: 'Plus', price: 350 },
+];
+
+
 
 // PlanCard Component
 const PlanCard: React.FC<PlanCardProps> = ({ name, price, isStarter , isMonthly}) => (
@@ -69,10 +84,15 @@ const SpotNowTable: React.FC = () => {
 
     const [selectedPlan, setSelectedPlan] = useState('Starter');
 
-    // Function to toggle between plans
-    const handlePlanToggle = (plan: string) => {
-        setSelectedPlan(plan);
-    };
+
+    
+  const handlePlanToggle = (plan: Plan) => {
+    setSelectedPlan(plan);
+  };
+
+  const getSelectedIndex = () => plans.findIndex(plan => plan.name === selectedPlan);
+
+
 
     return (
         <div className='plans bg-[#F3F4FD] py-14 max-2xl:py-8'>
@@ -119,74 +139,55 @@ const SpotNowTable: React.FC = () => {
                     {/* Additional Text */}
                 </div>
             </div>
-            <div className=' flex justify-center sm:hidden show-600-flex flex-col items-center gap-6'>
-                <div className="flex flex-col gap-4 px-3 shadow-neutral-700  ">
-                    {/* Toggle Button Container */}
-                    <div className="flex relative w-[300px] bg-[#D7D7FB] justify-center text-center py-6 px-16 cursor-pointer">
-                        {/* The white div that moves on toggle */}
-                        <div
-                            className={`bg-white absolute  rounded-xl top-3 w-[85px] h-[50px] transition-all duration-500 ease-in-out ${selectedPlan === 'Starter'
-                                ? 'translate-x-[-90px]'
-                                : selectedPlan === 'Standard'
-                                    ? 'translate-x-[10px]'
-                                    : 'translate-x-[100px]'
-                                }`}
-                        ></div>
-
-                        {/* Plans Text */}
-                        <div className="flex justify-center font-bold text-md px-2 gap-8 z-50  ">
-                            <span
-                                className={`${selectedPlan === 'Starter' ? 'text-gray-600' : 'text-black'}`}
-                                onClick={() => handlePlanToggle('Starter')}
-                            >
-                                Starter
-                            </span>
-                            <span
-                                className={`${selectedPlan === 'Standard' ? 'text-gray-600' : 'text-black'}`}
-                                onClick={() => handlePlanToggle('Standard')}
-                            >
-                                Standard
-                            </span>
-                            <span
-                                className={`${selectedPlan === 'Plus' ? 'text-gray-600' : 'text-black'}`}
-                                onClick={() => handlePlanToggle('Plus')}
-                            >
-                                Plus
-                            </span>
-                        </div>
-                        
+            <div className="flex flex-col items-center gap-6 p-4 max-w-md mx-auto show-600">
+                <div className="relative toogleBox w-full bg-gray-100 rounded-2xl shadow-md">
+                <div className="toogleBackground"></div>
+                <div className="toogleBoxContent w-full relative flex justify-between items-center">
+                <div className="toogleBackground"></div>
+                    <div className="relative w-full flex justify-between items-center p-[4px]">
+                    <motion.div
+                    className="absolute bg-white rounded-xl h-11 transition-all duration-300 ease-in-out"
+                    initial={false}
+                    animate={{
+                        x: `calc(${getSelectedIndex() * 100}% + ${getSelectedIndex() * 0.5}rem)`,
+                        width: 'calc(33.33% - 0.5rem)',
+                    }}
+                    />
+                    {plans.map((plan) => (
+                    <button
+                        key={plan.name}
+                        onClick={() => handlePlanToggle(plan.name)}
+                        className={`flex-1 py-3 text-[15px] font-bold font-roboto z-10 transition-colors duration-300 ${
+                        selectedPlan === plan.name ? 'text-[#000]' : 'text-[#000]'
+                        }`}
+                    >
+                        {plan.name}
+                    </button>
+                    ))}
+                </div>
                     </div>
                 </div>
-                <div className='md:hidden flex flex-row justify-between w-[267px] '> 
-                                <span className='flex flex-col'>
-                                    <div className='font-bold text-lg flex'>
-                                        <span className='text-sm'>₹</span>
-                                       <span>{isAnnually ? "670" : "67"}</span> </div>
-                                    <span className='text-[8px]'>{isAnnually ? '/user/annual': '/user/month'}</span>
-                                </span>
-                                <span className='flex flex-col'>
-                                    <div className='font-bold text-lg flex'>
-                                        <span className='text-sm'>₹</span>
-                                       <span>{isAnnually ? "990" : "99"}</span> </div>
-                                    <span className='text-[8px]'>{isAnnually ? '/user/annual': '/user/month'}</span>
-                                </span>
-                                <span className='flex flex-col'>
-                                    <div className='font-bold text-lg flex'>
-                                        <span className='text-sm'>₹</span>
-                                       <span>{isAnnually ? "1490" : "149"}</span> </div>
-                                    <span className='text-[8px]'>{isAnnually ? '/user/annual': '/user/month'}</span>
-                                </span>
+            <div className="flex justify-between w-full px-2 mt-5">
+                {plans.map((plan) => (
+                <div key={plan.name} className="text-center">
+                    <h6 className={`planPrice text-xl font-black ${selectedPlan === plan.name ? 'text-blue-600' : 'text-gray-500'}`}>
+                    <span className="text-sm">₹</span>
+                    {plan.price}
+                    </h6>
                 </div>
+                ))}
             </div>
+      </div>
 
 
 
-            <div className="px-0 max-md:px-4 pb-10 pt-5 max-md:pt-6 max-lg:mx-4">
-                <div className="bg-white mx-0 lg:mx-14 overflow-x-auto rounded-sm tableBorder">
+            <div className="px-0 max-lg:mx-4 mt-4  rounded-sm">
+                <SwipeableTable>
+                <div className="mx-0 bg-white lg:mx-14 tableBorder bordered-table">
                     <table className="w-full min-w-max ">
                         <thead>
                             <tr className=' max-sm:hidden hide-600 first-row'>
-                                <th className="relative bg-white shadow-r-xl text-home-heading text-3xl max-lg:text-2xl max-md:text-xl font-roboto font-900">
+                                <th className="relative shadow-r-xl text-home-heading text-3xl max-lg:text-2xl max-md:text-xl font-roboto font-900">
                                     <div className="flex flex-col gap-4 px-10 pl-4 py-4 lg:pl-10">
                                         {/* Toggle Button Container */}
                                         <div
@@ -217,6 +218,7 @@ const SpotNowTable: React.FC = () => {
                             </tr>
                 
                         </thead>
+                        
                         <tbody className='max-sm:hidden hide-600 '>
                             <PlanFeature title="Number of Users" starter="" advanced="50" premium="100" />
                             <PlanFeature title="SSD Storage (GB)" starter="50GB" advanced="100GB" premium="200GB" />
@@ -233,8 +235,8 @@ const SpotNowTable: React.FC = () => {
                         
                         <tbody className="small-tbody sm:hidden show-600 ">
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Number of Users</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className="  text-center px-4 py-2">Number of Users</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -245,8 +247,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Attendance - In & Out</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Attendance - In & Out</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -257,8 +259,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Multiple Checkin & Checkout</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Multiple Checkin & Checkout</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -269,8 +271,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Multiple Attendance Session</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Multiple Attendance Session</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -281,8 +283,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Edit Meeting Notes</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Edit Meeting Notes</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -293,8 +295,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Multiple Branch Locations</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Multiple Branch Locations</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -305,8 +307,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Branch Location based Attendance Geo-restriction</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Branch Location based Attendance Geo-restriction</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -317,8 +319,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Hierarchy based Attendance Geo-restriction</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Hierarchy based Attendance Geo-restriction</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -329,8 +331,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Geo-restriction for Checkout</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Geo-restriction for Checkout</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -341,8 +343,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Hierarchy based Geo-restriction Notification</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Hierarchy based Geo-restriction Notification</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -353,8 +355,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Live Tracking</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Live Tracking</td>
+                                <td className=" text-center px-4 py-2">
                                     <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -365,8 +367,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Sort Tracking Page</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Sort Tracking Page</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -377,8 +379,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">GPS On & Off Notification</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">GPS On & Off Notification</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -389,8 +391,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border bg-white text-center px-4 py-2">Play and Pause Route</td>
-                                <td className="border bg-white text-center px-4 py-2">
+                                <td className=" text-center px-4 py-2">Play and Pause Route</td>
+                                <td className=" text-center px-4 py-2">
                                 <Image
                                     src={checkIcon}
                                     alt='tick'
@@ -407,6 +409,7 @@ const SpotNowTable: React.FC = () => {
                         <button className=' bg-home-primary text-white p-2 rounded-xl w-[110.38px]'>Add to Cart</button>
                     </div>
                 </div>
+                </SwipeableTable>
             </div>
         </div>
     );

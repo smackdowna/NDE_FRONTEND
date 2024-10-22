@@ -329,7 +329,7 @@ const SummaryPage = () => {
   
 
   return (
-    <div className="overflow-x-auto">
+    <div className="w-full overflow-x-auto">
       {products.length === 0 ? (
         <div className="flex justify-center items-center h-64 text-center">
           <p className="text-lg font-semibold text-gray-500">
@@ -337,125 +337,128 @@ const SummaryPage = () => {
           </p>
         </div>
       ) : (
-        <div className="flex flex-col gap-28">
-          <table className="min-w-full divide-y divide-gray-200 table-fixed">
-          <thead className="bg-white text-left whitespace-nowrap">
-            <tr>
-              <th className="w-[35%] px-6 py-4 text-black">
-                <h5>Product</h5>
-              </th>
-              <th className="w-[20%] text-xs md:text-sm text-black">
-                <h5>Quantity</h5>
-              </th>
-              <th className="w-[20%] text-xs md:text-sm text-black">
-                <h5>Duration</h5>
-              </th>
-              <th className="w-[25%] text-xs md:text-sm text-black">
-                <h5>Price</h5>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {products.map((product, index) => (
-              <tr key={index} className="tracking-tighter">
-                <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
-                  <Image
-                    src={product.img}
-                    alt={product.name}
-                    width={48}
-                    height={48}
-                    className="w-6 h-6 md:w-12 md:h-12 lg:w-12 lg:h-12"
-                  />
-                  <div className="ml-2">
-                    <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm text-left">
-                      {product.name}
-                    </h3>
-                    <a
-                      href={product.link}
-                      className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm"
-                    >
-                      {product.link}
-                    </a>
-                  </div>
-                </td>
-                <td className=" py-4">
-                  <input
-                    onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
-                    value={product?.quantity}
-                    type="number"
-                    min="1"
-                    className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
-                  />
-                </td>
-                <td className=" py-4  text-gray-800">
-                  <select 
-                    className="w-full px-2 py-1 border rounded-sm "
-                    value={product.duration}
-                  onChange={(e) => handleDurationChange((product.domainName as string), Number(e.target.value))}
-                  >
-                    {[1, 2, 3, 5].map((year) => (
-              <option key={year} value={year}>
-                {year} year{year > 1 ? 's' : ''}
-              </option>
-            ))}
-                  </select>
-                </td>
-                <td className=" py-4  text-gray-800">
-                  {product.price}
-                </td>
-                <td className=" py-4">
-                  <svg
-                    onClick={() => {
-                      if (product?.cartId) {
-                        removeProductFromCart(product.cartId, product.domainName || "");
-                      } else {
-                        console.log(product);
-                      }
-                    }}
-                    className="cursor-pointer"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3 6H5H21"
-                      stroke="black"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
-                      stroke="black"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M10 11V17"
-                      stroke="black"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M14 11V17"
-                      stroke="black"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </td>
+        <div className="flex flex-col justify-between summaryTable">
+          <div className="heightContainer h-[40vh] overflow-y-scroll hide-scrollbar">
+            <table className="min-w-full divide-y divide-gray-200 table-fixed">
+            <thead className="bg-white text-left whitespace-nowrap">
+              <tr>
+                <th className="w-[35%] px-6 py-4 text-black">
+                  <h5>Product</h5>
+                </th>
+                <th className="w-[20%] text-xs md:text-sm text-black">
+                  <h5>Quantity</h5>
+                </th>
+                <th className="w-[20%] text-xs md:text-sm text-black">
+                  <h5>Duration</h5>
+                </th>
+                <th className="w-[20%] text-xs md:text-sm text-black">
+                  <h5>Price</h5>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {products.map((product, index) => (
+                <tr key={index} className="tracking-tighter">
+                  <td className="flex items-center xl:text-sm px-4 py-4 lg:py-[14px] text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
+                    <Image
+                      src={product.img}
+                      alt={product.name}
+                      width={48}
+                      height={48}
+                      className="w-6 h-6 md:w-12 md:h-12 lg:w-10 lg:h-10"
+                    />
+                    <div className="ml-2">
+                      <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm text-left">
+                        {product.name}
+                      </h3>
+                      <a
+                        href={product.link}
+                        className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm"
+                      >
+                        {product.link}
+                      </a>
+                    </div>
+                  </td>
+                  <td className=" py-4">
+                    <input
+                      onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
+                      value={product?.quantity}
+                      type="number"
+                      min="1"
+                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
+                    />
+                  </td>
+                  <td className=" py-4  text-gray-800">
+                    <select 
+                      className="w-full px-2 py-1 border rounded-sm "
+                      value={product.duration}
+                    onChange={(e) => handleDurationChange((product.domainName as string), Number(e.target.value))}
+                    >
+                      {[1, 2, 3, 5].map((year) => (
+                <option key={year} value={year}>
+                  {year} year{year > 1 ? 's' : ''}
+                </option>
+              ))}
+                    </select>
+                  </td>
+                  <td className=" py-4  text-gray-800">
+                  <div className="flex items-center justify-between">
+                  {product.price}
+                
+                <svg
+                  onClick={() => {
+                    if (product?.cartId) {
+                      removeProductFromCart(product.cartId, product.domainName || "");
+                    } else {
+                      console.log(product);
+                    }
+                  }}
+                  className="cursor-pointer inline-block ml-4 "
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 6H5H21"
+                    stroke="black"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10 11V17"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M14 11V17"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                  </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            </table>
+          </div>
 
           
-          <div className="flex flex-col divide-y divide-gray-200">
-            <div className="flex items-center px-4 py-4 text-sm text-blue-800"></div>
+          <div className="flex flex-col divide-y divide-gray-200 h-[30vh] summaryBottom">
+            {/* <div className="flex items-center px-4 py-4 text-sm text-blue-800"></div> */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4  py-4 bg-white">
               <button className="text-sm font-bold text-customBlue mb-4 xl:text-sm sm:mb-0 2xl:text-lg">
                 Have a Coupon Code?
@@ -488,10 +491,10 @@ const SummaryPage = () => {
                   </li>
                 </ul>
               </div>
-              <div className="text-sm text-gray-800">
+              <div className="text-sm text-gray-800 md:flex items-start justify-start w-full">
                 <ul className="bg-white text-center">
                   {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
-                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">
+                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg font-700 ">
   ₹{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
 </li>
                 </ul>

@@ -294,7 +294,7 @@ const RightPlan: React.FC = () => {
       </div>
       </div>
 
-      <div className="mb-4 bg-white">
+      <div className="mb-4">
        <SwipeableTable>
         <div className="bg-white mx-0 lg:mx-14  bordered-table rounded-md ">
             <table className="w-full min-w-max">
