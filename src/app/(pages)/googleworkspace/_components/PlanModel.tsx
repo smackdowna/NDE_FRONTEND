@@ -272,17 +272,17 @@ const PlanModal: React.FC<PlanModalProps> = ({
     console.log(currentProduct)
 
     return (
-        <div className="planModal fixed inset-0 z-50 flex items-end justify-center">
-            <div className="relative w-[80vw] mf:w-[90vw] max-xl:w-[92vw] rounded-lg border border-black shadow-lg mb-8 bg-background-Gsuite-banner">
+        <div className="fixed inset-0 z-50 flex items-end justify-center">
+            <div className="relative  w-[80vw] md:w-[90vw] max-xl:w-[92vw] rounded-lg border border-black shadow-lg mb-8 bg-background-Gsuite-banner">
                 <div className="p-4 max-lg:p-1 relative">
                     {currentStep === 0 && currentProduct && (
-                        <div>
-                            <div className="flex max-md:flex-col justify-between items-center max-md:text-center py-10 mx-4 md:mx-10">
-                                <div className='flex flex-col gap-1 max-md:text-center'>
-                                    <span className='font-roboto font-900 text-4xl max-xl:text-2xl text-home-heading'>Plan Name</span>
-                                    <span className='text-3xl max-xl:text-xl font-400 font-roboto-serif'>{currentProduct.name}</span>
+                        <div className='planModal'>
+                            <div className="wrapperFlex flex justify-between items-center max-md:text-center py-10 md:mx-4 sm:mx-2">
+                                <div className='flex flex-col gap-2 max-md:text-center'>
+                                    <h4 className=' text-home-heading planName'>Plan Name</h4>
+                                    <p className='font-400 font-roboto-serif text-left'>{currentProduct.name}</p>
                                 </div>
-                                <div className='flex max-md:flex-col items-start justify-center max-md:pt-4 max-md:gap-4 gap-10'>
+                                <div className='secFlex flex items-center justify-center max-md:pt-4 lg:gap-10 sm:gap-4'>
                                     <div className='flex flex-col gap-2'>
                                         <h4 className=' text-home-heading'>Quantity</h4>
                                         <input
@@ -297,8 +297,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         />
 
                                     </div>
-                                    <div className='flex flex-col gap-3'>
-                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Durationd</span>
+
+                                    <div className='flex flex-col gap-2 items-center'>
+                                        <h4 className=' text-home-heading'>Duration</h4>
+
                                         <select
                                             name="duration"
                                             id="duration"
@@ -319,7 +321,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                     </div>
 
                                     <button
-                                        className='bg-home-primary text-3xl max-md:text-xl max-xl:text-xl font-900 text-white py-4 px-4 rounded-2xl'
+                                        className='bg-home-primary  text-white py-4 px-4 rounded-2xl'
                                         onClick={handleNextStep}
                                     >
                                         Buy Now
@@ -329,7 +331,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                         </div>
                     )}
                     {currentStep === 1 && (
-                        <div className='flex flex-col items-start px-10 max-md:px-0'>
+                        <div className='planModalSecond flex flex-col items-start px-10 max-md:px-0'>
                             <div className='flex items-center  max-md:justify-center max-md:items-start gap-16 max-md:gap-0  mx-3 max-md:mx-0 '>
                                 <div className='flex items-center gap-4 max-md:gap-1'>
                                     <input
@@ -359,7 +361,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                     <div>
                                         <div className="flex m-3 rounded-xl">
                                             <input
-                                                className="w-[60vw] max-md:w-[50vw] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
+                                                className="availInpt lg:w-[60vw] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
                                                 placeholder="Find and purchase a domain name"
                                                 value={searchQuery}
                                                 onChange={(e) => setSearchQuery(e.target.value)}
