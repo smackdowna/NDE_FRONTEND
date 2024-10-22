@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { showToast } from '@/services/showToast';
 import './style.css'
+import Image from 'next/image';
+import { ICONS } from '@/assets';
 
 interface Domain {
     name: string;
@@ -201,62 +203,87 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const DomainItem = ({ domain }: { domain: Domain }) => {
         const year = selectedYears[domain.name] || 1;
         return (
-            <div className="flex justify-between bg-white items-center content-center m-3">
-            <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1">
-                <span className="font-900 text-lg max-lg:text-md max-md:text-xs">{domain.name}</span>
+            <div className="flex justify-between bg-white items-center content-center my-3 w-full">
+            <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1 domainPlansFlex">
+            <span className="md:font-900 font-700 text-lg max-lg:text-md max-md:text-xs">
+                {domain.name}
+            </span>
                 <div>
                     <span className={`text-[14px] w-[30px] max-md:text-xs ${domain.status === 'Available' ? 'text-green-500' :
                         domain.status === 'Added' ? 'text-yellow-600' :
                             domain.status === 'Unavailable' ? 'text-red-500' :
                                 'text-gray-500'
                         }`}>
-                        {domain.status}
-                    </span>
+                        <Image 
+                            src={
+                            domain.status === 'Available' 
+                            ? ICONS.charmCircleTick 
+                            : domain.status === 'Added' 
+                            ? ICONS.cartIcon 
+                            : ICONS.xCircle
+                            } 
+                            alt={domain.status} 
+                            className="inline-block w-4 h-4 mr-2"
+                        />  
+                     {domain.status}
+                     </span>
                 </div>
             </div>
-            <div className="flex content-center items-center gap-8">
+            <div className="flex content-center items-center md:gap-8 gap-2 ">
                 <select 
                 value={year}
                 onChange={(e) => handleYearChange(e, domain.name)}
-                className="border rounded-md p-1 max-md:hidden" disabled={domain.status !== 'Available'}>
+                className="border rounded-md p-1 hide-700" disabled={domain.status !== 'Available'}>
                     {[1, 2, 3, 5].map((year) => (
                         <option key={year} value={year}>
                             {year} year{year > 1 ? 's' : ''}
                         </option>
                     ))}
                 </select>
-                <div className="w-[150px] max-md:w-[40px]">
-                <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
-              {domain.price && domain.price.length > 0
-                ? `₹${(domain.price[0].registerPrice * year).toFixed(2)}`
-                : 'N/A'}
-            </span>
-                    <div className="">
-                        <span className="text-[14px] text-center max-md:hidden  max-lg:text-xs ">
-                            {domain.price && domain.price.length > 0 ? `then ₹${domain.price[0].registerPrice * year + 2}/Year` : ''}
-                        </span>
-                    </div>
-                </div>
+                <div className="domainPriceContainer flex flex-col items-start">
+                  <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
+                {/* Multiply price by the selected year */}
+                {domain.price && domain.price.length > 0
+                  ? `₹${domain.price[0].registerPrice * year}`
+                  : "N/A"}
+              </span>
+            <div className="">
+              <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
+                {domain.price && domain.price.length > 0
+                  ? `then ₹${(domain.price[0].registerPrice + 200) * year}/Year`
+                  : ""}
+              </span>
+            </div>
+                 </div>
                 <button
-                    className={`text-white w-[120px]  max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${selectedDomains.some(d => d.name === domain.name) ? 'bg-home-primary' :
+                    className={`text-white w-[110px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md domainModalButton  ${selectedDomains.some(d => d.name === domain.name) ? 'bg-home-primary' :
                         domain.status === 'Available'
-                            ? 'bg-blue-500'
-                            : domain.status === 'Remove'
-                                ? 'bg-red-500'
+                            ? 'bg-blue-500 availableCart'
+                            : domain.status === 'Added'
+                                ? 'bg-red-500 removeCart'
                                 : domain.status === 'Unavailable'
-                                    ? 'bg-gray-400'
-                                    : 'bg-gray-500'
+                                    ? 'bg-gray-400 unavailableCart'
+                                    : 'bg-gray-500 unavailableCart'
                         }`}
                     disabled={domain.status !== 'Available'}
                     onClick={() => toggleDomainSelection(domain)}
-                >
+                >   
+                <div className="hide-470">
+                   {selectedDomains.some(d => d.name === domain.name)?
+                   "Remove" : domain.status === 'Available' ? "Add to Cart" : domain.status === 'Added' ? "Remove" : "Unavailable"}
+                </div>
+                
+                <div className="show-470">
                     {selectedDomains.some(d => d.name === domain.name)
-                        ? 'Remove'
+                        ? <Image src={ICONS.trashRed} alt='cart' className="inline-block w-4 h-4 mr-2" />
                         : domain.status === 'Available'
-                            ? 'Add to cart'
+                            ? <Image src={ICONS.cartBlue} alt='cart' className="inline-block w-4 h-4 mr-2" />
                             : domain.status === 'Added'
-                                ? 'Remove'
-                                : 'Unavailable'}
+                                ? <Image src={ICONS.trashRed} alt='cart' className="inline-block w-4 h-4 mr-2" />
+                                : <Image src={ICONS.cartGrey} alt='cart' className="inline-block w-4 h-4 mr-2" />
+                    }
+                </div>
+
                 </button>
             </div>
         </div>
@@ -340,7 +367,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         id="newDomain"
                                         onChange={() => setShowInputForm(true)}
                                     />
-                                    <span className=' font-roboto-serif text-3xl max-md:text-xs '>
+                                    <span className='inputsPlanModalSecond font-roboto-serif text-3xl max-md:text-xs '>
                                         Register a New Domain
                                     </span>
                                 </div>
@@ -351,24 +378,24 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         id="existingDomain"
                                         onChange={() => setShowInputForm(false)}
                                     />
-                                    <span className=' font-roboto-serif text-3xl max-md:text-xs '>
+                                    <span className='inputsPlanModalSecond font-roboto-serif text-3xl max-md:text-xs '>
                                         I already have a Domain Name
                                     </span>
                                 </div>
                             </div>
                             <div className="flex w-full pb-6 max-md:pb-0">
                                 {showInputForm ? (
-                                    <div className='w-full'>
+                                    <div className='w-[98%]'>
                                         <div className="flex m-3 rounded-xl w-full">
                                             <input
-                                                className="availInpt lg:w-[80%] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
+                                                className="availInpt w-[75%] max-md:text-md max-md:p-2 p-6 border rounded-l-xl max-md:placeholder:text-[10px]"
                                                 placeholder="Find and purchase a domain name"
                                                 value={searchQuery}
                                                 onChange={(e) => setSearchQuery(e.target.value)}
                                                 autoFocus
                                             />
                                             <button
-                                                className={`bg-home-primary w-[20%] text-white text-xl max-md:text-[10px] max-md:px-1 max-md:p-0 font-roboto font-700 px-6 p-2 rounded-r-xl ${isFetching ? "cursor-wait" : ""
+                                                className={`buttonCheck bg-home-primary w-[25%] text-white text-xl max-md:text-[10px] max-md:px-1 max-md:p-0 font-roboto font-700 px-6 p-2 rounded-r-xl ${isFetching ? "cursor-wait" : ""
                                                     }`}
                                                 onClick={async () => {
                                                     await refetch();
@@ -378,7 +405,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                                 {isFetching ? "Searching..." : "Check Availability "}
                                             </button>
                                         </div>
-                                        <div className="p-2 h-[300px] overflow-y-scroll hide-scrollbar">
+                                        <div className="p-2 h-[300px] overflow-y-scroll hide-scrollbar w-full">
                                             <div>
                                                 {domains.map((domain, index) => (
                                                     <DomainItem key={index} domain={domain} />
