@@ -65,8 +65,21 @@ const SummaryPage = () => {
   const { data: apiCartData, isLoading: apiLoading } = useQuery({
     queryKey: ["cartData"],
     queryFn: fetchCartFromAPI,
-    enabled: isAuthenticated,
+    enabled: isAuthenticated
   });
+
+
+
+  // Handeling duration for google workspace
+  const durations = [
+    "Annually",
+    "Biannually",
+    "Triannually",
+    "Flexible-Monthly",
+    "Flexible-Quarterly",
+    "Flexible-HalfYearly"
+  ];
+  
 
 
 
@@ -193,39 +206,43 @@ const SummaryPage = () => {
 
 
   // Function to update duration
-  const updateLocalStorageDuration = (domainName: string, newDuration: number) => {
+  const updateLocalStorageDuration = (domainName: string, newDuration: number, duration?: string) => {
+    console.log(duration);
+    
     const savedCart = localStorage.getItem('cart');
     const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+    
     const updatedCart = cartItems.map(item =>
-      item.domainName === domainName ? { ...item, duration: newDuration } : item
+      item.domainName === domainName ? { ...item, duration: newDuration, period: duration } : item
     );
+    
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    console.log(updatedCart);
   
-    // Trigger a re-render by updating the products state with the latest data
     setProducts(
       updatedCart.map(item => ({
         name: item.product || "Unknown Product",
-            link: item.domainName || "Unknown Product",
-            img:
-              item.product.toLowerCase() === "hosting"
-                ? CART.database
-                : item.product.toLowerCase() === "domain"
-                ? CART.www
-                : CART.google,
-            price: `₹ ${(item.price && item.price * item.duration) || item.price}/-`,
-            domainName: item.domainName,
-            period: item.period || item.year || "Unknown Period",
-            quantity: item.quantity || 1,
-            duration : item.duration || 1,
-            cartId : item.productId,
+        link: item.domainName || "Unknown Product",
+        img:
+          item.product.toLowerCase() === "hosting"
+            ? CART.database
+            : item.product.toLowerCase() === "domain"
+            ? CART.www
+            : CART.google,
+            price: `₹ ${(item.price ? item.price.toFixed(2) : "0.00")}/-`,
+        domainName: item.domainName,
+        period: item.period || item.year || duration || "Unknown Period",
+        quantity: Number(item.period || item.year || item.quantity || 1),
+        duration: item.duration || 1,
+        cartId: item.productId,
       }))
     );
-  };
+};
+
   
   const updateDuration = async (domainName: string, newDuration: number) => {
     try {
         updateLocalStorageDuration(domainName, Number(newDuration));
-      // Update duration in state
       setProducts(prevProducts =>
         prevProducts.map(product =>
           product.domainName === domainName ? { ...product, period: Number(newDuration) } : product
@@ -236,6 +253,44 @@ const SummaryPage = () => {
     }
   };
   
+  const updateDurationForGsuite = async (domainName: string, duration: string) => {
+    let newDuration;
+    if(duration === "Annually"){
+      newDuration = 12
+    } else if(duration === "Biannually"){
+      newDuration = 6
+    } else if(duration === "Triannually"){
+      newDuration = 4
+    } else if(duration === "Flexible-Monthly"){
+      newDuration = 1
+    } else if(duration === "Flexible-Quarterly"){
+      newDuration = 3
+    } else if(duration === "Flexible-Halfyearly"){
+      newDuration = 6
+    } else{
+      newDuration = 1
+    }
+
+    try {
+        updateLocalStorageDuration(domainName, newDuration, duration);
+      // Update duration in state
+      setProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.domainName === domainName ? { ...product, period: duration } : product
+        )
+      );
+    } catch (error) {
+      console.error('Error updating product duration:', error);
+    }
+  };
+  
+  // Duration change for gsuite
+  const handleDurationChangeForGsuite = (domainName: string, newDuration: string) => {
+    updateDurationForGsuite(domainName, newDuration);
+  };
+  
+
+  // Duration change for domain and hosting
   const handleDurationChange = (domainName: string, newDuration: number) => {
     setSelectedYears((prev) => ({ ...prev, [domainName]: Number(newDuration) }));
     updateDuration(domainName, Number(newDuration));
@@ -251,36 +306,68 @@ const SummaryPage = () => {
         if (!isAuthenticated) {
           const savedCart = localStorage.getItem("cart");
           const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+  
+          // Define a function to get the multiplier based on the Gsuite period
+          const getGsuiteMultiplier = (period: string) => {
+            switch (period.toLowerCase()) {
+              case "Annually":
+                return 12;
+              case "Biannually":
+                return 6;
+              case "Triannually":
+                return 4;
+              case "Flexible-Monthly":
+                return 1;
+              case "Flexible-Quarterly":
+                return 3;
+              case "Flexible-Halfyearly":
+                return 6;
+              default:
+                return 1;
+            }
+          };
+  
+          // Calculate the total price for unauthenticated users
           const totalPrice = cartItems.reduce((total, item) => {
-            return total + (item?.price ?? 0);
+            if (item.product.toLowerCase() === "gsuite") {
+              return total + (item?.price ?? 0) * (item.duration || 1);
+            } else {
+              // For non-gsuite, multiply by duration
+              return total + (item?.price ?? 0) * (item.duration || 1);
+            }
           }, 0);
+  
           setSubtotal(totalPrice || 0);
-          // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
-          // const sgstAmt = apiCartData.gst.sgst.Amt || 0;
-          // setTax(cgstAmt + sgstAmt);
-
           setTotal(totalPrice);
-
-          const formattedProducts: Product[] = cartItems.map((item) => ({
-            name: item.product || "Unknown Product",
-            link: item.domainName || "Unknown Product",
-            img:
+  
+          const formattedProducts: Product[] = cartItems.map((item) => {
+            console.log(item.price)
+            const productImage =
               item.product.toLowerCase() === "hosting"
                 ? CART.database
                 : item.product.toLowerCase() === "domain"
                 ? CART.www
-                : CART.google,
-            price: `₹ ${(item.price && item.price * item.duration) || 0}/-`,
-            domainName: item.domainName,
-            period: item.period || item.year || "Unknown Period",
-            quantity: item.quantity || 1,
-            duration : item.duration || 1,
-            cartId : item.productId,
-          }));
+                : CART.google;
+  
+            return {
+              name: item.product || "Unknown Product",
+              link: item.domainName || "Unknown Product",
+              img: productImage,
+              // price: price,
+              price: `₹ ${((item.price && item.duration ? item.price * item.duration : item.price) || 0).toFixed(2)}/-`,
 
+              domainName: item.domainName,
+              period: item.period || item.year || "Unknown Period",
+              quantity: item.quantity || 1,
+              duration: item.duration || 1,
+              cartId: item.productId,
+            };
+          });
+  
           setProducts(formattedProducts);
         } else if (apiCartData) {
-          const formattedProducts: Product[] = apiCartData.products.map(
+          // Logic for authenticated users
+          const formattedProducts: Product[] =apiCartData.products.map(
             (item: any) => {
               let productImage = CART.www; // Default image for domains
               if (item.product.toLowerCase() === "hosting") {
@@ -288,23 +375,23 @@ const SummaryPage = () => {
               } else if (item.product.toLowerCase() === "gsuite") {
                 productImage = CART.google;
               }
-
+  
               return {
-                cartId : item._id,
+                cartId: item._id,
                 name: item.product || "Unknown Product",
                 link: item.domainName || "Unknown Product",
                 quantity: item.quantity || 1,
                 img: productImage,
                 price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
-                duration : item.duration || 1,
+                duration: item.duration || 1,
                 period: item.period || `${item.year} Year` || "Unknown Period",
               };
             }
           );
-
+  
           setProducts(formattedProducts);
-
+  
           // Handle subtotal, tax, and total calculation
           setSubtotal(apiCartData.subTotal || 0);
           const cgstAmt = apiCartData.gst.cgst.Amt || 0;
@@ -318,9 +405,12 @@ const SummaryPage = () => {
         setLoading(false);
       }
     };
-
+  
     fetchCartItems();
-  }, [isAuthenticated, apiCartData]);
+  }, [isAuthenticated, apiCartData, selectedYears, products]);
+  
+  
+  
 
   if (loading || apiLoading) {
     return <div className="text-center">Loading...</div>;
@@ -329,7 +419,7 @@ const SummaryPage = () => {
   
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="overflow-x-auto">
       {products.length === 0 ? (
         <div className="flex justify-center items-center h-64 text-center">
           <p className="text-lg font-semibold text-gray-500">
@@ -337,128 +427,144 @@ const SummaryPage = () => {
           </p>
         </div>
       ) : (
-        <div className="flex flex-col justify-between summaryTable">
-          <div className="heightContainer h-[40vh] overflow-y-scroll hide-scrollbar">
-            <table className="min-w-full divide-y divide-gray-200 table-fixed">
-            <thead className="bg-white text-left whitespace-nowrap">
-              <tr>
-                <th className="w-[35%] px-6 py-4 text-black">
-                  <h5>Product</h5>
-                </th>
-                <th className="w-[20%] text-xs md:text-sm text-black">
-                  <h5>Quantity</h5>
-                </th>
-                <th className="w-[20%] text-xs md:text-sm text-black">
-                  <h5>Duration</h5>
-                </th>
-                <th className="w-[20%] text-xs md:text-sm text-black">
-                  <h5>Price</h5>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product, index) => (
-                <tr key={index} className="tracking-tighter">
-                  <td className="flex items-center xl:text-sm px-4 py-4 lg:py-[14px] text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
-                    <Image
-                      src={product.img}
-                      alt={product.name}
-                      width={48}
-                      height={48}
-                      className="w-6 h-6 md:w-12 md:h-12 lg:w-10 lg:h-10"
-                    />
-                    <div className="ml-2">
-                      <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm text-left">
-                        {product.name}
-                      </h3>
-                      <a
-                        href={product.link}
-                        className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm"
-                      >
-                        {product.link}
-                      </a>
-                    </div>
-                  </td>
-                  <td className=" py-4">
-                    <input
-                      onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
-                      value={product?.quantity}
-                      type="number"
-                      min="1"
-                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
-                    />
-                  </td>
-                  <td className=" py-4  text-gray-800">
-                    <select 
-                      className="w-full px-2 py-1 border rounded-sm "
-                      value={product.duration}
-                    onChange={(e) => handleDurationChange((product.domainName as string), Number(e.target.value))}
+        <div className="flex flex-col gap-28">
+          <table className="min-w-full divide-y divide-gray-200 table-fixed">
+          <thead className="bg-white text-left whitespace-nowrap">
+            <tr>
+              <th className="w-[35%] px-6 py-4 text-black">
+                <h5>Product</h5>
+              </th>
+              <th className="w-[20%] text-xs md:text-sm text-black">
+                <h5>Quantity</h5>
+              </th>
+              <th className="w-[20%] text-xs md:text-sm text-black">
+                <h5>Duration</h5>
+              </th>
+              <th className="w-[25%] text-xs md:text-sm text-black">
+                <h5>Price</h5>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {products.map((product, index) => (
+              <tr key={index} className="tracking-tighter">
+                <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
+                  <Image
+                    src={product.img}
+                    alt={product.name}
+                    width={48}
+                    height={48}
+                    className="w-6 h-6 md:w-12 md:h-12 lg:w-12 lg:h-12"
+                  />
+                  <div className="ml-2">
+                    <h3 className="text-xs md:text-sm lg:text-base 2xl:text-lg font-semibold xl:text-sm text-left">
+                      {product.name}
+                    </h3>
+                    <a
+                      href={product.link}
+                      className="text-blue-500 text-xs md:text-sm 2xl:text-lg lg:text-base xl:text-sm"
                     >
-                      {[1, 2, 3, 5].map((year) => (
-                <option key={year} value={year}>
-                  {year} year{year > 1 ? 's' : ''}
-                </option>
-              ))}
-                    </select>
-                  </td>
-                  <td className=" py-4  text-gray-800">
-                  <div className="flex items-center justify-between">
-                  {product.price}
-                
-                <svg
-                  onClick={() => {
-                    if (product?.cartId) {
-                      removeProductFromCart(product.cartId, product.domainName || "");
-                    } else {
-                      console.log(product);
-                    }
-                  }}
-                  className="cursor-pointer inline-block ml-4 "
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3 6H5H21"
-                    stroke="black"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
-                    stroke="black"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M10 11V17"
-                    stroke="black"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M14 11V17"
-                    stroke="black"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                      {product.link}
+                    </a>
                   </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-            </table>
-          </div>
+                </td>
+                <td className=" py-4">
+                  <input
+                    onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
+                    value={product?.quantity}
+                    type="number"
+                    min="1"
+                    className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
+                  />
+                </td>
+                <td className=" py-4  text-gray-800">
+                <select 
+  className="w-full px-2 py-1 border rounded-sm"
+  value={product.name === 'gsuite' ? product.period : product.duration}
+  onChange={(e) => {
+    if (product.name !== 'gsuite') {
+      handleDurationChange((product.domainName as string), Number(e.target.value));
+    } else {
+      handleDurationChangeForGsuite((product.domainName as string), e.target.value);
+    }
+  }}
+>
+  {
+    (product.name === 'domain' || product.name === 'hosting') 
+    ? (
+      [1, 2, 3, 5].map((year) => (
+        <option key={year} value={year}>
+          {year} year{year > 1 ? 's' : ''}
+        </option>
+      ))
+    ) 
+    : (
+      durations.map((duration) => (
+        <option key={duration} value={duration}>
+          {duration}
+        </option>
+      ))
+    )
+  }
+</select>
+
+                </td>
+                <td className=" py-4  text-gray-800">
+                  {product.price}
+                </td>
+                <td className=" py-4">
+                  <svg
+                    onClick={() => {
+                      if (product?.cartId) {
+                        removeProductFromCart(product.cartId, product.domainName || "");
+                      } else {
+                        console.log(product);
+                      }
+                    }}
+                    className="cursor-pointer"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 6H5H21"
+                      stroke="black"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M10 11V17"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M14 11V17"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
           
-          <div className="flex flex-col divide-y divide-gray-200 h-[30vh] summaryBottom">
-            {/* <div className="flex items-center px-4 py-4 text-sm text-blue-800"></div> */}
+          <div className="flex flex-col divide-y divide-gray-200">
+            <div className="flex items-center px-4 py-4 text-sm text-blue-800"></div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4  py-4 bg-white">
               <button className="text-sm font-bold text-customBlue mb-4 xl:text-sm sm:mb-0 2xl:text-lg">
                 Have a Coupon Code?
@@ -491,10 +597,10 @@ const SummaryPage = () => {
                   </li>
                 </ul>
               </div>
-              <div className="text-sm text-gray-800 md:flex items-start justify-start">
+              <div className="text-sm text-gray-800">
                 <ul className="bg-white text-center">
                   {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
-                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg font-700 ">
+                  <li className="py-2 text-lg xl:text-sm 2xl:text-lg">
   ₹{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
 </li>
                 </ul>

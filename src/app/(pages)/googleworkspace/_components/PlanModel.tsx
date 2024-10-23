@@ -119,6 +119,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     },
                 }
             );
+            queryClient.invalidateQueries({ queryKey: ['cartData'] });
             return response.data;
         } catch (error) {
             throw new Error('Failed to add cart to API');
@@ -128,7 +129,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartData = existingCart.map((item: any) => {
-            const { price, ...rest } = item;
+            const { price, status, ...rest } = item;
             return rest;
         });
 

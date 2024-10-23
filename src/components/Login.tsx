@@ -1,5 +1,5 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTransition, animated } from "react-spring";
@@ -55,6 +55,8 @@ const addCartToAPI = async (cartData: any) => {
 };
 
 const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
