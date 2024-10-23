@@ -117,6 +117,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     },
                 }
             );
+            queryClient.invalidateQueries({ queryKey: ['cartData'] });
             return response.data;
         } catch (error) {
             throw new Error('Failed to add cart to API');
@@ -126,7 +127,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const syncCartToAPI = () => {
         const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartData = existingCart.map((item: any) => {
-            const { price, ...rest } = item;
+            const { price, status, ...rest } = item;
             return rest;
         });
 
@@ -297,8 +298,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         />
 
                                     </div>
-                                    <div className='flex flex-col gap-3'>
-                                        <span className='text-4xl max-md:text-xl font-roboto font-900 text-home-heading'>Durationd</span>
+                                    <div className='flex flex-col gap-2'>
+                                    <h4 className=' text-home-heading'>Duration</h4>
                                         <select
                                             name="duration"
                                             id="duration"

@@ -137,6 +137,7 @@ const Hero = () => {
           },
         }
       );
+      queryClient.invalidateQueries({ queryKey: ['cartData'] });
       return response.data;
     } catch (error) {
       throw new Error("Failed to add cart to API");

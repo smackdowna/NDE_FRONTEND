@@ -65,8 +65,21 @@ const SummaryPage = () => {
   const { data: apiCartData, isLoading: apiLoading } = useQuery({
     queryKey: ["cartData"],
     queryFn: fetchCartFromAPI,
-    enabled: isAuthenticated,
+    enabled: isAuthenticated
   });
+
+
+
+  // Handeling duration for google workspace
+  const durations = [
+    "Annually",
+    "Biannually",
+    "Triannually",
+    "Flexible-Monthly",
+    "Flexible-Quarterly",
+    "Flexible-HalfYearly"
+  ];
+  
 
 
 
@@ -193,39 +206,43 @@ const SummaryPage = () => {
 
 
   // Function to update duration
-  const updateLocalStorageDuration = (domainName: string, newDuration: number) => {
+  const updateLocalStorageDuration = (domainName: string, newDuration: number, duration?: string) => {
+    console.log(duration);
+    
     const savedCart = localStorage.getItem('cart');
     const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+    
     const updatedCart = cartItems.map(item =>
-      item.domainName === domainName ? { ...item, duration: newDuration } : item
+      item.domainName === domainName ? { ...item, duration: newDuration, period: duration } : item
     );
+    
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    console.log(updatedCart);
   
-    // Trigger a re-render by updating the products state with the latest data
     setProducts(
       updatedCart.map(item => ({
         name: item.product || "Unknown Product",
-            link: item.domainName || "Unknown Product",
-            img:
-              item.product.toLowerCase() === "hosting"
-                ? CART.database
-                : item.product.toLowerCase() === "domain"
-                ? CART.www
-                : CART.google,
-            price: `₹ ${(item.price && item.price * item.duration) || item.price}/-`,
-            domainName: item.domainName,
-            period: item.period || item.year || "Unknown Period",
-            quantity: item.quantity || 1,
-            duration : item.duration || 1,
-            cartId : item.productId,
+        link: item.domainName || "Unknown Product",
+        img:
+          item.product.toLowerCase() === "hosting"
+            ? CART.database
+            : item.product.toLowerCase() === "domain"
+            ? CART.www
+            : CART.google,
+            price: `₹ ${(item.price ? item.price.toFixed(2) : "0.00")}/-`,
+        domainName: item.domainName,
+        period: item.period || item.year || duration || "Unknown Period",
+        quantity: Number(item.period || item.year || item.quantity || 1),
+        duration: item.duration || 1,
+        cartId: item.productId,
       }))
     );
-  };
+};
+
   
   const updateDuration = async (domainName: string, newDuration: number) => {
     try {
         updateLocalStorageDuration(domainName, Number(newDuration));
-      // Update duration in state
       setProducts(prevProducts =>
         prevProducts.map(product =>
           product.domainName === domainName ? { ...product, period: Number(newDuration) } : product
@@ -236,6 +253,44 @@ const SummaryPage = () => {
     }
   };
   
+  const updateDurationForGsuite = async (domainName: string, duration: string) => {
+    let newDuration;
+    if(duration === "Annually"){
+      newDuration = 12
+    } else if(duration === "Biannually"){
+      newDuration = 6
+    } else if(duration === "Triannually"){
+      newDuration = 4
+    } else if(duration === "Flexible-Monthly"){
+      newDuration = 1
+    } else if(duration === "Flexible-Quarterly"){
+      newDuration = 3
+    } else if(duration === "Flexible-Halfyearly"){
+      newDuration = 6
+    } else{
+      newDuration = 1
+    }
+
+    try {
+        updateLocalStorageDuration(domainName, newDuration, duration);
+      // Update duration in state
+      setProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.domainName === domainName ? { ...product, period: duration } : product
+        )
+      );
+    } catch (error) {
+      console.error('Error updating product duration:', error);
+    }
+  };
+  
+  // Duration change for gsuite
+  const handleDurationChangeForGsuite = (domainName: string, newDuration: string) => {
+    updateDurationForGsuite(domainName, newDuration);
+  };
+  
+
+  // Duration change for domain and hosting
   const handleDurationChange = (domainName: string, newDuration: number) => {
     setSelectedYears((prev) => ({ ...prev, [domainName]: Number(newDuration) }));
     updateDuration(domainName, Number(newDuration));
@@ -251,36 +306,68 @@ const SummaryPage = () => {
         if (!isAuthenticated) {
           const savedCart = localStorage.getItem("cart");
           const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
+  
+          // Define a function to get the multiplier based on the Gsuite period
+          const getGsuiteMultiplier = (period: string) => {
+            switch (period.toLowerCase()) {
+              case "Annually":
+                return 12;
+              case "Biannually":
+                return 6;
+              case "Triannually":
+                return 4;
+              case "Flexible-Monthly":
+                return 1;
+              case "Flexible-Quarterly":
+                return 3;
+              case "Flexible-Halfyearly":
+                return 6;
+              default:
+                return 1;
+            }
+          };
+  
+          // Calculate the total price for unauthenticated users
           const totalPrice = cartItems.reduce((total, item) => {
-            return total + (item?.price ?? 0);
+            if (item.product.toLowerCase() === "gsuite") {
+              return total + (item?.price ?? 0) * (item.duration || 1);
+            } else {
+              // For non-gsuite, multiply by duration
+              return total + (item?.price ?? 0) * (item.duration || 1);
+            }
           }, 0);
+  
           setSubtotal(totalPrice || 0);
-          // const cgstAmt = apiCartData.gst.cgst.Amt || 0;
-          // const sgstAmt = apiCartData.gst.sgst.Amt || 0;
-          // setTax(cgstAmt + sgstAmt);
-
           setTotal(totalPrice);
-
-          const formattedProducts: Product[] = cartItems.map((item) => ({
-            name: item.product || "Unknown Product",
-            link: item.domainName || "Unknown Product",
-            img:
+  
+          const formattedProducts: Product[] = cartItems.map((item) => {
+            console.log(item.price)
+            const productImage =
               item.product.toLowerCase() === "hosting"
                 ? CART.database
                 : item.product.toLowerCase() === "domain"
                 ? CART.www
-                : CART.google,
-            price: `₹ ${(item.price && item.price * item.duration) || 0}/-`,
-            domainName: item.domainName,
-            period: item.period || item.year || "Unknown Period",
-            quantity: item.quantity || 1,
-            duration : item.duration || 1,
-            cartId : item.productId,
-          }));
+                : CART.google;
+  
+            return {
+              name: item.product || "Unknown Product",
+              link: item.domainName || "Unknown Product",
+              img: productImage,
+              // price: price,
+              price: `₹ ${((item.price && item.duration ? item.price * item.duration : item.price) || 0).toFixed(2)}/-`,
 
+              domainName: item.domainName,
+              period: item.period || item.year || "Unknown Period",
+              quantity: item.quantity || 1,
+              duration: item.duration || 1,
+              cartId: item.productId,
+            };
+          });
+  
           setProducts(formattedProducts);
         } else if (apiCartData) {
-          const formattedProducts: Product[] = apiCartData.products.map(
+          // Logic for authenticated users
+          const formattedProducts: Product[] =apiCartData.products.map(
             (item: any) => {
               let productImage = CART.www; // Default image for domains
               if (item.product.toLowerCase() === "hosting") {
@@ -288,23 +375,23 @@ const SummaryPage = () => {
               } else if (item.product.toLowerCase() === "gsuite") {
                 productImage = CART.google;
               }
-
+  
               return {
-                cartId : item._id,
+                cartId: item._id,
                 name: item.product || "Unknown Product",
                 link: item.domainName || "Unknown Product",
                 quantity: item.quantity || 1,
                 img: productImage,
                 price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
-                duration : item.duration || 1,
+                duration: item.duration || 1,
                 period: item.period || `${item.year} Year` || "Unknown Period",
               };
             }
           );
-
+  
           setProducts(formattedProducts);
-
+  
           // Handle subtotal, tax, and total calculation
           setSubtotal(apiCartData.subTotal || 0);
           const cgstAmt = apiCartData.gst.cgst.Amt || 0;
@@ -318,9 +405,12 @@ const SummaryPage = () => {
         setLoading(false);
       }
     };
-
+  
     fetchCartItems();
-  }, [isAuthenticated, apiCartData]);
+  }, [isAuthenticated, apiCartData, selectedYears, products]);
+  
+  
+  
 
   if (loading || apiLoading) {
     return <div className="text-center">Loading...</div>;
@@ -388,17 +478,36 @@ const SummaryPage = () => {
                   />
                 </td>
                 <td className=" py-4  text-gray-800">
-                  <select 
-                    className="w-full px-2 py-1 border rounded-sm "
-                    value={product.duration}
-                  onChange={(e) => handleDurationChange((product.domainName as string), Number(e.target.value))}
-                  >
-                    {[1, 2, 3, 5].map((year) => (
-              <option key={year} value={year}>
-                {year} year{year > 1 ? 's' : ''}
-              </option>
-            ))}
-                  </select>
+                <select 
+  className="w-full px-2 py-1 border rounded-sm"
+  value={product.name === 'gsuite' ? product.period : product.duration}
+  onChange={(e) => {
+    if (product.name !== 'gsuite') {
+      handleDurationChange((product.domainName as string), Number(e.target.value));
+    } else {
+      handleDurationChangeForGsuite((product.domainName as string), e.target.value);
+    }
+  }}
+>
+  {
+    (product.name === 'domain' || product.name === 'hosting') 
+    ? (
+      [1, 2, 3, 5].map((year) => (
+        <option key={year} value={year}>
+          {year} year{year > 1 ? 's' : ''}
+        </option>
+      ))
+    ) 
+    : (
+      durations.map((duration) => (
+        <option key={duration} value={duration}>
+          {duration}
+        </option>
+      ))
+    )
+  }
+</select>
+
                 </td>
                 <td className=" py-4  text-gray-800">
                   {product.price}
