@@ -959,3 +959,7 @@ span.discoverGradient {
 
 
 
+.hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

@@ -499,9 +499,9 @@ section.switch-domain .big-image {
   } */
 }
 
-@media (max-width:834px) {
-  .getDomainFlex{
-    gap:10px;
+@media (max-width: 834px) {
+  .getDomainFlex {
+    gap: 10px;
   }
 
   section.getDomain {
@@ -516,7 +516,7 @@ section.switch-domain .big-image {
     text-align: center;
   }
 
-  .getDomainFlex{
+  .getDomainFlex {
     flex-direction: column;
     gap: 24px;
   }
@@ -524,7 +524,6 @@ section.switch-domain .big-image {
   .featureCard {
     width: 95%;
   }
-
 }
 
 @media (max-width: 1024px) {
@@ -557,5 +556,83 @@ section.switch-domain .big-image {
   section.faq-section {
     padding: 40px 16px;
   }
+}
 
+@media (max-width: 834px) {
+  .domainPlansFlex {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .hide-700 {
+    display: none;
+  }
+}
+
+.show-470 {
+  display: none;
+}
+
+@media (max-width: 470px) {
+  .show-470 {
+    display: block;
+  }
+
+  .hide-470 {
+    display: none;
+  }
+  .domainModalButton {
+    background: transparent !important;
+  }
+
+  button.availableCart {
+    border: 2px solid #000aff !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  button.unavailableCart {
+    border: 2px solid #5c5b5b !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  button.removeCart {
+    border: 2px solid #ff5c00 !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+  }
+}
+
+.domainPriceContainer {
+  width: 150px;
+}
+
+@media (max-width: 600px) {
+  .domainPriceContainer {
+    width: 120px;
+  }
+}
+
+@media (max-width: 470px) {
+  .domainPriceContainer {
+    width: fit-content;
+  }
+  .domainPriceContainer span.mainPrice {
+    font-size: 14px !important;
+  }
+
+  .domainPriceContainer span {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .domainPriceContainer span.bottomPrice {
+    display: none !important;
+  }
 }

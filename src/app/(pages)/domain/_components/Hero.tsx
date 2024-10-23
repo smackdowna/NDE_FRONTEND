@@ -269,8 +269,8 @@ const Hero = () => {
   
     return (
       <div className="flex justify-between bg-white items-center content-center m-3">
-        <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1">
-          <span className="font-900 text-lg max-lg:text-md max-md:text-xs">
+        <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1 domainPlansFlex">
+          <span className="md:font-900 font-700 text-lg max-lg:text-md max-md:text-xs">
             {domain.name}
           </span>
           <div>
@@ -290,9 +290,9 @@ const Hero = () => {
             </span>
           </div>
         </div>
-        <div className="flex content-center items-center gap-8">
+        <div className="flex content-center items-center md:gap-8 gap-2 ">
           <select
-            className="border rounded-md p-1 max-md:hidden"
+            className="border rounded-md p-1 hide-700"
             disabled={domain.status !== 'Available'}
             value={selectedYears[domain.name] || 1} // Bind the value to the state
             onChange={(e) => handleYearChange(domain.name, Number(e.target.value))} // Update state when the user selects a different year
@@ -303,28 +303,28 @@ const Hero = () => {
               </option>
             ))}
           </select>
-          <div className="w-[150px] max-md:w-[40px]">
-          <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
-        {/* Multiply price by the selected year */}
-        {domain.price && domain.price.length > 0
-          ? `₹${domain.price[0].registerPrice * selectedYear}`
-          : "N/A"}
-      </span>
+          <div className="domainPriceContainer flex flex-col items-start">
+                  <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
+                {/* Multiply price by the selected year */}
+                {domain.price && domain.price.length > 0
+                  ? `₹${domain.price[0].registerPrice * selectedYear}`
+                  : "N/A"}
+              </span>
             <div className="">
-            <span className="text-[14px] text-center max-md:hidden max-lg:text-xs ">
-          {domain.price && domain.price.length > 0
-            ? `then ₹${(domain.price[0].registerPrice + 200) * selectedYear}/Year`
-            : ""}
-        </span>
+              <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
+                {domain.price && domain.price.length > 0
+                  ? `then ₹${(domain.price[0].registerPrice + 200) * selectedYear}/Year`
+                  : ""}
+              </span>
             </div>
           </div>
           <button
-            className={`text-white w-[120px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${
+            className={`text-white w-[120px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md domainModalButton ${
               isInCart(domain)
-                ? "bg-red-500"
+                ? "bg-red-500 removeCart"
                 : domain.status === "Available"
-                ? "bg-home-primary"
-                : "bg-gray-400"
+                ? "bg-home-primary availableCart"
+                : "bg-gray-400 unavailableCart"
             }`}
             onClick={() => {
               if (domain.status === "Available") {
@@ -336,11 +336,20 @@ const Hero = () => {
             // Enable the button if the domain is in the cart, even if it's unavailable
             disabled={domain.status !== "Available" && !isInCart(domain)}
           >
+           <div className="hide-470">
             {domain.status === "Available" && !isInCart(domain)
-              ? "Add to cart"
-              : isInCart(domain)
-              ? "Remove"
-              : "Unavailable"}
+                ? "Add to cart"
+                : isInCart(domain)
+                ? "Remove"
+                : "Unavailable"}
+           </div>
+           <div className="show-470">
+            {domain.status === "Available" && !isInCart(domain)
+                ? <Image src={ICONS.cartBlue} alt="Add to cart" className="w-4 h-4" />
+                : isInCart(domain)
+                ? <Image src={ICONS.trashRed} alt="Remove" className="w-4 h-4" />
+                : <Image src={ICONS.cartGrey} alt="Unavailable" className="w-4 h-4" />}
+           </div>
           </button>
         </div>
       </div>

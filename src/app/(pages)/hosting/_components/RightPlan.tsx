@@ -8,6 +8,7 @@ import './style.css'
 import checkIcon from '../../../../assets/icons/check 1.svg'
 import './style.css'
 import { motion } from 'framer-motion';
+import SwipeableTable from "@/components/SwipeableTable";
 
 interface Domain {
   name: string;
@@ -293,292 +294,289 @@ const RightPlan: React.FC = () => {
       </div>
       </div>
 
-      
+      <div className="mb-4">
+       <SwipeableTable>
+        <div className="bg-white mx-0 lg:mx-14  bordered-table rounded-md ">
+            <table className="w-full min-w-max">
+              <thead>
+                <tr>
+                  <th className="first-column left-0 bg-white shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
+                    <h2 className="plansHeader text-left text-home-heading">Plan Features</h2>
+                  </th>
+                  <PlanCard
+                    name="Starter"
+                    price="67"
+                    isStarter={true}
+                    onAddToCart={() => handleAddToCart("Starter")}
+                    showDropdown={activeDropdown === "Starter"}
+                  />
+                  <PlanCard
+                    name="Advanced"
+                    price="99"
+                    onAddToCart={() => handleAddToCart("Advanced")}
+                    showDropdown={activeDropdown === "Advanced"}
+                  />
+                  <PlanCard
+                    name="Premium"
+                    price="149"
+                    onAddToCart={() => handleAddToCart("Premium")}
+                    showDropdown={activeDropdown === "Premium"}
+                  />
+                </tr>
+              </thead>
+              <tbody className="hide-600">
+                <PlanFeature
+                  title="Host Websites"
+                  starter="1"
+                  advanced="50"
+                  premium="100"
+                />
+                <PlanFeature
+                  title="SSD Storage (GB)"
+                  starter="50GB"
+                  advanced="100GB"
+                  premium="200GB"
+                />
+                <PlanFeature
+                  title="Bandwidth"
+                  starter="Unlimited"
+                  advanced="Unlimited"
+                  premium="Unlimited"
+                />
+                <PlanFeature
+                  title="Free .IN Domain (1st Year Only)"
+                  starter="1"
+                  advanced=""
+                  premium="1"
+                />
+                <PlanFeature
+                  title="Subdomains"
+                  starter="5"
+                  advanced="100"
+                  premium="200"
+                />
+                <PlanFeature
+                  title="FTP Users"
+                  starter="1"
+                  advanced="50"
+                  premium="100"
+                />
+                <PlanFeature
+                  title="email features:"
+                  starter=""
+                  advanced=""
+                  premium=""
+                />
+                <PlanFeature
+                  title="eMail Accounts"
+                  starter="2"
+                  advanced="50"
+                  premium="100"
+                />
+                <PlanFeature
+                  title="Individual Mailbox Size (GB)"
+                  starter="1"
+                  advanced="1"
+                  premium="1"
+                />
+                <PlanFeature
+                  title="Overall Mailbox Size (GB)"
+                  starter="2"
+                  advanced="50"
+                  premium="100"
+                />
+                <PlanFeature
+                  title="Email Per Hour"
+                  starter="100"
+                  advanced="100"
+                  premium="100"
+                />
+                <PlanFeature
+                  title="Email forwarding accounts"
+                  starter="Unlimited"
+                  advanced="Unlimited"
+                  premium="Unlimited"
+                />
+                <PlanFeature
+                  title="FTP Users"
+                  starter="Unlimited"
+                  advanced="Unlimited"
+                  premium="Unlimited"
+                />
+              </tbody>
 
-      <div className="pb-10">
-        <div className="bg-white mx-0 lg:mx-14 overflow-x-auto bordered-table rounded-md swipe-table"
-              ref={tableRef}
-              style={{ overscrollBehaviorX: 'contain', touchAction: 'pan-y', }}
-              >
-          <table className="w-full min-w-max">
-            <thead>
-              <tr>
-                <th className="first-column left-0 bg-white shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
-                  <h2 className="plansHeader text-left text-home-heading">Plan Features</h2>
-                </th>
-                <PlanCard
-                  name="Starter"
-                  price="67"
-                  isStarter={true}
-                  onAddToCart={() => handleAddToCart("Starter")}
-                  showDropdown={activeDropdown === "Starter"}
-                />
-                <PlanCard
-                  name="Advanced"
-                  price="99"
-                  onAddToCart={() => handleAddToCart("Advanced")}
-                  showDropdown={activeDropdown === "Advanced"}
-                />
-                <PlanCard
-                  name="Premium"
-                  price="149"
-                  onAddToCart={() => handleAddToCart("Premium")}
-                  showDropdown={activeDropdown === "Premium"}
-                />
-              </tr>
-            </thead>
-            <tbody className="hide-600">
-              <PlanFeature
-                title="Host Websites"
-                starter="1"
-                advanced="50"
-                premium="100"
-              />
-              <PlanFeature
-                title="SSD Storage (GB)"
-                starter="50GB"
-                advanced="100GB"
-                premium="200GB"
-              />
-              <PlanFeature
-                title="Bandwidth"
-                starter="Unlimited"
-                advanced="Unlimited"
-                premium="Unlimited"
-              />
-              <PlanFeature
-                title="Free .IN Domain (1st Year Only)"
-                starter="1"
-                advanced=""
-                premium="1"
-              />
-              <PlanFeature
-                title="Subdomains"
-                starter="5"
-                advanced="100"
-                premium="200"
-              />
-              <PlanFeature
-                title="FTP Users"
-                starter="1"
-                advanced="50"
-                premium="100"
-              />
-              <PlanFeature
-                title="email features:"
-                starter=""
-                advanced=""
-                premium=""
-              />
-              <PlanFeature
-                title="eMail Accounts"
-                starter="2"
-                advanced="50"
-                premium="100"
-              />
-              <PlanFeature
-                title="Individual Mailbox Size (GB)"
-                starter="1"
-                advanced="1"
-                premium="1"
-              />
-              <PlanFeature
-                title="Overall Mailbox Size (GB)"
-                starter="2"
-                advanced="50"
-                premium="100"
-              />
-              <PlanFeature
-                title="Email Per Hour"
-                starter="100"
-                advanced="100"
-                premium="100"
-              />
-              <PlanFeature
-                title="Email forwarding accounts"
-                starter="Unlimited"
-                advanced="Unlimited"
-                premium="Unlimited"
-              />
-              <PlanFeature
-                title="FTP Users"
-                starter="Unlimited"
-                advanced="Unlimited"
-                premium="Unlimited"
-              />
-            </tbody>
-
-            <tbody className="w-full show-600">
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                 
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+              <tbody className="w-full show-600">
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Get secure and personalised email account for your business</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
                         <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Setup HD video with 100 participants to ensure uninterrupted productivity.</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
                         <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Sort Tracking Page</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <tr>
-                      <td className="border bg-white text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
-                      <td className="border bg-white text-center px-4 py-2">
-                      <Image
-                          src={checkIcon}
-                          alt='tick'
-                          className='mx-auto'
-                          width={32}
-                          height={32}
-                          />
-                      </td>
-                  </tr>
-                  <hr />
-                  <div className="flex items-center justify-center w-full py-5">
-                  <button
-                      className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Secure communications tool, built for teams that makes team communication easy and efficient.</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Generate and work on documents with images, tables, drawings, charts and more</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Get valuable insights via spreadsheet data using formulas, charts, connectors and macros</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Make stunning presentations using templates, embed videos and images</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Do engaging, high-quality sites for your project</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Geo-restriction for Checkout</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                          <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Hierarchy based Geo-restriction Notification</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                          <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Sort Tracking Page</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Basic security and admin controls.</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="border bg-white text-center px-4 py-2"><p>Standard Endpoint device management for account security</p></td>
+                        <td className="border bg-white text-center px-4 py-2">
+                        <Image
+                            src={checkIcon}
+                            alt='tick'
+                            className='mx-auto'
+                            width={32}
+                            height={32}
+                            />
+                        </td>
+                    </tr>
+                    <hr />
+                    <div className="flex items-center justify-center w-full py-5">
+                    <button
+                        className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                      >
+                        Add to cart
+                      </button>
+                    </div>
 
-            </tbody>
+              </tbody>
 
-          </table>
+            </table>
         </div>
+       </SwipeableTable>
       </div>
 
       {activeDropdown === "Starter" && (
