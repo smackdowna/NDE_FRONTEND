@@ -165,6 +165,9 @@ import checkCart from "@/assets/icons/check-cart.svg"
 import cartBlue from "@/assets/icons/cartBlue.svg"
 import cartGrey from "@/assets/icons/cartGrey.svg"
 import trashRed from "@/assets/icons/trash-2.svg"
+import checkGreen from "@/assets/icons/greenCheck.svg"
+import radioChecked from "@/assets/icons/clarity_dot-circle-line.svg"
+import radioUnchecked from "@/assets/icons/clarity_dot-circle-line (1).svg"
 
 
   const ICONS = {
@@ -268,7 +271,10 @@ import trashRed from "@/assets/icons/trash-2.svg"
     checkCart,
     cartBlue,
     cartGrey,
-    trashRed
+    trashRed,
+    checkGreen,
+    radioChecked,
+    radioUnchecked
 
     
   };
