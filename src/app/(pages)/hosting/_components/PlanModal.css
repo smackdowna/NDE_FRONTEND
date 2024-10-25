@@ -1,0 +1,160 @@
+.hostingModal {
+  background: linear-gradient(91.46deg, #b2d1fe 0.65%, #f1f3ff 98.96%);
+  box-shadow: 4px 4px 25px 10px rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+}
+
+span.ModalTitle {
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 31.2px;
+  text-align: left;
+}
+
+span.hosting-plan {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28.13px;
+  text-align: left;
+  color: rgba(0, 6, 89, 1);
+}
+
+.hostingModal hr {
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.hostingModal button.choose {
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
+.plans-card {
+  width: 320px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+}
+
+.plans-card .time {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20.4px;
+  text-align: center;
+  color: rgba(0, 3, 52, 1);
+}
+
+.plans-card .original-price {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: rgba(0, 0, 0, 1);
+}
+
+.plans-card .price {
+  font-family: Roboto;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 45.6px;
+  text-align: center;
+  color: rgba(0, 6, 89, 1);
+}
+
+.plans-card .currency {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17.58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: rgba(0, 0, 0, 1);
+}
+
+.plans-card .desc {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17.58px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: rgba(0, 0, 0, 1);
+}
+
+.save {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 4px;
+  width: 110px;
+  height: 30px;
+  background: rgba(26, 132, 8, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.save span {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.58px;
+  text-align: center;
+  color: white;
+}
+
+.plans-card.selected {
+  background: rgba(236, 237, 255, 1);
+  border: 2px solid var(--Primary, rgba(0, 17, 255, 1));
+}
+
+.hostingModal .input-container {
+  height: 60px;
+}
+
+.hostingModal input[type="text"] {
+  width: 100%;
+  height: 100%;
+  padding: 12px 34px;
+  padding-right: 0px;
+  font-family: Roboto Serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36.3px;
+  text-align: left;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.hostingModal input[type="text"]:focus {
+  outline: none;
+}
+
+.hostingModal input[type="text"]::placeholder {
+  font-family: Roboto Serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36.3px;
+  text-align: left;
+}
+
+.hostingModal .input-container button {
+  width: 20%;
+  height: 100%;
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 19.92px;
+  text-align: left;
+  border-top-right-radius: 8px;
+  color: white;
+  border-bottom-right-radius: 8px;
+  background: rgba(0, 17, 255, 1);
+}

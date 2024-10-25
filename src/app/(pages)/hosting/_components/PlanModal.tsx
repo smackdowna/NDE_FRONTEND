@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { IMAGES } from '@/assets';
+import { ICONS, IMAGES } from '@/assets';
 import React, { useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { showToast } from '@/services/showToast';
+import './PlanModal.css'
 
 
 interface Domain {
@@ -251,7 +252,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                 : 'Unavailable'}
                 </button>
             </div>
-        </div>
+            </div>
         )
     };
 
@@ -263,130 +264,98 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const currentProduct = data?.product[index];
 
     return (
-        <div className="fixed inset-0 z-50 flex items-end justify-center">
-            <div className="relative w-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8">
-                <Image
-                    src={IMAGES.HostBanner}
-                    alt="home banner"
-                    layout="fill"
-                    objectFit="cover"
-                    quality={100}
-                    className="absolute inset-0  rounded-lg bg-gradient-hosting-hero"
-                />
-                <div className="p-4 max-md:p-1 relative">
-                    {currentStep === 0 && currentProduct && (
-                        <div>
-                            <div className="flex max-md:flex-col justify-between items-center py-10 mx-4 md:mx-10">
-                                <div className='flex flex-col gap-1'>
-                                    <span className='font-roboto font-900 text-4xl max-xl:text-2xl max-md:text-xl text-home-heading'>Plan Name</span>
-                                    <span className='text-3xl font-400 max-md:text-center max-md:text-xl font-roboto-serif'>{currentProduct.name}</span>
+        <div className=" fixed inset-0 z-50 flex items-end justify-center">
+            <div className="hostingModal relative w-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8">
+                <div className="hostingModalContent lg:py-[89px] lg:px-[100px] w-full">
+                    <div className="flex items-center justify-between w-full border-b-[1px] border-black pb-3">
+                        <div className="flex items-center justify-between">
+                            <span className='ModalTitle'>Choose a plan</span>
+                        </div>
+                        <div className="flex items-center lg:gap-[40px]">
+                            <span className="hosting-plan">Hosting - Delux Plan</span>
+                            <button className='hostingModalButton choose'>Change</button>
+                            <Image src={ICONS.checkGreen} alt='done' />
+                        </div>
+                    </div>
+                    <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
+                        <div className="flex items-center justify-between">
+                            <span className='ModalTitle'>Choose a Tenure</span>
+                            <button className='hostingModalButton choose'>Cancel</button>
+                        </div>
+                        <div className="flex items-center lg:gap-[40px]">
+                            <div className="plans-card selected flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
+                                <span className="time text-center mb-1">12 months</span>
+                                <span className="originalPrice text-center ">₹399</span>
+                                <span className="price text-center">₹599.00</span>
+                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
+                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
+                                <div className="save">
+                                    <span>Save 25%</span>
                                 </div>
-                                <div className='flex max-md:flex-col items-center justify-center gap-10'>
-                                    <div className='flex flex-col gap-3 max-md:text-center'>
-                                        <span className='text-4xl max-md:text-xl max-xl:text-2xl font-roboto font-900 text-home-heading'>Duration</span>
-                                        <select
-                                            name="duration"
-                                            id="duration"
-                                            className='p-3 max-xl:p-1 rounded-lg'
-                                            value={selectedPeriod}
-                                            onChange={handleDurationChange}
-                                        >
-                                            {currentProduct.price.map((p: any) => (
-                                                <option key={p.period} value={p.period}>
-                                                    {p.period.charAt(0).toUpperCase() + p.period.slice(1)}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='flex flex-col gap-1 max-md:text-center'>
-                                        <span className='font-roboto font-900 max-md:text-xl max-xl:text-2xl text-4xl text-home-heading'>Total</span>
-                                        <span className='text-4xl max-md:text-xl font-400 font-roboto-serif'>{price}/-</span>
-                                    </div>
-                                    <button
-                                        className='bg-home-primary text-3xl max-md:text-xl font-900 text-white py-4 px-4 rounded-2xl'
-                                        onClick={handleNextStep}
-                                    >
-                                        Buy Now
-                                    </button>
+                            </div>
+                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
+                                <span className="time text-center mb-1">12 months</span>
+                                <span className="originalPrice text-center ">₹399</span>
+                                <span className="price text-center">₹599.00</span>
+                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
+                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
+                                <div className="save">
+                                    <span>Save 25%</span>
+                                </div>
+                            </div>
+                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
+                                <span className="time text-center mb-1">12 months</span>
+                                <span className="originalPrice text-center ">₹399</span>
+                                <span className="price text-center">₹599.00</span>
+                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
+                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
+                                <div className="save">
+                                    <span>Save 25%</span>
+                                </div>
+                            </div>
+                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
+                                <span className="time text-center mb-1">12 months</span>
+                                <span className="originalPrice text-center ">₹399</span>
+                                <span className="price text-center">₹599.00</span>
+                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
+                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
+                                <div className="save">
+                                    <span>Save 25%</span>
                                 </div>
                             </div>
                         </div>
-                    )}
-                    {currentStep === 1 && (
-                        <div className='flex flex-col items-start px-10 max-md:px-1'>
-                            <div className='flex items-center  max-md:justify-center max-md:items-start gap-16 max-md:gap-10 max-md:p-2  mx-3 max-md:mx-2 '>
-                                <div className='flex items-center gap-4 max-md:gap-3'>
-                                    <input
-                                        type="radio"
-                                        name="domainOption"
-                                        id="newDomain"
-                                        onChange={() => setShowInputForm(true)}
-                                    />
-                                    <span className=' font-roboto-serif text-3xl max-lg:text-lg max-md:text-xs'>
-                                        Register a New Domain
-                                    </span>
+                    </div>
+                    <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
+                        <div className="flex items-center justify-between">
+                            <span className='ModalTitle'>Connect your Domain Name</span>
+                            <button className='hostingModalButton choose'>Cancel</button>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <div className="inp-grp flex gap-2 items-center">
+                                <div className="custom-radio">
+                                    <Image src={ICONS.radioChecked} alt="radio" />
                                 </div>
-                                <div className='flex items-center gap-4 max-md:gap-1'>
-                                    <input
-                                        type="radio"
-                                        name="domainOption"
-                                        id="existingDomain"
-                                        onChange={() => setShowInputForm(false)}
-                                    />
-                                    <span className=' font-roboto-serif text-3xl max-lg:text-lg max-md:text-xs '>
-                                        I already have a Domain Name
-                                    </span>
-                                </div>
+                                <p>Register a new domain</p>
                             </div>
-                            <div className="flex  pb-6 max-md:pb-0">
-                                {showInputForm ? (
-                                    <div>
-                                        <div className="flex m-3  max-md:m-3 max-md:mt-3 rounded-xl ">
-                                            <input
-                                                className="w-[60vw] max-md:w-[55vw] p-6 max-md:p-3 border rounded-l-xl max-md:text-xs max-md:placeholder:text-[10px]"
-                                                placeholder="Find and purchase a domain name"
-                                                value={searchQuery}
-                                                onChange={(e) => setSearchQuery(e.target.value)}
-                                                autoFocus
-                                            />
-                                            <button
-                                                className={`bg-home-primary text-white max-md:w-[30vw] text-xl max-md:text-md max-md:px-0 font-roboto font-700 px-6 p-2 rounded-r-xl ${isFetching ? "cursor-wait" : ""
-                                                    }`}
-                                                onClick={async () => {
-                                                    await refetch();
-                                                    setIsModalOpen(true);
-                                                }} disabled={isFetching}
-                                            >
-                                                <span className=' max-md:text-[10px] '>
-                                                    {isFetching ? "Searching..." : "Check Availability "}
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div className="p-2 max-md:mt-6 flex justify-center max-md:p-0 h-[300px] overflow-y-scroll hide-scrollbar">
-                                            <div>
-                                                {domains.map((domain, index) => (
-                                                    <DomainItem key={index} domain={domain} />
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="flex m-3 rounded-xl">
-                                        <input
-                                            className="w-[60vw] max-md:w-[50vw] p-6 max-md:p-2 border rounded-l-xl max-md:placeholder:text-[10px]"
-                                            placeholder="Enter your domain name"
-                                        />
-                                        <button
-                                            className="bg-domain-primary text-xl max-md:text-sm text-white px-8 max-md:px-2 rounded-r-xl"
-                                        >
-                                            <span className="font-roboto font-700">Add to Cart</span>
-                                        </button>
-                                    </div>
-                                )}
+                            <div className="inp-grp flex gap-2 items-center">
+                            <div className="custom-radio">
+                                    <Image src={ICONS.radioUnchecked} alt="radio" />
+                                </div>
+                                <p>I already have a domain</p>
                             </div>
                         </div>
-                    )}
+                        <div className="domains w-full">
+                            <div className="input-container w-full flex items-center relative">
+                                <input type="text" placeholder="Find and purchase a domain name" />
+                                <button className='flex gap-1 items-center justify-center'>
+                                    <Image src={ICONS.searchBarIcon} alt="search" />
+                                    <span>Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <button
                     onClick={() => setIsModalOpen(false)}
                     className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900"
