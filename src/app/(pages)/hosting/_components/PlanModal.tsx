@@ -346,13 +346,37 @@ const PlanModal: React.FC<PlanModalProps> = ({
                         </div>
                         <div className="domains w-full">
                             <div className="input-container w-full flex items-center relative">
-                                <input type="text" placeholder="Find and purchase a domain name" />
-                                <button className='flex gap-1 items-center justify-center'>
+                                <input
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                autoFocus
+                                type="text" placeholder="Find and purchase a domain name" />
+                                <button
+                                 disabled={isFetching}
+                                 onClick={async () => {
+                                    await refetch();
+                                    setIsModalOpen(true);
+                                }}
+                                className='flex gap-1 items-center justify-center'>
                                     <Image src={ICONS.searchBarIcon} alt="search" />
-                                    <span>Search</span>
+                                    <span>{isFetching ? "Searching..." : "Search"}</span>
                                 </button>
                             </div>
                         </div>
+                        {
+                            domains.length > 0 ?
+                       
+                        <div className="p-2 h-[300px] overflow-y-scroll hide-scrollbar w-full">
+                                            <div>
+                                                {domains.map((domain, index) => (
+                                                    <DomainItem key={index} domain={domain} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                        :
+                                        ""
+                                        }
+
                     </div>
                 </div>
                 
