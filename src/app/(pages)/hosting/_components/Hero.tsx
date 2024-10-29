@@ -5,7 +5,7 @@ import './style.css'
 
 const Hero = () => {
   return (
-    <div className="hero relative bg-gradient-hosting-hero">
+    <div className="hero hostingHero relative bg-gradient-hosting-hero">
       <div className="absolute inset-0 z-0">
         <Image 
           src={IMAGES.HostBanner} 
