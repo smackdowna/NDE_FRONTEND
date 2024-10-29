@@ -75,6 +75,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
     // console.log(selectedDomains)
 
     const { data, isError, isLoading } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
+    const [current, setCurrent] = useState(2);
+
 
     console.log(price);
 
@@ -253,6 +255,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
         );
     };
 
+    const gotoStep2 = () => {
+        // show all the plan-cards  
+        setCurrent(2);
+        setIsPlanCardSelected(false);
+    }
+
 
     const toggleDomainSelection = (domain: Domain) => {
         const selectedYear = selectedYears[domain.name] || 1;
@@ -414,9 +422,13 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     </div>
                     <div className="flex flex-col w-full border-b-[1px] border-black py-2 gap-5">
                         <div className="hostingFlex flex items-center justify-between w-full">
-                            <div className='flex items-center justify-between '>
+                            <div className='flex items-center justify-between hide-600'>
                                 <span className='ModalTitle'>Choose a Tenure</span>
-                                <Image src={ICONS.checkGreen} alt='done' className='check hidden show-600' />
+                                <Image src={ICONS.checkGreen} alt='done' className='check hidden' />
+                            </div>
+                            <div className='items-center justify-between hidden show-600-flex w-full'>
+                                <span className='ModalTitle'>Choose a Tenure</span>
+                                <Image src={ICONS.checkGreen} alt='done' className='check' />
                             </div>
                             {isPlanCardSelected ? 
                             <>
@@ -440,7 +452,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                             </> :
                             <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>}
                         </div>
-                        {!isPlanCardSelected ? 
+                        {!isPlanCardSelected && current==2 ? 
                         <>
                             <div className="plansFlex flex items-center  justify-between">
                             {planCards.map((card, index) => (
@@ -453,7 +465,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     <div className="flex flex-col w-full  border-black py-2 gap-5">
                         <div className="flex items-center justify-between">
                             <span className='ModalTitle'>Connect your Domain Name</span>
-                            <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>
+                            <button className='hostingModalButton choose'  onClick={() => gotoStep2() }>Cancel</button>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="inp-grp flex gap-2 items-center">
