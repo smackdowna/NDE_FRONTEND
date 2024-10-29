@@ -287,7 +287,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
                 </button>
             </div>
-        </div>
+            </div>
         )
     };
 
