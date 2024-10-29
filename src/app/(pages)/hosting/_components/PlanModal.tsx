@@ -8,12 +8,24 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { showToast } from '@/services/showToast';
 import './PlanModal.css'
+import { set } from 'react-hook-form';
 
 
 interface Domain {
     name: string;
     status: string;
     price?: { registerPrice: number }[];
+}
+
+interface cardDetails {
+    id: number;
+    duration: string;
+    originalPrice: string;
+    durationInYears: number,
+    price: string;
+    currency: string;
+    desc: string;
+    discount: string;
 }
 
 interface PlanModalProps {
@@ -148,6 +160,92 @@ const PlanModal: React.FC<PlanModalProps> = ({
         }
     };
 
+    const [isPlanCardSelected, setIsPlanCardSelected] = useState(false);
+    const [selectedPlanCard, setSelectedPlanCard] = useState<cardDetails | null>(null);
+
+    const planCards = [
+        {
+            id: 0,
+            discount : "25%",
+            duration: "12 months",
+            durationInYears:1,
+            price : "₹399",
+            originalPrice : "₹599.00",
+            currency : "INR / month",
+            desc : "Plans renew at rs. 399.00 / month 0n 13/10/2025"
+        },
+        {
+            id:1,
+            discount : "25%",
+            duration: "24 months",
+            durationInYears:2,
+            price : "₹399",
+            originalPrice : "₹399.00",
+            currency : "INR / month",
+            desc : "Plans renew at rs. 399.00 / month 0n 13/10/2025"
+        },
+        {
+            id:2,
+            discount : "25%",
+            duration: "36 months",
+            durationInYears:3,
+            price : "₹399",
+            originalPrice : "₹299.00",
+            currency : "INR / month",
+            desc : "Plans renew at rs. 399.00 / month 0n 13/10/2025"
+        },
+        {
+            id:3,
+            discount : "25%",
+            duration: "48 months",
+            durationInYears:4,
+            price : "₹399",
+            originalPrice : "₹599.00",
+            currency : "INR / month",
+            desc : "Plans renew at rs. 399.00 / month 0n 13/10/2025"
+        }
+    ]
+
+    const handlePlanCardSelection = (
+        e: React.MouseEvent<HTMLDivElement>,
+        id: number // Accept id directly
+    ) => {
+        // Add the 'selected' class to the clicked card
+        const selectedCard = e.currentTarget as HTMLDivElement;
+        selectedCard.classList.add('selected');
+    
+        // Log the id and selected card details for debugging
+        console.log("Selected card id:", id);
+        console.log("Selected card details:", planCards[id]);
+    
+        // Wait for 2 seconds
+        setTimeout(() => {
+            setIsPlanCardSelected(true);
+            setSelectedPlanCard(planCards[id]); // Directly select the card by id
+        }, 1000);
+    };
+    
+    
+
+    const PlanCard = (cardDetails: cardDetails) => {
+        return (
+            <div
+                className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative"
+                onClick={(e) => handlePlanCardSelection(e, cardDetails.id)} // Pass id directly
+            >
+                <span className="time text-center mb-1">{cardDetails.duration}</span>
+                <span className="originalPrice text-center">{cardDetails.originalPrice}</span>
+                <span className="price text-center">{cardDetails.price}</span>
+                <span className="currency text-center mb-1 opacity-80">{cardDetails.currency}</span>
+                <span className="desc text-center opacity-70">{cardDetails.desc}</span>
+                <div className="save">
+                    <span>Save {cardDetails.discount}</span>
+                </div>
+            </div>
+        );
+    };
+
+
     const toggleDomainSelection = (domain: Domain) => {
         const selectedYear = selectedYears[domain.name] || 1;
         setSelectedDomains((prevSelected) => {
@@ -272,7 +370,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                             <span className='ModalTitle'>Choose a plan</span>
                         </div>
                         <div className="flex items-center lg:gap-[40px]">
-                            <span className="hosting-plan">Hosting - Delux Plan</span>
+                            <span className="hosting-plan">Hosting - Deluxe Plan</span>
                             <button className='hostingModalButton choose'>Change</button>
                             <Image src={ICONS.checkGreen} alt='done' />
                         </div>
@@ -280,55 +378,34 @@ const PlanModal: React.FC<PlanModalProps> = ({
                     <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
                         <div className="flex items-center justify-between">
                             <span className='ModalTitle'>Choose a Tenure</span>
-                            <button className='hostingModalButton choose'>Cancel</button>
+                            {isPlanCardSelected ? 
+                            <>
+                                <div className="planDetails flex items-center lg:gap-[40px] gap-[4px]">
+                                   <div className="flex items-center gap-2">
+                                   <span className="planDetailsDuration">{selectedPlanCard?.durationInYears ?? ''} {selectedPlanCard?.durationInYears && selectedPlanCard.durationInYears > 1 ? `Years` : `Year`} -</span>
+                                    <span className="planDetailsPrice">{selectedPlanCard?.price}</span>
+                                    <span className="planDetailsDiscount">Save {selectedPlanCard?.discount}</span>
+                                   </div>
+                                    <button className='hostingModalButton choose' onClick={() => {setIsPlanCardSelected(false);  setSelectedPlanCard(null)}} >Change</button>
+                                    <Image src={ICONS.checkGreen} alt='done' />
+                                </div>
+                            </> :
+                            <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>}
                         </div>
-                        <div className="flex items-center lg:gap-[40px]">
-                            <div className="plans-card selected flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
-                                <span className="time text-center mb-1">12 months</span>
-                                <span className="originalPrice text-center ">₹399</span>
-                                <span className="price text-center">₹599.00</span>
-                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
-                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
-                                <div className="save">
-                                    <span>Save 25%</span>
-                                </div>
-                            </div>
-                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
-                                <span className="time text-center mb-1">12 months</span>
-                                <span className="originalPrice text-center ">₹399</span>
-                                <span className="price text-center">₹599.00</span>
-                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
-                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
-                                <div className="save">
-                                    <span>Save 25%</span>
-                                </div>
-                            </div>
-                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
-                                <span className="time text-center mb-1">12 months</span>
-                                <span className="originalPrice text-center ">₹399</span>
-                                <span className="price text-center">₹599.00</span>
-                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
-                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
-                                <div className="save">
-                                    <span>Save 25%</span>
-                                </div>
-                            </div>
-                            <div className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative">
-                                <span className="time text-center mb-1">12 months</span>
-                                <span className="originalPrice text-center ">₹399</span>
-                                <span className="price text-center">₹599.00</span>
-                                <span className="currency text-center mb-1 opacity-80">INR / month</span>
-                                <span className='desc text-center opacity-70'>Plans renew at rs. 399.00 / month 0n 13/10/2025</span>
-                                <div className="save">
-                                    <span>Save 25%</span>
-                                </div>
-                            </div>
+                        {!isPlanCardSelected ? 
+                        <>
+                            <div className="flex items-center lg:gap-[40px]">
+                            {planCards.map((card, index) => (
+                                <PlanCard key={index} {...card} />
+                            ))} 
                         </div>
+                        </> : 
+                        ''}
                     </div>
                     <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
                         <div className="flex items-center justify-between">
                             <span className='ModalTitle'>Connect your Domain Name</span>
-                            <button className='hostingModalButton choose'>Cancel</button>
+                            <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="inp-grp flex gap-2 items-center">
@@ -378,8 +455,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         }
 
                     </div>
+                    
                 </div>
-                
+                <div className="total w-full bg-[#000334] flex items-center justify-end h-[98px] gap-3 px-2">
+                    <span className='total-totalPrice'>Total :  ₹5256</span>
+                    <button className="button-continue">Continue Order</button>
+                </div>
                 <button
                     onClick={() => setIsModalOpen(false)}
                     className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900"

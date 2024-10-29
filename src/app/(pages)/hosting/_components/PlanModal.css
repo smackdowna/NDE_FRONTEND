@@ -158,3 +158,61 @@ span.hosting-plan {
   border-bottom-right-radius: 8px;
   background: rgba(0, 17, 255, 1);
 }
+
+.planDetailsDuration {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
+  text-align: left;
+  color: rgba(0, 6, 89, 1);
+}
+
+.planDetailsPrice {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28.13px;
+  text-align: left;
+  color: rgba(0, 17, 255, 1);
+}
+
+.planDetailsDiscount {
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background: rgba(26, 132, 8, 1);
+  color: white;
+
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 19.92px;
+  text-align: center;
+}
+
+.button-continue {
+  width: 248.84px;
+  height: 62.04px;
+  border-radius: 4px;
+
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28.13px;
+  text-align: center;
+  background: #ffb700;
+  color: #000334;
+}
+
+.total-totalPrice {
+  font-family: Roboto;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 45.6px;
+  text-align: left;
+  color: white;
+}
