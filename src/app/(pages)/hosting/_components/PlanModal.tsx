@@ -223,6 +223,14 @@ const PlanModal: React.FC<PlanModalProps> = ({
             setIsPlanCardSelected(true);
             setSelectedPlanCard(planCards[id]); // Directly select the card by id
         }, 1000);
+
+        // remove the selected class from all other cards
+        const cards = document.querySelectorAll('.plans-card');
+        cards.forEach((card) => {
+            if (card !== selectedCard) {
+                card.classList.remove('selected');
+            }
+        });
     };
     
     
@@ -292,62 +300,87 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const DomainItem = ({ domain }: { domain: Domain }) => {
         const year = selectedYears[domain.name] || 1;
         return (
-            <div className="flex justify-between w-[70vw] max-xl:w-[80vw] bg-white items-center content-center m-3 max-md:m-1">
-            <div className="flex flex-col mx-4  max-md:mx-1 p-3 max-md:p-1">
-                <span className="font-900 text-lg max-lg:text-md max-md:text-xs">{domain.name}</span>
+            <div className="flex justify-between bg-white items-center content-center my-3 w-full">
+            <div className="flex flex-col mx-4 max-md:mx-1 p-3 max-md:p-1 domainPlansFlex">
+            <span className="md:font-900 font-700 text-lg max-lg:text-md max-md:text-xs">
+                {domain.name}
+            </span>
                 <div>
-                    <span className={`text-[14px] w-[30px] max-md:text-[10px] ${domain.status === 'Available' ? 'text-green-500' :
+                    <span className={`text-[14px] w-[30px] max-md:text-xs ${domain.status === 'Available' ? 'text-green-500' :
                         domain.status === 'Added' ? 'text-yellow-600' :
                             domain.status === 'Unavailable' ? 'text-red-500' :
                                 'text-gray-500'
                         }`}>
-                        {domain.status}
-                    </span>
+                        <Image 
+                            src={
+                            domain.status === 'Available' 
+                            ? ICONS.charmCircleTick 
+                            : domain.status === 'Added' 
+                            ? ICONS.cartIcon 
+                            : ICONS.xCircle
+                            } 
+                            alt={domain.status} 
+                            className="inline-block w-4 h-4 mr-2"
+                        />  
+                     {domain.status}
+                     </span>
                 </div>
             </div>
-            <div className="flex content-center items-center gap-8">
+            <div className="flex content-center items-center md:gap-8 gap-2 ">
                 <select 
                 value={year}
                 onChange={(e) => handleYearChange(e, domain.name)}
-                className="border rounded-md p-1 max-md:hidden" disabled={domain.status !== 'Available'}>
+                className="border rounded-md p-1 hide-700" disabled={domain.status !== 'Available'}>
                     {[1, 2, 3, 5].map((year) => (
                         <option key={year} value={year}>
                             {year} year{year > 1 ? 's' : ''}
                         </option>
                     ))}
                 </select>
-                <div className="w-[150px] max-md:w-[40px]">
-                <span className="font-900 w-[200px] text-center text-2xl max-lg:text-sm leading-tight">
-              {domain.price && domain.price.length > 0
-                ? `₹${(domain.price[0].registerPrice * year).toFixed(2)}`
-                : 'N/A'}
-            </span>
-                    <div className="">
-                    <span className="text-[14px] text-center max-md:hidden  max-lg:text-xs ">
-                            {domain.price && domain.price.length > 0 ? `then ₹${domain.price[0].registerPrice * year + 2}/Year` : ''}
-                        </span>
-                    </div>
-                </div>
+                <div className="domainPriceContainer flex flex-col items-start">
+                  <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
+                {/* Multiply price by the selected year */}
+                {domain.price && domain.price.length > 0
+                  ? `₹${domain.price[0].registerPrice * year}`
+                  : "N/A"}
+              </span>
+            <div className="">
+              <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
+                {domain.price && domain.price.length > 0
+                  ? `then ₹${(domain.price[0].registerPrice + 200) * year}/Year`
+                  : ""}
+              </span>
+            </div>
+                 </div>
                 <button
-                    className={`text-white w-[120px]  max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md ${selectedDomains.some(d => d.name === domain.name) ? 'bg-home-primary' :
+                    className={`text-white w-[110px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md domainModalButton  ${selectedDomains.some(d => d.name === domain.name) ? 'bg-home-primary' :
                         domain.status === 'Available'
-                            ? 'bg-blue-500'
-                            : domain.status === 'Remove'
-                                ? 'bg-red-500'
+                            ? 'bg-blue-500 availableCart'
+                            : domain.status === 'Added'
+                                ? 'bg-red-500 removeCart'
                                 : domain.status === 'Unavailable'
-                                    ? 'bg-gray-400'
-                                    : 'bg-gray-500'
+                                    ? 'bg-gray-400 unavailableCart'
+                                    : 'bg-gray-500 unavailableCart'
                         }`}
                     disabled={domain.status !== 'Available'}
                     onClick={() => toggleDomainSelection(domain)}
-                >
+                >   
+                <div className="hide-470">
+                   {selectedDomains.some(d => d.name === domain.name)?
+                   "Remove" : domain.status === 'Available' ? "Add to Cart" : domain.status === 'Added' ? "Remove" : "Unavailable"}
+                </div>
+                
+                <div className="show-470">
                     {selectedDomains.some(d => d.name === domain.name)
-                        ? 'Remove'
+                        ? <Image src={ICONS.trashRed} alt='cart' className="inline-block w-4 h-4 mr-2" />
                         : domain.status === 'Available'
-                            ? 'Add to cart'
+                            ? <Image src={ICONS.cartBlue} alt='cart' className="inline-block w-4 h-4 mr-2" />
                             : domain.status === 'Added'
-                                ? 'Remove'
-                                : 'Unavailable'}
+                                ? <Image src={ICONS.trashRed} alt='cart' className="inline-block w-4 h-4 mr-2" />
+                                : <Image src={ICONS.cartGrey} alt='cart' className="inline-block w-4 h-4 mr-2" />
+                    }
+                </div>
+
                 </button>
             </div>
             </div>
@@ -363,38 +396,53 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
     return (
         <div className=" fixed inset-0 z-50 flex items-end justify-center">
-            <div className="hostingModal relative w-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8">
-                <div className="hostingModalContent lg:py-[89px] lg:px-[100px] w-full">
-                    <div className="flex items-center justify-between w-full border-b-[1px] border-black pb-3">
-                        <div className="flex items-center justify-between">
+            <div className="hostingModal relative w-[90vw] md:-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8">
+                <div className="hostingModalContent lg:py-[36px] lg:px-[52px] md:py-[12px] md:px-[32px] w-full py-[8px] px-[24px]">
+                    <div className="hostingFlex flex items-center justify-between w-full border-b-[1px] border-black pb-2">
+                        <div className=" flex items-center justify-between">
                             <span className='ModalTitle'>Choose a plan</span>
                         </div>
-                        <div className="flex items-center lg:gap-[40px]">
+                        <div className="flex items-center lg:gap-[40px] gap-[20px] hide-600">
+                            <span className="hosting-plan ">Hosting - Deluxe Plan</span>
+                            <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Change</button>
+                            <Image src={ICONS.checkGreen} alt='done' className='check' />
+                        </div>
+                        <div className="show-600-flex hidden  items-center w-full justify-between">
                             <span className="hosting-plan">Hosting - Deluxe Plan</span>
-                            <button className='hostingModalButton choose'>Change</button>
-                            <Image src={ICONS.checkGreen} alt='done' />
+                            <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Change</button>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
-                        <div className="flex items-center justify-between">
-                            <span className='ModalTitle'>Choose a Tenure</span>
+                    <div className="flex flex-col w-full border-b-[1px] border-black py-2 gap-5">
+                        <div className="hostingFlex flex items-center justify-between w-full">
+                            <div className='flex items-center justify-between '>
+                                <span className='ModalTitle'>Choose a Tenure</span>
+                                <Image src={ICONS.checkGreen} alt='done' className='check hidden show-600' />
+                            </div>
                             {isPlanCardSelected ? 
                             <>
-                                <div className="planDetails flex items-center lg:gap-[40px] gap-[4px]">
+                                <div className="planDetails flex items-center lg:gap-[40px] gap-[20px] hide-600">
                                    <div className="flex items-center gap-2">
                                    <span className="planDetailsDuration">{selectedPlanCard?.durationInYears ?? ''} {selectedPlanCard?.durationInYears && selectedPlanCard.durationInYears > 1 ? `Years` : `Year`} -</span>
                                     <span className="planDetailsPrice">{selectedPlanCard?.price}</span>
                                     <span className="planDetailsDiscount">Save {selectedPlanCard?.discount}</span>
                                    </div>
                                     <button className='hostingModalButton choose' onClick={() => {setIsPlanCardSelected(false);  setSelectedPlanCard(null)}} >Change</button>
-                                    <Image src={ICONS.checkGreen} alt='done' />
+                                    <Image src={ICONS.checkGreen} alt='done' className='check' />
+                                </div>
+                                <div className="planDetails items-center w-full justify-between hidden show-600-flex">
+                                   <div className="flex items-center gap-2">
+                                   <span className="planDetailsDuration">{selectedPlanCard?.durationInYears ?? ''} {selectedPlanCard?.durationInYears && selectedPlanCard.durationInYears > 1 ? `Years` : `Year`} -</span>
+                                    <span className="planDetailsPrice">{selectedPlanCard?.price}</span>
+                                    <span className="planDetailsDiscount">Save {selectedPlanCard?.discount}</span>
+                                   </div>
+                                    <button className='hostingModalButton choose' onClick={() => {setIsPlanCardSelected(false);  setSelectedPlanCard(null)}} >Change</button>
                                 </div>
                             </> :
                             <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>}
                         </div>
                         {!isPlanCardSelected ? 
                         <>
-                            <div className="flex items-center lg:gap-[40px]">
+                            <div className="plansFlex flex items-center  justify-between">
                             {planCards.map((card, index) => (
                                 <PlanCard key={index} {...card} />
                             ))} 
@@ -402,7 +450,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                         </> : 
                         ''}
                     </div>
-                    <div className="flex flex-col w-full border-b-[1px] border-black py-4 gap-5">
+                    <div className="flex flex-col w-full  border-black py-2 gap-5">
                         <div className="flex items-center justify-between">
                             <span className='ModalTitle'>Connect your Domain Name</span>
                             <button className='hostingModalButton choose'  onClick={() => setIsModalOpen(false)}>Cancel</button>
@@ -427,23 +475,27 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 autoFocus
-                                type="text" placeholder="Find and purchase a domain name" />
+                                type="text" placeholder="Find and purchase a domain name"
+                                
+                                />
                                 <button
-                                 disabled={isFetching}
-                                 onClick={async () => {
-                                    await refetch();
-                                    setIsModalOpen(true);
-                                }}
-                                className='flex gap-1 items-center justify-center'>
+                                    disabled={isFetching || !isPlanCardSelected} // Disable if fetching or if plan is not selected
+                                    onClick={async () => {
+                                        await refetch();
+                                        setIsModalOpen(true);
+                                    }}
+                                    className="flex gap-1 items-center justify-center"
+                                    >
                                     <Image src={ICONS.searchBarIcon} alt="search" />
-                                    <span>{isFetching ? "Searching..." : "Search"}</span>
+                                    <span className='hide-600'>{isFetching ? "Searching..." : "Search"}</span>
                                 </button>
+
                             </div>
                         </div>
                         {
                             domains.length > 0 ?
                        
-                        <div className="p-2 h-[300px] overflow-y-scroll hide-scrollbar w-full">
+                        <div className="p-2 h-[180px] overflow-y-scroll hide-scrollbar w-full">
                                             <div>
                                                 {domains.map((domain, index) => (
                                                     <DomainItem key={index} domain={domain} />
@@ -453,18 +505,23 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                         :
                                         ""
                                         }
-
+                       
                     </div>
                     
                 </div>
-                <div className="total w-full bg-[#000334] flex items-center justify-end h-[98px] gap-3 px-2">
-                    <span className='total-totalPrice'>Total :  ₹5256</span>
-                    <button className="button-continue">Continue Order</button>
+
+                <div className="total w-full bg-[#000334] flex items-center justify-end py-3 gap-3 px-2">
+                            <span className='total-totalPrice'>Total :  ₹5256</span>
+                            <button className="button-continue">Continue Order</button>
                 </div>
+                
                 <button
                     onClick={() => setIsModalOpen(false)}
-                    className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900"
+                    className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900 hide-600"
                 >
+                    <span>✖</span>
+                </button>
+                <button onClick={()=> setIsModalOpen(false)} className='hidden absolute top-4 right-4 show-600'> 
                     <span>✖</span>
                 </button>
             </div>

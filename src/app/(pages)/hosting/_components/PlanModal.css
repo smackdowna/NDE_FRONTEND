@@ -2,6 +2,7 @@
   background: linear-gradient(91.46deg, #b2d1fe 0.65%, #f1f3ff 98.96%);
   box-shadow: 4px 4px 25px 10px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
+  max-height: 90%;
 }
 
 span.ModalTitle {
@@ -47,13 +48,14 @@ span.hosting-plan {
   color: rgba(0, 3, 52, 1);
 }
 
-.plans-card .original-price {
+.plans-card .originalPrice {
   font-family: Roboto;
   font-size: 15px;
   font-weight: 500;
   line-height: 17.58px;
   letter-spacing: -0.02em;
   text-align: center;
+  text-decoration: line-through;
   color: rgba(0, 0, 0, 1);
 }
 
@@ -166,6 +168,7 @@ span.hosting-plan {
   line-height: 28.13px;
   text-align: left;
   color: rgba(0, 6, 89, 1);
+  min-width: fit-content !important;
 }
 
 .planDetailsPrice {
@@ -195,8 +198,8 @@ span.hosting-plan {
 }
 
 .button-continue {
-  width: 248.84px;
-  height: 62.04px;
+  width: fit-content;
+  padding: 10px 16px;
   border-radius: 4px;
 
   font-family: Roboto;
@@ -210,9 +213,312 @@ span.hosting-plan {
 
 .total-totalPrice {
   font-family: Roboto;
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 900;
   line-height: 45.6px;
   text-align: left;
   color: white;
+}
+
+@media (max-width: 1280px) {
+  .plans-card {
+    width: 24.5%;
+    padding-top: 30px;
+  }
+
+  .plans-card .price {
+    font-size: 32px;
+  }
+
+  .plans-card .currency {
+    font-size: 13px;
+  }
+
+  .plans-card .desc {
+    font-size: 13px;
+  }
+
+  .plans-card .time {
+    font-size: 15px;
+  }
+
+  .plans-card .original-price {
+    font-size: 13px;
+  }
+
+  .hostingModal .input-container {
+    height: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ModalTitle {
+    font-size: 22px !important;
+  }
+
+  .hostingModalButton {
+    font-size: 14px;
+  }
+
+  .hosting-plan {
+    font-size: 22px !important;
+  }
+
+  .planDetailsDuration {
+    font-size: 22px !important;
+  }
+
+  .planDetailsPrice {
+    font-size: 22px !important;
+  }
+
+  .planDetailsDiscount {
+    font-size: 14px;
+    height: 35px;
+    min-width: fit-content !important;
+    padding: 0px 10px;
+  }
+
+  img.check {
+    width: 24px;
+    height: 24px;
+  }
+
+  .total-totalPrice {
+    font-size: 24px;
+  }
+
+  .button-continue {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .ModalTitle,
+  .hosting-plan,
+  .planDetailsDuration,
+  .planDetailsPrice,
+  .total-totalPrice,
+  .button-continue {
+    font-size: 20px !important;
+  }
+
+  .planDetailsDiscount {
+    font-size: 12px;
+    height: 30px;
+    width: 80px;
+  }
+
+  .hostingModalButton {
+    font-size: 12px;
+    height: fit-content;
+    padding: 10px 20px !important;
+  }
+}
+
+@media (max-width: 660px) {
+  .hostingModalButton {
+    font-size: 10px;
+    height: fit-content;
+    padding: 10px 20px !important;
+  }
+
+  .ModalTitle,
+  .hosting-plan,
+  .planDetailsDuration,
+  .planDetailsPrice,
+  .total-totalPrice,
+  .button-continue {
+    font-size: 18px !important;
+  }
+
+  .planDetailsDiscount {
+    font-size: 10px;
+    height: 30px;
+    width: fit-content;
+    padding-inline: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hostingModal {
+    max-height: 600px;
+    min-height: 600px;
+    /* max-height: 90%; */
+    /* overflow: hidden; */
+  }
+  .hostingModalContent {
+    height: 560px;
+    overflow-y: scroll;
+  }
+
+  .hostingModalContent::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+  }
+
+  .plansFlex {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .plans-card {
+    width: 320px;
+    padding-inline: 40px;
+  }
+
+  .plans-card .price {
+    font-size: 32px;
+  }
+
+  .plans-card .currency {
+    font-size: 13px;
+  }
+
+  .plans-card .desc {
+    font-size: 13px;
+  }
+
+  .plans-card .time {
+    font-size: 15px;
+  }
+
+  .plans-card .original-price {
+    font-size: 13px;
+  }
+
+  .hostingModal .input-container {
+    height: 50px;
+  }
+
+  .hostingModalContent {
+    padding-top: 48px;
+  }
+
+  .ModalTitle {
+    font-size: 17px !important;
+    font-weight: 900 !important;
+    line-height: 19.92px !important;
+  }
+
+  .hosting-plan {
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    line-height: 19.92px !important;
+  }
+
+  button.hostingModalButton {
+    border: none !important;
+    padding: 6px 4px !important;
+    padding-inline: 0px !important;
+    font-family: Roboto;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 18px !important;
+    text-align: left;
+    color: #0011ff !important;
+  }
+
+  .hostingFlex {
+    flex-direction: column;
+    gap: 6px;
+    align-items: start;
+  }
+
+  .plans-card .save {
+    font-family: Roboto;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 17.58px !important;
+    text-align: center !important;
+
+    width: 115px !important;
+    height: 30px !important;
+  }
+
+  .plans-card .time {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 20.4px !important;
+    text-align: center !important;
+  }
+
+  .plans-card .originalPrice {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 17.58px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .plans-card .price {
+    font-family: Roboto;
+    font-size: 38px !important;
+    font-weight: 900 !important;
+    line-height: 45.6px !important;
+    text-align: center;
+  }
+
+  .plans-card .currency {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17.58px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .plans-card .desc {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17.58px;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .hostingModal .inp-grp p {
+    font-family: Roboto Serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .hostingModal .inp-grp img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hostingModal .input-container {
+    height: 42px;
+  }
+
+  .hostingModal input[type="text"],
+  .hostingModal input[type="text"]::placeholder {
+    font-family: Roboto Serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.4px;
+    text-align: left;
+  }
+
+  .hostingModal input[type="text"] {
+    padding: 8px 12px !important;
+  }
+
+  .input-container button {
+    font-size: 12px !important;
+  }
+
+  .total {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 400px) {
+  .hostingModal .inp-grp p {
+    font-size: 12px;
+    line-height: 19.8px;
+  }
 }
