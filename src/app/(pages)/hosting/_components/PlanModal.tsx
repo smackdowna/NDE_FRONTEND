@@ -84,7 +84,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const dispatch = useDispatch();
     const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const queryClient = useQueryClient();
-  const [cart, setCart]= useState<CartItem>([]);
+  const [cart, setCart]= useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalWithTax, setTotalWithTax] = useState(0);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
