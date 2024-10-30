@@ -105,11 +105,11 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
     // Showing total price
     useEffect(() => {
-        const total = cart.reduce((acc, item) => acc + item.price, 0);
-        setTotalPrice(total);
-        const tax = total * 0.18;
-        setTotalWithTax(total + tax);
-      }, [cart]);
+      const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
+      setTotalPrice(total);
+      const tax = total * 0.18;
+      setTotalWithTax(total + tax);
+    }, [cart]);
 
   // console.log(selectedDomains)
 
