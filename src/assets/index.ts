@@ -168,6 +168,8 @@ import trashRed from "@/assets/icons/trash-2.svg"
 import checkGreen from "@/assets/icons/greenCheck.svg"
 import radioChecked from "@/assets/icons/clarity_dot-circle-line.svg"
 import radioUnchecked from "@/assets/icons/clarity_dot-circle-line (1).svg"
+import x from "@/assets/icons/x.svg"
+import infoIcon from "@/assets/icons/ph_info-bold.svg"
 
 
   const ICONS = {
@@ -274,7 +276,9 @@ import radioUnchecked from "@/assets/icons/clarity_dot-circle-line (1).svg"
     trashRed,
     checkGreen,
     radioChecked,
-    radioUnchecked
+    radioUnchecked,
+    x,
+    infoIcon
 
     
   };
