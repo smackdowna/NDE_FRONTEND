@@ -267,19 +267,19 @@ span.testimonial-company {
   }
 }
 
-.hero-content {
+.home-hero .hero-content {
   padding-top: 160px;
   padding-inline: 64px;
 }
 
 @media (max-width: 1280px) {
-  .hero-content {
+  .home-hero .hero-content {
     padding-inline: 64px;
   }
 }
 
 @media (max-width: 1024px) {
-  .hero-content {
+  .home-hero .hero-content {
     padding-top: 140px;
     padding-inline: 20px;
   }
@@ -288,7 +288,7 @@ span.testimonial-company {
     align-items: center;
     justify-content: center;
   }
-  .hero-content {
+  .home-hero .hero-content {
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -314,7 +314,7 @@ span.testimonial-company {
 }
 
 @media (max-width: 430px) {
-  .hero-content {
+  .home-hero .hero-content {
     padding-top: 120px;
     padding-inline: 4px;
   }
@@ -323,7 +323,7 @@ span.testimonial-company {
     grid-template-columns: repeat(1, 1fr) !important;
   }
 
-  .hero-content h1 {
+  .home-hero .hero-content h1 {
     font-size: 28px;
     line-height: 33.6px;
   }
