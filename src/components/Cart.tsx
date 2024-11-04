@@ -117,7 +117,7 @@ const Cart: React.FC = () => {
     dispatch(loginSuccess({ token: data.token, user: data.data.fullName }));
     localStorage.setItem("token", data.token);
     localStorage.setItem("userData", data.data.fullName);
-    toast.success("Login successful");
+    // toast.success("Login successful");
     setIsLoggedIn(true);
 
     // Get cart from local storage and send it directly to the API
@@ -128,7 +128,7 @@ const Cart: React.FC = () => {
 
         // Send cart data to the API as is
         await addCartToAPI(parsedCart);
-        toast.success("Cart successfully added to the server");
+        // toast.success("Cart successfully added to the server");
       } catch (error) {
         toast.error("Failed to sync cart with the server");
       }

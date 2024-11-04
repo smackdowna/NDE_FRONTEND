@@ -195,12 +195,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const toastIdForError = `2`;
       addCartToAPI(cartData)
         .then(() => {
-          showToast("success", `Cart synced successfully`, toastIdForSuccess);
+          // showToast("success", `Cart synced successfully`, toastIdForSuccess);
           queryClient.invalidateQueries({ queryKey: ["plans"] });
         })
         .catch((error) => {
-          showToast("error", `Failed to sync cart`, toastIdForError);
-          console.error(error);
+          // showToast("error", `Failed to sync cart`, toastIdForError);
+          toast.error(error);
         });
     }
   };
@@ -317,12 +317,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const toastId = `toast-${domain.name}`;
 
       if (isSelected) {
-        showToast("success", `${domain.name} removed from cart`, toastId);
+        // showToast("success", `${domain.name} removed from cart`, toastId);
         updatedSelectedDomains = prevSelected.filter(
           (d) => d.name !== domain.name
         );
       } else {
-        showToast("success", `${domain.name} added to cart`, toastId);
+        // showToast("success", `${domain.name} added to cart`, toastId);
         updatedSelectedDomains = [...prevSelected, domain];
       }
 
@@ -648,7 +648,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                   placeholder="Find and purchase a domain name"
                 />
                 <button
-                  disabled={isFetching || !isPlanCardSelected} // Disable if fetching or if plan is not selected
+                  disabled={isFetching || !isPlanCardSelected}
                   onClick={async () => {
                     await refetch();
                     setIsModalOpen(true);

@@ -472,6 +472,7 @@ const SummaryPage = () => {
                   <input
                     onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
                     value={product?.quantity}
+                    disabled
                     type="number"
                     min="1"
                     className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"

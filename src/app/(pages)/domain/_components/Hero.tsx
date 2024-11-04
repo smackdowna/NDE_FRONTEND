@@ -120,7 +120,7 @@ const Hero = () => {
       toast.error(error?.message || "An error occurred");
     },
     onSuccess: () => {
-      toast.success("Domain added to cart");
+      // toast.success("Domain added to cart");
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
@@ -157,11 +157,11 @@ const Hero = () => {
       const toastIdForError = `2`;
       addCartToAPI(cartData)
         .then(() => {
-          showToast('success', `Cart synced successfully`, toastIdForSuccess);
+          // showToast('success', `Cart synced successfully`, toastIdForSuccess);
           queryClient.invalidateQueries({ queryKey: ['domain'] });
         })
         .catch((error) => {
-          showToast('error', `Failed to sync cart`, toastIdForError);
+          // showToast('error', `Failed to sync cart`, toastIdForError);
           console.error(error);
         });
     }
@@ -181,13 +181,13 @@ const Hero = () => {
 
       // If the domain is already in the cart, remove it
       if (isSelected) {
-        showToast('success', `${domain.name} removed from cart`, toastId);
+        // showToast('success', `${domain.name} removed from cart`, toastId);
         updatedCart = prevCart.filter(
           (item) => item.domainName !== domain.name
         );
       } else {
         // If the domain is not in the cart, add it
-        showToast('success', `${domain.name} added to cart`, toastId);
+        // showToast('success', `${domain.name} added to cart`, toastId);
         const newCartItems =
           domain?.price?.map((price) => ({
             name: domain?.name,

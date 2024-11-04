@@ -140,11 +140,11 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const toastIdForError = `2`;
             addCartToAPI(cartData)
                 .then(() => {
-                    showToast('success', `Cart synced successfully`, toastIdForSuccess);
+                    // showToast('success', `Cart synced successfully`, toastIdForSuccess);
                     queryClient.invalidateQueries({ queryKey: ['Gsuite'] });
                 })
                 .catch((error) => {
-                    showToast('error', `Failed to sync cart`, toastIdForError);
+                    // showToast('error', `Failed to sync cart`, toastIdForError);
                     console.error(error);
                 });
         }
@@ -160,10 +160,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const toastId = `toast-${domain.name}`;
     
             if (isSelected) {
-                showToast('success', `${domain.name} removed from cart`, toastId);
+                // showToast('success', `${domain.name} removed from cart`, toastId);
                 updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
-                showToast('success', `${domain.name} added to cart`, toastId);
+                // showToast('success', `${domain.name} added to cart`, toastId);
                 updatedSelectedDomains = [...prevSelected, domain];
             }
     
