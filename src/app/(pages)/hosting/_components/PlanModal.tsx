@@ -299,6 +299,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
     // show all the plan-cards
     setCurrent(2);
     setIsPlanCardSelected(false);
+    setSearchQuery("");
   };
 
   const toggleDomainSelection = (domain: Domain) => {
@@ -484,7 +485,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
   return (
     <div className=" fixed inset-0 z-50 flex items-end justify-center">
-      <div className="hostingModal relative w-[90vw] md:-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8">
+      <div className="hostingModal relative w-[90vw] md:-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8 ">
         <div className="hostingModalContent lg:py-[36px] lg:px-[52px] md:py-[12px] md:px-[32px] w-full py-[8px] px-[24px]">
           <div className="hostingFlex flex items-center justify-between w-full border-b-[1px] border-black pb-2">
             <div className=" flex items-center justify-between">
@@ -674,7 +675,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
             )}
           </div>
         </div>
-
         <div className="total w-full bg-[#000334] flex items-center justify-end py-3 gap-3 px-2">
           <span className="total-totalPrice">Total : {totalWithTax.toFixed(2)}</span>
           <button
@@ -684,7 +684,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
           }}
           className="button-continue">Continue Order</button>
         </div>
-
         <button
           onClick={() => {
                   setIsModalOpen(false);

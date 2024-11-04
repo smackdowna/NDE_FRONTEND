@@ -163,13 +163,6 @@ const handleChangeStep = (id:number) => {
     return null;
   }
 
-  // hide body scrollbar when the modal is open
-  if (isSidebarOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
-
   return (
    <div 
    onClick={() => {
