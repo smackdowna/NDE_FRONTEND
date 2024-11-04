@@ -1,6 +1,7 @@
 .hostingModal {
   background: linear-gradient(91.46deg, #b2d1fe 0.65%, #f1f3ff 98.96%);
   box-shadow: 4px 4px 25px 10px rgba(0, 0, 0, 0.24);
+  border: none;
   border-radius: 8px;
   max-height: 90%;
 }
@@ -20,6 +21,11 @@ span.hosting-plan {
   line-height: 28.13px;
   text-align: left;
   color: rgba(0, 6, 89, 1);
+}
+
+.hostingModal .total {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .hostingModal hr {
@@ -344,11 +350,10 @@ span.hosting-plan {
   .hostingModal {
     max-height: 600px;
     min-height: 600px;
-    /* max-height: 90%; */
-    /* overflow: hidden; */
   }
+
   .hostingModalContent {
-    height: 560px;
+    /* height: 560px; */
     overflow-y: scroll;
   }
 
@@ -520,5 +525,133 @@ span.hosting-plan {
   .hostingModal .inp-grp p {
     font-size: 12px;
     line-height: 19.8px;
+  }
+}
+
+@media (max-height: 800px) {
+  .hostingModal {
+    max-height: 90%;
+  }
+
+  .hostingModalContent {
+    max-height: 90%;
+  }
+
+  .plans-card {
+    padding-top: 20px;
+  }
+
+  .plans-card .price {
+    font-size: 32px;
+  }
+
+  .plans-card .currency {
+    font-size: 13px;
+  }
+
+  .plans-card .desc {
+    font-size: 13px;
+  }
+
+  .plans-card .time {
+    font-size: 15px;
+  }
+
+  .plans-card .original-price {
+    font-size: 13px;
+  }
+
+  .hostingModal .input-container {
+    height: 45px;
+  }
+
+  .hostingModal input[type="text"],
+  .hostingModal input[type="text"]::placeholder {
+    font-size: 18px;
+  }
+
+  .hostingModal input[type="text"] {
+    padding: 12px 24px;
+  }
+
+  .input-container button {
+    font-size: 18px;
+  }
+
+  /* Decrease the height of the contents inside the modal */
+  .hostingModalContent {
+    padding-top: 40px;
+  }
+
+  .ModalTitle {
+    font-size: 20px !important;
+  }
+
+  .hosting-plan {
+    font-size: 20px !important;
+  }
+
+  .planDetailsDuration {
+    font-size: 20px !important;
+  }
+
+  .planDetailsPrice {
+    font-size: 20px !important;
+  }
+
+  .total-totalPrice {
+    font-size: 24px;
+  }
+
+  .button-continue {
+    font-size: 20px;
+  }
+
+  .planDetailsDiscount {
+    font-size: 14px;
+    height: 35px;
+    width: 100px;
+  }
+
+  .hostingModalButton {
+    font-size: 14px;
+    height: fit-content;
+    padding: 10px 20px !important;
+  }
+
+  .plans-card .save {
+    font-size: 18px !important;
+    width: 100px !important;
+    height: 30px !important;
+  }
+}
+
+@media (max-height: 740px) {
+  .hostingModal {
+    max-height: 92%;
+  }
+
+  .hostingModalContent {
+    max-height: 92%;
+    padding: 10px 20px;
+  }
+
+  .plans-card {
+    padding-top: 20px;
+  }
+}
+
+@media (max-height: 660px) {
+  .hostingModal {
+    max-height: 94%;
+  }
+
+  .hostingModalContent {
+    max-height: 94%;
+    padding: 4px 20px;
+  }
+
+  .plans-card {
+    padding-top: 20px;
   }
 }
