@@ -473,12 +473,12 @@ const SummaryPage = () => {
                       disabled
                       type="number"
                       min="1"
-                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
+                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input productInput"
                     />
                   </td>
                   <td className=" py-4  text-gray-800">
                   <select 
-    className="w-full px-2 py-1 border rounded-sm"
+    className="w-full px-2 py-1 border rounded-sm productSelect"
     value={product.name === 'gsuite' ? product.period : product.duration}
     onChange={(e) => {
       if (product.name !== 'gsuite') {
@@ -604,10 +604,10 @@ const SummaryPage = () => {
                       value={product?.quantity}
                       type="number"
                       min="1"
-                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
+                      className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input productInput"
                     />
                       <select 
-                        className="w-full px-2 py-1 border rounded-sm"
+                        className="w-full px-2 py-1 border rounded-sm productSelect"
                         value={product.name === 'gsuite' ? product.period : product.duration}
                         onChange={(e) => {
                           if (product.name !== 'gsuite') {
