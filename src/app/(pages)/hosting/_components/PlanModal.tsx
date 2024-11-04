@@ -95,8 +95,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     {}
   );
 
-  console.log(cart)
-
 //   Getting all the products from cart
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -124,7 +122,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const initialPrice = data?.product[index]?.price?.find(
         (p: { period: string }) => p.period === selectedPeriod
       );
-      console.log(initialPrice);
       setPrice(initialPrice ? initialPrice?.amount : 0);
     }
   }, [data, selectedPeriod, index]);
@@ -195,12 +192,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const toastIdForError = `2`;
       addCartToAPI(cartData)
         .then(() => {
-          showToast("success", `Cart synced successfully`, toastIdForSuccess);
+          // showToast("success", `Cart synced successfully`, toastIdForSuccess);
           queryClient.invalidateQueries({ queryKey: ["plans"] });
         })
         .catch((error) => {
-          showToast("error", `Failed to sync cart`, toastIdForError);
-          console.error(error);
+          // showToast("error", `Failed to sync cart`, toastIdForError);
+          toast.error(error);
         });
     }
   };
@@ -261,10 +258,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const selectedCard = e.currentTarget as HTMLDivElement;
     selectedCard.classList.add("selected");
 
-    // Log the id and selected card details for debugging
-    console.log("Selected card id:", id);
-    console.log("Selected card details:", planCards[id]);
-
     // Wait for 2 seconds
     setTimeout(() => {
       setIsPlanCardSelected(true);
@@ -317,12 +310,12 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const toastId = `toast-${domain.name}`;
 
       if (isSelected) {
-        showToast("success", `${domain.name} removed from cart`, toastId);
+        // showToast("success", `${domain.name} removed from cart`, toastId);
         updatedSelectedDomains = prevSelected.filter(
           (d) => d.name !== domain.name
         );
       } else {
-        showToast("success", `${domain.name} added to cart`, toastId);
+        // showToast("success", `${domain.name} added to cart`, toastId);
         updatedSelectedDomains = [...prevSelected, domain];
       }
 
@@ -501,7 +494,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
               <span className="hosting-plan ">Hosting - Deluxe Plan</span>
               <button
                 className="hostingModalButton choose"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
               >
                 Change
               </button>
@@ -511,7 +507,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
               <span className="hosting-plan">Hosting - Deluxe Plan</span>
               <button
                 className="hostingModalButton choose"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
               >
                 Change
               </button>
@@ -648,7 +647,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                   placeholder="Find and purchase a domain name"
                 />
                 <button
-                  disabled={isFetching || !isPlanCardSelected} // Disable if fetching or if plan is not selected
+                  disabled={isFetching || !isPlanCardSelected}
                   onClick={async () => {
                     await refetch();
                     setIsModalOpen(true);
@@ -687,13 +686,19 @@ const PlanModal: React.FC<PlanModalProps> = ({
         </div>
 
         <button
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
           className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900 hide-600"
         >
           <span>✖</span>
         </button>
         <button
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
           className="hidden absolute top-4 right-4 show-600"
         >
           <span>✖</span>

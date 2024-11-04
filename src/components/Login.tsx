@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useTransition, animated } from "react-spring";
 import { useAppDispatch } from "../store/store";
 import { loginSuccess, loginFailure } from "../store/authSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 interface LoginProps {
   onClose: () => void;
@@ -82,7 +82,7 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
       dispatch(loginSuccess({ token: data.token, user: data.data.fullName }));
       localStorage.setItem("token", data.token);
       localStorage.setItem("userData", data.data.fullName);
-      toast.success("Login successful");
+      // toast.success("Login successful");
       setIsLoggedIn(true);
 
       // Get cart from local storage and send it directly to the API
@@ -90,19 +90,17 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
       if (cart) {
         try {
           const parsedCart = JSON.parse(cart);
-          console.log(Array.isArray(parsedCart))
+          console.log(Array.isArray(parsedCart));
 
           // Send cart data to the API as is
           await addCartToAPI(parsedCart);
-          toast.success("Cart successfully added to the server");
+          // toast.success("Cart successfully added to the server");
           // onClose();
-      window.location.reload();
+          window.location.reload();
         } catch (error) {
           toast.error("Failed to sync cart with the server");
         }
       }
-
-      
     },
     onError: (error: Error) => {
       dispatch(loginFailure(error.message));
@@ -149,15 +147,9 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
               <span className="px-2 font-roboto-serif text-xl">
                 Please sign in with your credentials below to continue.
               </span>
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col"
-              >
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
                 <div className="flex flex-col text-start gap-3 pt-6">
-                  <label
-                    htmlFor="email"
-                    className="text-2xl font-roboto-serif"
-                  >
+                  <label htmlFor="email" className="text-2xl font-roboto-serif">
                     Email
                   </label>
                   <input
@@ -195,23 +187,25 @@ const Login: React.FC<LoginProps> = ({ onClose, isOpen }) => {
                   Forgot Password ?
                 </span>
                 <div className="flex flex-row w-full items-center justify-center">
-                <button
-                  type="submit"
-                  className="bg-home-primary  text-white mx-2 mt-4 mb-2 text-2xl font-800 w-[300px] py-2"
-                  disabled={mutation.isPending}
-                >
-                  {mutation.isPending ? "Logging in..." : "Login"}
-                </button>
+                  <button
+                    type="submit"
+                    className="bg-home-primary  text-white mx-2 mt-4 mb-2 text-2xl font-800 w-[300px] py-2"
+                    disabled={mutation.isPending}
+                  >
+                    {mutation.isPending ? "Logging in..." : "Login"}
+                  </button>
                 </div>
                 <span>
                   New to NowDigitalEasy?{" "}
-                  <span className="text-home-primary cursor-pointer border-b border-blue-500">Sign up here</span>
+                  <span className="text-home-primary cursor-pointer border-b border-blue-500">
+                    Sign up here
+                  </span>
                 </span>
               </form>
             </div>
           </div>
         </div>
-        <ToastContainer position="top-right"/>
+        <ToastContainer position="top-right" />
       </animated.div>
     ) : null
   );

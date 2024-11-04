@@ -108,7 +108,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
     
     const addCartToAPI = async (cartData: any) => {
-        console.log(cartData)
         try {
             const response = await axios.post(
                 'https://liveserver.nowdigitaleasy.com:5000/cart',
@@ -140,18 +139,17 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const toastIdForError = `2`;
             addCartToAPI(cartData)
                 .then(() => {
-                    showToast('success', `Cart synced successfully`, toastIdForSuccess);
+                    // showToast('success', `Cart synced successfully`, toastIdForSuccess);
                     queryClient.invalidateQueries({ queryKey: ['Gsuite'] });
                 })
                 .catch((error) => {
-                    showToast('error', `Failed to sync cart`, toastIdForError);
+                    // showToast('error', `Failed to sync cart`, toastIdForError);
                     console.error(error);
                 });
         }
     };
 
     const toggleDomainSelection = (domain: Domain) => {
-        console.log(domain)
         const selectedYear = selectedYears[domain.name] || 1;
         setSelectedDomains((prevSelected) => {
             const isSelected = prevSelected.some((d) => d.name === domain.name);
@@ -160,10 +158,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
             const toastId = `toast-${domain.name}`;
     
             if (isSelected) {
-                showToast('success', `${domain.name} removed from cart`, toastId);
+                // showToast('success', `${domain.name} removed from cart`, toastId);
                 updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
             } else {
-                showToast('success', `${domain.name} added to cart`, toastId);
+                // showToast('success', `${domain.name} added to cart`, toastId);
                 updatedSelectedDomains = [...prevSelected, domain];
             }
     
@@ -297,7 +295,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     if (isError) return <div>Error loading plans</div>;
 
     const currentProduct = data?.products[index];
-    console.log(currentProduct)
 
     return (
         <div className="fixed inset-0 z-50 flex items-end justify-center">

@@ -102,7 +102,6 @@ const Hero = () => {
   useEffect(() => {
     // Save the cart to local storage whenever it changes
     localStorage.setItem("cart", JSON.stringify(cart));
-    console.log("Cart saved to local storage:", JSON.stringify(cart));
   }, [cart]);
 
   const handleSearchClick = () => {
@@ -113,14 +112,13 @@ const Hero = () => {
 
   const { mutate, isPending: isAddToCartPending } = useMutation({
     mutationFn: (data: any) => {
-      console.log("Data to be sent to API:", data); // Log data being sent to API
       return handleAddAItemToCartService(data);
     },
     onError: (error: any) => {
       toast.error(error?.message || "An error occurred");
     },
     onSuccess: () => {
-      toast.success("Domain added to cart");
+      // toast.success("Domain added to cart");
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
@@ -157,11 +155,11 @@ const Hero = () => {
       const toastIdForError = `2`;
       addCartToAPI(cartData)
         .then(() => {
-          showToast('success', `Cart synced successfully`, toastIdForSuccess);
+          // showToast('success', `Cart synced successfully`, toastIdForSuccess);
           queryClient.invalidateQueries({ queryKey: ['domain'] });
         })
         .catch((error) => {
-          showToast('error', `Failed to sync cart`, toastIdForError);
+          // showToast('error', `Failed to sync cart`, toastIdForError);
           console.error(error);
         });
     }
@@ -171,7 +169,6 @@ const Hero = () => {
 
   const handleAddToCart = (domain: Domain) => {
     const selectedYear = selectedYears[domain.name] || 1;
-    console.log(domain)
     setCart((prevCart) => {
       const isSelected = prevCart.some(
         (item) => item.domainName === domain.name
@@ -181,13 +178,13 @@ const Hero = () => {
 
       // If the domain is already in the cart, remove it
       if (isSelected) {
-        showToast('success', `${domain.name} removed from cart`, toastId);
+        // showToast('success', `${domain.name} removed from cart`, toastId);
         updatedCart = prevCart.filter(
           (item) => item.domainName !== domain.name
         );
       } else {
         // If the domain is not in the cart, add it
-        showToast('success', `${domain.name} added to cart`, toastId);
+        // showToast('success', `${domain.name} added to cart`, toastId);
         const newCartItems =
           domain?.price?.map((price) => ({
             name: domain?.name,
@@ -230,7 +227,6 @@ const Hero = () => {
       // Use 'name' instead of 'domainName' since 'name' is a property of the 'Domain' type
       const newCart = prevCart.filter((item) => item.name !== domain.name);
       localStorage.setItem("cart", JSON.stringify(newCart));
-      console.log("Cart updated by removing item:", newCart);
       return newCart;
     });
 
@@ -263,9 +259,6 @@ const Hero = () => {
 
   const DomainItem = ({ domain }: { domain: Domain }) => {
     const selectedYear = selectedYears[domain.name] || 1;
-    
-    // Getting into loop
-    console.log(domain)
   
     return (
       <div className="flex justify-between bg-white items-center content-center m-3">

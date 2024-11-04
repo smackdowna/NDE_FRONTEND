@@ -82,7 +82,7 @@ const RightPlan: React.FC = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showInputForm, setShowInputForm] = useState<boolean>(true); // Ensure this state is defined
+  const [showInputForm, setShowInputForm] = useState<boolean>(true);
   
 
   const handlePlanToggle = (plan: Plan) => {

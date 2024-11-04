@@ -40,7 +40,6 @@ interface Product {
 const SummaryPage = () => {
   const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
-  console.log(products)
   const [loading, setLoading] = useState<boolean>(true);
   const [subtotal, setSubtotal] = useState<number | null>(null);
   const [tax, setTax] = useState<number | null>(null);
@@ -114,14 +113,13 @@ const SummaryPage = () => {
           prevProducts.filter((product) => product.domainName !== domainName)
         );
 
-        const toastId = `toast-${domainName}`;
+        // const toastId = `toast-${domainName}`;
   
-        showToast('success', `${domainName} removed from cart`, toastId);
+        // showToast('success', `${domainName} removed from cart`, toastId);
       } else {
         // Remove from localStorage if the user is not logged in
         const savedCart = localStorage.getItem("cart");
         const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
-        console.log(cartItems)
         const updatedCart = cartItems.filter(
           (item) => item.domainName !== domainName
         );
@@ -132,16 +130,16 @@ const SummaryPage = () => {
           prevProducts.filter((product) => product.domainName !== domainName)
         );
 
-        const toastId = `toast-${domainName}`;
+        // const toastId = `toast-${domainName}`;
   
-        // Show a success toast for removal from local storage
-        showToast('success', `${domainName} removed from cart`, toastId);
+        // // Show a success toast for removal from local storage
+        // showToast('success', `${domainName} removed from cart`, toastId);
       }
     } catch (error) {
-      const toastId = `toast-${domainName}`;
       console.error("Error removing product from cart:", error);
+      // const toastId = `toast-${domainName}`;
       // Show an error toast if the removal fails
-      showToast('error', `${domainName} removed from cart`, toastId);
+      // showToast('error', `${domainName} removed from cart`, toastId);
     }
   };
   
@@ -206,7 +204,6 @@ const SummaryPage = () => {
 
   // Function to update duration
   const updateLocalStorageDuration = (domainName: string, newDuration: number, duration?: string) => {
-    console.log(duration);
     
     const savedCart = localStorage.getItem('cart');
     const cartItems: CartItem[] = savedCart ? JSON.parse(savedCart) : [];
@@ -216,7 +213,6 @@ const SummaryPage = () => {
     );
     
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    console.log(updatedCart);
   
     setProducts(
       updatedCart.map(item => ({
@@ -340,7 +336,6 @@ const SummaryPage = () => {
           setTotal(totalPrice);
   
           const formattedProducts: Product[] = cartItems.map((item) => {
-            console.log(item.price)
             const productImage =
               item.product.toLowerCase() === "hosting"
                 ? CART.database
@@ -406,7 +401,7 @@ const SummaryPage = () => {
     };
   
     fetchCartItems();
-  }, [isAuthenticated, apiCartData, selectedYears, products]);
+  }, [isAuthenticated, apiCartData, selectedYears]);
   
   
   
@@ -475,6 +470,7 @@ const SummaryPage = () => {
                     <input
                       onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
                       value={product?.quantity}
+                      disabled
                       type="number"
                       min="1"
                       className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input"
