@@ -163,6 +163,13 @@ const handleChangeStep = (id:number) => {
     return null;
   }
 
+  // hide body scrollbar when the modal is open
+  if (isSidebarOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   return (
    <div 
    onClick={() => {
@@ -209,7 +216,7 @@ const handleChangeStep = (id:number) => {
                   )}
                 </div>
                 <h6
-                  className={`text-base font-medium font-roboto-serif ${currentStep > step.id ? "text-[#1A8408]" : "text-gray-500"
+                  className={`cartStep text-base font-medium font-roboto-serif ${currentStep > step.id ? "text-[#1A8408]" : "text-gray-500"
                     }`}
                 >
                   {step.name}
@@ -236,7 +243,7 @@ const handleChangeStep = (id:number) => {
       </div>
 
       {/* Main Content */}
-      <div className=" md:p-4 relative sm:p-2 p-1">
+      <div className=" md:p-4 relative sm:p-2 p-1 cartMainContent">
         {currentStep === 1 && <SummaryPage />}
 
         {currentStep === 2 && !isAuthenticated && (
@@ -325,16 +332,16 @@ const handleChangeStep = (id:number) => {
 
         {
           currentStep === 1 ?
-          <div className="flex justify-center gap-4 p-4">
+          <div className="flex justify-center gap-4 p-4 cartBottomBtnContainer">
             <Link 
             onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
-            href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2 2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center">
+            href={"/"} className="w-2/4 bg-white text-customBlue py-2 text-sm border-2 2xl:text-lg font-bold border-customBlue rounded  hover:bg-blue-700 hover:text-white text-center cartBottomBtn">
               Continue Shopping
             </Link>
 
           <button
             onClick={handleNext}
-            className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700"
+            className="w-2/4 bg-blue-600 text-white xl:text-sm py-2  2xl:text-lg rounded hover:bg-blue-700 cartBottomBtn"
           >
             {Number(currentStep) === 3 ? "Pay" : "Checkout"}
 

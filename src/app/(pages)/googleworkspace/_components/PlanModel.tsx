@@ -108,7 +108,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
 
     
     const addCartToAPI = async (cartData: any) => {
-        console.log(cartData)
         try {
             const response = await axios.post(
                 'https://liveserver.nowdigitaleasy.com:5000/cart',
@@ -151,7 +150,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     };
 
     const toggleDomainSelection = (domain: Domain) => {
-        console.log(domain)
         const selectedYear = selectedYears[domain.name] || 1;
         setSelectedDomains((prevSelected) => {
             const isSelected = prevSelected.some((d) => d.name === domain.name);
@@ -297,7 +295,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     if (isError) return <div>Error loading plans</div>;
 
     const currentProduct = data?.products[index];
-    console.log(currentProduct)
 
     return (
         <div className="fixed inset-0 z-50 flex items-end justify-center">

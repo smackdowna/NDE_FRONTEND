@@ -82,7 +82,7 @@ const RightPlan: React.FC = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showInputForm, setShowInputForm] = useState<boolean>(true); // Ensure this state is defined
+  const [showInputForm, setShowInputForm] = useState<boolean>(true);
   
 
   const handlePlanToggle = (plan: Plan) => {
@@ -566,7 +566,7 @@ const RightPlan: React.FC = () => {
                     <hr />
                     <div className="flex items-center justify-center w-full py-5">
                     <button
-                        className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                        className="hidden bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
                       >
                         Add to cart
                       </button>

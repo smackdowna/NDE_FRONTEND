@@ -95,8 +95,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     {}
   );
 
-  console.log(cart)
-
 //   Getting all the products from cart
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -124,7 +122,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
       const initialPrice = data?.product[index]?.price?.find(
         (p: { period: string }) => p.period === selectedPeriod
       );
-      console.log(initialPrice);
       setPrice(initialPrice ? initialPrice?.amount : 0);
     }
   }, [data, selectedPeriod, index]);
@@ -260,10 +257,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     // Add the 'selected' class to the clicked card
     const selectedCard = e.currentTarget as HTMLDivElement;
     selectedCard.classList.add("selected");
-
-    // Log the id and selected card details for debugging
-    console.log("Selected card id:", id);
-    console.log("Selected card details:", planCards[id]);
 
     // Wait for 2 seconds
     setTimeout(() => {
@@ -501,7 +494,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
               <span className="hosting-plan ">Hosting - Deluxe Plan</span>
               <button
                 className="hostingModalButton choose"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
               >
                 Change
               </button>
@@ -511,7 +507,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
               <span className="hosting-plan">Hosting - Deluxe Plan</span>
               <button
                 className="hostingModalButton choose"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
               >
                 Change
               </button>
@@ -687,13 +686,19 @@ const PlanModal: React.FC<PlanModalProps> = ({
         </div>
 
         <button
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
           className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900 hide-600"
         >
           <span>✖</span>
         </button>
         <button
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+                  setIsModalOpen(false);
+                  setSearchQuery("");
+                }}
           className="hidden absolute top-4 right-4 show-600"
         >
           <span>✖</span>

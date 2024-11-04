@@ -5,7 +5,7 @@ import './style.css'
 
 const Hero = () => {
   return (
-    <div className="hero relative bg-gradient-light">
+    <div className="hero home-hero relative bg-gradient-light">
       <div className="absolute inset-0 z-0">
         <Image 
           src={IMAGES.home} 
