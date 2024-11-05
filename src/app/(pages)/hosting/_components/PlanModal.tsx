@@ -85,8 +85,10 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const queryClient = useQueryClient();
   const [cart, setCart]= useState<CartItem[]>([]);
+
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalWithTax, setTotalWithTax] = useState(0);
+  console.log(totalWithTax)
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
@@ -96,13 +98,32 @@ const PlanModal: React.FC<PlanModalProps> = ({
   );
 
 //   Getting all the products from cart
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(storedCart);
-  }, []);
+useEffect(() => {
+  const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+  setCart(storedCart);
+}, []);
+
+// useEffect(() => {
+//     const updateCartLength = () => {
+//       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+//       setCart(storedCart);
+//       console.log(storedCart)
+//     };
+
+//     updateCartLength();
+
+//     // Listen for localStorage changes
+//     window.addEventListener("storage", updateCartLength);
+
+//     // Cleanup the event listener on component unmount
+//     return () => {
+//       window.removeEventListener("storage", updateCartLength);
+//     };
+// }, []);
+
 
     // Showing total price
-    useEffect(() => {
+    useEffect(() => { 
       const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
       setTotalPrice(total);
       const tax = total * 0.18;
@@ -346,6 +367,8 @@ const PlanModal: React.FC<PlanModalProps> = ({
           "cart",
           JSON.stringify([...updatedCart, ...newCartItems])
         );
+        const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        setCart(storedCart);
         if (isAuthenticated) {
           syncCartToAPI();
         }
