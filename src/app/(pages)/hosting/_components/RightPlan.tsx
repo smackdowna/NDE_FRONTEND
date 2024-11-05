@@ -296,11 +296,11 @@ const RightPlan: React.FC = () => {
 
       <div className="mb-4">
        <SwipeableTable>
-        <div className="bg-white mx-0 lg:mx-14  bordered-table rounded-md ">
-            <table className="w-full min-w-max">
+        <div className="bg-white mx-0 lg:mx-14  bordered-table rounded-md overflow-hidden">
+            <table className="w-full min-w-max rounded-[7px]">
               <thead>
                 <tr>
-                  <th className="first-column left-0 bg-white shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
+                  <th className="first-column left-0 shadow-r-xl text-home-heading tracking-tighter z-20 px-4">
                     <h2 className="plansHeader text-left text-home-heading">Plan Features</h2>
                   </th>
                   <PlanCard
@@ -575,7 +575,7 @@ const RightPlan: React.FC = () => {
 
               </tbody>
 
-            </table>
+            </table> 
         </div>
        </SwipeableTable>
       </div>

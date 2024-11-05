@@ -443,7 +443,7 @@ const SummaryPage = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {products.map((product, index) => (
                 <tr key={index} className="tracking-tighter">
-                  <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800">
+                  <td className="flex items-center xl:text-sm px-4 py-4 text-sm md:text-base 2xl:text-lg lg:text-lg text-gray-800 ">
                     <Image
                       src={product.img}
                       alt={product.name}
@@ -466,7 +466,7 @@ const SummaryPage = () => {
                       </a>
                     </div>
                   </td>
-                  <td className=" py-4">
+                  <td className=" py-4 ">
                     <input
                       onChange={(e) => handleQuantityChange(product.domainName || '', parseInt(e.target.value))}
                       value={product?.quantity}
@@ -476,7 +476,7 @@ const SummaryPage = () => {
                       className="w-16 px-2 py-1 border rounded-sm xl:w-14 text-center custom-number-input productInput"
                     />
                   </td>
-                  <td className=" py-4  text-gray-800">
+                  <td className=" py-4  text-gray-800 ">
                   <select 
     className="w-full px-2 py-1 border rounded-sm productSelect"
     value={product.name === 'gsuite' ? product.period : product.duration}
@@ -509,9 +509,8 @@ const SummaryPage = () => {
 
                   </td>
                   <td className=" py-4  text-gray-800">
-                    {product.price}
-                  </td>
-                  <td className=" py-4">
+                   <div className="flex items-center justify-between w-full">
+                   <span>{product.price}</span>
                     <svg
                       onClick={() => {
                         if (product?.cartId) {
@@ -520,7 +519,7 @@ const SummaryPage = () => {
                           console.log(product);
                         }
                       }}
-                      className="cursor-pointer"
+                      className="cursor-pointer inline "
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -555,7 +554,9 @@ const SummaryPage = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
+                   </div>
                   </td>
+                  
                 </tr>
               ))}
             </tbody>

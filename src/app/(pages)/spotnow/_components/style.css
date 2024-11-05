@@ -349,7 +349,16 @@ h6 {
   .plans .tableBorder {
     border: 3px solid #0066ff;
     border-radius: 14px;
+    background: white;
   }
+
+  .plans table{
+    border-radius: 14px;
+  }
+}
+
+.small-tbody td:nth-child(1) {
+  border-right: 1px solid #0000004d;
 }
 
 @media (max-width: 1400px) {
@@ -434,9 +443,9 @@ table {
   table-layout: auto; /* Ensure the table layout adjusts based on content */
 }
 
-tbody,
-thead tr:not(.first-row) th,
-tbody td {
+.plans tbody,
+.plans thead tr:not(.first-row) th,
+.plans tbody td {
   white-space: nowrap; /* Prevent content from wrapping in rows */
   width: auto; /* Auto size the columns */
 }
@@ -877,9 +886,7 @@ th button {
   border-bottom: 1px solid #0000004d;
 }
 
-.plans tr td{
-  border-right: 1px solid #0000004d;
-}
+
 
 .plans .toogleBackground {
   position: absolute;
