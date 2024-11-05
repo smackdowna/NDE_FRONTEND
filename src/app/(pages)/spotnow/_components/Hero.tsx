@@ -4,7 +4,7 @@ import './style.css'
 
 const Hero = () => {
     return (
-        <div className="hero relative bg-background-SpotNow pt-20 max-md:pt-2">
+        <div className="hero spotnow-hero relative bg-background-SpotNow pt-20 max-md:pt-2">
             <div className="absolute inset-0 z-[-1]">
                 <Image
                     src={IMAGES.spotBanner}
