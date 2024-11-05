@@ -179,12 +179,10 @@ const SpotNowTable: React.FC = () => {
             </div>
       </div>
 
-
-
             <div className="px-0 max-lg:mx-4 mt-4  rounded-sm">
                 <SwipeableTable>
-                <div className="mx-0 bg-white lg:mx-14 tableBorder bordered-table">
-                    <table className="w-full min-w-max ">
+                <div className="mx-0  lg:mx-14 tableBorder bordered-table">
+                    <table className="w-full min-w-max">
                         <thead>
                             <tr className=' max-sm:hidden hide-600 first-row'>
                                 <th className="relative shadow-r-xl text-home-heading text-3xl max-lg:text-2xl max-md:text-xl font-roboto font-900">

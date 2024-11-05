@@ -350,6 +350,10 @@ h6 {
     border: 3px solid #0066ff;
     border-radius: 14px;
   }
+
+  .plans table{
+    border: 14px;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -419,8 +423,8 @@ h6 {
 }
 
 /* Make the first row auto-fit its content */
-.first-row th,
-.first-row td {
+ .first-row th,
+ .first-row td {
   white-space: nowrap; /* Prevent content from wrapping */
   width: auto; /* Automatically adjust the width based on content */
   max-width: 1%; /* Ensure it doesn't take excessive space */
@@ -877,9 +881,7 @@ th button {
   border-bottom: 1px solid #0000004d;
 }
 
-.plans tr td{
-  border-right: 1px solid #0000004d;
-}
+
 
 .plans .toogleBackground {
   position: absolute;
