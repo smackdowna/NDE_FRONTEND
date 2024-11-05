@@ -209,7 +209,7 @@ const handleChangeStep = (id:number) => {
                   )}
                 </div>
                 <h6
-                  className={`cartStep text-base font-medium font-roboto-serif ${currentStep > step.id ? "text-[#1A8408]" : "text-gray-500"
+                  className={`cartStep text-base font-medium font-roboto-serif text-left ${currentStep > step.id ? "text-[#1A8408]" : "text-gray-500"
                     }`}
                 >
                   {step.name}

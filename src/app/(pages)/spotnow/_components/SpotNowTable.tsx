@@ -92,8 +92,6 @@ const SpotNowTable: React.FC = () => {
 
   const getSelectedIndex = () => plans.findIndex(plan => plan.name === selectedPlan);
 
-
-
     return (
         <div className='plans bg-[#F3F4FD] py-14 max-2xl:py-8'>
            <div className="plansTitle w-full flex md:hidden items-center justify-center">
@@ -231,7 +229,12 @@ const SpotNowTable: React.FC = () => {
                             <PlanFeature title="Email forwarding accounts" starter="Unlimited" advanced="Unlimited" premium="Unlimited" />
                         </tbody>
                         
-                        <tbody className="small-tbody sm:hidden show-600 ">
+                       
+                        
+                    </table>
+                    
+                    <table className="w-full mmin-w-max sm:hidden show-600">
+                    <tbody className="small-tbody">
                             <tr>
                                 <td className="  text-center px-4 py-2">Number of Users</td>
                                 <td className=" text-center px-4 py-2">
@@ -401,8 +404,8 @@ const SpotNowTable: React.FC = () => {
                                 </td>
                             </tr>
                         </tbody>
-                        
                     </table>
+
                     <div className='hidden show-600-flex w-full justify-center content-center  items-center py-2'>
                         <button className=' bg-home-primary text-white p-2 rounded-xl w-[110.38px]'>Add to Cart</button>
                     </div>

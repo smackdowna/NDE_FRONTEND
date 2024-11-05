@@ -59,7 +59,7 @@ const SwipeableTable: React.FC<SwipeableTableProps> = ({ children }) => {
     <div className="relative w-full overflow-hidden">
       <div
         ref={tableRef}
-        className="overflow-x-auto overflow-y-visible hide-scrollbar bg-white"
+        className="overflow-x-auto overflow-y-visible hide-scrollbar"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
