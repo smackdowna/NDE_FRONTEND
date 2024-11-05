@@ -60,7 +60,7 @@ const fetchPlans = async () => {
   return response.data;
 };
 
-type Plan = 'Starter' | 'Standard' | 'Plus';
+type Plan = 'Starter' | 'Advanced' | 'Premium';
 interface PlanInfo {
   name: Plan;
   price: number;
@@ -68,8 +68,8 @@ interface PlanInfo {
 
 const plans: PlanInfo[] = [
   { name: 'Starter', price: 132 },
-  { name: 'Standard', price: 232 },
-  { name: 'Plus', price: 350 },
+  { name: 'Advanced', price: 232 },
+  { name: 'Premium', price: 350 },
 ];
 
 
@@ -250,7 +250,7 @@ const RightPlan: React.FC = () => {
         <h4 className="mb-2 text-home-heading text-center">
             Choose Your Plan
           </h4>
-          <p className="text-center text-home-body">Businesses just love working with us!</p>
+          <p className="text-center text-home-body">Businesses just love working with ussss!</p>
        </div>
       </div>
 
