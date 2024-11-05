@@ -566,7 +566,8 @@ const RightPlan: React.FC = () => {
                     <hr />
                     <div className="flex items-center justify-center w-full py-5">
                     <button
-                        className="hidden bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                        className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
+                        onClick={() => handleAddToCart(selectedPlan? selectedPlan : 'Starter')}
                       >
                         Add to cart
                       </button>
