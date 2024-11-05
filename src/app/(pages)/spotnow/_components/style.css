@@ -527,27 +527,27 @@ th button {
 }
 
 @media (max-width: 1920px) {
-  .hero-content {
+  .spotnow-hero .hero-content {
     flex-basis: 50%;
   }
 
-  .heroImage {
+  .spotnow-hero .heroImage {
     max-width: 45vw !important;
     width: 45vw !important;
   }
 
-  .hero-text h1 {
+  .spotnow-hero .hero-text h1 {
     font-size: 78px !important;
     line-height: 93.6px !important;
   }
 }
 
 @media (max-width: 1780px) {
-  .hero-content {
+  .spotnow-hero .hero-content {
     flex-basis: 60%;
   }
 
-  .hero-content p {
+  .spotnow-hero .hero-content p {
     max-width: 600px;
   }
 
@@ -557,72 +557,72 @@ th button {
     min-width: 38vw !important;
   } */
 
-  .hero-text h1 {
+  .spotnow-hero .hero-text h1 {
     font-size: 78px !important;
     line-height: 93.6px !important;
   }
 }
 
 @media (max-width: 1620px) {
-  .hero-left {
+  .spotnow-hero .hero-left {
     gap: 24px;
   }
 
-  .hero-padding {
+  .spotnow-hero .hero-padding {
     padding-top: 80px;
   }
 
-  .hero-content {
+  .spotnow-hero .hero-content {
     flex-basis: 60%;
   }
 
-  .heroImage {
+  .spotnow-hero .heroImage {
     min-width: 45vw !important;
     width: 45vw !important;
     max-width: 45vw !important;
   }
 
-  .hero-text {
+.spotnow-hero .hero-text {
     gap: 16px;
   }
 
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 64px !important;
     line-height: 76.8px !important;
   }
 }
 
 @media (max-width: 1120px) {
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 38px;
     line-height: 45.6px;
   }
 }
 
 @media (max-width: 1280px) {
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 48px !important;
     line-height: 57.6px !important;
   }
 
-  .hero-text {
+  .spotnow-hero .hero-text {
     gap: 16px;
   }
 
-  .hero-left {
+  .spotnow-hero .hero-left {
     gap: 16px;
   }
 }
 
 @media (max-width: 1120px) {
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 38px !important;
     line-height: 45.6px !important;
   }
 }
 
 @media (max-width: 920px) {
-  .hero-padding {
+  .spotnow-hero .hero-padding {
     padding-top: 100px !important;
   }
 }
@@ -693,74 +693,74 @@ th button {
 }
 
 @media (max-width: 1460px) {
-  .hero-content p {
+  .spotnow-hero .hero-content p {
     max-width: 450px;
   }
 
-  .heroImage {
+  .spotnow-hero .heroImage {
     max-width: 50vw !important;
     width: 50vw !important;
   }
 
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 56px !important;
     line-height: 67.2px !important;
   }
 
-  .hero-padding {
+  ..spotnow-hero .hero-padding {
     padding-top: 60px !important;
   }
 }
 
 @media (max-width: 1280px) {
-  .hero h1 {
+  ..spotnow-hero .hero h1 {
     font-size: 48px !important;
     line-height: 57.6px !important;
   }
 
-  .hero-content p {
+  .spotnow-hero .hero-content p {
     max-width: 450px;
   }
 
-  .heroImage {
+  .spotnow-hero .heroImage {
     max-width: 50vw !important;
     width: 50vw !important;
   }
 }
 
 @media (max-width: 920px) {
-  .hero-padding {
+  .spotnow-hero .hero-padding {
     padding-top: 100px !important;
   }
 }
 
 @media (max-width: 600px) {
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 38px !important;
     line-height: 45.6px !important;
   }
 
-  .hero-content p {
+  .spotnow-hero .hero-content p {
     max-width: 450px;
   }
 
-  .heroImage {
+  .spotnow-hero.heroImage {
     max-width: 70vw !important;
     width: 70vw !important;
   }
 }
 
 @media (max-width: 470px) {
-  .hero h1 {
+  .spotnow-hero.hero h1 {
     font-size: 26px !important;
     line-height: 31.2px !important;
   }
 
-  .hero-content p {
+  .spotnow-hero .hero-content p {
     max-width: 450px;
   }
 
-  .heroImage {
+  .spotnow-hero .heroImage {
     max-width: 90vw !important;
     width: 90vw !important;
   }

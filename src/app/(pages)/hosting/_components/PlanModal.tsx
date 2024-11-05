@@ -444,11 +444,11 @@ useEffect(() => {
           <button
             className={`text-white w-[110px] max-md:w-[80px] max-md:mx-1 max-md:text-xs max-md:p-1 p-2 mx-3 rounded-md domainModalButton  ${
               selectedDomains.some((d) => d.name === domain.name)
-                ? "bg-home-primary"
+                ? "bg-[#DA4935] removeCart"
                 : domain.status === "Available"
-                ? "bg-blue-500 availableCart"
+                ? "bg-[#0011FF] availableCart"
                 : domain.status === "Added"
-                ? "bg-red-500 removeCart"
+                ? "bg-[#DA4935] removeCart"
                 : domain.status === "Unavailable"
                 ? "bg-gray-400 unavailableCart"
                 : "bg-gray-500 unavailableCart"
@@ -466,7 +466,7 @@ useEffect(() => {
                 : "Unavailable"}
             </div>
 
-            <div className="show-470">
+            <div className="show-470 smallCartIconsContainer">
               {selectedDomains.some((d) => d.name === domain.name) ? (
                 <Image
                   src={ICONS.trashRed}
@@ -704,8 +704,9 @@ useEffect(() => {
           onClick={() => {
             dispatch(setIsSidebarOpen(!isSidebarOpen));
             setIsModalOpen(false);
+            setSearchQuery("");
           }}
-          className="button-continue">Continue Order</button>
+          className="button-continue" >Continue Order</button>
         </div>
         <button
           onClick={() => {
@@ -721,8 +722,7 @@ useEffect(() => {
                   setIsModalOpen(false);
                   setSearchQuery("");
                 }}
-          className="hidden absolute top-4 right-4 show-600"
-        >
+          className="hidden absolute show-600" style={{top: "4px", right: "8px"}}>
           <span>✖</span>
         </button>
       </div>

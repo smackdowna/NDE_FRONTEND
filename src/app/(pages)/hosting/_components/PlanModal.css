@@ -655,3 +655,43 @@ span.hosting-plan {
     padding-top: 20px;
   }
 }
+
+@media (max-width: 740px) and (max-height: 660px) {
+  button.hostingModalButton {
+    display: none !important;
+  }
+
+  .hostingModalContent {
+    /* height: 400px !important; */
+    max-width: unset !important;
+  }
+}
+
+@media (max-width: 660px) and (max-height: 700px) {
+  .hostingModalContent {
+    max-height: 400px;
+    overflow: auto;
+  }
+
+  .hostingModal {
+    max-height: 480px;
+    min-height: 0 !important;
+  }
+}
+
+@media (max-width: 470px) {
+  img {
+    margin-right: 0px !important;
+  }
+
+  button.domainModalButton {
+    width: fit-content !important;
+  }
+
+  button.removeCart {
+    width: 30px !important;
+    height: 30px !important;
+    border: 2px solid #da4935;
+    border-radius: 4px !important;
+  }
+}

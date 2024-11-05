@@ -194,12 +194,17 @@ h5 {
   display: none;
 }
 
+.googleWorkspace .hero-flex{
+  justify-content: start;
+}
+
+
 .show-1280 {
   display: none;
 }
 
 @media (max-width: 1600px) {
-  .hero {
+  .googleWorkspace .hero {
     padding-top: 160px;
   }
 
