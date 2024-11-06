@@ -48,9 +48,9 @@ const plans: PlanInfo[] = [
 ];
 
 
-const fetchDomainAvailability = async (domain: string) => {
+const fetchDomainAvailability = async (domain: string, countryCode:string) => {
   const response = await axios.post(
-    "https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=IN",
+    `https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=${countryCode}`,
     { domain }
   );
   return response.data.response.map((item: any) => ({
@@ -67,7 +67,7 @@ const fetchDomainAvailability = async (domain: string) => {
 
 const fetchPlans = async () => {
   const response = await axios.get(
-    "https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=IN"
+    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=IN`
   ); // Replace with your API endpoint
   if (!response) {
     throw new Error("Network response was not ok");
@@ -76,7 +76,18 @@ const fetchPlans = async () => {
 };
 
 const RightPlan: React.FC = () => {
-  const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
+  const [countryCode, setCountryCode] = useState("IN");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCountryCode = localStorage.getItem("countryCode");
+      if (storedCountryCode) {
+        setCountryCode(storedCountryCode);
+      }
+    }
+  }, []);
+  
+  const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans});
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -129,7 +140,7 @@ const RightPlan: React.FC = () => {
     isFetching,
   } = useQuery<Domain[]>({
     queryKey: ["domainAvailability", searchQuery],
-    queryFn: () => fetchDomainAvailability(searchQuery),
+    queryFn: () => fetchDomainAvailability(searchQuery, countryCode),
     enabled: false,
   });
 
