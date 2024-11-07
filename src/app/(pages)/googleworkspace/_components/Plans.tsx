@@ -10,8 +10,9 @@ import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path
 import './style.css'
 import { motion } from 'framer-motion';
 import SwipeableTable from "@/components/SwipeableTable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { loadCountryCodeFromLocalStorage } from "@/store/countryCodeSlice";
 
 interface Domain {
   name: string;
@@ -67,9 +68,10 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
   }));
 };
 
-const fetchPlans = async () => {
+const fetchPlans = async (countryCode:string) => {
+  console.log(countryCode)
   const response = await axios.get(
-    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=IN`
+    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=${countryCode}`
   ); // Replace with your API endpoint
   if (!response) {
     throw new Error("Network response was not ok");
@@ -78,15 +80,27 @@ const fetchPlans = async () => {
 };
 
 const RightPlan: React.FC = () => {
+  const dispatch = useDispatch();
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-  const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans});
+ 
+  useEffect(() => {
+    dispatch(loadCountryCodeFromLocalStorage());
+  }, [dispatch]);
+
+  const { data } = useQuery({
+    queryKey: ["plans"],
+    queryFn: () => fetchPlans(countryCode),
+    enabled: !!countryCode,
+  });
+
+  console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedPeriod, setSelectedPeriod] = useState("monthly");
+  // const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showInputForm, setShowInputForm] = useState<boolean>(true); // Ensure this state is defined
+  const [showInputForm, setShowInputForm] = useState<boolean>(true);
 
   const handlePlanToggle = (plan: Plan) => {
     setSelectedPlan(plan);
@@ -96,13 +110,32 @@ const RightPlan: React.FC = () => {
 
 
 
-  // Update price based on selected period
+  const [selectedPeriod, setSelectedPeriod] = useState("monthly");
+  const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
+  const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
+  const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
+
   useEffect(() => {
-    if (data && data.product && data.product.length > 0) {
-      const initialPrice = data.product[0].price.find(
-        (p: { period: string }) => p.period === selectedPeriod
-      );
-      setPrice(initialPrice ? initialPrice.amount : 0);
+    if (data && data.product) {
+      data.product.forEach((plan: any) => {
+        const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
+
+        if (periodPrice) {
+          switch (plan.name) {
+            case "Starter":
+              setStarterPlanPrice(periodPrice.amount);
+              break;
+            case "Business":
+              setBusinessPlanPrice(periodPrice.amount);
+              break;
+            case "Premium":
+              setPremiumPlanPrice(periodPrice.amount);
+              break;
+            default:
+              break;
+          }
+        }
+      });
     }
   }, [data, selectedPeriod]);
 
@@ -136,7 +169,7 @@ const RightPlan: React.FC = () => {
     enabled: false,
   });
 
-  console.log(domains)
+  // console.log(domains)
 
   const handleSearchClick = () => {
     refetch().then(() => {
@@ -197,7 +230,7 @@ const RightPlan: React.FC = () => {
           {name}
         </h2>
         <span className="font-900">
-          <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
+          <h2><sup>{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
           className="bg-home-primary button-medium  text-white  rounded-lg mx-auto max-md:mx-1"
@@ -273,20 +306,20 @@ const RightPlan: React.FC = () => {
                 </th>
                 <PlanCard
                   name="Starter"
-                  price="67"
+                  price={`${starterPlanPrice}`}
                   isStarter={true}
                   onAddToCart={() => handleAddToCart("Starter")}
                   showDropdown={activeDropdown === "Starter"}
                 />
                 <PlanCard
                   name="Advanced"
-                  price="99"
+                  price={`${businessPlanPrice}`}
                   onAddToCart={() => handleAddToCart("Advanced")}
                   showDropdown={activeDropdown === "Advanced"}
                 />
                 <PlanCard
                   name="Premium"
-                  price="149"
+                  price={`${premiumPlanPrice}`}
                   onAddToCart={() => handleAddToCart("Premium")}
                   showDropdown={activeDropdown === "Premium"}
                 />
@@ -579,7 +612,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Starter" && (
         <div>
           <PlanModal
-          planPrice={67}
+          planPrice={starterPlanPrice}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
@@ -598,7 +631,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Advanced" && (
         <div>
           <PlanModal
-          planPrice={99}
+          planPrice={businessPlanPrice}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
@@ -617,7 +650,7 @@ const RightPlan: React.FC = () => {
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
-          planPrice={149}
+          planPrice={premiumPlanPrice}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
