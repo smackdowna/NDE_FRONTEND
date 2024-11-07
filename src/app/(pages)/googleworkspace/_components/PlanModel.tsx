@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { showToast } from '@/services/showToast';
 import './style.css'
 import Image from 'next/image';
 import { ICONS } from '@/assets';
+import { useDispatch, useSelector } from "react-redux";
+import { loadCountryCodeFromLocalStorage } from '@/store/countryCodeSlice';
 
 interface Domain {
     name: string;
@@ -32,8 +33,8 @@ interface PlanModalProps {
     planPrice: number;
 }
 
-const GsuitePlans = async () => {
-    const response = await axios.get(`https://liveserver.nowdigitaleasy.com:5000/product//Gsuite?country_code=IN`);
+const gsuitePlans = async (countryCode:string) => {
+    const response = await axios.get(`https://liveserver.nowdigitaleasy.com:5000/product//Gsuite?country_code=${countryCode}`);
     if (!response) {
         throw new Error('Network response was not ok');
     }
@@ -55,23 +56,21 @@ const PlanModal: React.FC<PlanModalProps> = ({
     index,
     planPrice
 }) => {
-    const [countryCode, setCountryCode] = useState("IN");
-
+    const dispatch = useDispatch();
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCountryCode = localStorage.getItem("countryCode");
-      if (storedCountryCode) {
-        setCountryCode(storedCountryCode);
-      }
-    }
-  }, []);
+    dispatch(loadCountryCodeFromLocalStorage());
+  }, [dispatch]);
+
+
     const queryClient = useQueryClient();
     const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('Annual-Monthly');
     const [price, setPrice] = useState<number>(planPrice);
     const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
     const [quantity, setQuantity] = useState(1);
-    const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: GsuitePlans });
+    const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: () => gsuitePlans(countryCode) });
+    console.log(data)
 
     const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
 
@@ -352,7 +351,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
                                     </div>
                                     <div className='flex flex-col gap-1 items-start justify-between'>
                                         <h4 className=' text-home-heading'>Total</h4>
-                                        <span className='price font-roboto-serif'>₹{price}/-</span>
+                                        <span className='price font-roboto-serif'>{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{price}/-</span>
                                     </div>
 
                                     <button

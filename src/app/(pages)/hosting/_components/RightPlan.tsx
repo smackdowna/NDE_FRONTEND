@@ -79,11 +79,13 @@ const plans: PlanInfo[] = [
 const RightPlan: React.FC = () => {
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
   const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
+  console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
+  console.log(price)
   const [searchQuery, setSearchQuery] = useState("");
   const [showInputForm, setShowInputForm] = useState<boolean>(true);
   

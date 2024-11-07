@@ -61,6 +61,7 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 const Hero = () => {
   const dispatch = useDispatch();
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
+  console.log(countryCode)
   useEffect(() => {
     dispatch(loadCountryCodeFromLocalStorage());
   }, [dispatch]);
@@ -304,8 +305,8 @@ const Hero = () => {
           <select
             className="border rounded-md p-1 hide-700"
             disabled={domain.status !== 'Available'}
-            value={selectedYears[domain.name] || 1} // Bind the value to the state
-            onChange={(e) => handleYearChange(domain.name, Number(e.target.value))} // Update state when the user selects a different year
+            value={selectedYears[domain.name] || 1}
+            onChange={(e) => handleYearChange(domain.name, Number(e.target.value))}
           >
             {[1, 2, 3, 5].map((year) => (
               <option key={year} value={year}>
