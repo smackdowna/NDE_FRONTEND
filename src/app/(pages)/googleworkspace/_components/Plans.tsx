@@ -88,9 +88,8 @@ const RightPlan: React.FC = () => {
   }, [dispatch]);
 
   const { data } = useQuery({
-    queryKey: ["plans"],
+    queryKey: ["plans", countryCode],
     queryFn: () => fetchPlans(countryCode),
-    enabled: !!countryCode,
   });
 
   console.log(data)
@@ -137,7 +136,7 @@ const RightPlan: React.FC = () => {
         }
       });
     }
-  }, [data, selectedPeriod]);
+  }, [data, selectedPeriod, countryCode]);
 
   const handleAddToCart = (planName: string) => {
     setActiveDropdown(activeDropdown === planName ? null : planName);
