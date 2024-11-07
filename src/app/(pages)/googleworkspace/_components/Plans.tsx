@@ -1,4 +1,4 @@
-// pages/RightPlan.tsx or components/RightPlan.tsx
+"use client"
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -24,7 +24,7 @@ interface Price {
 }
 interface PlanFeatureProps {
   title: string;
-  starterIcon: any; // You can replace `any` with the correct type, e.g., `string` or `StaticImageData` if using Next.js Image
+  starterIcon: any;
   advancedIcon: any;
   premiumIcon: any;
   iconSrc: any;
@@ -79,7 +79,6 @@ const fetchPlans = async () => {
 
 const RightPlan: React.FC = () => {
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-  
   const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans});
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
