@@ -40,10 +40,10 @@ type CartItem = {
 
 
 const words = ["education", "travel", "fun", "online"];
-
-const fetchDomainAvailability = async (domain: string) => {
+const fetchDomainAvailability = async (domain: string, countryCode:string) => {
+  console.log(countryCode)
   const response = await axios.post(
-    "https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=IN",
+    `https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=${countryCode}`,
     { domain }
   );
   return response?.data?.response?.map((item: any) => ({
@@ -59,6 +59,8 @@ const fetchDomainAvailability = async (domain: string) => {
 };
 
 const Hero = () => {
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
@@ -75,15 +77,27 @@ const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const queryClient = useQueryClient();
 
+  // const [countryCode, setCountryCode] = useState("IN");
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const storedCountryCode = localStorage.getItem("countryCode");
+  //     if (storedCountryCode) {
+  //       setCountryCode(storedCountryCode);
+  //     }
+  //   }
+  // }, []);
+
   const {
     data: domains = [],
     refetch,
     isFetching,
   } = useQuery<Domain[]>({
     queryKey: ["domainAvailability", searchQuery],
-    queryFn: () => fetchDomainAvailability(searchQuery),
+    queryFn: () => fetchDomainAvailability(searchQuery, countryCode),
     enabled: false,
   });
+
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ["cart"],
@@ -300,13 +314,13 @@ const Hero = () => {
                   <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
                 {/* Multiply price by the selected year */}
                 {domain.price && domain.price.length > 0
-                  ? `₹${domain.price[0].registerPrice * selectedYear}`
+                  ? `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${domain.price[0].registerPrice * selectedYear}`
                   : "N/A"}
               </span>
             <div className="">
               <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
                 {domain.price && domain.price.length > 0
-                  ? `then ₹${(domain.price[0].registerPrice + 200) * selectedYear}/Year`
+                  ? `then ${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${(domain.price[0].registerPrice + 200) * selectedYear}/Year`
                   : ""}
               </span>
             </div>

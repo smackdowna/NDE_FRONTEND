@@ -1,14 +1,17 @@
 "use client";
 import { ICONS, IMAGES } from '@/assets';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCountryCode } from '@/store/countryCodeSlice';
+import { RootState } from '@/store/store';
 
 
 const CURRENCY_FLAGS: { [key: string]: any } = {
-    INR: ICONS.india, // Use your flag image path here
-    USD: IMAGES.usa, // Assuming you have this path
-    SGD: IMAGES.singapore, // Assuming you have this path
+    INR: ICONS.india,
+    USD: IMAGES.usa,
+    SGD: IMAGES.singapore,
 };
 
 const FOOTER_LINKS = [
@@ -55,14 +58,16 @@ const FOOTER_LINKS = [
 
 const Footer = () => {
     const [expandedSection, setExpandedSection] = useState<number | null>(null);
-    const [currency, setCurrency] = useState('INR');
+    const dispatch = useDispatch();
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
+
+  const handleCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCountryCode = event.target.value;
+    dispatch(setCountryCode(newCountryCode));
+  };
 
     const toggleSection = (index: number) => {
         setExpandedSection(prev => (prev === index ? null : index));
-    };
-
-    const handleCurrencyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCurrency(event.target.value);
     };
 
     return (
@@ -135,7 +140,7 @@ const Footer = () => {
                 <div className='flex items-center mt-[56.6px] md:mt-[36.6px] xl:mt-[79.6px] 3xl:mt-[101px] '>
                     {/* Flag image and currency dropdown */}
                     <div className='flex items-center gap-2'>
-                        <Image src={CURRENCY_FLAGS[currency as keyof typeof CURRENCY_FLAGS]} alt={currency} width={30} height={15} />
+                        <Image src={CURRENCY_FLAGS[countryCode as keyof typeof CURRENCY_FLAGS]} alt={countryCode} width={30} height={15} />
                         <div className='flex gap-2'>
                             <span>English</span>
                             <Image src={ICONS.drop} alt='' className=' w-2.5' />
@@ -143,13 +148,13 @@ const Footer = () => {
                     </div>
                     <div className='relative flex gap-2 items-center'>
                         <select
-                            value={currency}
-                            onChange={handleCurrencyChange}
+                            value={countryCode}
+                            onChange={handleCountryCodeChange}
                             className="rounded p-1 bg-transparent  outline-none"
                         >
-                            <option value="INR">₹INR</option>
-                            <option value="USD">$USD</option>
-                            <option value="SGD">$SGD</option>
+                            <option value="IN">₹INR</option>
+                            <option value="US">$USD</option>
+                            <option value="SG">$SGD</option>
                         </select>
                     </div>
                 </div>

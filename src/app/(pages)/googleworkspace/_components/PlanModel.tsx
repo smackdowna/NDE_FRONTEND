@@ -33,7 +33,7 @@ interface PlanModalProps {
 }
 
 const GsuitePlans = async () => {
-    const response = await axios.get('https://liveserver.nowdigitaleasy.com:5000/product//Gsuite?country_code=IN');
+    const response = await axios.get(`https://liveserver.nowdigitaleasy.com:5000/product//Gsuite?country_code=IN`);
     if (!response) {
         throw new Error('Network response was not ok');
     }
@@ -55,6 +55,16 @@ const PlanModal: React.FC<PlanModalProps> = ({
     index,
     planPrice
 }) => {
+    const [countryCode, setCountryCode] = useState("IN");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCountryCode = localStorage.getItem("countryCode");
+      if (storedCountryCode) {
+        setCountryCode(storedCountryCode);
+      }
+    }
+  }, []);
     const queryClient = useQueryClient();
     const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const [selectedPeriod, setSelectedPeriod] = useState('Annual-Monthly');
@@ -243,13 +253,13 @@ const PlanModal: React.FC<PlanModalProps> = ({
                   <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
                 {/* Multiply price by the selected year */}
                 {domain.price && domain.price.length > 0
-                  ? `₹${domain.price[0].registerPrice * year}`
+                  ? `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${domain.price[0].registerPrice * year}`
                   : "N/A"}
               </span>
             <div className="">
               <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
                 {domain.price && domain.price.length > 0
-                  ? `then ₹${(domain.price[0].registerPrice + 200) * year}/Year`
+                  ? `then ${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${(domain.price[0].registerPrice + 200) * year}/Year`
                   : ""}
               </span>
             </div>

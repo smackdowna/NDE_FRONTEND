@@ -82,6 +82,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
   index,
 }) => {
     const dispatch = useDispatch();
+    const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
     const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const queryClient = useQueryClient();
   const [cart, setCart]= useState<CartItem[]>([]);
@@ -333,9 +334,16 @@ useEffect(() => {
 
       if (isSelected) {
         // showToast("success", `${domain.name} removed from cart`, toastId);
-        updatedSelectedDomains = prevSelected.filter(
-          (d) => d.name !== domain.name
-        );
+        updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
+      
+      // Updating cart
+      const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const updatedCart = existingCart.filter((item: any) => item.domainName !== domain.name);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      
+      // Optionally set cart state here if needed
+      setCart(updatedCart);
+        
       } else {
         // showToast("success", `${domain.name} added to cart`, toastId);
         updatedSelectedDomains = [...prevSelected, domain];
@@ -379,6 +387,16 @@ useEffect(() => {
   };
 
   const DomainItem = ({ domain }: { domain: Domain }) => {
+    const [countryCode, setCountryCode] = useState("IN");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCountryCode = localStorage.getItem("countryCode");
+      if (storedCountryCode) {
+        setCountryCode(storedCountryCode);
+      }
+    }
+  }, []);
     const year = selectedYears[domain.name] || 1;
     return (
       <div className="flex justify-between bg-white items-center content-center my-3 w-full">
@@ -430,13 +448,13 @@ useEffect(() => {
             <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
               {/* Multiply price by the selected year */}
               {domain.price && domain.price.length > 0
-                ? `₹${domain.price[0].registerPrice * year}`
+                ? `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${domain.price[0].registerPrice * year}`
                 : "N/A"}
             </span>
             <div className="">
               <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
                 {domain.price && domain.price.length > 0
-                  ? `then ₹${(domain.price[0].registerPrice + 200) * year}/Year`
+                  ? `then ${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${(domain.price[0].registerPrice + 200) * year}/Year`
                   : ""}
               </span>
             </div>
@@ -699,7 +717,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="total w-full bg-[#000334] flex items-center justify-end py-3 gap-3 px-2">
-          <span className="total-totalPrice">Total : {totalWithTax.toFixed(2)}</span>
+          <span className="total-totalPrice">Total : {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{totalWithTax.toFixed(2)}</span>
           <button
           onClick={() => {
             dispatch(setIsSidebarOpen(!isSidebarOpen));

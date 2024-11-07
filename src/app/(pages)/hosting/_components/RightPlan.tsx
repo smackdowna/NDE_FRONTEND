@@ -9,6 +9,8 @@ import checkIcon from '../../../../assets/icons/check 1.svg'
 import './style.css'
 import { motion } from 'framer-motion';
 import SwipeableTable from "@/components/SwipeableTable";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface Domain {
   name: string;
@@ -33,9 +35,9 @@ interface PlanCardProps {
   showDropdown: boolean;
 }
 
-const fetchDomainAvailability = async (domain: string) => {
+const fetchDomainAvailability = async (domain: string, countryCode:string) => {
   const response = await axios.post(
-    "https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=IN",
+    `https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=${countryCode}`,
     { domain }
   );
   return response.data.response.map((item: any) => ({
@@ -75,6 +77,7 @@ const plans: PlanInfo[] = [
 
 
 const RightPlan: React.FC = () => {
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
   const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -172,9 +175,11 @@ const RightPlan: React.FC = () => {
     isFetching,
   } = useQuery<Domain[]>({
     queryKey: ["domainAvailability", searchQuery],
-    queryFn: () => fetchDomainAvailability(searchQuery),
+    queryFn: () => fetchDomainAvailability(searchQuery, countryCode),
     enabled: false,
   });
+
+  console.log(domains)
   
 
   const handleSearchClick = () => {
@@ -433,6 +438,7 @@ const RightPlan: React.FC = () => {
                     <tr>
                         <td className="border bg-white text-center px-4 py-2"><p>Keep track of important events and share your schedule.</p></td>
                         <td className="border bg-white text-center px-4 py-2">
+
                         <Image
                             src={checkIcon}
                             alt='tick'

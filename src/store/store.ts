@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
 import { useDispatch } from "react-redux";
 import sidebarSlice from "./sidebarSlice";
+import countryCodeReducer from "./countryCodeSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     sidebar: sidebarSlice,
+    countryCode: countryCodeReducer,
   },
 });
 
