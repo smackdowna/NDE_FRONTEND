@@ -10,6 +10,8 @@ import checkIcon from '../../../../assets/icons/check 1.svg'; // Adjust the path
 import './style.css'
 import { motion } from 'framer-motion';
 import SwipeableTable from "@/components/SwipeableTable";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface Domain {
   name: string;
@@ -76,16 +78,7 @@ const fetchPlans = async () => {
 };
 
 const RightPlan: React.FC = () => {
-  const [countryCode, setCountryCode] = useState("IN");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCountryCode = localStorage.getItem("countryCode");
-      if (storedCountryCode) {
-        setCountryCode(storedCountryCode);
-      }
-    }
-  }, []);
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
   
   const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans});
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -143,6 +136,8 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchDomainAvailability(searchQuery, countryCode),
     enabled: false,
   });
+
+  console.log(domains)
 
   const handleSearchClick = () => {
     refetch().then(() => {

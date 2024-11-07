@@ -82,6 +82,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
   index,
 }) => {
     const dispatch = useDispatch();
+    const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
     const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const queryClient = useQueryClient();
   const [cart, setCart]= useState<CartItem[]>([]);
@@ -716,7 +717,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="total w-full bg-[#000334] flex items-center justify-end py-3 gap-3 px-2">
-          <span className="total-totalPrice">Total : {totalWithTax.toFixed(2)}</span>
+          <span className="total-totalPrice">Total : {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{totalWithTax.toFixed(2)}</span>
           <button
           onClick={() => {
             dispatch(setIsSidebarOpen(!isSidebarOpen));

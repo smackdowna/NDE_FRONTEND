@@ -9,6 +9,7 @@ import trash from "../assets/cart/trash.png";
 import { useQueryClient } from '@tanstack/react-query';
 import { showToast } from './../services/showToast';
 import './Summary.css'
+import { RootState } from "@/store/store";
 
 
 
@@ -38,6 +39,7 @@ interface Product {
 }
 
 const SummaryPage = () => {
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
   const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -224,7 +226,7 @@ const SummaryPage = () => {
             : item.product.toLowerCase() === "domain"
             ? CART.www
             : CART.google,
-            price: `₹ ${(item.price ? item.price.toFixed(2) : "0.00")}/-`,
+            price: `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"} ${(item.price ? item.price.toFixed(2) : "0.00")}/-`,
         domainName: item.domainName,
         period: item.period || item.year || duration || "Unknown Period",
         quantity: Number(item.period || item.year || item.quantity || 1),
@@ -348,7 +350,7 @@ const SummaryPage = () => {
               link: item.domainName || "Unknown Product",
               img: productImage,
               // price: price,
-              price: `₹ ${((item.price && item.duration ? item.price * item.duration : item.price) || 0).toFixed(2)}/-`,
+              price: `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"} ${((item.price && item.duration ? item.price * item.duration : item.price) || 0).toFixed(2)}/-`,
 
               domainName: item.domainName,
               period: item.period || item.year || "Unknown Period",
@@ -376,7 +378,7 @@ const SummaryPage = () => {
                 link: item.domainName || "Unknown Product",
                 quantity: item.quantity || 1,
                 img: productImage,
-                price: `₹ ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
+                price: `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"} ${item.domainprice || item.gsuitePrice || item.pleskPrice || 0}/-`,
                 domainName: item.domainName,
                 duration: item.duration || 1,
                 period: item.period || `${item.year} Year` || "Unknown Period",
@@ -661,9 +663,9 @@ const SummaryPage = () => {
                 <div className="flex flex-col sm:flex-row  text-center">
                   <ul className="bg-white text-center">
                     <li className="py-2 text-sm xl:text-sm 2xl:text-lg">
-                      ₹{(subtotal || 0).toFixed(2)}
+                    {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{(subtotal || 0).toFixed(2)}
                     </li>
-                    <li className="py-2 text-sm xl:text-sm 2xl:text-lg">₹{(tax || additionalTax).toFixed(2)}</li>
+                    <li className="py-2 text-sm xl:text-sm 2xl:text-lg">{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{(tax || additionalTax).toFixed(2)}</li>
                   </ul>
                 </div>
              
@@ -683,7 +685,7 @@ const SummaryPage = () => {
                 <ul className="bg-white text-center">
                   {/* <li className="py-2 text-lg xl:text-sm 2xl:text-lg">₹{(total || 0).toFixed(2)}</li> */}
                   <li className="py-2 text-lg xl:text-sm 2xl:text-lg font-700 totalAmountCart">
-  ₹{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
+                  {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{((isAuthenticated ? total : (total ?? 0) + (additionalTax ?? 0)) || 0).toFixed(2)}
 </li>
                 </ul>
               </div>

@@ -59,7 +59,7 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 };
 
 const Hero = () => {
-  
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
@@ -77,16 +77,16 @@ const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const queryClient = useQueryClient();
 
-  const [countryCode, setCountryCode] = useState("IN");
+  // const [countryCode, setCountryCode] = useState("IN");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCountryCode = localStorage.getItem("countryCode");
-      if (storedCountryCode) {
-        setCountryCode(storedCountryCode);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const storedCountryCode = localStorage.getItem("countryCode");
+  //     if (storedCountryCode) {
+  //       setCountryCode(storedCountryCode);
+  //     }
+  //   }
+  // }, []);
 
   const {
     data: domains = [],
@@ -97,6 +97,7 @@ const Hero = () => {
     queryFn: () => fetchDomainAvailability(searchQuery, countryCode),
     enabled: false,
   });
+
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ["cart"],

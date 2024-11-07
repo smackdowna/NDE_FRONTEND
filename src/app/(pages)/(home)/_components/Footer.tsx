@@ -3,6 +3,9 @@ import { ICONS, IMAGES } from '@/assets';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCountryCode } from '@/store/countryCodeSlice';
+import { RootState } from '@/store/store';
 
 
 const CURRENCY_FLAGS: { [key: string]: any } = {
@@ -55,18 +58,16 @@ const FOOTER_LINKS = [
 
 const Footer = () => {
     const [expandedSection, setExpandedSection] = useState<number | null>(null);
-    const [countryCode, setCountryCode] =useState(() => localStorage.getItem("countryCode") || "IN");
+    const dispatch = useDispatch();
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
 
-    useEffect(() => {
-        localStorage.setItem('countryCode', countryCode);
-    }, [countryCode]);
+  const handleCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCountryCode = event.target.value;
+    dispatch(setCountryCode(newCountryCode));
+  };
 
     const toggleSection = (index: number) => {
         setExpandedSection(prev => (prev === index ? null : index));
-    };
-
-    const handleCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCountryCode(event.target.value);
     };
 
     return (
