@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../globals.css';
-import Footer from './(home)/_components/Footer';
-import ClientProviders from '@/providers/ClientProvider'; // Ensure this path is correct
+import dynamic from 'next/dynamic';
+const Footer = dynamic(() => import('./(home)/_components/Footer'), {
+  ssr: false,
+});
+const ClientProviders = dynamic(() => import('@/providers/ClientProvider'), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ['latin'] });
 
