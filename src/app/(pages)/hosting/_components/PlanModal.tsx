@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { ICONS, IMAGES } from "@/assets";
 import React, { useState, useEffect } from "react";

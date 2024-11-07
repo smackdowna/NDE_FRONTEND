@@ -41,7 +41,6 @@ type CartItem = {
 
 const words = ["education", "travel", "fun", "online"];
 const fetchDomainAvailability = async (domain: string, countryCode:string) => {
-  console.log(countryCode)
   const response = await axios.post(
     `https://liveserver.nowdigitaleasy.com:5000/product/domain_availability?country_code=${countryCode}`,
     { domain }
@@ -60,7 +59,6 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 
 const Hero = () => {
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { isSidebarOpen } = useSelector((state: any) => state.sidebar);

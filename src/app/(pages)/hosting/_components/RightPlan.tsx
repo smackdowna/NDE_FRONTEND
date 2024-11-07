@@ -1,4 +1,4 @@
-// pages/RightPlan.tsx or components/RightPlan.tsx
+"use client"
 import React, { useState, useEffect, useRef, useCallback} from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
