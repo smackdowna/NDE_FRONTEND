@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { RootState } from "@/store/store";
 import { showToast } from "@/services/showToast";
 import './style.css'
+import { loadCountryCodeFromLocalStorage } from "@/store/countryCodeSlice";
 
 interface Domain {
   name: string;
@@ -58,9 +59,13 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 };
 
 const Hero = () => {
-  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
+  useEffect(() => {
+    dispatch(loadCountryCodeFromLocalStorage());
+  }, [dispatch]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);

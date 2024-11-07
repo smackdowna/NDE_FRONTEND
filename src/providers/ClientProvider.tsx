@@ -1,8 +1,8 @@
-'use client'; // Ensures this component is treated as a client-side component
+'use client';
 
 import React from 'react';
 import { ReactQueryClientProvider } from '@/providers/queryClient';
-import ReduxProvider from '@/providers/ReduxProvider'; // Ensure this path is correct
+import ReduxProvider from '@/providers/ReduxProvider';
 // import { Toaster } from 'sonner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
