@@ -58,9 +58,9 @@ interface PlanModalProps {
   index: number;
 }
 
-const fetchPlans = async () => {
+const fetchPlans = async (countryCode:string) => {
   const response = await axios.get(
-    "https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=IN"
+    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=${countryCode}`
   );
   if (!response) {
     throw new Error("Network response was not ok");
@@ -136,8 +136,11 @@ useEffect(() => {
 
   const { data, isError, isLoading } = useQuery({
     queryKey: ["plans"],
-    queryFn: fetchPlans,
+    queryFn: () => fetchPlans(countryCode),
   });
+  console.log(data)
+
+
   const [current, setCurrent] = useState(2);
 
   useEffect(() => {
@@ -234,7 +237,7 @@ useEffect(() => {
     {
       id: 0,
       discount: "25%",
-      duration: "12 months",
+      duration: "Monthly",
       durationInYears: 1,
       price: "₹399",
       originalPrice: "₹599.00",
@@ -244,7 +247,7 @@ useEffect(() => {
     {
       id: 1,
       discount: "25%",
-      duration: "24 months",
+      duration: "Quarterly",
       durationInYears: 2,
       price: "₹399",
       originalPrice: "₹399.00",
@@ -254,7 +257,7 @@ useEffect(() => {
     {
       id: 2,
       discount: "25%",
-      duration: "36 months",
+      duration: "Semi-Annually",
       durationInYears: 3,
       price: "₹399",
       originalPrice: "₹299.00",
@@ -264,7 +267,7 @@ useEffect(() => {
     {
       id: 3,
       discount: "25%",
-      duration: "48 months",
+      duration: "Annually",
       durationInYears: 4,
       price: "₹399",
       originalPrice: "₹599.00",
@@ -297,6 +300,7 @@ useEffect(() => {
   };
 
   const PlanCard = (cardDetails: cardDetails) => {
+    console.log(cardDetails)
     return (
       <div
         className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative"
@@ -525,6 +529,8 @@ useEffect(() => {
 
   const currentProduct = data?.product[index];
 
+  console.log(data)
+
   return (
     <div className=" fixed inset-0 z-50 flex items-end justify-center">
       <div className="hostingModal relative w-[90vw] md:-[80vw] max-xl:w-[95vw] max-md:w-[95vw] rounded-lg border border-black shadow-lg mb-8 ">
@@ -648,7 +654,7 @@ useEffect(() => {
               <>
                 <div className="plansFlex flex items-center  justify-between">
                   {planCards.map((card, index) => (
-                    <PlanCard key={index} {...card} />
+                      <PlanCard key={index} {...card} />
                   ))}
                 </div>
               </>

@@ -70,7 +70,6 @@ const PlanModal: React.FC<PlanModalProps> = ({
     const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
     const [quantity, setQuantity] = useState(1);
     const { data, isError, isLoading } = useQuery({ queryKey: ['Gsuite'], queryFn: () => gsuitePlans(countryCode) });
-    console.log(data)
 
     const [selectedYears, setSelectedYears] = useState<{ [key: string]: number }>({});
 
