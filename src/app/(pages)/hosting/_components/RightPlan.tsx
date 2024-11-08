@@ -9,8 +9,9 @@ import checkIcon from '../../../../assets/icons/check 1.svg'
 import './style.css'
 import { motion } from 'framer-motion';
 import SwipeableTable from "@/components/SwipeableTable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { loadCountryCodeFromLocalStorage } from "@/store/countryCodeSlice";
 
 interface Domain {
   name: string;
@@ -52,10 +53,10 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
   }));
 };
 
-const fetchPlans = async () => {
+const fetchPlans = async (countryCode:string) => {
   const response = await axios.get(
-    "https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=IN"
-  ); // Replace with your API endpoint
+    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=${countryCode}`
+  );
   if (!response) {
     throw new Error("Network response was not ok");
   }
@@ -77,9 +78,19 @@ const plans: PlanInfo[] = [
 
 
 const RightPlan: React.FC = () => {
+  const dispatch = useDispatch();
   const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-  const { data } = useQuery({ queryKey: ["plans"], queryFn: fetchPlans });
-  console.log(data)
+ 
+  useEffect(() => {
+    dispatch(loadCountryCodeFromLocalStorage());
+  }, [dispatch]);
+
+  const { data } = useQuery({
+    queryKey: ["plans", countryCode],
+    queryFn: () => fetchPlans(countryCode),
+  });
+
+  // console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -139,16 +150,44 @@ const RightPlan: React.FC = () => {
       table.removeEventListener('touchend', touchEndHandler);
     };
   }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+  const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
+  const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
+  const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
+
+  useEffect(() => {
+    if (data && data.product) {
+      data.product.forEach((plan: any) => {
+        const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
+
+        if (periodPrice) {
+          switch (plan.name) {
+            case "Starter":
+              setStarterPlanPrice(periodPrice.amount);
+              break;
+            case "Business":
+              setBusinessPlanPrice(periodPrice.amount);
+              break;
+            case "Premium":
+              setPremiumPlanPrice(periodPrice.amount);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    }
+  }, [data, selectedPeriod, countryCode]);
  
   // Update price based on selected period
-  useEffect(() => {
-    if (data && data.product && data.product.length > 0) {
-      const initialPrice = data.product[0].price.find(
-        (p: { period: string }) => p.period === selectedPeriod
-      );
-      setPrice(initialPrice ? initialPrice.amount : 0);
-    }
-  }, [data, selectedPeriod]);
+  // useEffect(() => {
+  //   if (data && data.product && data.product.length > 0) {
+  //     const initialPrice = data.product[0].price.find(
+  //       (p: { period: string }) => p.period === selectedPeriod
+  //     );
+  //     setPrice(initialPrice ? initialPrice.amount : 0);
+  //   }
+  // }, [data, selectedPeriod]);
 
 
   const handleAddToCart = (planName: string) => {
@@ -232,7 +271,7 @@ const RightPlan: React.FC = () => {
           {name}
         </h2>
         <span className="font-900">
-          <h2><sup>₹</sup>{price}<sub>/mo</sub></h2>
+          <h2><sup>{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}</sup>{price}<sub>/mo</sub></h2>
         </span>
         <button
           className="addToCart bg-[#000AFF] "
@@ -312,20 +351,20 @@ const RightPlan: React.FC = () => {
                   </th>
                   <PlanCard
                     name="Starter"
-                    price="67"
+                    price={`${starterPlanPrice}`}
                     isStarter={true}
                     onAddToCart={() => handleAddToCart("Starter")}
                     showDropdown={activeDropdown === "Starter"}
                   />
                   <PlanCard
                     name="Advanced"
-                    price="99"
+                    price={`${businessPlanPrice}`}
                     onAddToCart={() => handleAddToCart("Advanced")}
                     showDropdown={activeDropdown === "Advanced"}
                   />
                   <PlanCard
                     name="Premium"
-                    price="149"
+                    price={`${premiumPlanPrice}`}
                     onAddToCart={() => handleAddToCart("Premium")}
                     showDropdown={activeDropdown === "Premium"}
                   />
