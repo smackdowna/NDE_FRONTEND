@@ -325,7 +325,7 @@ const getDurationInYears = (period: string): number => {
         {/* <span className="originalPrice text-center">
           {cardDetails.originalPrice}
         </span> */}
-        <span className="price text-center">{cardDetails.price}</span>
+        <span className="price text-center">{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{cardDetails.price}</span>
         {/* <span className="currency text-center mb-1 opacity-80">
           {cardDetails.currency}
         </span> */}

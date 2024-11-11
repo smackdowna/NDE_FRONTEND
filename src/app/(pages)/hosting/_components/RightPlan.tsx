@@ -90,7 +90,7 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  // console.log(data)
+  console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -165,10 +165,10 @@ const RightPlan: React.FC = () => {
             case "Starter":
               setStarterPlanPrice(periodPrice.amount);
               break;
-            case "Standard":
+            case "Business":
               setBusinessPlanPrice(periodPrice.amount);
               break;
-            case "Business Plus":
+            case "Premium":
               setPremiumPlanPrice(periodPrice.amount);
               break;
             default:

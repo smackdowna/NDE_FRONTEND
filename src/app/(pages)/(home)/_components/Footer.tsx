@@ -64,6 +64,7 @@ const Footer = () => {
   const handleCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newCountryCode = event.target.value;
     dispatch(setCountryCode(newCountryCode));
+    window.location.reload();
   };
 
     const toggleSection = (index: number) => {
