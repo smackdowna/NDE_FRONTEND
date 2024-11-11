@@ -248,52 +248,10 @@ const getDurationInYears = (period: string): number => {
     null
   );
 
-  const planCards = [
-    {
-      id: 0,
-      discount: "25%",
-      duration: "Monthly",
-      durationInYears: 1,
-      price: "₹399",
-      originalPrice: "₹599.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 1,
-      discount: "25%",
-      duration: "Quarterly",
-      durationInYears: 2,
-      price: "₹399",
-      originalPrice: "₹399.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 2,
-      discount: "25%",
-      duration: "Semi-Annually",
-      durationInYears: 3,
-      price: "₹399",
-      originalPrice: "₹299.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 3,
-      discount: "25%",
-      duration: "Annually",
-      durationInYears: 4,
-      price: "₹399",
-      originalPrice: "₹599.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-  ];
 
   const handlePlanCardSelection = (
     e: React.MouseEvent<HTMLDivElement>,
-    id: number // Accept id directly
+    PlanCard: cardDetails
   ) => {
     // Add the 'selected' class to the clicked card
     const selectedCard = e.currentTarget as HTMLDivElement;
@@ -302,7 +260,8 @@ const getDurationInYears = (period: string): number => {
     // Wait for 2 seconds
     setTimeout(() => {
       setIsPlanCardSelected(true);
-      setSelectedPlanCard(planCards[id]); // Directly select the card by id
+      setSelectedPlanCard(PlanCard); // Directly select the card by id
+      // console.log("Selected Plan" , PlanCard)
     }, 1000);
 
     // remove the selected class from all other cards
@@ -319,13 +278,13 @@ const getDurationInYears = (period: string): number => {
     return (
       <div
         className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative"
-        onClick={(e) => handlePlanCardSelection(e, cardDetails.id)} // Pass id directly
+        onClick={(e) => handlePlanCardSelection(e, cardDetails)}
       >
-        <span className="time text-center mb-1">{cardDetails.duration}</span>
+        <span className="time text-center mb-1 uppercase">{cardDetails.duration}</span>
         {/* <span className="originalPrice text-center">
           {cardDetails.originalPrice}
         </span> */}
-        <span className="price text-center">{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{cardDetails.price}</span>
+        <span className="price text-center">{cardDetails.currency === "INR" ? "₹" : cardDetails.currency === "USD" ? "$" : "$"}{cardDetails.price}</span>
         {/* <span className="currency text-center mb-1 opacity-80">
           {cardDetails.currency}
         </span> */}
@@ -607,7 +566,7 @@ const getDurationInYears = (period: string): number => {
                         -
                       </span>
                       <span className="planDetailsPrice">
-                        {selectedPlanCard?.price}
+                      {data.meta.code === "INR" ? "₹" : data.meta.code === "USD" ? "$" : "$"} {selectedPlanCard?.price}
                       </span>
                       <span className="planDetailsDiscount">
                         Save {selectedPlanCard?.discount}
@@ -685,7 +644,6 @@ const getDurationInYears = (period: string): number => {
                         desc: product.description,
                         discount: `${product.discount}%`,
                       };
-                      
                       return <PlanCard key={index} {...cardDetails} />;
                     })
                 )}
