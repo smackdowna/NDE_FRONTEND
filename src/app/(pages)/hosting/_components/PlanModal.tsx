@@ -53,6 +53,7 @@ interface PlanModalProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   domains: Domain[];
+  selectedPlan: string;
   refetch: () => void;
   isFetching: boolean;
   index: number;
@@ -76,6 +77,7 @@ const PlanModal: React.FC<PlanModalProps> = ({
   showInputForm,
   setShowInputForm,
   searchQuery,
+  selectedPlan,
   setSearchQuery,
   domains,
   refetch,
@@ -105,6 +107,18 @@ useEffect(() => {
   setCart(storedCart);
 }, []);
 
+const getDurationInYears = (period: string): number => {
+  switch (period) {
+    case 'monthly': return 1 / 12;
+    case 'quarterly': return 1 / 4;
+    case 'semi-annually': return 0.5;
+    case 'annually': return 1;
+    case 'biennially': return 2;
+    case 'triennially': return 3;
+    default: return 0;
+  }
+};
+
 // useEffect(() => {
 //     const updateCartLength = () => {
 //       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -133,12 +147,13 @@ useEffect(() => {
     }, [cart]);
 
   // console.log(selectedDomains)
+  // console.log("This is the selected domains: ", selectedDomains)
 
   const { data, isError, isLoading } = useQuery({
     queryKey: ["plans"],
     queryFn: () => fetchPlans(countryCode),
   });
-  console.log(data)
+  // console.log("data", data.product)
 
 
   const [current, setCurrent] = useState(2);
@@ -307,14 +322,14 @@ useEffect(() => {
         onClick={(e) => handlePlanCardSelection(e, cardDetails.id)} // Pass id directly
       >
         <span className="time text-center mb-1">{cardDetails.duration}</span>
-        <span className="originalPrice text-center">
+        {/* <span className="originalPrice text-center">
           {cardDetails.originalPrice}
-        </span>
+        </span> */}
         <span className="price text-center">{cardDetails.price}</span>
-        <span className="currency text-center mb-1 opacity-80">
+        {/* <span className="currency text-center mb-1 opacity-80">
           {cardDetails.currency}
-        </span>
-        <span className="desc text-center opacity-70">{cardDetails.desc}</span>
+        </span> */}
+        {/* <span className="desc text-center opacity-70">{cardDetails.desc}</span> */}
         <div className="save">
           <span>Save {cardDetails.discount}</span>
         </div>
@@ -653,14 +668,34 @@ useEffect(() => {
             {!isPlanCardSelected && current == 2 ? (
               <>
                 <div className="plansFlex flex items-center  justify-between">
-                  {planCards.map((card, index) => (
-                      <PlanCard key={index} {...card} />
-                  ))}
+                {data.product.map((product: any) =>
+                  selectedPlan === product.name &&
+                  product.price
+                    .filter((price: any) => 
+                      ["monthly", "quarterly", "semi-annually", "annually"].includes(price.period)
+                    )
+                    .map((price: any, index: number) => {
+                      const cardDetails = {
+                        id: product._id,
+                        duration: price.period,
+                        originalPrice: `${price.amount * 1.2}`, // Example original price calculation
+                        durationInYears: getDurationInYears(price.period),
+                        price: `${price.amount}`,
+                        currency: data.meta.code,
+                        desc: product.description,
+                        discount: `${product.discount}%`,
+                      };
+                      
+                      return <PlanCard key={index} {...cardDetails} />;
+                    })
+                )}
+
+
                 </div>
               </>
             ) : (
               ""
-            )}
+            )} 
           </div>
           <div className="flex flex-col w-full  border-black py-2 gap-5">
             <div className="flex items-center justify-between">

@@ -25,8 +25,8 @@ interface Price {
 interface PlanFeatureProps {
   title: string;
   starter: string;
-  advanced: string;
-  premium: string;
+  standard: string;
+  business: string;
 }
 interface PlanCardProps {
   name: string;
@@ -63,7 +63,7 @@ const fetchPlans = async (countryCode:string) => {
   return response.data;
 };
 
-type Plan = 'Starter' | 'Advanced' | 'Premium';
+type Plan = 'Starter' | 'Standard' | 'Business Plus';
 interface PlanInfo {
   name: Plan;
   price: number;
@@ -71,8 +71,8 @@ interface PlanInfo {
 
 const plans: PlanInfo[] = [
   { name: 'Starter', price: 132 },
-  { name: 'Advanced', price: 232 },
-  { name: 'Premium', price: 350 },
+  { name: 'Standard', price: 232 },
+  { name: 'Business Plus', price: 350 },
 ];
 
 
@@ -165,10 +165,10 @@ const RightPlan: React.FC = () => {
             case "Starter":
               setStarterPlanPrice(periodPrice.amount);
               break;
-            case "Business":
+            case "Standard":
               setBusinessPlanPrice(periodPrice.amount);
               break;
-            case "Premium":
+            case "Business Plus":
               setPremiumPlanPrice(periodPrice.amount);
               break;
             default:
@@ -235,8 +235,8 @@ const RightPlan: React.FC = () => {
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
     starter,
-    advanced,
-    premium,
+    standard,
+    business,
   }) => (
     <tr className=" border-t-[1px] border-black border-opacity-65 font-roboto-serif">
       <td className={`left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4  font-400 py-2 lg:py-4 ${title == 'email features:'? 'font-bold text-home-heading font-roboto' : ''}`}>
@@ -246,10 +246,10 @@ const RightPlan: React.FC = () => {
         {starter}
       </td>
       <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
-        {advanced}
+        {standard}
       </td>
       <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
-        {premium}
+        {business}
       </td>
     </tr>
   );
@@ -357,16 +357,16 @@ const RightPlan: React.FC = () => {
                     showDropdown={activeDropdown === "Starter"}
                   />
                   <PlanCard
-                    name="Advanced"
+                    name="Standard"
                     price={`${businessPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Advanced")}
-                    showDropdown={activeDropdown === "Advanced"}
+                    onAddToCart={() => handleAddToCart("Standard")}
+                    showDropdown={activeDropdown === "Standard"}
                   />
                   <PlanCard
-                    name="Premium"
+                    name="Business Plus"
                     price={`${premiumPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Premium")}
-                    showDropdown={activeDropdown === "Premium"}
+                    onAddToCart={() => handleAddToCart("Business Plus")}
+                    showDropdown={activeDropdown === "Business Plus"}
                   />
                 </tr>
               </thead>
@@ -374,80 +374,80 @@ const RightPlan: React.FC = () => {
                 <PlanFeature
                   title="Host Websites"
                   starter="1"
-                  advanced="50"
-                  premium="100"
+                  standard="50"
+                  business="100"
                 />
                 <PlanFeature
                   title="SSD Storage (GB)"
                   starter="50GB"
-                  advanced="100GB"
-                  premium="200GB"
+                  standard="100GB"
+                  business="200GB"
                 />
                 <PlanFeature
                   title="Bandwidth"
                   starter="Unlimited"
-                  advanced="Unlimited"
-                  premium="Unlimited"
+                  standard="Unlimited"
+                  business="Unlimited"
                 />
                 <PlanFeature
                   title="Free .IN Domain (1st Year Only)"
                   starter="1"
-                  advanced=""
-                  premium="1"
+                  standard=""
+                  business="1"
                 />
                 <PlanFeature
                   title="Subdomains"
                   starter="5"
-                  advanced="100"
-                  premium="200"
+                  standard="100"
+                  business="200"
                 />
                 <PlanFeature
                   title="FTP Users"
                   starter="1"
-                  advanced="50"
-                  premium="100"
+                  standard="50"
+                  business="100"
                 />
                 <PlanFeature
                   title="email features:"
                   starter=""
-                  advanced=""
-                  premium=""
+                  standard=""
+                  business=""
                 />
                 <PlanFeature
                   title="eMail Accounts"
                   starter="2"
-                  advanced="50"
-                  premium="100"
+                  standard="50"
+                  business="100"
                 />
                 <PlanFeature
                   title="Individual Mailbox Size (GB)"
                   starter="1"
-                  advanced="1"
-                  premium="1"
+                  standard="1"
+                  business="1"
                 />
                 <PlanFeature
                   title="Overall Mailbox Size (GB)"
                   starter="2"
-                  advanced="50"
-                  premium="100"
+                  standard="50"
+                  business="100"
                 />
                 <PlanFeature
                   title="Email Per Hour"
                   starter="100"
-                  advanced="100"
-                  premium="100"
+                  standard="100"
+                  business="100"
                 />
                 <PlanFeature
                   title="Email forwarding accounts"
                   starter="Unlimited"
-                  advanced="Unlimited"
-                  premium="Unlimited"
+                  standard="Unlimited"
+                  business="Unlimited"
                 />
                 <PlanFeature
                   title="FTP Users"
                   starter="Unlimited"
-                  advanced="Unlimited"
-                  premium="Unlimited"
+                  standard="Unlimited"
+                  business="Unlimited"
                 />
               </tbody>
 
@@ -640,18 +640,20 @@ const RightPlan: React.FC = () => {
             setSearchQuery={setSearchQuery}
             domains={domains}
             refetch={refetch}
+            selectedPlan = {selectedPlan}
             isFetching={isFetching}
             index={0}
           />
         </div>
       )}
-      {activeDropdown === "Advanced" && (
+      {activeDropdown === "Standard" && (
         <div>
           <PlanModal
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
             setIsModalOpen={setIsModalOpen}
+            selectedPlan={selectedPlan}
             showInputForm={showInputForm}
             setShowInputForm={setShowInputForm}
             searchQuery={searchQuery}
@@ -663,7 +665,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Premium" && (
+      {activeDropdown === "Business Plus" && (
         <div>
           <PlanModal
             isOpen={isModalOpen}
@@ -673,6 +675,7 @@ const RightPlan: React.FC = () => {
             showInputForm={showInputForm}
             setShowInputForm={setShowInputForm}
             searchQuery={searchQuery}
+            selectedPlan= {selectedPlan}
             setSearchQuery={setSearchQuery}
             domains={domains}
             refetch={refetch}
