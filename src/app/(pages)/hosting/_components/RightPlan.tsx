@@ -90,7 +90,7 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  // console.log(data)
+  console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
