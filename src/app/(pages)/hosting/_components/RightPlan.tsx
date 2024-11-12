@@ -154,7 +154,7 @@ const RightPlan: React.FC = () => {
   const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
   const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
   const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
-
+  console.log(data)
   useEffect(() => {
     if (data && data.product) {
       data.product.forEach((plan: any) => {
