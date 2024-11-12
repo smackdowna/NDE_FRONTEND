@@ -110,27 +110,26 @@ const RightPlan: React.FC = () => {
 
 
 
-  const [selectedPeriod, setSelectedPeriod] = useState("monthly");
+  const [selectedPeriod, setSelectedPeriod] = useState("Annual-Monthly");
   const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
   const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
   const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
 
   useEffect(() => {
-    if (data && data.product) {
-      // console.log(data.product) 
-      data.product.forEach((plan: any) => {
+    if (data && data.products) { 
+      data.products.forEach((plan: any) => {
         const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
-
+        console.log("Plan Name: ", plan)
         if (periodPrice) {
           switch (plan.name) {
-            case "Starter":
-              setStarterPlanPrice(periodPrice.amount);
+            case "Google Workspace Business Starter":
+              setStarterPlanPrice(periodPrice.offerPrice);
               break;
-            case "Premium":
-              setPremiumPlanPrice(periodPrice.amount);
+            case "Google Workspace Business Standard":
+              setPremiumPlanPrice(periodPrice.offerPrice);
               break;
-            case "Business":
-              setBusinessPlanPrice(periodPrice.amount);
+            case "Google Workspace Business Plus":
+              setBusinessPlanPrice(periodPrice.offerPrice);
               break;
             default:
               break;
@@ -309,8 +308,8 @@ const RightPlan: React.FC = () => {
                   name="Starter"
                   price={`${starterPlanPrice}`}
                   isStarter={true}
-                  onAddToCart={() => handleAddToCart("Starter")}
-                  showDropdown={activeDropdown === "Starter"}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Starter")}
+                  showDropdown={activeDropdown === "Google Workspace Business Starter"}
                 />
                 <PlanCard
                   name="Standard"
@@ -610,7 +609,7 @@ const RightPlan: React.FC = () => {
         </SwipeableTable>
       </div>
       
-      {activeDropdown === "Starter" && (
+      {activeDropdown === "Google Workspace Business Starter" && (
         <div>
           <PlanModal
           planPrice={starterPlanPrice}
