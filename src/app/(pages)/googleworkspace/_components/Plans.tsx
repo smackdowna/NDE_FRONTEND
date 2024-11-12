@@ -314,14 +314,14 @@ const RightPlan: React.FC = () => {
                 <PlanCard
                   name="Standard"
                   price={`${premiumPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Premium")}
-                  showDropdown={activeDropdown === "Premium"}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Standard")}
+                  showDropdown={activeDropdown === "Google Workspace Business Standard"}
                 />
                  <PlanCard
                   name="Business Plus"
                   price={`${businessPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Business")}
-                  showDropdown={activeDropdown === "Business"}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Plus")}
+                  showDropdown={activeDropdown === "Google Workspace Business Plus"}
                 />
               </tr>
             </thead>
@@ -629,7 +629,7 @@ const RightPlan: React.FC = () => {
         </div>
       )}
       
-      {activeDropdown === "Premium" && (
+      {activeDropdown === "Google Workspace Business Standard" && (
         <div>
           <PlanModal
           planPrice={premiumPlanPrice}
@@ -644,12 +644,12 @@ const RightPlan: React.FC = () => {
             domains={domains}
             refetch={refetch}
             isFetching={isFetching}
-            index={2}
+            index={1}
           />
         </div>
       )}
 
-      {activeDropdown === "Business" && (
+      {activeDropdown === "Google Workspace Business Plus" && (
         <div>
           <PlanModal
           planPrice={businessPlanPrice}
@@ -664,7 +664,7 @@ const RightPlan: React.FC = () => {
             domains={domains}
             refetch={refetch}
             isFetching={isFetching}
-            index={1}
+            index={2}
           />
         </div>
       )}
