@@ -311,16 +311,16 @@ const RightPlan: React.FC = () => {
                   showDropdown={activeDropdown === "Starter"}
                 />
                 <PlanCard
-                  name="Advanced"
-                  price={`${businessPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Advanced")}
-                  showDropdown={activeDropdown === "Advanced"}
-                />
-                <PlanCard
                   name="Premium"
                   price={`${premiumPlanPrice}`}
                   onAddToCart={() => handleAddToCart("Premium")}
                   showDropdown={activeDropdown === "Premium"}
+                />
+                 <PlanCard
+                  name="Advanced"
+                  price={`${businessPlanPrice}`}
+                  onAddToCart={() => handleAddToCart("Advanced")}
+                  showDropdown={activeDropdown === "Advanced"}
                 />
               </tr>
             </thead>
@@ -627,25 +627,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Advanced" && (
-        <div>
-          <PlanModal
-          planPrice={businessPlanPrice}
-            isOpen={isModalOpen}
-            currentStep={currentStep}
-            handleNextStep={handleNextStep}
-            setIsModalOpen={setIsModalOpen}
-            showInputForm={showInputForm}
-            setShowInputForm={setShowInputForm}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            domains={domains}
-            refetch={refetch}
-            isFetching={isFetching}
-            index={1}
-          />
-        </div>
-      )}
+      
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
@@ -662,6 +644,26 @@ const RightPlan: React.FC = () => {
             refetch={refetch}
             isFetching={isFetching}
             index={2}
+          />
+        </div>
+      )}
+
+      {activeDropdown === "Advanced" && (
+        <div>
+          <PlanModal
+          planPrice={businessPlanPrice}
+            isOpen={isModalOpen}
+            currentStep={currentStep}
+            handleNextStep={handleNextStep}
+            setIsModalOpen={setIsModalOpen}
+            showInputForm={showInputForm}
+            setShowInputForm={setShowInputForm}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            domains={domains}
+            refetch={refetch}
+            isFetching={isFetching}
+            index={1}
           />
         </div>
       )}

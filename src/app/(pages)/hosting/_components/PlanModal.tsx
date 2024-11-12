@@ -557,12 +557,8 @@ const getDurationInYears = (period: string): number => {
                 <>
                   <div className="planDetails flex items-center lg:gap-[40px] gap-[20px] hide-600">
                     <div className="flex items-center gap-2">
-                      <span className="planDetailsDuration">
-                        {selectedPlanCard?.durationInYears ?? ""}{" "}
-                        {selectedPlanCard?.durationInYears &&
-                        selectedPlanCard.durationInYears > 1
-                          ? `Years`
-                          : `Year`}{" "}
+                      <span className="planDetailsDuration uppercase">
+                        {selectedPlanCard?.duration}
                         -
                       </span>
                       <span className="planDetailsPrice">
