@@ -357,16 +357,16 @@ const RightPlan: React.FC = () => {
                     showDropdown={activeDropdown === "Starter"}
                   />
                   <PlanCard
-                    name="Business"
-                    price={`${businessPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Business")}
-                    showDropdown={activeDropdown === "Business"}
-                  />
-                  <PlanCard
                     name="Premium"
                     price={`${premiumPlanPrice}`}
                     onAddToCart={() => handleAddToCart("Premium")}
                     showDropdown={activeDropdown === "Premium"}
+                  />
+                   <PlanCard
+                    name="Business Plus"
+                    price={`${businessPlanPrice}`}
+                    onAddToCart={() => handleAddToCart("Business")}
+                    showDropdown={activeDropdown === "Business"}
                   />
                 </tr>
               </thead>
@@ -646,25 +646,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Business" && (
-        <div>
-          <PlanModal
-            isOpen={isModalOpen}
-            currentStep={currentStep}
-            handleNextStep={handleNextStep}
-            setIsModalOpen={setIsModalOpen}
-            selectedPlan={selectedPlan}
-            showInputForm={showInputForm}
-            setShowInputForm={setShowInputForm}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            domains={domains}
-            refetch={refetch}
-            isFetching={isFetching}
-            index={1}
-          />
-        </div>
-      )}
+      
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
@@ -681,6 +663,26 @@ const RightPlan: React.FC = () => {
             refetch={refetch}
             isFetching={isFetching}
             index={2}
+          />
+        </div>
+      )}
+
+      {activeDropdown === "Business" && (
+        <div>
+          <PlanModal
+            isOpen={isModalOpen}
+            currentStep={currentStep}
+            handleNextStep={handleNextStep}
+            setIsModalOpen={setIsModalOpen}
+            selectedPlan={selectedPlan}
+            showInputForm={showInputForm}
+            setShowInputForm={setShowInputForm}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            domains={domains}
+            refetch={refetch}
+            isFetching={isFetching}
+            index={1}
           />
         </div>
       )}

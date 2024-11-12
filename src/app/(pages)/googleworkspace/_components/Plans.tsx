@@ -116,6 +116,7 @@ const RightPlan: React.FC = () => {
 
   useEffect(() => {
     if (data && data.product) {
+      console.log(data.product) 
       data.product.forEach((plan: any) => {
         const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
 
@@ -124,11 +125,11 @@ const RightPlan: React.FC = () => {
             case "Starter":
               setStarterPlanPrice(periodPrice.amount);
               break;
-            case "Business":
-              setBusinessPlanPrice(periodPrice.amount);
-              break;
             case "Premium":
               setPremiumPlanPrice(periodPrice.amount);
+              break;
+            case "Business":
+              setBusinessPlanPrice(periodPrice.amount);
               break;
             default:
               break;
@@ -311,16 +312,16 @@ const RightPlan: React.FC = () => {
                   showDropdown={activeDropdown === "Starter"}
                 />
                 <PlanCard
-                  name="Premium"
+                  name="Standard"
                   price={`${premiumPlanPrice}`}
                   onAddToCart={() => handleAddToCart("Premium")}
                   showDropdown={activeDropdown === "Premium"}
                 />
                  <PlanCard
-                  name="Advanced"
+                  name="Business Plus"
                   price={`${businessPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Advanced")}
-                  showDropdown={activeDropdown === "Advanced"}
+                  onAddToCart={() => handleAddToCart("Business")}
+                  showDropdown={activeDropdown === "Business"}
                 />
               </tr>
             </thead>
@@ -648,7 +649,7 @@ const RightPlan: React.FC = () => {
         </div>
       )}
 
-      {activeDropdown === "Advanced" && (
+      {activeDropdown === "Business" && (
         <div>
           <PlanModal
           planPrice={businessPlanPrice}
