@@ -69,13 +69,14 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 };
 
 const fetchPlans = async (countryCode:string) => {
-  console.log(countryCode)
+  console.log("This is the country code: ",countryCode)
   const response = await axios.get(
-    `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=${countryCode}`
+    `https://liveserver.nowdigitaleasy.com:5000/product//gsuite?country_code=${countryCode}`
   ); // Replace with your API endpoint
   if (!response) {
     throw new Error("Network response was not ok");
   }
+  console.log("Google workspace plans: ", response.data)
   return response.data;
 };
 
@@ -92,7 +93,7 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  console.log(data)
+  // console.log("Data Fetched from api: ",data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -116,6 +117,7 @@ const RightPlan: React.FC = () => {
 
   useEffect(() => {
     if (data && data.product) {
+      // console.log(data.product) 
       data.product.forEach((plan: any) => {
         const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
 
@@ -124,11 +126,11 @@ const RightPlan: React.FC = () => {
             case "Starter":
               setStarterPlanPrice(periodPrice.amount);
               break;
-            case "Business":
-              setBusinessPlanPrice(periodPrice.amount);
-              break;
             case "Premium":
               setPremiumPlanPrice(periodPrice.amount);
+              break;
+            case "Business":
+              setBusinessPlanPrice(periodPrice.amount);
               break;
             default:
               break;
@@ -311,16 +313,16 @@ const RightPlan: React.FC = () => {
                   showDropdown={activeDropdown === "Starter"}
                 />
                 <PlanCard
-                  name="Advanced"
-                  price={`${businessPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Advanced")}
-                  showDropdown={activeDropdown === "Advanced"}
-                />
-                <PlanCard
-                  name="Premium"
+                  name="Standard"
                   price={`${premiumPlanPrice}`}
                   onAddToCart={() => handleAddToCart("Premium")}
                   showDropdown={activeDropdown === "Premium"}
+                />
+                 <PlanCard
+                  name="Business Plus"
+                  price={`${businessPlanPrice}`}
+                  onAddToCart={() => handleAddToCart("Business")}
+                  showDropdown={activeDropdown === "Business"}
                 />
               </tr>
             </thead>
@@ -627,25 +629,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Advanced" && (
-        <div>
-          <PlanModal
-          planPrice={businessPlanPrice}
-            isOpen={isModalOpen}
-            currentStep={currentStep}
-            handleNextStep={handleNextStep}
-            setIsModalOpen={setIsModalOpen}
-            showInputForm={showInputForm}
-            setShowInputForm={setShowInputForm}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            domains={domains}
-            refetch={refetch}
-            isFetching={isFetching}
-            index={1}
-          />
-        </div>
-      )}
+      
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
@@ -662,6 +646,26 @@ const RightPlan: React.FC = () => {
             refetch={refetch}
             isFetching={isFetching}
             index={2}
+          />
+        </div>
+      )}
+
+      {activeDropdown === "Business" && (
+        <div>
+          <PlanModal
+          planPrice={businessPlanPrice}
+            isOpen={isModalOpen}
+            currentStep={currentStep}
+            handleNextStep={handleNextStep}
+            setIsModalOpen={setIsModalOpen}
+            showInputForm={showInputForm}
+            setShowInputForm={setShowInputForm}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            domains={domains}
+            refetch={refetch}
+            isFetching={isFetching}
+            index={1}
           />
         </div>
       )}

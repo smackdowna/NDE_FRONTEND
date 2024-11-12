@@ -90,13 +90,13 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  console.log(data)
+  // console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
-  console.log(price)
+  // console.log(price)
   const [searchQuery, setSearchQuery] = useState("");
   const [showInputForm, setShowInputForm] = useState<boolean>(true);
   
@@ -220,7 +220,7 @@ const RightPlan: React.FC = () => {
     enabled: false,
   });
 
-  console.log(domains)
+  // console.log(domains)
   
 
   const handleSearchClick = () => {
@@ -357,16 +357,16 @@ const RightPlan: React.FC = () => {
                     showDropdown={activeDropdown === "Starter"}
                   />
                   <PlanCard
-                    name="Business"
-                    price={`${businessPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Business")}
-                    showDropdown={activeDropdown === "Business"}
-                  />
-                  <PlanCard
                     name="Premium"
                     price={`${premiumPlanPrice}`}
                     onAddToCart={() => handleAddToCart("Premium")}
                     showDropdown={activeDropdown === "Premium"}
+                  />
+                   <PlanCard
+                    name="Business"
+                    price={`${businessPlanPrice}`}
+                    onAddToCart={() => handleAddToCart("Business")}
+                    showDropdown={activeDropdown === "Business"}
                   />
                 </tr>
               </thead>
@@ -646,25 +646,7 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Business" && (
-        <div>
-          <PlanModal
-            isOpen={isModalOpen}
-            currentStep={currentStep}
-            handleNextStep={handleNextStep}
-            setIsModalOpen={setIsModalOpen}
-            selectedPlan={selectedPlan}
-            showInputForm={showInputForm}
-            setShowInputForm={setShowInputForm}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            domains={domains}
-            refetch={refetch}
-            isFetching={isFetching}
-            index={1}
-          />
-        </div>
-      )}
+      
       {activeDropdown === "Premium" && (
         <div>
           <PlanModal
@@ -681,6 +663,26 @@ const RightPlan: React.FC = () => {
             refetch={refetch}
             isFetching={isFetching}
             index={2}
+          />
+        </div>
+      )}
+
+      {activeDropdown === "Business" && (
+        <div>
+          <PlanModal
+            isOpen={isModalOpen}
+            currentStep={currentStep}
+            handleNextStep={handleNextStep}
+            setIsModalOpen={setIsModalOpen}
+            selectedPlan={selectedPlan}
+            showInputForm={showInputForm}
+            setShowInputForm={setShowInputForm}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            domains={domains}
+            refetch={refetch}
+            isFetching={isFetching}
+            index={1}
           />
         </div>
       )}
