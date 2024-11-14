@@ -424,8 +424,13 @@ const Hero = () => {
             onClick={handleSearchClick}
             disabled={isFetching}
           >
-            <Image src={ICONS.searchBarIcon} width={17} height={18} alt="Search Icon"/>
-            <span className="hidden md:block">{isFetching ? "Searching..." : "Search "}</span>
+            {
+              isFetching ?
+              <div className="w-10 h-10 flex gap-1 items-center justify-center"><div className="w-2 h-2 animate-[bounce_.6s_linear_.2s_infinite] bg-white rounded-full"></div><div className="w-2 h-2 animate-[bounce_.6s_linear_.3s_infinite] bg-white rounded-full"></div><div className="w-2 h-2 animate-[bounce_.6s_linear_.4s_infinite] bg-white rounded-full"></div></div>
+              :
+              <Image src={ICONS.searchBarIcon} width={17} height={18} alt="Search Icon"/>
+            }
+            <span className="hidden md:block">{isFetching ? "Searching..." : "Search"}</span>
           </button>
         </div>
       </div>
@@ -472,7 +477,7 @@ const Hero = () => {
                     isFetching ? "cursor-wait" : ""
                   }`}
                   onClick={handleSearchClick}
-                  disabled={isFetching} // Disable button while loading
+                  disabled={isFetching}
                 >
                   {isFetching ? "Searching..." : "Search "}
                 </button>

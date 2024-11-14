@@ -74,6 +74,7 @@ import liveTracking from "@/assets/icons/tracking.png"
 import taskManagement from "@/assets/icons/task.png"
 import userInterface from "@/assets/icons/user-experience.png"
 import reports from "@/assets/icons/bar-chart.png"
+import arrow2 from "@/assets/icons/arrow.svg"
 
 
 //imorting the images of hosting discover icons
@@ -173,6 +174,7 @@ import infoIcon from "@/assets/icons/ph_info-bold.svg"
 
 
   const ICONS = {
+    arrow2,
     time,
     attendance,
     liveTracking,

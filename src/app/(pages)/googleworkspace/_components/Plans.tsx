@@ -69,7 +69,6 @@ const fetchDomainAvailability = async (domain: string, countryCode:string) => {
 };
 
 const fetchPlans = async (countryCode:string) => {
-  console.log("This is the country code: ",countryCode)
   const response = await axios.get(
     `https://liveserver.nowdigitaleasy.com:5000/product//gsuite?country_code=${countryCode}`
   ); // Replace with your API endpoint
@@ -110,26 +109,27 @@ const RightPlan: React.FC = () => {
 
 
 
-  const [selectedPeriod, setSelectedPeriod] = useState("Annual-Monthly");
+ const [selectedPeriod, setSelectedPeriod] = useState("Annual-Monthly");
   const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
   const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
   const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
 
   useEffect(() => {
-    if (data && data.products) { 
+    if (data && data.products) {
       data.products.forEach((plan: any) => {
         const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
-        console.log("Plan Name: ", plan)
+        console.log(periodPrice)
+
         if (periodPrice) {
           switch (plan.name) {
             case "Google Workspace Business Starter":
               setStarterPlanPrice(periodPrice.offerPrice);
               break;
             case "Google Workspace Business Standard":
-              setPremiumPlanPrice(periodPrice.offerPrice);
+              setBusinessPlanPrice(periodPrice.offerPrice);
               break;
             case "Google Workspace Business Plus":
-              setBusinessPlanPrice(periodPrice.offerPrice);
+              setPremiumPlanPrice(periodPrice.offerPrice);
               break;
             default:
               break;
