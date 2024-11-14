@@ -185,7 +185,7 @@ const UsageTerms = () => {
     {
       usageTerms.map((term, i) => 
         <div key={i} className="flex flex-col gap-5">
-          <span className="font-900 text-primary-500 text-xl ">
+          <span className="font-900 text-[#000659] text-xl ">
             {term.title}:{"  "}
           </span>
           <div className="flex flex-col gap-4 md:gap-6 xl:gap-9">
@@ -200,7 +200,7 @@ const UsageTerms = () => {
     }
 
 <div className="flex flex-col gap-5">
-          <span className="font-900 text-primary-500 text-xl ">
+          <span className="font-900 text-[#000659] text-xl ">
           Section 20 – Contact Information
           </span>
           <div className="flex flex-col">

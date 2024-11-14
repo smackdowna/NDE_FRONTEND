@@ -7,7 +7,7 @@ const PaymentOption = () => {
     At Now Digital Easy, we understand the importance of a smooth and secure payment process. That’s why we offer a variety of payment options to fit your organization needs.
         </p>
 
-        <h1 className="font-900 text-primary-500 text-xl md:text-2xl xl:text-3xl">
+        <h1 className="font-900 text-[#000659] text-xl md:text-2xl xl:text-3xl">
         Here's how you can easily pay for your Now Digital Easy services:
         </h1>
 
@@ -36,13 +36,13 @@ const PaymentOption = () => {
         },
       ].map((item, i) => (
         <div key={i} className="">
-          <span className="font-900 text-primary-500 text-xl ">
+          <span className="font-900 text-[#000659] text-xl ">
             {item.title}:{"  "}
           </span>
-          <p className="text-base font-400 inline">{item.content && item.content}</p>
+          <p className="text-base md:text-lg font-400 inline">{item.content && item.content}</p>
           <div className="flex flex-col gap-4 md:gap-6 xl:gap-9">
           {item.contentList && item.contentList.map((list, i) => 
-          <p key={i} className="text-base font-400 inline">{list}</p>
+          <p key={i} className="text-base md:text-lg font-400 inline">{list}</p>
           )}
           </div>
           
@@ -52,7 +52,7 @@ const PaymentOption = () => {
 
 
 <div className="flex flex-col gap-4 md:gap-6 xl:gap-9">
-          <span className="font-900 text-primary-500 text-xl">
+          <span className="font-900 text-[#000659] text-xl">
            Still have questions?
           </span>
           <p className="text-base font-400 inline">Our friendly customer support team is happy to help. Contact us today!</p>

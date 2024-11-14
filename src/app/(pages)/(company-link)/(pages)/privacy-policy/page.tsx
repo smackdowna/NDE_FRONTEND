@@ -101,14 +101,14 @@ const PrivacyPolicy = () => {
         {privacyPolicies.map((policy, i) => (
           <div key={i} className="flex flex-col gap-5">
             {policy.title && (
-              <span className="font-900 text-primary-500 text-xl">
+              <span className="font-900 text-[#000659] text-xl">
                 {policy.title}
               </span>
             )}
             <div className="flex flex-col gap-4 md:gap-6 xl:gap-9">
               {policy.contents &&
                 policy.contents.map((list, i) => (
-                  <p key={i} className="text-base font-400 inline">
+                  <p key={i} className="text-base md:text-lg font-400 inline">
                     {makeLinksClickable(list)}
                   </p>
                 ))}

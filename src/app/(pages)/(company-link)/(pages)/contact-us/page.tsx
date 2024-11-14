@@ -40,7 +40,7 @@ const ContactPage = () => {
         <div className='py-6 w-full border-gray-300 border rounded-3xl w-[550px] max-xl:w-[380px] max-lg:[700px] max-lg:justify-center'>
           <form onSubmit={handleSubmit(onSubmit)} className=' overflow-y-auto px-8 rounded-xl'>
             <div className='mb-4'>
-              <span className="text-[26px] font-source-sans-pro font-900 text-primary-500 ">Send us a message</span>
+              <span className="text-[26px] font-source-sans-pro font-900 text-[#000659]">Send us a message</span>
             </div>
             <div className="mb-4">
               <input type="text" id="companyName" {...register("companyName", { required: true })} value={forlgata.companyName} onChange={(e) => setForlgata({ ...forlgata, companyName: e.target.value })} placeholder='Company Name' className="mt-1 p-2 rounded-lg w-full" />
@@ -60,7 +60,7 @@ const ContactPage = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="termsChecked" className="inline-flex items-center">
-                <input type="checkbox" id="termsChecked" {...register("termsChecked", { required: true })} checked={forlgata.termsChecked} onChange={(e) => setForlgata({ ...forlgata, termsChecked: e.target.checked })} className="form-checkbox h-3 w-5 text-primary-500" />
+                <input type="checkbox" id="termsChecked" {...register("termsChecked", { required: true })} checked={forlgata.termsChecked} onChange={(e) => setForlgata({ ...forlgata, termsChecked: e.target.checked })} className="form-checkbox h-3 w-5 text-[#000659]" />
                 <span className="ml-2 text-sm text-gray-700">I agree to the <a href="/terms" className="text-blue-600">terms and conditions</a> and <a href="/privacy-policy" className="text-blue-600">privacy policy</a>.</span>
               </label>
               {errors.termsChecked && <span className="text-red-500">You must agree to the terms and conditions</span>}
@@ -70,11 +70,11 @@ const ContactPage = () => {
         </div>
         <div>
         <div className="flex w-[300px] max-xl:w-[200px] max-lg:w-full flex-col gap-2 mb-10 mt-2 ">
-          <span className="text-[20px] text-primary-500 font-900 font-source-sans-pro">Now Digital Easy</span>
+          <span className="text-[20px] text-[#000659] font-900 font-source-sans-pro">Now Digital Easy</span>
           <span className="font-merriweather w-full text-[15px]">Now Digital Easy, 76D/1 R.R Complex, New, Salem Bypass Rd, Karur, Tamil Nadu 639002</span>
         </div>
         <div className="flex flex-col gap-2 mb-10 w-[300px] max-lg:w-full max-xl:w-[200px]">
-          <span className="text-[20px] text-primary-500 font-900 font-source-sans-pro" >Now Digital Easy</span>
+          <span className="text-[20px] text-[#000659] font-900 font-source-sans-pro" >Now Digital Easy</span>
           <span className="font-merriweather w-full text-[15px]"> 5335 Gate Pkwy,
             Jacksonville, FL 32256,
             United States</span>
@@ -84,35 +84,35 @@ const ContactPage = () => {
       </div>
       <div className='flex max-lg:flex-col max-lg:gap-10 mb-10 py-10 max-lg:py-0 w-full'>
         <div className='flex flex-col gap-3 w-full w-[330px] max-xl:w-[200px]  pr-4 max-lg:pr-0 max-lg:w-full  border-r-2 max-lg:border-r-0 '>
-          <span className=' font-source-sans-pro font-900 text-primary-500 text-[28px]'>Sales</span>
+          <span className=' font-source-sans-pro font-900 text-[#000659] text-[28px]'>Sales</span>
           <p className=' font-merriweather text-[15px]'>For sales-related questions, please send us an email at  <a href="/terms" className=" text-blue-600 underline text-[12px]"> digital@nowdigitaleasy.com</a></p>
           <div className='mt-4 flex flex-col gap-1'>
-            <span className=' font-source-sans-pro font-900 text-primary-500 text-[20px]'>USA</span>
+            <span className=' font-source-sans-pro font-900 text-[#000659] text-[20px]'>USA</span>
             <span>Tel: <span className='text-blue-600 underline text-[12px]'>098941 11975</span></span>
             <span>Mail: <span className='text-blue-600 underline text-[12px]'>digital@nowdigitaleasy.com</span></span>
           </div>
           <div className='mt-4 flex flex-col gap-1'>
-            <span className=' font-source-sans-pro font-900 text-primary-500 text-[20px]'>India</span>
+            <span className=' font-source-sans-pro font-900 text-[#000659] text-[20px]'>India</span>
             <span>Tel: <span className='text-blue-600 underline text-[12px]'>098941 11975</span></span>
             <span>Mail: <span className='text-blue-600 underline text-[12px]'>digital@nowdigitaleasy.com</span></span>
           </div>
         </div>
         <div className='flex flex-col gap-3 w-[350px] max-xl:w-[200px]  px-3 max-lg:px-0 max-lg:w-full border-r-2 max-lg:border-r-0'>
-          <span className=' font-source-sans-pro font-900 text-primary-500 text-[28px]'>Press</span>
+          <span className=' font-source-sans-pro font-900 text-[#000659] text-[28px]'>Press</span>
           <p className=' font-merriweather text-[12px] '>If you have any queries about our Press Releases, need to discuss any Interviews or require company information for any media publication you can get in touch with our Media Contact  <a href="/terms" className=" text-blue-600 underline text-[12px]"> digital@nowdigitaleasy.com</a></p>
           <div className='mt-4 flex flex-col gap-1'>
-            <span className=' font-source-sans-pro font-900 text-primary-500 text-[20px]'>USA</span>
+            <span className=' font-source-sans-pro font-900 text-[#000659] text-[20px]'>USA</span>
             <span>Tel: <span className='text-blue-600 underline text-[12px]'>098941 11975</span></span>
             <span>Mail: <span className='text-blue-600 underline text-[12px]'>digital@nowdigitaleasy.com</span></span>
           </div>
           <div className='mt-4 flex flex-col gap-1'>
-            <span className=' font-source-sans-pro font-900 text-primary-500 text-[15px]'>India</span>
+            <span className=' font-source-sans-pro font-900 text-[#000659] text-[15px]'>India</span>
             <span>Tel: <span className='text-blue-600 underline text-[12px]'>098941 11975</span></span>
             <span>Mail: <span className='text-blue-600 underline text-[12px]'>digital@nowdigitaleasy.com</span></span>
           </div>
         </div>
         <div className='flex flex-col gap-3 w-[350px] max-xl:w-[200px] px-3 max-lg:px-0 max-lg:w-full '>
-          <span className=' font-source-sans-pro font-900 text-primary-500 text-[28px]'>Report Abuse</span>
+          <span className=' font-source-sans-pro font-900 text-[#000659] text-[28px]'>Report Abuse</span>
           <p className=' font-merriweather text-[12px]'>We hate spam too! In order to report any abuse activity (spam, phishing, adware etc) with respect to any domain name registered through any of our Resellers simply fill out a small form on our  <a href="/terms" className=" text-blue-600 underline text-[12px]">Report Abuse Page.</a></p>
         </div>
       </div>
