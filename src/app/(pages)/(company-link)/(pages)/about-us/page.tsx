@@ -2,7 +2,7 @@ const AboutUs = () => {
   return (
     <div className="flex flex-col gap-4 md:gap-6 xl:gap-9">
       <div className="flex flex-col gap-3">
-        <span className="font-900 text-primary-500 text-xl md:text-2xl xl:text-3xl">
+        <span className="font-900 text-[#000659] text-[30px]">
           We&apos;re serious about changing the way business work
         </span>
         <p className="text-base md:text-lg font-400 text-start">
@@ -11,9 +11,9 @@ const AboutUs = () => {
         </p>
       </div>
       <div className="flex flex-col gap-3">
-        <span className="font-900 text-primary-500 text-xl md:text-2xl xl:text-3xl">
+        <h1 className="font-900 text-[#000659] text-[30px]">
           About Us
-        </span>
+        </h1>
         <p className="text-base md:text-lg font-400">
           Now Digital Easy is the daughter company of Iaaxin Tech Labs, a
           leading software development company that believes that digital
@@ -42,10 +42,10 @@ const AboutUs = () => {
         },
       ].map((item, i) => (
         <div key={i} className="">
-          <span className="font-900 text-primary-500 text-xl ">
+          <span className="font-900 text-[#000659] text-xl">
             {item.title}:{"  "}
           </span>
-          <p className="text-base font-400 inline">{item.content}</p>
+          <p className="text-base md:text-lg font-400 inline">{item.content}</p>
         </div>
       ))}
     </div>

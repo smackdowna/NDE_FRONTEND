@@ -18,7 +18,7 @@ const HeroSection = () => {
         background:
           "linear-gradient(90deg, #D2D5FD 1%, #D5D7FB 22.23%, #EFE8E7 49%, #FEF3E2 99%)",
       }}
-      className="w-full h-[250px] md:h-[320px] flex items-center justify-center text-[#000659] text-3xl sm:text-3xl md:text-3xl xl:text-6xl font-900"
+      className="w-full h-[250px] md:h-[320px] flex items-center justify-center text-[#000659] text-[60px] font-900"
     >
       {lastPart}
     </div>

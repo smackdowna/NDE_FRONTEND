@@ -14,7 +14,7 @@ const RefundPolicy = () => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <span className="font-900 text-primary-500 text-xl">Please Note:</span>
+        <span className="font-900 text-[#000659] text-xl">Please Note:</span>
         <p className="text-base md:text-lg font-400 inline">
           Due to the nature of our digital service, we are unable to offer
           refunds on our subscriptions.
@@ -41,10 +41,10 @@ const RefundPolicy = () => {
       ].map((item, i) => (
         <div key={i} className="">
           <li>
-            <span className="font-900 text-primary-500 text-xl">
+            <span className="font-900 text-[#000659] text-xl">
               {item.title}:
             </span>
-            <p className="text-base font-400 inline">{item.content}</p>
+            <p className="text-base md:text-lg font-400 inline">{item.content}</p>
           </li>
         </div>
       ))}
@@ -57,10 +57,10 @@ const RefundPolicy = () => {
         </p>
       </div>
       <div>
-        <span className="font-900 text-primary-500 text-xl md:text-2xl xl:text-3xl">
+        <span className="font-900 text-[#000659] text-[30px]">
           Ready to unlock a new level of efficiency?
         </span>
-        <p className="text-base font-400 inline">
+        <p className="text-base md:text-lg font-400 inline">
           Sign up for your free 15-day trial today and experience the Now
           Digital Easy difference!
         </p>
