@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { ICONS, IMAGES } from "@/assets";
 import React, { useState, useEffect } from "react";
@@ -10,8 +10,7 @@ import { showToast } from "@/services/showToast";
 import "./PlanModal.css";
 import { set } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsSidebarOpen } from '@/store/sidebarSlice';
-
+import { setIsSidebarOpen } from "@/store/sidebarSlice";
 
 interface CartItem {
   product: string;
@@ -21,8 +20,8 @@ interface CartItem {
   name?: string;
   status?: string;
   price?: number;
-  quantity:number;
-  duration:number;
+  quantity: number;
+  duration: number;
   year?: number;
 }
 
@@ -59,7 +58,7 @@ interface PlanModalProps {
   index: number;
 }
 
-const fetchPlans = async (countryCode:string) => {
+const fetchPlans = async (countryCode: string) => {
   const response = await axios.get(
     `https://liveserver.nowdigitaleasy.com:5000/product//hosting?country_code=${countryCode}`
   );
@@ -84,15 +83,17 @@ const PlanModal: React.FC<PlanModalProps> = ({
   isFetching,
   index,
 }) => {
-    const dispatch = useDispatch();
-    const countryCode = useSelector((state: RootState) => state.countryCode.countryCode);
-    const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
+  const dispatch = useDispatch();
+  const countryCode = useSelector(
+    (state: RootState) => state.countryCode.countryCode
+  );
+  const { isSidebarOpen } = useSelector((state: any) => state.sidebar);
   const queryClient = useQueryClient();
-  const [cart, setCart]= useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalWithTax, setTotalWithTax] = useState(0);
-  console.log(totalWithTax)
+  console.log(totalWithTax);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
@@ -101,50 +102,56 @@ const PlanModal: React.FC<PlanModalProps> = ({
     {}
   );
 
-//   Getting all the products from cart
-useEffect(() => {
-  const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-  setCart(storedCart);
-}, []);
+  //   Getting all the products from cart
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCart(storedCart);
+  }, []);
 
-const getDurationInYears = (period: string): number => {
-  switch (period) {
-    case 'monthly': return 1 / 12;
-    case 'quarterly': return 1 / 4;
-    case 'semi-annually': return 0.5;
-    case 'annually': return 1;
-    case 'biennially': return 2;
-    case 'triennially': return 3;
-    default: return 0;
-  }
-};
+  const getDurationInYears = (period: string): number => {
+    switch (period) {
+      case "monthly":
+        return 1 / 12;
+      case "quarterly":
+        return 1 / 4;
+      case "semi-annually":
+        return 0.5;
+      case "annually":
+        return 1;
+      case "biennially":
+        return 2;
+      case "triennially":
+        return 3;
+      default:
+        return 0;
+    }
+  };
 
-// useEffect(() => {
-//     const updateCartLength = () => {
-//       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-//       setCart(storedCart);
-//       console.log(storedCart)
-//     };
+  // useEffect(() => {
+  //     const updateCartLength = () => {
+  //       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+  //       setCart(storedCart);
+  //       console.log(storedCart)
+  //     };
 
-//     updateCartLength();
+  //     updateCartLength();
 
-//     // Listen for localStorage changes
-//     window.addEventListener("storage", updateCartLength);
+  //     // Listen for localStorage changes
+  //     window.addEventListener("storage", updateCartLength);
 
-//     // Cleanup the event listener on component unmount
-//     return () => {
-//       window.removeEventListener("storage", updateCartLength);
-//     };
-// }, []);
+  //     // Cleanup the event listener on component unmount
+  //     return () => {
+  //       window.removeEventListener("storage", updateCartLength);
+  //     };
+  // }, []);
 
-
-    // Showing total price
-    useEffect(() => { 
-      const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
-      setTotalPrice(total);
-      const tax = total * 0.18;
-      setTotalWithTax(total + tax);
-    }, [cart]);
+  // Showing total price
+  useEffect(() => {
+    const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
+    setTotalPrice(total);
+    const tax = total * 0.18;
+    setTotalWithTax(total + tax);
+  }, [cart]);
 
   // console.log(selectedDomains)
   // console.log("This is the selected domains: ", selectedDomains)
@@ -154,7 +161,6 @@ const getDurationInYears = (period: string): number => {
     queryFn: () => fetchPlans(countryCode),
   });
   // console.log("data", data.product)
-
 
   const [current, setCurrent] = useState(2);
 
@@ -248,52 +254,9 @@ const getDurationInYears = (period: string): number => {
     null
   );
 
-  const planCards = [
-    {
-      id: 0,
-      discount: "25%",
-      duration: "Monthly",
-      durationInYears: 1,
-      price: "₹399",
-      originalPrice: "₹599.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 1,
-      discount: "25%",
-      duration: "Quarterly",
-      durationInYears: 2,
-      price: "₹399",
-      originalPrice: "₹399.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 2,
-      discount: "25%",
-      duration: "Semi-Annually",
-      durationInYears: 3,
-      price: "₹399",
-      originalPrice: "₹299.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-    {
-      id: 3,
-      discount: "25%",
-      duration: "Annually",
-      durationInYears: 4,
-      price: "₹399",
-      originalPrice: "₹599.00",
-      currency: "INR / month",
-      desc: "Plans renew at rs. 399.00 / month 0n 13/10/2025",
-    },
-  ];
-
   const handlePlanCardSelection = (
     e: React.MouseEvent<HTMLDivElement>,
-    id: number // Accept id directly
+    PlanCard: cardDetails
   ) => {
     // Add the 'selected' class to the clicked card
     const selectedCard = e.currentTarget as HTMLDivElement;
@@ -302,7 +265,8 @@ const getDurationInYears = (period: string): number => {
     // Wait for 2 seconds
     setTimeout(() => {
       setIsPlanCardSelected(true);
-      setSelectedPlanCard(planCards[id]); // Directly select the card by id
+      setSelectedPlanCard(PlanCard); // Directly select the card by id
+      // console.log("Selected Plan" , PlanCard)
     }, 1000);
 
     // remove the selected class from all other cards
@@ -315,17 +279,26 @@ const getDurationInYears = (period: string): number => {
   };
 
   const PlanCard = (cardDetails: cardDetails) => {
-    console.log(cardDetails)
+    console.log(cardDetails);
     return (
       <div
         className="plans-card flex flex-col items-center bg-white lg:px-[36px] lg:py-[12px] lg:pt-[32px] relative"
-        onClick={(e) => handlePlanCardSelection(e, cardDetails.id)} // Pass id directly
+        onClick={(e) => handlePlanCardSelection(e, cardDetails)}
       >
-        <span className="time text-center mb-1">{cardDetails.duration}</span>
+        <span className="time text-center mb-1 uppercase">
+          {cardDetails.duration}
+        </span>
         {/* <span className="originalPrice text-center">
           {cardDetails.originalPrice}
         </span> */}
-        <span className="price text-center">{countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{cardDetails.price}</span>
+        <span className="price text-center">
+          {cardDetails.currency === "INR"
+            ? "₹"
+            : cardDetails.currency === "USD"
+            ? "$"
+            : "$"}
+          {cardDetails.price}
+        </span>
         {/* <span className="currency text-center mb-1 opacity-80">
           {cardDetails.currency}
         </span> */}
@@ -354,16 +327,19 @@ const getDurationInYears = (period: string): number => {
 
       if (isSelected) {
         // showToast("success", `${domain.name} removed from cart`, toastId);
-        updatedSelectedDomains = prevSelected.filter((d) => d.name !== domain.name);
-      
-      // Updating cart
-      const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
-      const updatedCart = existingCart.filter((item: any) => item.domainName !== domain.name);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      
-      // Optionally set cart state here if needed
-      setCart(updatedCart);
-        
+        updatedSelectedDomains = prevSelected.filter(
+          (d) => d.name !== domain.name
+        );
+
+        // Updating cart
+        const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const updatedCart = existingCart.filter(
+          (item: any) => item.domainName !== domain.name
+        );
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        // Optionally set cart state here if needed
+        setCart(updatedCart);
       } else {
         // showToast("success", `${domain.name} added to cart`, toastId);
         updatedSelectedDomains = [...prevSelected, domain];
@@ -409,14 +385,14 @@ const getDurationInYears = (period: string): number => {
   const DomainItem = ({ domain }: { domain: Domain }) => {
     const [countryCode, setCountryCode] = useState("IN");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCountryCode = localStorage.getItem("countryCode");
-      if (storedCountryCode) {
-        setCountryCode(storedCountryCode);
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const storedCountryCode = localStorage.getItem("countryCode");
+        if (storedCountryCode) {
+          setCountryCode(storedCountryCode);
+        }
       }
-    }
-  }, []);
+    }, []);
     const year = selectedYears[domain.name] || 1;
     return (
       <div className="flex justify-between bg-white items-center content-center my-3 w-full">
@@ -468,13 +444,25 @@ const getDurationInYears = (period: string): number => {
             <span className="font-900  text-start text-2xl max-lg:text-sm leading-tight mainPrice">
               {/* Multiply price by the selected year */}
               {domain.price && domain.price.length > 0
-                ? `${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${domain.price[0].registerPrice * year}`
+                ? `${
+                    countryCode === "IN"
+                      ? "₹"
+                      : countryCode === "US"
+                      ? "$"
+                      : "$"
+                  }${domain.price[0].registerPrice * year}`
                 : "N/A"}
             </span>
             <div className="">
               <span className="text-[14px] text-center max-lg:text-xs bottomPrice">
                 {domain.price && domain.price.length > 0
-                  ? `then ${countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}${(domain.price[0].registerPrice + 200) * year}/Year`
+                  ? `then ${
+                      countryCode === "IN"
+                        ? "₹"
+                        : countryCode === "US"
+                        ? "$"
+                        : "$"
+                    }${(domain.price[0].registerPrice + 200) * year}/Year`
                   : ""}
               </span>
             </div>
@@ -544,7 +532,7 @@ const getDurationInYears = (period: string): number => {
 
   const currentProduct = data?.product[index];
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className=" fixed inset-0 z-50 flex items-end justify-center">
@@ -556,7 +544,7 @@ const getDurationInYears = (period: string): number => {
             </div>
             <div className="flex items-center lg:gap-[40px] gap-[20px] hide-600">
               <span className="hosting-plan ">Hosting - Deluxe Plan</span>
-              <button
+              {/* <button
                 className="hostingModalButton choose"
                 onClick={() => {
                   setIsModalOpen(false);
@@ -564,12 +552,12 @@ const getDurationInYears = (period: string): number => {
                 }}
               >
                 Change
-              </button>
+              </button> */}
               <Image src={ICONS.checkGreen} alt="done" className="check" />
             </div>
             <div className="show-600-flex hidden  items-center w-full justify-between">
               <span className="hosting-plan">Hosting - Deluxe Plan</span>
-              <button
+              {/* <button
                 className="hostingModalButton choose"
                 onClick={() => {
                   setIsModalOpen(false);
@@ -577,7 +565,7 @@ const getDurationInYears = (period: string): number => {
                 }}
               >
                 Change
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="flex flex-col w-full border-b-[1px] border-black py-2 gap-5">
@@ -598,15 +586,15 @@ const getDurationInYears = (period: string): number => {
                 <>
                   <div className="planDetails flex items-center lg:gap-[40px] gap-[20px] hide-600">
                     <div className="flex items-center gap-2">
-                      <span className="planDetailsDuration">
-                        {selectedPlanCard?.durationInYears ?? ""}{" "}
-                        {selectedPlanCard?.durationInYears &&
-                        selectedPlanCard.durationInYears > 1
-                          ? `Years`
-                          : `Year`}{" "}
-                        -
+                      <span className="planDetailsDuration uppercase">
+                        {selectedPlanCard?.duration}-
                       </span>
                       <span className="planDetailsPrice">
+                        {data.meta.code === "INR"
+                          ? "₹"
+                          : data.meta.code === "USD"
+                          ? "$"
+                          : "$"}{" "}
                         {selectedPlanCard?.price}
                       </span>
                       <span className="planDetailsDiscount">
@@ -657,55 +645,59 @@ const getDurationInYears = (period: string): number => {
                   </div>
                 </>
               ) : (
-                <button
-                  className="hostingModalButton choose"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </button>
+                // <button
+                //   className="hostingModalButton choose"
+                //   onClick={() => setIsModalOpen(false)}
+                // >
+                //   Cancel
+                // </button>
+                ""
               )}
             </div>
             {!isPlanCardSelected && current == 2 ? (
               <>
                 <div className="plansFlex flex items-center  justify-between">
-                {data.product.map((product: any) =>
-                  selectedPlan === product.name &&
-                  product.price
-                    .filter((price: any) => 
-                      ["monthly", "quarterly", "semi-annually", "annually"].includes(price.period)
-                    )
-                    .map((price: any, index: number) => {
-                      const cardDetails = {
-                        id: product._id,
-                        duration: price.period,
-                        originalPrice: `${price.amount * 1.2}`, // Example original price calculation
-                        durationInYears: getDurationInYears(price.period),
-                        price: `${price.amount}`,
-                        currency: data.meta.code,
-                        desc: product.description,
-                        discount: `${product.discount}%`,
-                      };
-                      
-                      return <PlanCard key={index} {...cardDetails} />;
-                    })
-                )}
-
-
+                  {data.product.map(
+                    (product: any) =>
+                      selectedPlan === product.name &&
+                      product.price
+                        .filter((price: any) =>
+                          [
+                            "monthly",
+                            "quarterly",
+                            "semi-annually",
+                            "annually",
+                          ].includes(price.period)
+                        )
+                        .map((price: any, index: number) => {
+                          const cardDetails = {
+                            id: product._id,
+                            duration: price.period,
+                            originalPrice: `${price.amount * 1.2}`, // Example original price calculation
+                            durationInYears: getDurationInYears(price.period),
+                            price: `${price.amount}`,
+                            currency: data.meta.code,
+                            desc: product.description,
+                            discount: `${product.discount}%`,
+                          };
+                          return <PlanCard key={index} {...cardDetails} />;
+                        })
+                  )}
                 </div>
               </>
             ) : (
               ""
-            )} 
+            )}
           </div>
           <div className="flex flex-col w-full  border-black py-2 gap-5">
             <div className="flex items-center justify-between">
               <span className="ModalTitle">Connect your Domain Name</span>
-              <button
+              {/* <button
                 className="hostingModalButton choose"
                 onClick={() => gotoStep2()}
               >
                 Cancel
-              </button>
+              </button> */}
             </div>
             <div className="flex items-center gap-4">
               <div className="inp-grp flex gap-2 items-center">
@@ -759,30 +751,39 @@ const getDurationInYears = (period: string): number => {
           </div>
         </div>
         <div className="total w-full bg-[#000334] flex items-center justify-end py-3 gap-3 px-2">
-          <span className="total-totalPrice">Total : {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}{totalWithTax.toFixed(2)}</span>
+          <span className="total-totalPrice">
+            Total :{" "}
+            {countryCode === "IN" ? "₹" : countryCode === "US" ? "$" : "$"}
+            {totalWithTax.toFixed(2)}
+          </span>
           <button
-          onClick={() => {
-            dispatch(setIsSidebarOpen(!isSidebarOpen));
-            setIsModalOpen(false);
-            setSearchQuery("");
-          }}
-          className="button-continue" >Continue Order</button>
+            onClick={() => {
+              dispatch(setIsSidebarOpen(!isSidebarOpen));
+              setIsModalOpen(false);
+              setSearchQuery("");
+            }}
+            className="button-continue"
+          >
+            Continue Order
+          </button>
         </div>
         <button
           onClick={() => {
-                  setIsModalOpen(false);
-                  setSearchQuery("");
-                }}
+            setIsModalOpen(false);
+            setSearchQuery("");
+          }}
           className="absolute top-[-15px] right-[-12px] w-[40px] h-[40px] text-2xl bg-gray-300 rounded-full font-900 hide-600"
         >
           <span>✖</span>
         </button>
         <button
           onClick={() => {
-                  setIsModalOpen(false);
-                  setSearchQuery("");
-                }}
-          className="hidden absolute show-600" style={{top: "4px", right: "8px"}}>
+            setIsModalOpen(false);
+            setSearchQuery("");
+          }}
+          className="hidden absolute show-600"
+          style={{ top: "4px", right: "8px" }}
+        >
           <span>✖</span>
         </button>
       </div>

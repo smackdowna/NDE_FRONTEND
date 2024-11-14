@@ -25,8 +25,8 @@ interface Price {
 interface PlanFeatureProps {
   title: string;
   starter: string;
-  standard: string;
   business: string;
+  premium: string;
 }
 interface PlanCardProps {
   name: string;
@@ -63,7 +63,7 @@ const fetchPlans = async (countryCode:string) => {
   return response.data;
 };
 
-type Plan = 'Starter' | 'Standard' | 'Business Plus';
+type Plan = 'Starter' | 'Business' | 'Premium';
 interface PlanInfo {
   name: Plan;
   price: number;
@@ -71,8 +71,8 @@ interface PlanInfo {
 
 const plans: PlanInfo[] = [
   { name: 'Starter', price: 132 },
-  { name: 'Standard', price: 232 },
-  { name: 'Business Plus', price: 350 },
+  { name: 'Business', price: 232 },
+  { name: 'Premium', price: 350 },
 ];
 
 
@@ -90,13 +90,13 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  console.log(data)
+  // console.log(data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [price, setPrice] = useState<number>(0);
-  console.log(price)
+  // console.log(price)
   const [searchQuery, setSearchQuery] = useState("");
   const [showInputForm, setShowInputForm] = useState<boolean>(true);
   
@@ -154,12 +154,11 @@ const RightPlan: React.FC = () => {
   const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
   const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
   const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
-
+  console.log(data)
   useEffect(() => {
     if (data && data.product) {
       data.product.forEach((plan: any) => {
         const periodPrice = plan.price.find((p: { period: string }) => p.period === selectedPeriod);
-
         if (periodPrice) {
           switch (plan.name) {
             case "Starter":
@@ -194,6 +193,7 @@ const RightPlan: React.FC = () => {
     setActiveDropdown(activeDropdown === planName ? null : planName);
     setIsModalOpen(true); // Open the modal when adding to cart
     setCurrentStep(0); // Reset to the first step
+    setSelectedPlan(planName as Plan);
   };
 
   const handleNextStep = () => {
@@ -220,7 +220,7 @@ const RightPlan: React.FC = () => {
     enabled: false,
   });
 
-  console.log(domains)
+  // console.log(domains)
   
 
   const handleSearchClick = () => {
@@ -235,8 +235,8 @@ const RightPlan: React.FC = () => {
   const PlanFeature: React.FC<PlanFeatureProps> = ({
     title,
     starter,
-    standard,
     business,
+    premium,
   }) => (
     <tr className=" border-t-[1px] border-black border-opacity-65 font-roboto-serif">
       <td className={`left-0 bg-white text-home-heading tracking-tighter text-xs px-1 lg:text-2xl text-start pl-4  font-400 py-2 lg:py-4 ${title == 'email features:'? 'font-bold text-home-heading font-roboto' : ''}`}>
@@ -246,10 +246,10 @@ const RightPlan: React.FC = () => {
         {starter}
       </td>
       <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
-        {standard}
+        {business}
       </td>
       <td className="text-home-heading text-center py-2 lg:py-4 text-lg lg:text-2xl">
-        {business}
+        {premium}
       </td>
     </tr>
   );
@@ -357,16 +357,16 @@ const RightPlan: React.FC = () => {
                     showDropdown={activeDropdown === "Starter"}
                   />
                   <PlanCard
-                    name="Standard"
-                    price={`${businessPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Standard")}
-                    showDropdown={activeDropdown === "Standard"}
-                  />
-                  <PlanCard
-                    name="Business Plus"
+                    name="Premium"
                     price={`${premiumPlanPrice}`}
-                    onAddToCart={() => handleAddToCart("Business Plus")}
-                    showDropdown={activeDropdown === "Business Plus"}
+                    onAddToCart={() => handleAddToCart("Premium")}
+                    showDropdown={activeDropdown === "Premium"}
+                  />
+                   <PlanCard
+                    name="Business"
+                    price={`${businessPlanPrice}`}
+                    onAddToCart={() => handleAddToCart("Business")}
+                    showDropdown={activeDropdown === "Business"}
                   />
                 </tr>
               </thead>
@@ -374,80 +374,80 @@ const RightPlan: React.FC = () => {
                 <PlanFeature
                   title="Host Websites"
                   starter="1"
-                  standard="50"
-                  business="100"
+                  business="50"
+                  premium="100"
                 />
                 <PlanFeature
                   title="SSD Storage (GB)"
                   starter="50GB"
-                  standard="100GB"
-                  business="200GB"
+                  business="100GB"
+                  premium="200GB"
                 />
                 <PlanFeature
                   title="Bandwidth"
                   starter="Unlimited"
-                  standard="Unlimited"
                   business="Unlimited"
+                  premium="Unlimited"
                 />
                 <PlanFeature
                   title="Free .IN Domain (1st Year Only)"
                   starter="1"
-                  standard=""
-                  business="1"
+                  business=""
+                  premium="1"
                 />
                 <PlanFeature
                   title="Subdomains"
                   starter="5"
-                  standard="100"
-                  business="200"
+                  business="100"
+                  premium="200"
                 />
                 <PlanFeature
                   title="FTP Users"
                   starter="1"
-                  standard="50"
-                  business="100"
+                  business="50"
+                  premium="100"
                 />
                 <PlanFeature
                   title="email features:"
                   starter=""
-                  standard=""
                   business=""
+                  premium=""
                 />
                 <PlanFeature
                   title="eMail Accounts"
                   starter="2"
-                  standard="50"
-                  business="100"
+                  business="50"
+                  premium="100"
                 />
                 <PlanFeature
                   title="Individual Mailbox Size (GB)"
                   starter="1"
-                  standard="1"
                   business="1"
+                  premium="1"
                 />
                 <PlanFeature
                   title="Overall Mailbox Size (GB)"
                   starter="2"
-                  standard="50"
-                  business="100"
+                  business="50"
+                  premium="100"
                 />
                 <PlanFeature
                   title="Email Per Hour"
                   starter="100"
-                  standard="100"
                   business="100"
+                  premium="100"
                 />
                 <PlanFeature
                   title="Email forwarding accounts"
                   starter="Unlimited"
-                  standard="Unlimited"
                   business="Unlimited"
+                  premium="Unlimited"
                 />
                 <PlanFeature
                   title="FTP Users"
                   starter="Unlimited"
-                  standard="Unlimited"
                   business="Unlimited"
+                  premium="Unlimited"
                 />
               </tbody>
 
@@ -646,26 +646,8 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Standard" && (
-        <div>
-          <PlanModal
-            isOpen={isModalOpen}
-            currentStep={currentStep}
-            handleNextStep={handleNextStep}
-            setIsModalOpen={setIsModalOpen}
-            selectedPlan={selectedPlan}
-            showInputForm={showInputForm}
-            setShowInputForm={setShowInputForm}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            domains={domains}
-            refetch={refetch}
-            isFetching={isFetching}
-            index={1}
-          />
-        </div>
-      )}
-      {activeDropdown === "Business Plus" && (
+      
+      {activeDropdown === "Premium" && (
         <div>
           <PlanModal
             isOpen={isModalOpen}
@@ -681,6 +663,26 @@ const RightPlan: React.FC = () => {
             refetch={refetch}
             isFetching={isFetching}
             index={2}
+          />
+        </div>
+      )}
+
+      {activeDropdown === "Business" && (
+        <div>
+          <PlanModal
+            isOpen={isModalOpen}
+            currentStep={currentStep}
+            handleNextStep={handleNextStep}
+            setIsModalOpen={setIsModalOpen}
+            selectedPlan={selectedPlan}
+            showInputForm={showInputForm}
+            setShowInputForm={setShowInputForm}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            domains={domains}
+            refetch={refetch}
+            isFetching={isFetching}
+            index={1}
           />
         </div>
       )}
