@@ -1,6 +1,7 @@
 "use client";
 import BlogPagination from "@/components/BlogPagination";
 import BlogPost from "@/components/BlogPost";
+import Navbar from "@/components/Navbar";
 import React, { useEffect, useState } from "react";
 
 const Blog: React.FC = () => {
@@ -34,6 +35,7 @@ const Blog: React.FC = () => {
 
   return (
     <>
+    <Navbar navbarBg={"bg-gradient-light"}/>
       <div className="bg-gradient-to-r from-purple-200 via-teal-300 to-pink-200 w-full h-96 relative">
         <div className="max-w-470 text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="text-4xl font-extrabold text-blue-900 mb-5">

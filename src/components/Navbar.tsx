@@ -17,7 +17,7 @@ import axios from "@/services/axios";
 import { useQuery } from "@tanstack/react-query";
 
 interface NavbarProps {
-  navbarBg: string;
+  navbarBg?: string;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ navbarBg }) => {

@@ -11,7 +11,9 @@ const BlogPagination: React.FC<BlogPaginationProps> = ({
   currentPage,
   setCurrentPage,
 }) => {
-  const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+  // const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+  const pageNumbers = Array.from({ length: nPages }, (_, i) => i + 1);
+
 
   const goToNextPage = () => {
     if (currentPage !== nPages) {

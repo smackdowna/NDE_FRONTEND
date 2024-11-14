@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import blogImg from "@/assets/images/blogImg.png";
 import Image from "next/image";
