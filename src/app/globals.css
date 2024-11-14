@@ -38,7 +38,9 @@
   font-style: normal;
 }
 
-
+.wrapper {
+  @apply px-[20px] md:px-[40px] lg:px-[72px] text-start;
+}
 
 .hide-scrollbar::-webkit-scrollbar {
     display: none;

@@ -158,7 +158,8 @@ const Hero = () => {
             className="bg-domain-primary text-xl max-md:text-sm text-white px-8 max-md:px-2 rounded-r-xl"
             onClick={handleSearchClick}
           >
-            <span className="font-roboto font-700">Search</span>
+            Search
+            {/* {isFetching ? "Searching..." : "Search "} */}
           </button>
         </div>
       </div>
