@@ -75,6 +75,7 @@ const fetchPlans = async (countryCode:string) => {
   if (!response) {
     throw new Error("Network response was not ok");
   }
+  console.log("Google workspace plans: ", response.data)
   return response.data;
 };
 
@@ -91,7 +92,7 @@ const RightPlan: React.FC = () => {
     queryFn: () => fetchPlans(countryCode),
   });
 
-  console.log(data)
+  // console.log("Data Fetched from api: ",data)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -108,7 +109,7 @@ const RightPlan: React.FC = () => {
 
 
 
-  const [selectedPeriod, setSelectedPeriod] = useState("Annual-Monthly");
+ const [selectedPeriod, setSelectedPeriod] = useState("Annual-Monthly");
   const [starterPlanPrice, setStarterPlanPrice] = useState<number>(0);
   const [businessPlanPrice, setBusinessPlanPrice] = useState<number>(0);
   const [premiumPlanPrice, setPremiumPlanPrice] = useState<number>(0);
@@ -307,20 +308,20 @@ const RightPlan: React.FC = () => {
                   name="Starter"
                   price={`${starterPlanPrice}`}
                   isStarter={true}
-                  onAddToCart={() => handleAddToCart("Starter")}
-                  showDropdown={activeDropdown === "Starter"}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Starter")}
+                  showDropdown={activeDropdown === "Google Workspace Business Starter"}
                 />
                 <PlanCard
-                  name="Advanced"
-                  price={`${businessPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Advanced")}
-                  showDropdown={activeDropdown === "Advanced"}
-                />
-                <PlanCard
-                  name="Premium"
+                  name="Standard"
                   price={`${premiumPlanPrice}`}
-                  onAddToCart={() => handleAddToCart("Premium")}
-                  showDropdown={activeDropdown === "Premium"}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Standard")}
+                  showDropdown={activeDropdown === "Google Workspace Business Standard"}
+                />
+                 <PlanCard
+                  name="Business Plus"
+                  price={`${businessPlanPrice}`}
+                  onAddToCart={() => handleAddToCart("Google Workspace Business Plus")}
+                  showDropdown={activeDropdown === "Google Workspace Business Plus"}
                 />
               </tr>
             </thead>
@@ -608,7 +609,7 @@ const RightPlan: React.FC = () => {
         </SwipeableTable>
       </div>
       
-      {activeDropdown === "Starter" && (
+      {activeDropdown === "Google Workspace Business Starter" && (
         <div>
           <PlanModal
           planPrice={starterPlanPrice}
@@ -627,10 +628,11 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Advanced" && (
+      
+      {activeDropdown === "Google Workspace Business Standard" && (
         <div>
           <PlanModal
-          planPrice={businessPlanPrice}
+          planPrice={premiumPlanPrice}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
@@ -646,10 +648,11 @@ const RightPlan: React.FC = () => {
           />
         </div>
       )}
-      {activeDropdown === "Premium" && (
+
+      {activeDropdown === "Google Workspace Business Plus" && (
         <div>
           <PlanModal
-          planPrice={premiumPlanPrice}
+          planPrice={businessPlanPrice}
             isOpen={isModalOpen}
             currentStep={currentStep}
             handleNextStep={handleNextStep}
