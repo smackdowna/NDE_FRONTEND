@@ -11,8 +11,8 @@ const AboutUs = () => {
         </p>
       </div>
       <div className="flex flex-col gap-3">
-        <span className="font-900 text-primary-500 text-xl md:text-2xl xl:text-3xl">
-          About Us
+        <span className="font-900 text-primary-500 text-[20px] md:text-[24px] xl:text-[30px]">
+          About Usdf
         </span>
         <p className="text-base md:text-lg font-400">
           Now Digital Easy is the daughter company of Iaaxin Tech Labs, a

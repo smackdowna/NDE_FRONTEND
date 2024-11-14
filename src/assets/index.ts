@@ -75,6 +75,7 @@ import taskManagement from "@/assets/icons/task.png"
 import userInterface from "@/assets/icons/user-experience.png"
 import reports from "@/assets/icons/bar-chart.png"
 import arrow2 from "@/assets/icons/arrow.svg"
+import blog from "@/assets/icons/omnichannel_customer_engagement_blog_banner 1.svg"
 
 
 //imorting the images of hosting discover icons
@@ -171,9 +172,11 @@ import radioChecked from "@/assets/icons/clarity_dot-circle-line.svg"
 import radioUnchecked from "@/assets/icons/clarity_dot-circle-line (1).svg"
 import x from "@/assets/icons/x.svg"
 import infoIcon from "@/assets/icons/ph_info-bold.svg"
+import blog1 from "@/assets/images/image 2813.svg"
 
 
   const ICONS = {
+    blog,
     arrow2,
     time,
     attendance,
@@ -286,6 +289,7 @@ import infoIcon from "@/assets/icons/ph_info-bold.svg"
   };
 
   const IMAGES = {
+    blog1,
     footerBgSm,
     footerBgMd,
     footerBgXl,

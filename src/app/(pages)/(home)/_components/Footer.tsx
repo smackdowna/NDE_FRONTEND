@@ -72,7 +72,7 @@ const Footer = () => {
     };
 
     return (
-        <div className="footer relative">
+        <div className="footer  relative mt-[100px]">
             <Image
                 className="absolute inset-0 w-full h-full object-cover z-0 block md:hidden"
                 src={IMAGES.footerBgSm}
